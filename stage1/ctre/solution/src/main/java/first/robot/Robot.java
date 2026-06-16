@@ -60,7 +60,7 @@ public class Robot extends OpModeRobot {
     rightLeader.getConfigurator().apply(rightConfig);
 
     leftFollower.setControl(new Follower(leftLeaderID, MotorAlignmentValue.Aligned));
-    rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Opposed));
+    rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
   }
 
   /** This function is called exactly once when the DS first connects. */
