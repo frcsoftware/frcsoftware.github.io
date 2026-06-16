@@ -4,20 +4,18 @@
 
 package first.robot;
 
-import org.wpilib.drive.DifferentialDrive;
-import org.wpilib.framework.OpModeRobot;
-import org.wpilib.hardware.imu.OnboardIMU;
-import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
-
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
-
 import first.robot.simulation.DrivetrainSim;
 import first.robot.simulation.SingleFlywheelSim;
+import org.wpilib.drive.DifferentialDrive;
+import org.wpilib.framework.OpModeRobot;
+import org.wpilib.hardware.imu.OnboardIMU;
+import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
 /**
  * The methods in this class are called automatically as described in the OpModeRobot documentation.
@@ -41,14 +39,12 @@ public class Robot extends OpModeRobot {
 
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
 
-
-  public final DifferentialDrive drivetrain = new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
-
+  public final DifferentialDrive drivetrain =
+      new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   private SingleFlywheelSim intakeSim = new SingleFlywheelSim(intakeMotor, "intake");
   private SingleFlywheelSim shooterSim = new SingleFlywheelSim(shooterMotor, "shooter");
-
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -78,11 +74,10 @@ public class Robot extends OpModeRobot {
   @Override
   public void nonePeriodic() {}
 
-  @Override 
+  @Override
   public void simulationPeriodic() {
     drivetrainSim.periodic();
     intakeSim.periodic();
     shooterSim.periodic();
   }
-
 }

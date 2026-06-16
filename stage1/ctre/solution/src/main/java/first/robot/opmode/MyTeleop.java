@@ -4,10 +4,10 @@
 
 package first.robot.opmode;
 
+import first.robot.Robot;
 import org.wpilib.driverstation.NiDsXboxController;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
-import first.robot.Robot;
 
 @Teleop
 public class MyTeleop extends PeriodicOpMode {
