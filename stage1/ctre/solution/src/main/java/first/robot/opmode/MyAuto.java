@@ -12,7 +12,7 @@ import org.wpilib.system.Timer;
 @Autonomous(name = "My Auto", group = "Group 1")
 public class MyAuto extends PeriodicOpMode {
   private final Robot robot;
-  private double startTime;
+  private Timer autoTimer = new Timer();
 
   /** The Robot instance is passed into the opmode via the constructor. */
   public MyAuto(Robot robot) {
@@ -21,7 +21,7 @@ public class MyAuto extends PeriodicOpMode {
 
   @Override
   public void start() {
-    startTime = Timer.getTimestamp(); // Set the start time when auto starts
+    autoTimer.restart(); // Reset the timer to zero at the start of auto
   }
 
   /*
@@ -32,7 +32,7 @@ public class MyAuto extends PeriodicOpMode {
    */
   @Override
   public void periodic() {
-    if (Timer.getTimestamp() - startTime < 4.0) { // Drive for 4 seconds after the start of auto
+    if (!autoTimer.hasElapsed(4.0)) { // Drive for 4 seconds after the start of auto
       robot.drivetrain.arcadeDrive(0.5, 0.0); // Drive forward at half speed with no rotation
     } else {
       robot.drivetrain.arcadeDrive(0.0, 0.0); // Stop the drivetrain after 4 seconds
