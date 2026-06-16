@@ -38,15 +38,17 @@ The simplest open-loop mechanisms require almost no configuration in code, since
 
 The two most common open-loop setpoint types are duty-cycle and voltage.
 
-Duty-cycle is a percentage of input voltage coming from the robot's battery.
-If the battery voltage is 11.8 volts, and you request a 50% duty cycle, the motor will run at 5.9 volts
+Duty-cycle is a percentage of input voltage coming from the robot's battery to the motor controller.
+WPILib refers to this percentage as throttle.
+If the battery voltage is 11.8 volts, and you request a 50% duty-cycle, or 50% throttle, the motor controller will output 5.9 volts to the motor.
 
-Voltage control is very similar to duty cycle, but the motor controller will automatically adjust the duty cycle based on incoming voltage.
-If the battery voltage is 12.2 volts, and you request a voltage of 6 volts, the motor will output a duty-cycle of 49.2%.
-If the battery voltage dips to 11.8, the duty-cycle will increase to 50.8%.
+Voltage control allows you to directly control the output going to the motor.
+If the battery voltage is 12.2 volts, and you request a voltage of 6 volts, the motor controller will output 6 volts.
+Likewise, if the battery voltage dips to 11.8 volts, the motor controller will still output 6 volts
 
 Voltage control is recommended over duty-cycle for open loop control because of its repeatability.
-When using voltage control, it is also recommended to not exceed a setpoint of 10 volts to account for voltage sag as your battery is used up throughout the match.
+The voltage going to the motor does not fluctuate with changes in battery voltage.
+When using voltage control, it is recommended to not exceed a setpoint of 10 volts to account for voltage sag as your battery is used up throughout the match.
 Voltage control can accomodate voltages _higher_ than the setpoint by reducing the duty cycle, but if the input voltage is below the setpoint, the motor controller cannot overcome the deficit.
 
 ### Open Loop Velocity
@@ -70,8 +72,7 @@ Mechanisms that use position control include elevators, pivoting arm, slap-down 
 
 #### Measuring your mechanism
 
-The feedback sensor in position-controlled mechanisms is commonly an encoder, a small electronic device that can measure rotation.
-Another option is a potentiometer, which is similar to an encoder, but analog, and may have limited travel distance.
+The most common feedback sensor in position-controlled mechanism is an encoder, a small electronic device that can measure rotation.
 Brushless motors all contain internal encoders, so these are a popular choice for teams.
 They require no extra work to incorporate into a mechanisms design, and are guaranteed to be functioning as long as the motor is.
 The downside of these internal encoders is they reset to a position of _0_ when the motor turns on, regardless of the mechansims physical location.
