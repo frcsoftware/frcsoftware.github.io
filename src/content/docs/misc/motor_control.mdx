@@ -1,0 +1,99 @@
+# Controlling mechanisms with motors
+
+With the introduction of the brushless era of motors in FRC, motors have become the dominant choice, compared to servos or pneumatics, when it comes to controlling robot degrees of freedom.become
+Brushless motors have incredible size to performance ratios, and the smart motor controllers that accompany them make it easy to control a variety of mechanisms.
+This section will cover the most common control modes seen on FRC robots: position control, velocity control, and open-loop control.
+
+## Open- and Closed-loop mechanisms
+
+The manner in which you control a mechanical mechanism can be split into two categories: open-loop, and closed-loop.
+Open-loop refers to a mechanism that uses no measurement to correct the output of the motor.
+Closed-loop mechanisms use measurements, such as an encoder reading, to adjust the output of a motor to get closer to a target setpoint.
+
+Closed-loop control is fundamental to creating fast and accurate mechansims, but requires more effort to get working properly.
+Open-loop control is easy, but may lack the precision that closed-loop offers.
+
+Open- and closed-loop refers to the shape of the mechanism when diagrammed out.
+See this image from the [WPILib Docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/control-system-basics.html#block-diagrams):
+![Closed Loop Block Diagram](/misc/loop_block.png).
+
+When there is no feedback, the diagram forms a straight line from input to output.
+With feedback, the feedback _closes the loop_, hence closed-loop control.
+
+A key similarity between open- and closed-loop control is that both schemes utilize setpoints.
+An open-loop controller will simply not measure the mechanisms current state and make adjustments.
+While it is necessary for closed-loop mechanisms to use real-world units such as degrees for an arm, or inches for an elevator, an open-loop mechanism may use motor control units, such as voltage or duty-cycle, as its setpoint.
+
+Open-loop control does not inherently mean unpredictable, or uncontrolled.
+Using mathematical models of your mechanism, it is possible to create a controlled output _profile_ that your mechanism can follow in order to reach its setpoint.
+However, because an open-loop controller lacks any feedback, it will not adjust for an error, and is unlikely to reach the target setpoint exactly.
+
+## Open Loop Control
+
+Some mechanisms don't require the precision that is gained through closed-loop control.
+Intake rollers, for example, are commonly controlled simply by running the motor at a set duty-cycle.
+Even if the battery voltage is a little higher or lower from one point in time to the next, the effect on robot performance may be negligible.
+
+The simplest open-loop mechanisms require almost no configuration in code, since you don't need to configure gear ratios or feedback gains.
+
+The two most common open-loop setpoint types are duty-cycle and voltage.
+
+Duty-cycle is a percentage of input voltage coming from the robot's battery.
+If the battery voltage is 11.8 volts, and you request a 50% duty cycle, the motor will run at 5.9 volts
+
+Voltage control is very similar to duty cycle, but the motor controller will automatically adjust the duty cycle based on incoming voltage.
+If the battery voltage is 12.2 volts, and you request a voltage of 6 volts, the motor will output a duty-cycle of 49.2%.
+If the battery voltage dips to 11.8, the duty-cycle will increase to 50.8%.
+
+Voltage control is recommended over duty-cycle for open loop control because of its repeatability.
+When using voltage control, it is also recommended to not exceed a setpoint of 10 volts to account for voltage sag as your battery is used up throughout the match.
+Voltage control can accomodate voltages _higher_ than the setpoint by reducing the duty cycle, but if the input voltage is below the setpoint, the motor controller cannot overcome the deficit.
+
+### Open Loop Velocity
+
+While open-loop position control does not work well in FRC, open-loop velocity control is very practical due to the nature of motors.
+Many teams will choose to run flywheels for shooters using open-loop control, since there is a direct relationship between motor voltage and motor speed, referred to as the velocity constant _kV_.
+This relationship can be found theoretically using key characteristics of the motor, or empirically by taking velocity measurements at different voltages to calculate _kV_.
+See the [WPILib Docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/introduction-to-feedforward.html#introduction-to-dc-motor-feedforward) page on DC Motor Feedforward for more info about kV.
+
+If you don't want to calculate kV, you can use voltage directly as your setpoint.
+
+It is common practice to use open-loop velocity control on swere drivetrains too, where precise velocity is not as important.
+The human driver acts like a closed-loop controller, using measurements taken of robot position and speed in order to adjust its movement.
+
+## Closed-Loop Control
+
+### Closed-Loop Position Control
+
+Position control is the most common closed-loop control scheme in FRC.
+Mechanisms that use position control include elevators, pivoting arm, slap-down intakes, climbers, and every swerve drivetrain contains four position-controlled modules.
+
+#### Measuring your mechanism
+
+The feedback sensor in position-controlled mechanisms is commonly an encoder, a small electronic device that can measure rotation.
+Another option is a potentiometer, which is similar to an encoder, but analog, and may have limited travel distance.
+Brushless motors all contain internal encoders, so these are a popular choice for teams.
+They require no extra work to incorporate into a mechanisms design, and are guaranteed to be functioning as long as the motor is.
+The downside of these internal encoders is they reset to a position of _0_ when the motor turns on, regardless of the mechansims physical location.
+To counteract this, you either need to perform a homing sequence that moves your mechanism in a controlled manner to a fixed location, then reset the encoder reading to match, or to always power on the robot with the mechanisms in a known spot, such as a physical hardstop.
+Using a hardstop location at power-on is recommended for its simplicity, and because you always power the robot on when it is on the field at competition, you will be able to position the mechanisms correctly before doing so.
+
+An alternative to a motors internal encoder is an external encoder.
+External encoders can be mounted to an axle that rotates as the mechanism moves.
+By attaching the encoder to the final shaft of a rotating mechanism, such as an arm, you can treat the encoder reading as _absolute_, requiring no homing sequence or specific power-on location.
+
+
+### Closed-Loop Velocity Control
+
+Closed-loop velocity control relies heavily on the open-loop control discussed above, but with similar incorporation of feedback gains to account for disturbances.
+An example of disturbance that you may need to account for is a game piece slowing down your shooter's flywheel.
+In years when you have to shoot multiple game pieces one after another, like in 2026 Rebuilt, closed-loop control can help your flywheel recover between shots in a way that open-loop alone cannot.
+
+
+## Choosing a control scheme
+
+Choosing a control scheme for a mechanism should feel straightforward.
+If you need a mechanism to move to a precise position and stay there, closed-loop position is the only option.
+If you need a mechanism to move at a specific speed, start with open-loop velocity control.
+If you find that the mechanism still doesn't perform as well as you'd like, consider if adding feedback would improve performance.
+Instead, if you only need a mechanism to move at rough speeds, open loop control is a simple way to achieve motion.
