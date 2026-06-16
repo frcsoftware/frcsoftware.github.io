@@ -16,6 +16,9 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
+import first.robot.simulation.DrivetrainSim;
+import first.robot.simulation.SingleFlywheelSim;
+
 /**
  * The methods in this class are called automatically as described in the OpModeRobot documentation.
  * OpMode classes anywhere in the package (or sub-packages) where this class is located are
@@ -26,20 +29,25 @@ import com.ctre.phoenix6.signals.MotorAlignmentValue;
 public class Robot extends OpModeRobot {
 
   private final int leftLeaderID = 0;
-  private TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
+  public TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
   private TalonFX leftFollower = new TalonFX(1, CANBus.systemcore(0));
 
   private final int rightLeaderID = 2;
-  private TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
+  public TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
   private TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
 
-  private TalonFX intake = new TalonFX(4, CANBus.systemcore(0));
-  private TalonFX shooter = new TalonFX(5, CANBus.systemcore(0));
+  public TalonFX intakeMotor = new TalonFX(4, CANBus.systemcore(0));
+  public TalonFX shooterMotor = new TalonFX(5, CANBus.systemcore(0));
 
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
 
 
-  private final DifferentialDrive drivetrain = new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
+  public final DifferentialDrive drivetrain = new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
+
+
+  private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+  private SingleFlywheelSim intakeSim = new SingleFlywheelSim(intakeMotor, "intake");
+  private SingleFlywheelSim shooterSim = new SingleFlywheelSim(shooterMotor, "shooter");
 
 
   /**
@@ -69,4 +77,12 @@ public class Robot extends OpModeRobot {
    */
   @Override
   public void nonePeriodic() {}
+
+  @Override 
+  public void simulationPeriodic() {
+    drivetrainSim.periodic();
+    intakeSim.periodic();
+    shooterSim.periodic();
+  }
+
 }
