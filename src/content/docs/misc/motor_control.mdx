@@ -4,29 +4,34 @@ With the introduction of the brushless era of motors in FRC, motors have become 
 Brushless motors have incredible size to performance ratios, and the smart motor controllers that accompany them make it easy to control a variety of mechanisms.
 This section will cover the most common control modes seen on FRC robots: position control, velocity control, and open-loop control.
 
-## Open- and Closed-loop mechanisms
+## Motor Controllers
+Not to be confused with hardware motor controllers like the REV Spark Max or CTRE TalonFX, a software motor controller is a function that converts a setpoint input to a motor output.
+In the simplest case, the input _is_ the output, such as when using voltage or throttle (duty-cycle) control.
 
-The manner in which you control a mechanical mechanism can be split into two categories: open-loop, and closed-loop.
-Open-loop refers to a mechanism that uses no measurement to correct the output of the motor.
-Closed-loop mechanisms use measurements, such as an encoder reading, to adjust the output of a motor to get closer to a target setpoint.
+A more complex example would multiply the setpoint, say a flywwhel rpm, by some constant to convert to volts for the motor.
+
+Understanding and mastering these controllers will help your robots to be fast and accurate, and help you to be succesful in FRC.
+
+## Open- and Closed-loop Controllers
+The types of controllers that you can create can be split into two categories: open-loop, and closed-loop.
+Open-loop refers to a mechanism that have only a single input, the setpoint.
+Open-loop controllers will often, but not always, utilize a mathematical model of the motor and mechanism to make an educated estimate of how the motor should act in order to reach the setpoint.
+However, they have no way of knowing if the motor is behaving according to the model, so open-loop control is inadequate for most FRC mechanisms.
+
+Closed-loop mechanisms have an additional input: a measurement of the current state of the mechanism.
+A closed-loop controller will combine this measurement and setpoint to determine the output.
+Using a measurement from the mechanism is beneficial because it gives your controller insight into how the mechanism is actually behaving.
+This _feedback_ from the mechanism can help account for the modle being inaccurate, or disturbances which have caused the mechanism to not act exactly according to the model.
 
 Closed-loop control is fundamental to creating fast and accurate mechansims, but requires more effort to get working properly.
-Open-loop control is easy, but may lack the precision that closed-loop offers.
+Open-loop control is simpler, but may lack the precision that closed-loop offers.
 
-Open- and closed-loop refers to the shape of the mechanism when diagrammed out.
+Ther terms open- and closed-loop refers to the shape of the controller when diagrammed out.
 See this image from the [WPILib Docs](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/control-system-basics.html#block-diagrams):
 ![Closed Loop Block Diagram](/misc/loop_block.png).
 
 When there is no feedback, the diagram forms a straight line from input to output.
-With feedback, the feedback _closes the loop_, hence closed-loop control.
-
-A key similarity between open- and closed-loop control is that both schemes utilize setpoints.
-An open-loop controller will simply not measure the mechanisms current state and make adjustments.
-While it is necessary for closed-loop mechanisms to use real-world units such as degrees for an arm, or inches for an elevator, an open-loop mechanism may use motor control units, such as voltage or duty-cycle, as its setpoint.
-
-Open-loop control does not inherently mean unpredictable, or uncontrolled.
-Using mathematical models of your mechanism, it is possible to create a controlled output _profile_ that your mechanism can follow in order to reach its setpoint.
-However, because an open-loop controller lacks any feedback, it will not adjust for an error, and is unlikely to reach the target setpoint exactly.
+In the closed-loop case, the input -> output -> feedback forms a loop.
 
 ## Open Loop Control
 
