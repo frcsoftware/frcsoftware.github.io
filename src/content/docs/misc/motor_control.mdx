@@ -1,8 +1,8 @@
 # Controlling mechanisms with motors
 
-With the introduction of the brushless era of motors in FRC, motors have become the dominant choice, compared to servos or pneumatics, when it comes to controlling robot degrees of freedom.become
+With the introduction of the brushless era of motors in FRC, motors have become the dominant choicewhen it comes to controlling robot degrees of freedom, compared to servos or pneumatics.
 Brushless motors have incredible size to performance ratios, and the smart motor controllers that accompany them make it easy to control a variety of mechanisms.
-This section will cover the most common control modes seen on FRC robots: position control, velocity control, and open-loop control.
+This section will cover the most common types of software controllers for motors in FRC.
 
 ## Motor Controllers
 Not to be confused with hardware motor controllers like the REV Spark Max or CTRE TalonFX, a software motor controller is a function that converts a setpoint input to a motor output.
@@ -35,9 +35,10 @@ In the closed-loop case, the input -> output -> feedback forms a loop.
 
 ## Open Loop Control
 
-Some mechanisms don't require the precision that is gained through closed-loop control.
-Intake rollers, for example, are commonly controlled simply by running the motor at a set duty-cycle.
-Even if the battery voltage is a little higher or lower from one point in time to the next, the effect on robot performance may be negligible.
+Some mechanisms, like intake rollers, can provide successful performance even without incorporating feedback from the mechanism.
+Intake rollers are commonly controlled simply by running the motor at a throttle level, which represents a percentage of the battery voltage.
+A 50% throttle, set with `motor.setThrottle(0.5)` will output 50% of the battery voltage to the motor.
+Even if the battery voltage is a little higher or lower from one point in time to the next, the effect on intake performance is likely to be negligible, so there is no need to account for it in your controller.
 
 The simplest open-loop mechanisms require almost no configuration in code, since you don't need to configure gear ratios or feedback gains.
 
