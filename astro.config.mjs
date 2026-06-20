@@ -16,7 +16,7 @@ export default defineConfig({
             remarkFigure,
             remarkGlossary,
             remarkImageAttributes,
-	    remarkMdxGlobalImports
+            remarkMdxGlobalImports,
         ],
         rehypePlugins: [],
     },
