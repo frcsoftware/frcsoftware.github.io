@@ -65,19 +65,22 @@ Windows installers will almost always need to be the 64-bit version if there is 
 2. Click "Fork" near the top right, then click "Create Fork" on the next screen
 3. Open GitHub Desktop and select "Clone a repository from the Internet..." or go to `file -> Clone repository...` in the very top left
 4. Under "GitHub.com", select your forked `[username]/frcsoftware.github.io` repository and click "Clone"
-5. After it clones the repository (downloads a copy of it to your computer), it will ask how you plan to use the fork. Select "To contribute to the parent project" and click "Continue"
+5. After it clones the repository (downloads a copy of it to your computer), it will ask how you plan to use the fork.
+   Select "To contribute to the parent project" and click "Continue"
 
 **For Internal Contributors (added to the main repository):**
 
 1. Open GitHub Desktop and select "Clone a repository from the Internet..." or go to `file -> Clone repository...` in the very top left
 2. Under "GitHub.com", select the main repository and click "Clone"
-3. After it clones the repository (downloads a copy of it to your computer), it will ask how you plan to use the fork. Select "To contribute to the parent project" and click "Continue"
+3. After it clones the repository (downloads a copy of it to your computer), it will ask how you plan to use the fork.
+   Select "To contribute to the parent project" and click "Continue"
 
 **How to Write and Pull Request Contributions**
 
 1. Create a new branch by going to the "Current branch" dropdown at the top of GitHub Desktop, pressing "New branch", naming it and clicking "Create branch".
     - Typically you want to make changes in branches (not main), then do what's called a "pull request" to get those changes "pulled" and merged over to the original main branch
-    - Name the branch something related to the overall changes you're making, e.g. "contributors-guide" or "3A-cleanup". You should expect to delete the branch after a pull request, so keep it specific enough to your changes
+    - Name the branch something related to the overall changes you're making, e.g. "contributors-guide" or "3A-cleanup".
+      You should expect to delete the branch after a pull request, so keep it specific enough to your changes
     - Make sure to publish the branch by clicking the button for it that shows up after you create a new branch
 2. Click "Open in Visual Studio Code" to open VS Code.
 3. If you get a pop-up that says "Do you trust the authors of the files in this folder?", check the box next to "Trust the authors of all files in the parent folder 'GitHub'" (for no further popups when you clone repositories in the future) and click "Yes, I trust the authors".
@@ -91,8 +94,12 @@ All the website files and folders are contained in the `src/content/docs` folder
 
 </Aside>
 
-6. Whenever you reach a good point to stop where you want to save your changes to the cloud, you want to make what's called a "commit", which is where the changes are saved to the branch. You then have to "push" any commits to get them uploaded to the cloud, otherwise they will remain local. You can do this through VS Code or GitHub Desktop, but we'll go through GitHub Desktop to keep all version control actions centralized there.
-7. Open GitHub Desktop and make sure "Changes" on the sidebar is selected. All changes selected in the sidebar will be added to the commit (the changes are "staged" for the commit). Type a summary of the commit (description optional) and press "Commit to \[branch\]".
+6. Whenever you reach a good point to stop where you want to save your changes to the cloud, you want to make what's called a "commit", which is where the changes are saved to the branch.
+   You then have to "push" any commits to get them uploaded to the cloud, otherwise they will remain local.
+   You can do this through VS Code or GitHub Desktop, but we'll go through GitHub Desktop to keep all version control actions centralized there.
+7. Open GitHub Desktop and make sure "Changes" on the sidebar is selected.
+   All changes selected in the sidebar will be added to the commit (the changes are "staged" for the commit).
+   Type a summary of the commit (description optional) and press "Commit to \[branch\]".
 8. Click the button to push the commit(s) you've made to the cloud (either up above or in the middle of the screen).
 
 <Aside type="tip">
@@ -100,7 +107,8 @@ Clicking the "Fetch origin" button will fetch any commits to the current branch 
 
 </Aside>
 
-9. To keep your code up to date with the original repository's main branch, open the "branch" menu at the top of the screen and click "Update from main". If some commits get pulled to your branch from main, you can push to update your branch in the cloud again.
+9. To keep your code up to date with the original repository's main branch, open the "branch" menu at the top of the screen and click "Update from main".
+   If some commits get pulled to your branch from main, you can push to update your branch in the cloud again.
 
 <Aside type="tip">
 Make sure to update your branch from main frequently!
@@ -110,7 +118,9 @@ Once all conflicts are resolved, switch back to GitHub Desktop to complete the m
 
 </Aside>
 
-10. Once you're satisfied enough with your set of changes to request to add them to the main website, and have committed all changes, checked for updates, and pushed all commits, create a pull request through the menu in the middle of GitHub Desktop. This will bring you to the website where you can describe the changes you made and want to pull to the website and assign an issue that it will fix. One of the internal contributors will review your pull request after you submit it and will either approve it and merge it with the main branch or make comments about things that need fixed before it can get merged.
+10. Once you're satisfied enough with your set of changes to request to add them to the main website, and have committed all changes, checked for updates, and pushed all commits, create a pull request through the menu in the middle of GitHub Desktop.
+    This will bring you to the website where you can describe the changes you made and want to pull to the website and assign an issue that it will fix.
+    One of the internal contributors will review your pull request after you submit it and will either approve it and merge it with the main branch or make comments about things that need fixed before it can get merged.
 
 To recap the contribution steps, do the combination of creating and publishing a branch, making changes and commits, updating from main, pushing commits, and creating a pull request.
 

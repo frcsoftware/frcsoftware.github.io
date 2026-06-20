@@ -48,6 +48,9 @@ importers:
       prettier-plugin-astro:
         specifier: ^0.14.1
         version: 0.14.1
+      prettier-plugin-sentences-per-line:
+        specifier: ^0.2.3
+        version: 0.2.3(prettier@3.8.4)
       remark-cli:
         specifier: ^12.0.1
         version: 12.0.1
@@ -2184,6 +2187,11 @@ packages:
     resolution: {integrity: sha512-RiBETaaP9veVstE4vUwSIcdATj6dKmXljouXc/DDNwBSPTp8FRkLGDSGFClKsAFeeg+13SB0Z1JZvbD76bigJw==}
     engines: {node: ^14.15.0 || >=16.0.0}
 
+  prettier-plugin-sentences-per-line@0.2.3:
+    resolution: {integrity: sha512-zuzFfs97g9xo0wE4hX/RbAaTWrbW0NgqiPXcW7LR4mzQInCHLuTx8W/t6S1IqHSwegHoxHIgJSKBq02AH7IQJw==}
+    peerDependencies:
+      prettier: ^3
+
   prettier@3.8.4:
     resolution: {integrity: sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==}
     engines: {node: '>=14'}
@@ -2428,6 +2436,10 @@ packages:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  sentences-per-line@0.5.2:
+    resolution: {integrity: sha512-Ch7cTyoP+nEo5+iZozSAeJ4c8R3jglpFwQMoQ98dn7wOa0QhXJjgO1wrjZgQJahSDB30BXfJ2PEBrlfhx8vK8A==}
+    engines: {node: '>=22.14.0'}
 
   sharp@0.34.5:
     resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
@@ -5656,6 +5668,11 @@ snapshots:
       prettier: 3.8.4
       sass-formatter: 0.7.9
 
+  prettier-plugin-sentences-per-line@0.2.3(prettier@3.8.4):
+    dependencies:
+      prettier: 3.8.4
+      sentences-per-line: 0.5.2
+
   prettier@3.8.4: {}
 
   prismjs@1.30.0: {}
@@ -6095,6 +6112,8 @@ snapshots:
   sax@1.5.0: {}
 
   semver@7.7.4: {}
+
+  sentences-per-line@0.5.2: {}
 
   sharp@0.34.5:
     dependencies:

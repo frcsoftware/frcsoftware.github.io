@@ -3,7 +3,7 @@
     "singleQuote": true,
     "trailingComma": "all",
     "tabWidth": 4,
-    "plugins": ["prettier-plugin-astro"],
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-sentences-per-line"],
     "overrides": [
         {
             "files": "*.astro",

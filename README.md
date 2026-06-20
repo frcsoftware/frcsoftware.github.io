@@ -1,6 +1,7 @@
 # FRCSoftware.org
 
-A community-driven learning course and resource hub for FRC software. Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
+A community-driven learning course and resource hub for FRC software.
+Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
 ## Project Structure
 
@@ -59,7 +60,8 @@ Types: `note`, `tip`, `caution`, `danger`, `example`
 
 ### Slides
 
-Image and video slideshow with lightbox support. Images are automatically optimized when placed in `src/assets/content/`.
+Image and video slideshow with lightbox support.
+Images are automatically optimized when placed in `src/assets/content/`.
 
 **Format:** Each slide is an image immediately followed by its caption:
 
@@ -138,11 +140,13 @@ Use the `:::center` block directive to center text content:
 :::
 ```
 
-This works with any content including text, images, videos, or other elements. The directive uses the [remark-directive](https://github.com/remarkjs/remark-directive) syntax (already included in Starlight).
+This works with any content including text, images, videos, or other elements.
+The directive uses the [remark-directive](https://github.com/remarkjs/remark-directive) syntax (already included in Starlight).
 
 ## CustomCard
 
-Cards with styling custom for the website. Can be used with [CardGrid](https://starlight.astro.build/components/card-grids/)
+Cards with styling custom for the website.
+Can be used with [CardGrid](https://starlight.astro.build/components/card-grids/)
 
 ```mdx
 import CustomCard from '@components/CustomCard.astro';
@@ -231,7 +235,8 @@ Caption at 60% width with border
 
 Attributes:
 
-- `w`: Width as a percentage (e.g., `w=70` for 70% width). Omit for 100% width.
+- `w`: Width as a percentage (e.g., `w=70` for 70% width).
+  Omit for 100% width.
 - `border`: Adds a gray border around the image
 
 The figure directive:
@@ -285,12 +290,14 @@ Add width, alignment, and border to images using URL hash syntax:
 Attributes:
 
 - `w`: Width as a percentage (e.g., `w=60` for 60% width)
-- `align`: Alignment (`left`, `center`, `right`). Default is `center`.
+- `align`: Alignment (`left`, `center`, `right`).
+  Default is `center`.
 - `border`: Adds default border (5px solid gray), or specify custom: `border=2px_solid_red` (use underscores for spaces)
 
 ### Image Location
 
-Place images in `src/assets/content/` for automatic optimization. The path should match the folder structure without the `src/assets/content` prefix:
+Place images in `src/assets/content/` for automatic optimization.
+The path should match the folder structure without the `src/assets/content` prefix:
 
 - File location: `src/assets/content/learning-course/stage1/image.webp`
 - Component path: `src="/learning-course/stage1/image.webp"`
@@ -341,7 +348,8 @@ For multiple images, use the Slides component instead.
 
 5. **Make changes**
 
-    Edit files in `src/content/docs/` to modify content. The browser will automatically reload when you save changes.
+    Edit files in `src/content/docs/` to modify content.
+    The browser will automatically reload when you save changes.
 
 ### Verify Installation
 
