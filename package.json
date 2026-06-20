@@ -11,6 +11,7 @@
         "astro": "astro",
         "lint": "eslint .",
         "lint:md": "remark src/content/docs --ext mdx --frail",
+        "format": "prettier --write .",
         "format:check": "prettier --check .",
         "typecheck": "astro check"
     },
