@@ -16,8 +16,8 @@
  */
 
 export interface TocConfig {
-  minHeadingLevel?: number;
-  maxHeadingLevel?: number;
+    minHeadingLevel?: number;
+    maxHeadingLevel?: number;
 }
 
 /**
@@ -29,9 +29,9 @@ export interface TocConfig {
  *   '/best-practices': { minHeadingLevel: 2, maxHeadingLevel: 4 }  // Custom levels
  */
 export const tocEnabledDirectories: Record<string, TocConfig | true> = {
-  // Add directories here to enable TOC
-  '/design-handbook': true,
-  // '/best-practices': true,
+    // Add directories here to enable TOC
+    '/design-handbook': true,
+    // '/best-practices': true,
 };
 
 /**
@@ -39,29 +39,31 @@ export const tocEnabledDirectories: Record<string, TocConfig | true> = {
  * Returns the config if enabled, or false if not in any enabled directory
  */
 export function getTocConfigForPath(pathname: string): TocConfig | false {
-  // Normalize pathname
-  const normalizedPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+    // Normalize pathname
+    const normalizedPath = pathname.endsWith('/')
+        ? pathname.slice(0, -1)
+        : pathname;
 
-  // Check for exact match first
-  if (tocEnabledDirectories[normalizedPath]) {
-    const config = tocEnabledDirectories[normalizedPath];
-    return config === true ? {} : config;
-  }
-
-  // Find the longest matching prefix
-  let bestMatch = '';
-  let bestConfig: TocConfig | true | undefined;
-
-  for (const [key, config] of Object.entries(tocEnabledDirectories)) {
-    if (normalizedPath.startsWith(key) && key.length > bestMatch.length) {
-      bestMatch = key;
-      bestConfig = config;
+    // Check for exact match first
+    if (tocEnabledDirectories[normalizedPath]) {
+        const config = tocEnabledDirectories[normalizedPath];
+        return config === true ? {} : config;
     }
-  }
 
-  if (bestMatch && bestConfig) {
-    return bestConfig === true ? {} : bestConfig;
-  }
+    // Find the longest matching prefix
+    let bestMatch = '';
+    let bestConfig: TocConfig | true | undefined;
 
-  return false;
+    for (const [key, config] of Object.entries(tocEnabledDirectories)) {
+        if (normalizedPath.startsWith(key) && key.length > bestMatch.length) {
+            bestMatch = key;
+            bestConfig = config;
+        }
+    }
+
+    if (bestMatch && bestConfig) {
+        return bestConfig === true ? {} : bestConfig;
+    }
+
+    return false;
 }

@@ -5,96 +5,99 @@ import Pagination from 'virtual:starlight/components/Pagination';
 ---
 
 <footer class="site-footer">
-  <!-- Pagination Navigation -->
-  <div class="pagination-wrapper">
-    <Pagination />
-  </div>
-
-  <div class="site-footer-inner">
-    <div class="footer-startup-status">
-      <a
-        href="https://github.com/frcsoftware/frcsoftware.org"
-        class="footer-github-link"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Open FRCSoftware.org on GitHub"
-      >
-        <MdiIcon class="footer-github-icon" path={mdiGithub} size={28} />
-      </a>
+    <!-- Pagination Navigation -->
+    <div class="pagination-wrapper">
+        <Pagination />
     </div>
-  </div>
+
+    <div class="site-footer-inner">
+        <div class="footer-startup-status">
+            <a
+                href="https://github.com/frcsoftware/frcsoftware.org"
+                class="footer-github-link"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open FRCSoftware.org on GitHub"
+            >
+                <MdiIcon
+                    class="footer-github-icon"
+                    path={mdiGithub}
+                    size={28}
+                />
+            </a>
+        </div>
+    </div>
 </footer>
 
 <style>
-  .site-footer {
-    margin-top: 4rem;
-    padding: 0 0 2.5rem;
-    background: var(--sl-color-bg);
-  }
-
-  .pagination-wrapper {
-    max-width: var(--sl-content-width, 72rem);
-    margin: 0 auto 2rem;
-    padding: 0 2rem;
-  }
-
-  .pagination-wrapper :global(nav) {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--sl-color-gray-6);
-  }
-
-  .site-footer-inner {
-    max-width: var(--sl-content-width, 72rem);
-    margin: 0 auto;
-    padding: 2rem 2rem 0;
-    color: var(--sl-color-gray-2);
-    font-size: var(--sl-text-sm, 0.875rem);
-    border-top: 1px solid var(--sl-color-gray-6);
-  }
-
-  .footer-startup-status {
-    text-align: center;
-  }
-
-  .footer-powered-label {
-    margin: 0 0 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--sl-color-gray-2);
-  }
-
-  .footer-subtext {
-    margin: 0;
-    color: var(--sl-color-gray-3);
-  }
-
-  .footer-github-link {
-    margin-top: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--sl-color-gray-2);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-
-  .footer-github-link:hover,
-  .footer-github-link:focus-visible {
-    color: var(--sl-color-white);
-  }
-
-  .footer-github-icon {
-    width: 28px;
-    height: 28px;
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    .site-footer-inner {
-      padding: 0 1.25rem;
+    .site-footer {
+        margin-top: 4rem;
+        padding: 0 0 2.5rem;
+        background: var(--sl-color-bg);
     }
 
-  }
+    .pagination-wrapper {
+        max-width: var(--sl-content-width, 72rem);
+        margin: 0 auto 2rem;
+        padding: 0 2rem;
+    }
+
+    .pagination-wrapper :global(nav) {
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--sl-color-gray-6);
+    }
+
+    .site-footer-inner {
+        max-width: var(--sl-content-width, 72rem);
+        margin: 0 auto;
+        padding: 2rem 2rem 0;
+        color: var(--sl-color-gray-2);
+        font-size: var(--sl-text-sm, 0.875rem);
+        border-top: 1px solid var(--sl-color-gray-6);
+    }
+
+    .footer-startup-status {
+        text-align: center;
+    }
+
+    .footer-powered-label {
+        margin: 0 0 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--sl-color-gray-2);
+    }
+
+    .footer-subtext {
+        margin: 0;
+        color: var(--sl-color-gray-3);
+    }
+
+    .footer-github-link {
+        margin-top: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sl-color-gray-2);
+        text-decoration: none;
+        transition: color 0.15s ease;
+    }
+
+    .footer-github-link:hover,
+    .footer-github-link:focus-visible {
+        color: var(--sl-color-white);
+    }
+
+    .footer-github-icon {
+        width: 28px;
+        height: 28px;
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .site-footer-inner {
+            padding: 0 1.25rem;
+        }
+    }
 </style>

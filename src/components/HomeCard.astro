@@ -1,162 +1,171 @@
 ---
 import {
-  mdiArrowRight,
-  mdiBookOpenVariant,
-  mdiCheckCircleOutline,
-  mdiCog,
-  mdiFolder,
-  mdiSchool,
-  mdiWrench,
+    mdiArrowRight,
+    mdiBookOpenVariant,
+    mdiCheckCircleOutline,
+    mdiCog,
+    mdiFolder,
+    mdiSchool,
+    mdiWrench,
 } from '@mdi/js';
 import MdiIcon from './MdiIcon.astro';
 
 interface Props {
-  title: string;
-  href: string;
-  description: string;
-  icon: 'book' | 'graduation' | 'wrench' | 'gears' | 'check' | 'folder';
+    title: string;
+    href: string;
+    description: string;
+    icon: 'book' | 'graduation' | 'wrench' | 'gears' | 'check' | 'folder';
 }
 
 const { title, href, description, icon } = Astro.props;
 
 const iconPaths = {
-  book: mdiBookOpenVariant,
-  graduation: mdiSchool,
-  wrench: mdiWrench,
-  gears: mdiCog,
-  check: mdiCheckCircleOutline,
-  folder: mdiFolder,
+    book: mdiBookOpenVariant,
+    graduation: mdiSchool,
+    wrench: mdiWrench,
+    gears: mdiCog,
+    check: mdiCheckCircleOutline,
+    folder: mdiFolder,
 };
 ---
 
 <a href={href} class="home-card">
-  <div class="home-card-icon">
-    <MdiIcon path={iconPaths[icon]} size={28} />
-  </div>
-  <div class="home-card-content">
-    <h3 class="home-card-title">{title}</h3>
-    <p class="home-card-description">{description}</p>
-  </div>
-  <MdiIcon class="home-card-arrow" path={mdiArrowRight} size={20} />
+    <div class="home-card-icon">
+        <MdiIcon path={iconPaths[icon]} size={28} />
+    </div>
+    <div class="home-card-content">
+        <h3 class="home-card-title">{title}</h3>
+        <p class="home-card-description">{description}</p>
+    </div>
+    <MdiIcon class="home-card-arrow" path={mdiArrowRight} size={20} />
 </a>
 
 <style>
-  .home-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    position: relative;
-    background: var(--sl-color-gray-6);
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 12px;
-    padding: 1.25rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    overflow: hidden;
-  }
+    .home-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        position: relative;
+        background: var(--sl-color-gray-6);
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 12px;
+        padding: 1.25rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
 
-  .home-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-color) 0%, #af7cd4 50%, var(--accent-color) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+    .home-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+            90deg,
+            var(--accent-color) 0%,
+            #af7cd4 50%,
+            var(--accent-color) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
-  .home-card:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(163, 113, 247, 0.25);
-  }
+    .home-card:hover {
+        border-color: var(--accent-color);
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(163, 113, 247, 0.25);
+    }
 
-  .home-card:hover::before {
-    opacity: 1;
-  }
+    .home-card:hover::before {
+        opacity: 1;
+    }
 
-  .home-card-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: rgba(163, 113, 247, 0.15);
-    border-radius: 10px;
-    color: var(--accent-color);
-    transition: all 0.3s ease;
-  }
+    .home-card-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: rgba(163, 113, 247, 0.15);
+        border-radius: 10px;
+        color: var(--accent-color);
+        transition: all 0.3s ease;
+    }
 
-  .home-card:hover .home-card-icon {
-    background: rgba(163, 113, 247, 0.25);
-    transform: scale(1.05);
-  }
+    .home-card:hover .home-card-icon {
+        background: rgba(163, 113, 247, 0.25);
+        transform: scale(1.05);
+    }
 
-  .home-card-content {
-    flex: 1;
-    min-width: 0;
-  }
+    .home-card-content {
+        flex: 1;
+        min-width: 0;
+    }
 
-  .home-card-title {
-    margin: 0 0 0.35rem 0;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--sl-color-white);
-    transition: color 0.2s ease;
-  }
+    .home-card-title {
+        margin: 0 0 0.35rem 0;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--sl-color-white);
+        transition: color 0.2s ease;
+    }
 
-  .home-card:hover .home-card-title {
-    color: var(--accent-color);
-  }
+    .home-card:hover .home-card-title {
+        color: var(--accent-color);
+    }
 
-  .home-card-description {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--sl-color-gray-2);
-  }
+    .home-card-description {
+        margin: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: var(--sl-color-gray-2);
+    }
 
-  .home-card-arrow {
-    flex-shrink: 0;
-    color: var(--sl-color-gray-4);
-    transition: all 0.3s ease;
-    align-self: center;
-  }
+    .home-card-arrow {
+        flex-shrink: 0;
+        color: var(--sl-color-gray-4);
+        transition: all 0.3s ease;
+        align-self: center;
+    }
 
-  .home-card:hover .home-card-arrow {
-    color: var(--accent-color);
-    transform: translateX(4px);
-  }
+    .home-card:hover .home-card-arrow {
+        color: var(--accent-color);
+        transform: translateX(4px);
+    }
 
-  /* Light mode */
-  :global(html[data-theme="light"]) .home-card {
-    background: #ffffff;
-    border-color: #e0e0e0;
-  }
+    /* Light mode */
+    :global(html[data-theme='light']) .home-card {
+        background: #ffffff;
+        border-color: #e0e0e0;
+    }
 
-  :global(html[data-theme="light"]) .home-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(163, 113, 247, 0.3);
-  }
+    :global(html[data-theme='light']) .home-card:hover {
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(163, 113, 247, 0.3);
+    }
 
-  :global(html[data-theme="light"]) .home-card-title {
-    color: #1a1a1a;
-  }
+    :global(html[data-theme='light']) .home-card-title {
+        color: #1a1a1a;
+    }
 
-  :global(html[data-theme="light"]) .home-card:hover .home-card-title {
-    color: var(--accent-color-hover);
-  }
+    :global(html[data-theme='light']) .home-card:hover .home-card-title {
+        color: var(--accent-color-hover);
+    }
 
-  :global(html[data-theme="light"]) .home-card-description {
-    color: #555;
-  }
+    :global(html[data-theme='light']) .home-card-description {
+        color: #555;
+    }
 
-  :global(html[data-theme="light"]) .home-card-icon {
-    background: rgba(163, 113, 247, 0.12);
-  }
+    :global(html[data-theme='light']) .home-card-icon {
+        background: rgba(163, 113, 247, 0.12);
+    }
 
-  :global(html[data-theme="light"]) .home-card:hover .home-card-icon {
-    background: rgba(163, 113, 247, 0.2);
-  }
+    :global(html[data-theme='light']) .home-card:hover .home-card-icon {
+        background: rgba(163, 113, 247, 0.2);
+    }
 </style>
