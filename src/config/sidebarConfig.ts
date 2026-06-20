@@ -44,6 +44,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
     {
       label: 'Contribution',
       items: [
+        { label: 'Contributing', slug: 'contribution'},
         { label: 'Methods of Contributing', slug: 'contribution/methodsofcontributing' },
         { label: 'Style Guide', slug: 'contribution/styleguide' },
         { label: 'Contributors', slug: 'contribution/contributors' },
