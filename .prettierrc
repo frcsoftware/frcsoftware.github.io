@@ -14,7 +14,7 @@
         {
             "files": "*.mdx",
             "options": {
-                "proseWrap": "never"
+                "proseWrap": "preserve"
             }
         }
     ]
