@@ -41,47 +41,47 @@ public class DrivetrainSim {
       null);
 
   private final StructPublisher<Pose2d> simPosePublisher = NetworkTableInstance.getDefault()
-      .getStructTopic("SimPose", Pose2d.struct)
+      .getStructTopic("Drivetrain/Pose", Pose2d.struct)
       .publish();
 
   private final DoublePublisher leftPositionPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/LeftPositionMeters")
+      .getDoubleTopic("Drivetrain/LeftPositionMeters")
       .publish();
 
   private final DoublePublisher rightPositionPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/RightPositionMeters")
+      .getDoubleTopic("Drivetrain/RightPositionMeters")
       .publish();
 
   private final DoublePublisher leftVelocityPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/LeftVelocityMPS")
+      .getDoubleTopic("Drivetrain/LeftVelocityMPS")
       .publish();
 
   private final DoublePublisher rightVelocityPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/RightVelocityMPS")
+      .getDoubleTopic("Drivetrain/RightVelocityMPS")
       .publish();
 
   private final DoublePublisher leftMotorVelocityPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/LeftMotor/MotorVelocityRPS")
+      .getDoubleTopic("Drivetrain/LeftMotor/MotorVelocityRPS")
       .publish();
 
   private final DoublePublisher rightMotorVelocityPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/RightMotor/MotorVelocityRPS")
+      .getDoubleTopic("Drivetrain/RightMotor/MotorVelocityRPS")
       .publish();
 
   private final DoublePublisher leftMotorVoltagePub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/LeftMotor/MotorVoltage")
+      .getDoubleTopic("Drivetrain/LeftMotor/MotorVoltage")
       .publish();
 
   private final DoublePublisher rightMotorVoltagePub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/RightMotor/MotorVoltage")
+      .getDoubleTopic("Drivetrain/RightMotor/MotorVoltage")
       .publish();
 
   private final DoublePublisher leftMotorSupplyCurrentPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/LeftMotor/MotorSupplyCurrent")
+      .getDoubleTopic("Drivetrain/LeftMotor/MotorSupplyCurrent")
       .publish();
 
   private final DoublePublisher rightMotorSupplyCurrentPub = NetworkTableInstance.getDefault()
-      .getDoubleTopic("DrivetrainSim/RightMotor/MotorSupplyCurrent")
+      .getDoubleTopic("Drivetrain/RightMotor/MotorSupplyCurrent")
       .publish();
 
   /**

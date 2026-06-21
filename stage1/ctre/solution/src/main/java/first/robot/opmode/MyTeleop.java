@@ -32,7 +32,7 @@ public class MyTeleop extends PeriodicOpMode {
     } else if (xboxController.getLeftBumperButton()) {
       // intake
       robot.intakeLauncher.setThrottle(0.8);
-      robot.feeder.setThrottle(0.8);
+      robot.feeder.setThrottle(-1.0);
 
     } else if (xboxController.getAButton()) {
       // outake
