@@ -15,7 +15,6 @@ FRCSoftware.org is just getting started, so the easiest way to propose work is b
 Issue/content:
 Solution or Notes about the execution of the content:
 When do you plan on finishing?:
-Using an alternate platform or forking on Github?:
 ```
 
 This helps avoid duplicate work and keeps contribution priorities clear as the project grows.
@@ -41,59 +40,35 @@ Windows installers will almost always need to be the 64-bit version if there is 
 - [VSCode](https://code.visualstudio.com/)
   - Download the stable build for your OS
   - Use all default options for installation, except creating a desktop icon if you want
-  - A WPILib VSCode installation will work perfectly fine 
-- [GitHub Desktop](https://desktop.github.com/) (Optional - you can also use git interface in VSCode)
-  - After installing, select "Sign in to GitHub.com"
-  - Sign in or sign up for a new GitHub account, then click "Authorize Desktop"
-    - If you choose to sign up, you must verify your account with a captcha at the end of the registration and an emailed code
-    - If the captcha fails, try disabling a privacy extension that might be interfering
-    - Set up the rest of your account (you may choose to sign up for GitHub education but that isn't required, the free version is fine)
-    - If it doesn't take you to the authorization page after signing up, go back to the GitHub Desktop application, press "Cancel", then select "Sign in to GitHub.com" again
-  - Allow your browser to open GitHub Desktop
-  - Click "Finish"
+  - A WPILib VSCode installation will work perfectly fine
+  - Recommended: Install a spellcheck extension to catch mistakes early
 
 ### Steps to Start Writing Contributions
 
 1. Go to the repository website
 2. Click "Fork" near the top right, then click "Create Fork" on the next screen
-3. Open GitHub Desktop and select "Clone a repository from the Internet..." or go to `file -> Clone repository...` in the very top left
-4. Under "GitHub.com", select your forked `[username]/frcsoftware.org` repository and click "Clone"
-5. After it clones the repository (downloads a copy of it to your computer), it will ask how you plan to use the fork. Select "To contribute to the parent project" and click "Continue"
+3. Clone your fork of the repository to your computer
 
 **How to Write and Pull Request Contributions**
 
-1. Create a new branch by going to the "Current branch" dropdown at the top of GitHub Desktop, pressing "New branch", naming it and clicking "Create branch".
-   - Typically you want to make changes in branches (not main), then do what's called a "pull request" to get those changes "pulled" and merged over to the original main branch
-   - Name the branch something related to the overall changes you're making, e.g. "contributors-guide" or "3A-cleanup". You should expect to delete the branch after a pull request, so keep it specific enough to your changes
-1. Create a new branch. You want to make changes on your branch then do a "pull request" to get those changes "pulled" and merged over to the original main branch
--  Name the branch something related to the overall changes you're making, e.g. "contributors-guide" or "1A-cleanup". You should expect to delete the branch after a pull request, so keep it specific enough to your changes
-- Make sure to publish the branch
+1. Work on your changes in a new branch in your fork of the repository.
+This allows you to have multiple versions of the repository at once, for example if you are working on two separate tasks
+   - Make sure to publish the branch
 2. Click "Open in Visual Studio Code" to open VS Code.
 3. If you get a pop-up that says "Do you trust the authors of the files in this folder?", check the box next to "Trust the authors of all files in the parent folder 'GitHub'" (for no further popups when you clone repositories in the future) and click "Yes, I trust the authors".
-4. Set up VS Code how you like if this is your first time running it (themes, extensions).
-   - The "Code Spell Checker" extension is suggested
-   - Enable autosave in the `file` menu by toggling it on
-5. Make a set of changes.
+4. Make and commit your changes
 
 <Aside type="tip">
 All the website files and folders are contained in the `src/content/docs` folder.
 </Aside>
 
-Whenever you reach a good point to stop where you want to save your changes to the cloud, you'll make a “commit”. You then have to “push” any commits to get them uploaded to the cloud.
- 7. When ready to commit to a branch, type a summary of the commit (if using Github Desktop, a description is optional) and commit your branch.
-8. Click the button to push the commit(s) you've made to the cloud (either up above or in the middle of the screen).
+In GitHub on your fork of the repository, use the "sync" button to easily rebase your branch onto the primary frcsoftware.org repository to keep up to date with any changes that have been made since you started your branch
 
 <Aside type="tip">
-Clicking the "Fetch origin" button will fetch any commits to the current branch that anyone else has made and pushed to the cloud.
+Make sure to update your branch from main frequently! If you don't, you may have to resolve big conflicts between your changes and changes someone else made to main.
 </Aside>
 
-9. To keep your code up to date with the original repository's main branch, open the "branch" menu at the top of the screen and click "Update from main". If some commits get pulled to your branch from main, you can push to update your branch in the cloud again.
-
-<Aside type="tip">
-Make sure to update your branch from main frequently! If you don't, you may have to resolve big conflicts between your changes and changes someone else made to main. If you encounter conflicts, just follow the prompts in GitHub Desktop to open the conflicts in VS Code and solve them there. Once all conflicts are resolved, switch back to GitHub Desktop to complete the merge.
-</Aside>
-
-10. Once you're satisfied enough with your set of changes to request to add them to the main website, and have committed all changes, checked for updates, and pushed all commits, create a pull request through the menu in the middle of GitHub Desktop. This will bring you to the website where you can describe the changes you made and want to pull to the website and assign an issue that it will fix. One of the internal contributors will review your pull request after you submit it and will either approve it and merge it with the main branch or make comments about things that need fixed before it can get merged.
+5. Once you're satisfied enough with your set of changes to request to add them to the main website, and have committed all changes, checked for updates, and pushed all commits, create a pull request on GitHub, from your branch to the main branch of the primary frcsoftware.org repository.
 
 To recap the contribution steps, do the combination of creating and publishing a branch, making changes and commits, updating from main, pushing commits, and creating a pull request.
 
