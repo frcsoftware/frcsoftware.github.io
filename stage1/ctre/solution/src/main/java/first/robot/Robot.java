@@ -34,8 +34,8 @@ public class Robot extends OpModeRobot {
   public TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
   private TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
 
-  public TalonFX intakeMotor = new TalonFX(4, CANBus.systemcore(0));
-  public TalonFX shooterMotor = new TalonFX(5, CANBus.systemcore(0));
+  public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
+  public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
 
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
 
@@ -43,8 +43,8 @@ public class Robot extends OpModeRobot {
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
-  private SingleFlywheelSim intakeSim = new SingleFlywheelSim(intakeMotor, "intake");
-  private SingleFlywheelSim shooterSim = new SingleFlywheelSim(shooterMotor, "shooter");
+  private SingleFlywheelSim intakeLauncherSim = new SingleFlywheelSim(intakeLauncher, "intake");
+  private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "shooter");
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -77,7 +77,7 @@ public class Robot extends OpModeRobot {
   @Override
   public void simulationPeriodic() {
     drivetrainSim.periodic();
-    intakeSim.periodic();
-    shooterSim.periodic();
+    intakeLauncherSim.periodic();
+    feederSim.periodic();
   }
 }
