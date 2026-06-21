@@ -63,17 +63,6 @@ public class Robot extends OpModeRobot {
     rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
   }
 
-  /** This function is called exactly once when the DS first connects. */
-  @Override
-  public void driverStationConnected() {}
-
-  /**
-   * This function is called periodically anytime when no opmode is selected, including when the
-   * Driver Station is disconnected.
-   */
-  @Override
-  public void nonePeriodic() {}
-
   @Override
   public void simulationPeriodic() {
     drivetrainSim.periodic();

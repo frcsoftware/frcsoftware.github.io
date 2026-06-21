@@ -48,8 +48,8 @@ public class SingleFlywheelSim {
     flywheelSim.setInputVoltage(motorVoltage);
     flywheelSim.update(0.02);
 
-    double motorVelo = flywheelSim.getAngularVelocity();
-    motorPosition += motorVelo * 0.02;
+    double motorVelo = flywheelSim.getAngularVelocity() * gearRatio;
+    motorPosition += motorVelo * 0.02 * gearRatio;
 
     talonMotorSim.setSupplyVoltage(12.0);
     talonMotorSim.setRawRotorPosition(Radians.of(motorPosition));
@@ -58,6 +58,6 @@ public class SingleFlywheelSim {
     motorVoltagePub.set(motorVoltage);
     motorVelocityPub.set(talonMotor.getVelocity().getValueAsDouble());
     motorCurrentPub.set(talonMotor.getStatorCurrent().getValueAsDouble());
-    motorPositionPub.set(motorPosition);
+    motorPositionPub.set(talonMotor.getPosition().getValueAsDouble());
   }
 }

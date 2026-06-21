@@ -68,6 +68,22 @@ public class DrivetrainSim {
       .getDoubleTopic("DrivetrainSim/RightMotor/MotorVelocityRPS")
       .publish();
 
+  private final DoublePublisher leftMotorVoltagePub = NetworkTableInstance.getDefault()
+      .getDoubleTopic("DrivetrainSim/LeftMotor/MotorVoltage")
+      .publish();
+
+  private final DoublePublisher rightMotorVoltagePub = NetworkTableInstance.getDefault()
+      .getDoubleTopic("DrivetrainSim/RightMotor/MotorVoltage")
+      .publish();
+
+  private final DoublePublisher leftMotorSupplyCurrentPub = NetworkTableInstance.getDefault()
+      .getDoubleTopic("DrivetrainSim/LeftMotor/MotorSupplyCurrent")
+      .publish();
+
+  private final DoublePublisher rightMotorSupplyCurrentPub = NetworkTableInstance.getDefault()
+      .getDoubleTopic("DrivetrainSim/RightMotor/MotorSupplyCurrent")
+      .publish();
+
   /**
    *
    * @param leftTalon the left-side TalonFX motor controller
@@ -78,6 +94,7 @@ public class DrivetrainSim {
     this.leftTalon = leftTalon;
     leftTalonSim = new TalonFXSimState(leftTalon, ChassisReference.CounterClockwise_Positive);
     leftTalonSim.setMotorType(MotorType.KrakenX60);
+
     this.rightTalon = rightTalon;
     rightTalonSim = new TalonFXSimState(rightTalon, ChassisReference.Clockwise_Positive);
     rightTalonSim.setMotorType(MotorType.KrakenX60);
@@ -90,6 +107,8 @@ public class DrivetrainSim {
     driveSim.setInputs(leftMotorVoltage, rightMotorVoltage);
     driveSim.update(0.02);
 
+    OnboardIMUSim.setYaw(driveSim.getHeading().getRadians());
+
     leftTalonSim.setSupplyVoltage(12.0);
     rightTalonSim.setSupplyVoltage(12.0);
     leftTalonSim.setRawRotorPosition(Radians.of(driveSim.getLeftPosition() * linearToMotorRatio));
@@ -97,14 +116,17 @@ public class DrivetrainSim {
     rightTalonSim.setRawRotorPosition(Radians.of(driveSim.getRightPosition() * linearToMotorRatio));
     rightTalonSim.setRotorVelocity(RadiansPerSecond.of(driveSim.getRightVelocity() * linearToMotorRatio));
 
-    OnboardIMUSim.setYaw(driveSim.getHeading().getRadians());
-
     simPosePublisher.set(driveSim.getPose());
     leftPositionPub.set(driveSim.getLeftPosition());
     rightPositionPub.set(driveSim.getRightPosition());
     leftVelocityPub.set(driveSim.getLeftVelocity());
     rightVelocityPub.set(driveSim.getRightVelocity());
+
     leftMotorVelocityPub.set(leftTalon.getVelocity().getValueAsDouble());
     rightMotorVelocityPub.set(rightTalon.getVelocity().getValueAsDouble());
+    leftMotorVoltagePub.set(leftTalon.getMotorVoltage().getValueAsDouble());
+    rightMotorVoltagePub.set(rightTalon.getMotorVoltage().getValueAsDouble());
+    leftMotorSupplyCurrentPub.set(leftTalon.getSupplyCurrent().getValueAsDouble());
+    rightMotorSupplyCurrentPub.set(rightTalon.getSupplyCurrent().getValueAsDouble());
   }
 }

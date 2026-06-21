@@ -20,16 +20,6 @@ public class MyTeleop extends PeriodicOpMode {
   }
 
   @Override
-  public void disabledPeriodic() {
-    /* Called periodically (on every DS packet) while the robot is disabled. */
-  }
-
-  @Override
-  public void start() {
-    /* Called once when the robot is enabled. */
-  }
-
-  @Override
   public void periodic() {
     /* Called periodically (set time interval) while the robot is enabled. */
     robot.drivetrain.arcadeDrive(-xboxController.getLeftY(), xboxController.getRightX());
@@ -38,28 +28,21 @@ public class MyTeleop extends PeriodicOpMode {
       // shoot
       robot.intakeLauncher.setThrottle(0.9);
       robot.feeder.setThrottle(0.75);
+
     } else if (xboxController.getLeftBumperButton()) {
       // intake
       robot.intakeLauncher.setThrottle(0.8);
       robot.feeder.setThrottle(0.8);
+
     } else if (xboxController.getAButton()) {
       // outake
       robot.intakeLauncher.setThrottle(-0.8);
       robot.feeder.setThrottle(1.0);
+
     } else {
       // stop
       robot.intakeLauncher.setThrottle(0.0);
       robot.feeder.setThrottle(0.0);
     }
-  }
-
-  @Override
-  public void end() {
-    /* Called when the robot is disabled (after previously being enabled). */
-  }
-
-  @Override
-  public void close() {
-    /* Called when the opmode is de-selected / no additional methods will be called. */
   }
 }
