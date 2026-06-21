@@ -54,7 +54,7 @@ export function remarkMdxGlobalImports() {
 
         const existingNames = new Set<string>();
         for (const node of tree.children) {
-            if (node.type === 'mdxjsEsm') {
+            if ((node as any).type === 'mdxjsEsm') {
                 const match = (node as any).value?.match(
                     /\bimport\s+(\w+)\s+from\b/,
                 );
