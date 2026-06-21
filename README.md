@@ -347,9 +347,9 @@ To deploy:
 
 ## Contributing
 
-See the [Contribution Guide](/contribution/methodsofcontributing/) on the website for details on how to contribute to FRCSoftware.org.
+See the [Contribution Guide](https://frcsoftware.org/contribution/) on the website for details on how to contribute to FRCSoftware.org.
 
 ## Links
 
 - [FRCSoftware.org](https://frcsoftware.org/)
-- [GitHub Repository](https://github.com/frcsoftware/frcsoftware.github.io)
+- [GitHub Repository](https://github.com/frcsoftware/frcsoftware.org)
