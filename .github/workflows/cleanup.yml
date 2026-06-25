@@ -1,0 +1,40 @@
+name: Cleanup Preview Deployments
+
+on:
+    pull_request_target:
+        types: [closed]
+        branches: [main]
+
+jobs:
+    cleanup:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Delete Cloudflare Pages preview deployment
+              env:
+                  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+              run: |
+                  BRANCH="pr-${{ github.event.number }}"
+                  PROJECT="frcsoftware"
+                  echo "Cleaning up preview deployments for branch: $BRANCH"
+
+                  DEPLOYMENTS=$(curl -s -X GET \
+                    "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT}/deployments?force=true" \
+                    -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+                    -H "Content-Type: application/json" | \
+                    jq -r --arg branch "$BRANCH" '.result[] | select(.deployment_trigger.metadata.branch == $branch) | .id')
+
+                  if [ -z "$DEPLOYMENTS" ]; then
+                    echo "No deployments found for branch $BRANCH"
+                    exit 0
+                  fi
+
+                  for ID in $DEPLOYMENTS; do
+                    echo "Deleting deployment: $ID"
+                    curl -s -X DELETE \
+                      "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT}/deployments/${ID}?force=true" \
+                      -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+                      -H "Content-Type: application/json" | jq .
+                  done
