@@ -43,5 +43,5 @@ jobs:
               with:
                   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                  command: pages deploy dist/ --project-name=frcsoftware
+                  command: pages deploy dist/ --project-name=frcsoftware --branch pr-${{ github.event.number }}
                   gitHubToken: ${{ secrets.GITHUB_TOKEN }}
