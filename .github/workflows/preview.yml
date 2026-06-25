@@ -1,0 +1,47 @@
+name: Preview (Cloudflare Pages)
+
+on:
+    pull_request_target:
+        branches: [main]
+
+concurrency:
+    group: preview-${{ github.event.number }}
+    cancel-in-progress: true
+
+jobs:
+    deploy-preview:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            deployments: write
+            pull-requests: write
+        steps:
+            - uses: actions/checkout@v5
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+                  repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10.16.0
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: pnpm
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Build site
+              run: pnpm build
+
+            - name: Deploy to Cloudflare Pages
+              uses: cloudflare/wrangler-action@v3
+              with:
+                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  command: pages deploy dist/ --project-name=frcsoftware
+                  gitHubToken: ${{ secrets.GITHUB_TOKEN }}
