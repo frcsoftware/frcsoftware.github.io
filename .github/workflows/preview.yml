@@ -16,24 +16,24 @@ jobs:
             deployments: write
             pull-requests: write
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
               with:
                   ref: ${{ github.event.pull_request.head.sha }}
                   repository: ${{ github.event.pull_request.head.repo.full_name }}
 
             - name: Install pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@v6
               with:
                   version: 10.16.0
 
             - name: Setup Node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
                   node-version: 24
                   cache: pnpm
 
             - name: Install dependencies
-              run: pnpm install
+              run: pnpm install --frozen-lockfile
 
             - name: Build site
               run: pnpm build
@@ -47,7 +47,7 @@ jobs:
                   gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Comment PR with preview URL
-              uses: actions/github-script@v7
+              uses: actions/github-script@v9
               with:
                   script: |
                       const previewUrl = `https://pr-${context.issue.number}.frcsoftware.pages.dev`;
