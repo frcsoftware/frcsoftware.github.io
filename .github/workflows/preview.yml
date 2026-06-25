@@ -1,11 +1,11 @@
 name: Preview (Cloudflare Pages)
 
 on:
-    pull_request:
+    pull_request_target:
         branches: [main]
 
 concurrency:
-    group: preview-${{ github.ref }}
+    group: preview-${{ github.event.number }}
     cancel-in-progress: true
 
 jobs:
@@ -14,8 +14,12 @@ jobs:
         permissions:
             contents: read
             deployments: write
+            pull-requests: write
         steps:
             - uses: actions/checkout@v5
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+                  repository: ${{ github.event.pull_request.head.repo.full_name }}
 
             - name: Install pnpm
               uses: pnpm/action-setup@v4
