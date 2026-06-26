@@ -9,8 +9,10 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "lint": "eslint .",
+        "lint": "pnpm lint:eslint && pnpm lint:md && pnpm lint:regions && pnpm typecheck",
+        "lint:eslint": "eslint .",
         "lint:md": "remark src/content/docs --ext mdx --frail",
+        "lint:regions": "tsx scripts/validate-regions.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "typecheck": "astro check"
@@ -26,6 +28,7 @@
         "@astrojs/check": "^0.9.9",
         "@eslint/js": "^10.0.1",
         "@types/mdast": "^4.0.4",
+        "@types/node": "^26.0.1",
         "astro-eslint-parser": "^1.4.0",
         "eslint": "^10.5.0",
         "eslint-plugin-astro": "^1.7.0",
@@ -36,6 +39,7 @@
         "remark-frontmatter": "^5.0.0",
         "remark-mdx": "^3.1.1",
         "remark-preset-lint-recommended": "^7.0.1",
+        "tsx": "^4.22.4",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.61.1",
         "vfile": "^6.0.3"

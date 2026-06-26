@@ -46,10 +46,6 @@ export default function remarkCodeRegion() {
 
             for (const line of lines) {
                 if (!inRegion && startRE.test(line)) {
-                    if (found)
-                        throw Error(
-                            `Duplicate region "${regionName}" in ${srcPath}`,
-                        );
                     inRegion = true;
                     found = true;
                     continue;
