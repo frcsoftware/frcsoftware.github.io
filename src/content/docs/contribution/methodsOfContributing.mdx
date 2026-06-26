@@ -38,11 +38,12 @@ Windows installers will almost always need to be the 64-bit version if there is 
 - [Node.js LTS](https://nodejs.org/)
     - Download the LTS version for your OS
     - Use all default options for installation
+- [pnpm](https://pnpm.io/installation)
 - [VSCode](https://code.visualstudio.com/)
-  - Download the stable build for your OS
-  - Use all default options for installation, except creating a desktop icon if you want
-  - A WPILib VSCode installation will work perfectly fine
-  - Recommended: Install a spellcheck extension to catch mistakes early
+    - Download the stable build for your OS
+    - Use all default options for installation, except creating a desktop icon if you want
+    - A WPILib VSCode installation will work perfectly fine
+    - Recommended: Install a spellcheck extension to catch mistakes early
 
 ### Steps to Start Writing Contributions
 
@@ -53,11 +54,17 @@ Windows installers will almost always need to be the 64-bit version if there is 
 **How to Write and Pull Request Contributions**
 
 1. Work on your changes in a new branch in your fork of the repository.
-This allows you to have multiple versions of the repository at once, for example if you are working on two separate tasks
-   - Make sure to publish the branch
+   This allows you to have multiple versions of the repository at once, for example if you are working on two separate tasks
+    - Make sure to publish the branch
 2. Click "Open in Visual Studio Code" to open VS Code.
 3. If you get a pop-up that says "Do you trust the authors of the files in this folder?", check the box next to "Trust the authors of all files in the parent folder 'GitHub'" (for no further popups when you clone repositories in the future) and click "Yes, I trust the authors".
-4. Make and commit your changes
+4. Make your changes
+5. Run the formatter and linter before committing
+    - Use `pnpm format` to run the formatter
+    - Use `pnpm lint` followed by `pnpm lint:md` to run the linter steps
+    - The formatter will apply code formatting to the docs section of the side, to maintain a consistent style
+    - The linter steps will perform various checks in the code to ensure basic functionality
+6. Make and commit your changes
 
 <Aside type="tip">
 All the website files and folders are contained in the `src/content/docs` folder.
@@ -67,7 +74,9 @@ All the website files and folders are contained in the `src/content/docs` folder
 In GitHub on your fork of the repository, use the "sync" button to easily rebase your branch onto the primary frcsoftware.org repository to keep up to date with any changes that have been made since you started your branch
 
 <Aside type="tip">
-Make sure to update your branch from main frequently! If you don't, you may have to resolve big conflicts between your changes and changes someone else made to main.
+    Make sure to update your branch from main frequently! If you don't, you may
+    have to resolve big conflicts between your changes and changes someone else
+    made to main.
 </Aside>
 
 5. Once you're satisfied enough with your set of changes to request to add them to the main website, and have committed all changes, checked for updates, and pushed all commits, create a pull request on GitHub, from your branch to the main branch of the primary frcsoftware.org repository.

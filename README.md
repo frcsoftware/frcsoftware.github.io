@@ -368,6 +368,9 @@ pnpm --version   # Should be 10.x or higher
 | `pnpm dev`     | Start local dev server at `localhost:4321` |
 | `pnpm build`   | Build production site to `./dist/`         |
 | `pnpm preview` | Preview build locally before deploying     |
+| `pnpm format`  | Run the formatter                          |
+| `pnpm lint`    | Run the linter for Javascript files        |
+| `pnpm lint:md` | Run the linter for Markdown files          |
 
 ## Deployment
 
