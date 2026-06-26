@@ -362,14 +362,14 @@ pnpm --version   # Should be 10.x or higher
 
 ## Commands
 
-| Command             | Action                                                            |
-| :------------------ | :---------------------------------------------------------------- |
-| `pnpm install`      | Install dependencies                                              |
-| `pnpm dev`          | Start local dev server at `localhost:4321`                        |
-| `pnpm build`        | Build production site to `./dist/`                                |
-| `pnpm preview`      | Preview build locally before deploying                            |
-| `pnpm format`       | Run the formatter                                                 |
-| `pnpm lint`         | Run all lint steps (ESLint, remark, region validation, typecheck) |
+| Command        | Action                                                            |
+| :------------- | :---------------------------------------------------------------- |
+| `pnpm install` | Install dependencies                                              |
+| `pnpm dev`     | Start local dev server at `localhost:4321`                        |
+| `pnpm build`   | Build production site to `./dist/`                                |
+| `pnpm preview` | Preview build locally before deploying                            |
+| `pnpm format`  | Run the formatter                                                 |
+| `pnpm lint`    | Run all lint steps (ESLint, remark, region validation, typecheck) |
 
 ## Deployment
 
