@@ -64,6 +64,11 @@ export default function remarkCodeRegion() {
             if (!found)
                 throw Error(`Region "${regionName}" not found in ${srcPath}`);
 
+            if (inRegion)
+                throw Error(
+                    `Unclosed region "${regionName}" in ${srcPath} — missing [/${regionName}]`,
+                );
+
             node.value = dedent(regionLines.join('\n'));
         });
     };
