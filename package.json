@@ -28,7 +28,6 @@
         "@astrojs/check": "^0.9.9",
         "@eslint/js": "^10.0.1",
         "@types/mdast": "^4.0.4",
-        "@types/node": "^26.0.1",
         "astro-eslint-parser": "^1.4.0",
         "eslint": "^10.5.0",
         "eslint-plugin-astro": "^1.7.0",
