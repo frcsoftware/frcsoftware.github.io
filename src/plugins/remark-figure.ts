@@ -1,123 +1,107 @@
-/**
- * Remark plugin to handle :::figure directive blocks
- *
- * Usage in MDX:
- * :::figure
- * ![Alt text](./img/image.webp)
- * Caption text goes here
- * :::
- *
- * Or with attributes:
- * :::figure{w=80}
- * ![Alt text](./img/image.webp)
- * Caption text
- * :::
- *
- * :::figure{border}
- * ![Alt text](./img/image.webp)
- * Caption with default border
- * :::
- *
- * This plugin transforms the directive into a proper <figure> element
- * with <figcaption> for the text content.
- */
-
 import { visit } from 'unist-util-visit';
 import type { Root } from 'mdast';
 
 interface ContainerDirective {
-  type: 'containerDirective';
-  name: string;
-  attributes?: Record<string, string>;
-  children: any[];
-  data?: {
-    hName?: string;
-    hProperties?: Record<string, any>;
-  };
+    type: 'containerDirective';
+    name: string;
+    attributes?: Record<string, string>;
+    children: unknown[];
+    data?: {
+        hName?: string;
+        hProperties?: Record<string, unknown>;
+    };
 }
 
 export function remarkFigure() {
-  return (tree: Root) => {
-    visit(tree, 'containerDirective', (node: ContainerDirective) => {
-      if (node.name !== 'figure') return;
+    return (tree: Root) => {
+        visit(
+            tree,
+            'containerDirective',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (node: any) => {
+                const dir = node as ContainerDirective;
+                if (dir.name !== 'figure') return;
 
-      const attrs = node.attributes || {};
+                const attrs = dir.attributes || {};
 
-      // Build styles from attributes
-      let style = '';
+                let style = '';
 
-      // Width attribute (just a number, becomes percentage)
-      if (attrs.width) {
-        style += `width: ${attrs.width};`;
-      } else if (attrs.w) {
-        style += `width: ${attrs.w}%;`;
-      }
+                if (attrs.width) {
+                    style += `width: ${attrs.width};`;
+                } else if (attrs.w) {
+                    style += `width: ${attrs.w}%;`;
+                }
 
-      // Border attribute
-      if ('border' in attrs) {
-        // If border has a value, use it; otherwise use default
-        const borderValue = attrs.border || '5px solid #ADADAD';
-        style += ` --figure-border: ${borderValue.replace(/_/g, ' ')};`;
-      }
+                if ('border' in attrs) {
+                    const borderValue = attrs.border || '5px solid #ADADAD';
+                    style += ` --figure-border: ${borderValue.replace(/_/g, ' ')};`;
+                }
 
-      // Transform to figure element
-      node.data = node.data || {};
-      node.data.hName = 'figure';
-      node.data.hProperties = node.data.hProperties || {};
-      node.data.hProperties.class = 'md-figure' + ('border' in attrs ? ' md-figure-border' : '');
+                dir.data = dir.data || {};
+                dir.data.hName = 'figure';
+                dir.data.hProperties = dir.data.hProperties || {};
+                dir.data.hProperties.class =
+                    'md-figure' +
+                    ('border' in attrs ? ' md-figure-border' : '');
 
-      if (style) {
-        node.data.hProperties.style = style.trim();
-      }
+                if (style) {
+                    dir.data.hProperties.style = style.trim();
+                }
 
-      // Process children to separate images from caption text
-      const newChildren: any[] = [];
+                const newChildren: unknown[] = [];
 
-      for (const child of node.children) {
-        if (child.type === 'paragraph' && child.children) {
-          const images: any[] = [];
-          const textNodes: any[] = [];
+                for (const child of dir.children) {
+                    const c = child as {
+                        type: string;
+                        children?: unknown[];
+                        data?: unknown;
+                        value?: string;
+                    };
+                    if (c.type === 'paragraph' && c.children) {
+                        const images: unknown[] = [];
+                        const textNodes: unknown[] = [];
 
-          // Separate images from text within the paragraph
-          for (const subChild of child.children) {
-            if (subChild.type === 'image') {
-              images.push(subChild);
-            } else if (subChild.type === 'text' && subChild.value.trim()) {
-              textNodes.push(subChild);
-            } else if (subChild.type !== 'text' || subChild.value.trim()) {
-              // Keep other non-empty nodes as text content
-              textNodes.push(subChild);
-            }
-          }
+                        for (const subChild of c.children) {
+                            const sc = subChild as {
+                                type: string;
+                                value?: string;
+                            };
+                            if (sc.type === 'image') {
+                                images.push(subChild);
+                            } else if (sc.type === 'text' && sc.value?.trim()) {
+                                textNodes.push(subChild);
+                            } else if (sc.type !== 'text' || sc.value?.trim()) {
+                                textNodes.push(subChild);
+                            }
+                        }
 
-          // Add images as their own paragraph
-          if (images.length > 0) {
-            newChildren.push({
-              type: 'paragraph',
-              children: images,
-              data: child.data
-            });
-          }
+                        if (images.length > 0) {
+                            newChildren.push({
+                                type: 'paragraph',
+                                children: images,
+                                data: c.data,
+                            });
+                        }
 
-          // Add text as figcaption
-          if (textNodes.length > 0) {
-            newChildren.push({
-              type: 'paragraph',
-              children: textNodes,
-              data: {
-                hName: 'figcaption',
-                hProperties: { class: 'md-figcaption' }
-              }
-            });
-          }
-        } else {
-          newChildren.push(child);
-        }
-      }
+                        if (textNodes.length > 0) {
+                            newChildren.push({
+                                type: 'paragraph',
+                                children: textNodes,
+                                data: {
+                                    hName: 'figcaption',
+                                    hProperties: { class: 'md-figcaption' },
+                                },
+                            });
+                        }
+                    } else {
+                        newChildren.push(child);
+                    }
+                }
 
-      node.children = newChildren;
-    });
-  };
+                dir.children = newChildren;
+            },
+        );
+    };
 }
 
 export default remarkFigure;

@@ -1,20 +1,43 @@
 {
-  "name": "frcsoftware-starlight",
-  "type": "module",
-  "version": "0.0.1",
-  "packageManager": "pnpm@10.16.0",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/starlight": "^0.39.2",
-    "@mdi/js": "^7.4.47",
-    "astro": "^6.3.7",
-    "sharp": "^0.34.5",
-    "unist-util-visit": "^5.1.0"
-  }
+    "name": "frcsoftware-starlight",
+    "type": "module",
+    "version": "0.0.1",
+    "packageManager": "pnpm@10.16.0",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "lint": "eslint .",
+        "lint:md": "remark src/content/docs --ext mdx --frail",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "typecheck": "astro check"
+    },
+    "dependencies": {
+        "@astrojs/starlight": "^0.39.2",
+        "@mdi/js": "^7.4.47",
+        "astro": "^6.3.7",
+        "sharp": "^0.34.5",
+        "unist-util-visit": "^5.1.0"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.9",
+        "@eslint/js": "^10.0.1",
+        "@types/mdast": "^4.0.4",
+        "astro-eslint-parser": "^1.4.0",
+        "eslint": "^10.5.0",
+        "eslint-plugin-astro": "^1.7.0",
+        "prettier": "^3.8.4",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-sentences-per-line": "^0.2.3",
+        "remark-cli": "^12.0.1",
+        "remark-frontmatter": "^5.0.0",
+        "remark-mdx": "^3.1.1",
+        "remark-preset-lint-recommended": "^7.0.1",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.61.1",
+        "vfile": "^6.0.3"
+    }
 }

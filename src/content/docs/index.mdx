@@ -5,40 +5,19 @@ template: splash
 prev: false
 next: false
 hero:
-  tagline: The comprehensive learning guide and technical reference for FRC programming
-  image:
-    html: '<img src="/favicon.svg" alt="FRCSoftware.org logo" />'
-  actions:
-    - text: Start Learning
-      link: /getting-started/intro-to-prog
-
+    tagline: The comprehensive learning guide and technical reference for FRC programming
+    image:
+        html: '<img src="/favicon.svg" alt="FRCSoftware.org logo" />'
+    actions:
+        - text: Start Learning
+          link: /getting-started/intro-to-prog
 ---
 
 import HomeCard from '../../components/HomeCard.astro';
 
 <div class="home-cards-grid">
-  <HomeCard
-    title="Getting Started"
-    href="/getting-started/intro-to-prog"
-    icon="check"
-    description="Everything you need to know to get started coding."
-  />
-    <HomeCard
-    title="Intro to Java"
-    href="/intro-to-java/stage-overview"
-    icon="book"
-    description="Goes over the basics of Java that is needed for FRC programming"
-  />
-  <HomeCard
-    title="Website Feature Guide"
-    href="/feature-guide/"
-    icon="book"
-    description="Explains the main features of the website. Recommended to go through before the learning course."
-  />
-  <HomeCard
-    title="Contribution"
-    href="/contribution/methodsofcontributing"
-    icon="wrench"
-    description="Help contribute! Since FRCSoftware.org is in such an early stage right now, we are in need of contributors."
-  />
+<HomeCard title="Getting Started" href="/getting-started/intro-to-prog" icon="check" description="Everything you need to know to get started coding." /> <HomeCard title="Intro to Java" href="/intro-to-java/stage-overview" icon="book" description="Goes over the basics of Java that is needed for FRC programming" /> <HomeCard title="Website Feature Guide" href="/feature-guide/" icon="book" description="Explains the main features of the website.
+Recommended to go through before the learning course." /> <HomeCard title="Contribution" href="/contribution/methodsofcontributing" icon="wrench" description="Help contribute!
+Since FRCSoftware.org is in such an early stage right now, we are in need of contributors." />
+
 </div>
