@@ -9,51 +9,43 @@ export default function remarkCodeRegion() {
 
         visit(tree, 'code', (node: any) => {
             const meta: string = node.meta || '';
-            // Match file=path in meta string (non-whitespace value)
-            const fileMatch = meta.match(/file=(\S+)/);
-            if (!fileMatch) return;
 
-            // Match optional region=name in meta
-            const regionMatch = meta.match(/region=(\S+)/);
+            const token = meta.match(/^(\S+)/);
+            if (!token) return;
 
-            // Strip our custom meta attributes, preserve everything else (e.g. title, Expressive Code attrs)
-            node.meta = meta
-                .replace(/file=\S+\s*/g, '')
-                .replace(/region=\S+\s*/g, '')
-                .replace(/title=\S+\s*/g, '')
-                .trim();
+            const raw = token[1];
+            const hashIdx = raw.indexOf('#');
+            const filePath = hashIdx !== -1 ? raw.slice(0, hashIdx) : raw;
+            const regionName = hashIdx !== -1 ? raw.slice(hashIdx + 1) : null;
 
-            // Strip lines containing #region / #endregion markers regardless of comment-syntax prefix.
-            // Catches // #region, # region, <!-- #region -->, -- #region, etc. for any language.
-            const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*#(?:end)?region\b/;
+            node.meta = meta.slice(raw.length).trim();
 
-            const srcPath = resolve(examplesDir, fileMatch[1]);
+            const srcPath = resolve(examplesDir, filePath);
             const content = readFileSync(srcPath, 'utf-8');
             const lines = content.split('\n');
 
-            if (!regionMatch) {
+            if (!regionName) {
+                const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/?\w+\]\s*$/;
                 node.value = dedent(
                     lines.filter((l) => !markerRE.test(l)).join('\n'),
                 );
                 return;
             }
 
-            const regionName = regionMatch[1];
+            const escapedName = escapeRegex(regionName);
+            const startRE = new RegExp(
+                `^\\s*(?:\\/\\/|#|--|<!--|-->)?\\s*\\[${escapedName}\\]\\s*$`,
+            );
+            const endRE = new RegExp(
+                `^\\s*(?:\\/\\/|#|--|<!--|-->)?\\s*\\[\\/${escapedName}\\]\\s*$`,
+            );
+
             const regionLines: string[] = [];
             let inRegion = false;
             let found = false;
 
-            // Matches #region <name> with optional comment-syntax prefix (//, #, --, <!--, -->)
-            const regionRE = new RegExp(
-                `^\\s*(?:\\/\\/|#|--|<!--|-->)?\\s*#region\\s+${escapeRegex(regionName)}\\s*$`,
-            );
-            // Matches #endregion <name> with the same optional comment-syntax prefix
-            const endRE = new RegExp(
-                `^\\s*(?:\\/\\/|#|--|<!--|-->)?\\s*#endregion\\s+${escapeRegex(regionName)}\\s*$`,
-            );
-
             for (const line of lines) {
-                if (!inRegion && regionRE.test(line)) {
+                if (!inRegion && startRE.test(line)) {
                     if (found)
                         throw Error(
                             `Duplicate region "${regionName}" in ${srcPath}`,
@@ -72,9 +64,7 @@ export default function remarkCodeRegion() {
             if (!found)
                 throw Error(`Region "${regionName}" not found in ${srcPath}`);
 
-            node.value = dedent(
-                regionLines.filter((l) => !markerRE.test(l)).join('\n'),
-            );
+            node.value = dedent(regionLines.join('\n'));
         });
     };
 }

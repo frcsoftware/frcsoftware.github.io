@@ -1,31 +1,31 @@
-// #region variables
+// [variables]
 int CLIMBER_ID = 51;
 double UP_POSITION = -33.5;
 double DOWN_POSITION = 0;
-// #endregion variables
+// [/variables]
 
 void main() {
-    // #region printLiteral
+    // [printLiteral]
     System.out.print("hello!");
-    // #endregion printLiteral
+    // [/printLiteral]
 
-    // #region printVariable
+    // [printVariable]
     int number = 4;
     System.out.print(number); // prints out the value 4
-    // #endregion printVariable
+    // [/printVariable]
 
-    // #region singleLineComment
+    // [singleLineComment]
     // This prints Hello World
     System.out.print("Hello World");
-    // #endregion singleLineComment
+    // [/singleLineComment]
 
-    // #region inlineComment
+    // [inlineComment]
     System.out.print("Hello World"); // This prints Hello World
-    // #endregion inlineComment
+    // [/inlineComment]
 
-    // #region multiLineComment
+    // [multiLineComment]
     /* This prints Hello World
     This is another line */
     System.out.print("Hello World");
-    // #endregion multiLineComment
+    // [/multiLineComment]
 }
