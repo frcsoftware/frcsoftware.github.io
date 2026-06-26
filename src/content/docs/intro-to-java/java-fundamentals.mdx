@@ -6,89 +6,143 @@ next: false
 ---
 
 ## Syntax
-As you start programming, you might make a mistake or make a typo. When that happens, your code will have a red line under it. This is because Java has rules called syntax. Syntax is a set of rules that have to be followed so that the computer can understand and run your code. It’s important to pay attention to the syntax!
-If your code has a red line under it, first check whether the syntax is correct. This can be done by researching online or by comparing your code with examples. 
+
+As you start programming, you might make a mistake or make a typo.
+When that happens, your code will have a red line under it.
+This is because Java has rules called syntax.
+Syntax is a set of rules that have to be followed so that the computer can understand and run your code.
+It’s important to pay attention to the syntax!
+If your code has a red line under it, first check whether the syntax is correct.
+This can be done by researching online or by comparing your code with examples.
 
 You can also learn what’s wrong with your code when you put the cursor over the section of the code with the red line and read what the error message is.
-Error messages will not tell you exactly what's wrong with your code. If you’re unsure on what the error message means, you can look it up to get additional context. 
+Error messages will not tell you exactly what's wrong with your code.
+If you’re unsure on what the error message means, you can look it up to get additional context.
 
 <Slides>
-  ![Slide 1](/java-fundamentals/ErrorExample1.png)
-  An example of a syntax error (note the squiggly line)
+![Slide 1](/java-fundamentals/ErrorExample1.png) An example of a syntax error (note the squiggly line)
 
-  ![Slide 2](/java-fundamentals/ErrorExample2.png)
-  An example of a syntax error popup
+![Slide 2](/java-fundamentals/ErrorExample2.png) An example of a syntax error popup
+
 </Slides>
 
-## Variables 
-Variables are containers that are used to store information in a program. This could be a variable that holds the temperature or a variable that holds the speed of the motor. 
+## Variables
+
+Variables are containers that are used to store information in a program.
+This could be a variable that holds the temperature or a variable that holds the speed of the motor.
 
 Variable declarations have the following syntax:
+
 ```java
 Datatype name = value;
 ```
-Data types refer to the type of value that our variable has. It helps tell our program more information about our variables such as what type of information it holds and how it can be used. 
-Data types can include numbers, characters or a string of words. Some example data types that are commonly used in FRC programming are:
-* int: integer numbers that are positive or negative. Int only allows numbers without decimals. Example: 12
-* double: numbers that are positive or negative. Unlike int, double allows numbers with or without decimals. Example: 34.1
-* boolean: either True or False.
-* string: holds a sequence of characters. Example: “Hello World”
-* char: holds a Single character. Example: 'A'
 
-The name of your variable can be whatever you want. However, it should be easy to read and make sense to others who may be reading your code. 
-There are also some rules with variable names. The name of the variable can not include spaces. Instead you can write variables with camel case (frontLeftDrive). Upper camel case (FRONT_LEFT_DRIVE) is used for constants which we will learn about later on in the course.
+Data types refer to the type of value that our variable has.
+It helps tell our program more information about our variables such as what type of information it holds and how it can be used.
+Data types can include numbers, characters or a string of words.
+Some example data types that are commonly used in FRC programming are:
+
+- int: integer numbers that are positive or negative.
+  Int only allows numbers without decimals.
+  Example: 12
+- double: numbers that are positive or negative.
+  Unlike int, double allows numbers with or without decimals.
+  Example: 34.1
+- boolean: either True or False.
+- string: holds a sequence of characters.
+  Example: “Hello World”
+- char: holds a Single character.
+  Example: 'A'
+
+The name of your variable can be whatever you want.
+However, it should be easy to read and make sense to others who may be reading your code.
+There are also some rules with variable names.
+The name of the variable can not include spaces.
+Instead you can write variables with camel case (frontLeftDrive).
+Upper camel case (FRONT_LEFT_DRIVE) is used for constants which we will learn about later on in the course.
 Variable names can have numbers any point except the first character.
 
 <Aside type="note">
-Java is a case-sensitive programming language! This means that uppercase and lowercase letters are treated as being two different things. For example: MotorID is different from motorID. Even though it’s spelled the same, if your variable name is MotorID then you try to reference it again but spell it as motorID, Java will see the two as different, and your code will get an error. 
+Java is a case-sensitive programming language!
+This means that uppercase and lowercase letters are treated as being two different things.
+For example: MotorID is different from motorID.
+Even though it’s spelled the same, if your variable name is MotorID then you try to reference it again but spell it as motorID, Java will see the two as different, and your code will get an error.
+
 </Aside>
 
-In Java, semi-colons `;` are similar to a period in a sentence. It is what tells the compiler when a statement ends. Semi-colons are used commonly in programming and aren’t only for creating variables. We will see more examples of this later in the course. 
+In Java, semi-colons `;` are similar to a period in a sentence.
+It is what tells the compiler when a statement ends.
+Semi-colons are used commonly in programming and aren’t only for creating variables.
+We will see more examples of this later in the course.
 
-In FRC, variables can be used to hold information about the robot and its different mechanisms. The example below shows 3 variables that were used for a climber mechanism, CLIMBER_ID is an integer that holds the motor controller ID number which is 51. UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double that holds the value 0.
-```java  
+In FRC, variables can be used to hold information about the robot and its different mechanisms.
+The example below shows 3 variables that were used for a climber mechanism, CLIMBER_ID is an integer that holds the motor controller ID number which is 51.
+UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double that holds the value 0.
+
+```java
 int CLIMBER_ID = 51;
 double UP_POSITION = -33.5;
 double DOWN_POSITION = 0;
 ```
 
-
 ## Print statements
-<Aside type = "note">
-In FRC, we tend to avoid print statements and instead have other methods of debugging code, which we will talk about in a later section. 
+
+<Aside type="note">
+In FRC, we tend to avoid print statements and instead have other methods of debugging code, which we will talk about in a later section.
 However, for this section of the course we will use print statments.
+
 </Aside>
 
-When programming, it can be useful to display information. This can be helpful for making programs that display information to the user or trying to see what speed that a motor is running.
-In Java, we can print information to a terminal using a print statement. A print statement in Java looks like:
-```java  
+When programming, it can be useful to display information.
+This can be helpful for making programs that display information to the user or trying to see what speed that a motor is running.
+In Java, we can print information to a terminal using a print statement.
+A print statement in Java looks like:
+
+```java
 System.out.print(“hello!”);
 ```
-What the print statement does is take information inside the parentheses, in the above example, it’s “hello!”, and prints it out to the terminal screen. When using a print statement, the text that we want to print out goes inside the parentheses and is in quotes. However, if we are printing out the value of a variable, then we do not need quotes, as shown below.
-```java  
+
+What the print statement does is take information inside the parentheses, in the above example, it’s “hello!”, and prints it out to the terminal screen.
+When using a print statement, the text that we want to print out goes inside the parentheses and is in quotes.
+However, if we are printing out the value of a variable, then we do not need quotes, as shown below.
+
+```java
 int number = 4;
 System.out.print(number); // prints out the value 4
 ```
 
 ## Comments
-When programming, we use comments to write notes that explain what the code does. This helps make the code more readable for others because if they are unsure of what your code does, they can read your comments. Comments are ignored by the compiler, which also means that you can use comments to prevent code from running. 
+
+When programming, we use comments to write notes that explain what the code does.
+This helps make the code more readable for others because if they are unsure of what your code does, they can read your comments.
+Comments are ignored by the compiler, which also means that you can use comments to prevent code from running.
 In Java, there are two types of comments: single-line comments and multi-line comments.
 
 ### Single-line Comments
-Single line comments begin with `//` and mark the rest of the line as being a comment. For example, the code below leave the note of "This prints out Hello World." above the print statment
+
+Single line comments begin with `//` and mark the rest of the line as being a comment.
+For example, the code below leave the note of "This prints out Hello World." above the print statment
+
 ```java
 // This prints Hello World
 System.out.print("Hello World");
 ```
+
 You will also see comments placed at the end of a line like the following
+
 ```java
 System.out.print("Hello World"); // This prints Hello World
 ```
-Both examples accomplish the same tasks and there is no difference. Whether you put your comments above or next to code is up to you and what makes the most sense for your code. 
+
+Both examples accomplish the same tasks and there is no difference.
+Whether you put your comments above or next to code is up to you and what makes the most sense for your code.
 
 ### Multi-line Comments
-Multi-line Comments start with `/*` and end with `*/` The text or code that is in between the two will turn into comments. Multi-line Comments are commonly used when you have many lines of text or need to turn a large amount of code into a comment. 
+
+Multi-line Comments start with `/*` and end with `*/` The text or code that is in between the two will turn into comments.
+Multi-line Comments are commonly used when you have many lines of text or need to turn a large amount of code into a comment.
 For example, this is a comment with two lines of text
+
 ```java
 /* This prints Hello World
 This is another line */

@@ -11,11 +11,13 @@ import Aside from '../../../components/Aside.astro';
 FRCSoftware.org is just getting started, and has taken a lot from FRCDesign.org
 
 This page will need to be updated as we go along with programming-based examples, and parts may need to be rewriten due to the differences in programming and design.
+
 </Aside>
 
 ## Futureproofing and Usefulness
 
-To make the content you write useful for teams of all resource levels, while maintaining validity in the future, the goal isn't to go broad and shallow, but rather to go extra deep so you can equip students with the understanding of the underlying fundamentals behind concepts which they can then apply to their own unique situations. Pros and cons are context dependent while fundamentals are universal.
+To make the content you write useful for teams of all resource levels, while maintaining validity in the future, the goal isn't to go broad and shallow, but rather to go extra deep so you can equip students with the understanding of the underlying fundamentals behind concepts which they can then apply to their own unique situations.
+Pros and cons are context dependent while fundamentals are universal.
 
 At the same time, things that aren't easily accessible and/or commonly used by teams, like state-space control or MPC, shouldn't be included to prevent confusion.
 
@@ -25,7 +27,9 @@ At the same time, things that aren't easily accessible and/or commonly used by t
 
 2. This enables students to understand WHY a team would make a certain decision and figure out tradeoffs without us explicitly telling them.
 
-3. It makes it significantly less intensive to future proof and maintain. If the meta shifts, having to redo sections to stay competitive is time consuming. If the project dies and is no longer maintained, the information stays useful for way longer.
+3. It makes it significantly less intensive to future proof and maintain.
+   If the meta shifts, having to redo sections to stay competitive is time consuming.
+   If the project dies and is no longer maintained, the information stays useful for way longer.
 
 4. The small details are often the experience gap between the most reliable successful robots and not. It's a lifesaver for teams without experience, and reduces the review workload on software mentors with experience.
 
@@ -68,16 +72,45 @@ Think about why this could have such a split and how the changing and evolving f
 
 Adhere to brand standards when possible.
 
-- Abide by *FIRST* Trademark guidelines, available [here](https://www.firstinspires.org/sites/default/files/uploads/resource_library/UseofUSFIRSTandLEGOGroupTrademarksandCopyrightedMaterials.pdf)
-- The first instance of *FIRST* and FRC on a page should include the registered trademark symbol (i.e, *FIRST*)
-- Always capitalize and italicize the name *FIRST*
-- Do NOT use a possessive on the *FIRST* name (e.g, FIRST's)
+- Abide by _FIRST_ Trademark guidelines, available [here](https://www.firstinspires.org/sites/default/files/uploads/resource_library/UseofUSFIRSTandLEGOGroupTrademarksandCopyrightedMaterials.pdf)
+- The first instance of _FIRST_ and FRC on a page should include the registered trademark symbol (i.e, _FIRST_)
+- Always capitalize and italicize the name _FIRST_
+- Do NOT use a possessive on the _FIRST_ name (e.g, FIRST's)
 - This also applies to team names: spell them how they are officially spelled
 - Check [The Blue Alliance](https://www.thebluealliance.com/) if you don't know how to spell a team's name
 
-You can use "you" when writing, when it makes writing less awkward. However, try avoiding excessively using it.
+You can use "you" when writing, when it makes writing less awkward.
+However, try avoiding excessively using it.
 
 ### Links:
 
 - External links should generally open in a new tab
 - Internal links should use relative paths: `[Link Text](/path/to/page)`
+
+### Linting and Formatting
+
+All content must pass the project's linting and formatting checks before merging.
+
+#### Sentence-per-line
+
+Every sentence in `.mdx` and `.md` files must be on its own line.
+This ensures cleaner diffs and easier review.
+Enforced by `prettier-plugin-sentences-per-line`.
+
+#### Running the checks
+
+| Command                 | Action                                                       |
+| ----------------------- | ------------------------------------------------------------ |
+| `pnpm lint`             | ESLint for `.ts`, `.mjs`, `.astro` files                     |
+| `pnpm lint:md`          | Remark-lint for `.mdx` files                                 |
+| `pnpm format:check`     | Prettier check — all file types (includes sentence-per-line) |
+| `pnpm typecheck`        | `astro check` for TypeScript errors                          |
+| `pnpm prettier --write` | Auto-fix all formatting and sentence-per-line issues         |
+
+Run all checks locally before pushing:
+
+```bash
+pnpm lint && pnpm lint:md && pnpm format:check && pnpm typecheck
+```
+
+If `pnpm format:check` fails, run `pnpm prettier --write .` to auto-fix.

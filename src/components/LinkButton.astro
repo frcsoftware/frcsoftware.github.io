@@ -9,61 +9,63 @@
  */
 
 interface Props {
-  href: string;
-  blank?: boolean;
-  center?: boolean;
+    href: string;
+    blank?: boolean;
+    center?: boolean;
 }
 
 const { href, blank = true, center = false } = Astro.props;
 ---
 
-{center ? (
-  <div class="link-button-center">
-    <a
-      href={href}
-      class="link-button"
-      target={blank ? "_blank" : undefined}
-      rel={blank ? "noopener noreferrer" : undefined}
-    >
-      <slot />
-    </a>
-  </div>
-) : (
-  <a
-    href={href}
-    class="link-button"
-    target={blank ? "_blank" : undefined}
-    rel={blank ? "noopener noreferrer" : undefined}
-  >
-    <slot />
-  </a>
-)}
+{
+    center ? (
+        <div class="link-button-center">
+            <a
+                href={href}
+                class="link-button"
+                target={blank ? '_blank' : undefined}
+                rel={blank ? 'noopener noreferrer' : undefined}
+            >
+                <slot />
+            </a>
+        </div>
+    ) : (
+        <a
+            href={href}
+            class="link-button"
+            target={blank ? '_blank' : undefined}
+            rel={blank ? 'noopener noreferrer' : undefined}
+        >
+            <slot />
+        </a>
+    )
+}
 
 <style>
-  .link-button-center {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 2.5rem 0;
-  }
+    .link-button-center {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 2.5rem 0;
+    }
 
-  .link-button {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: var(--accent-color);
-    color: #ffffff !important;
-    font-family: "Inter", var(--sl-font), system-ui, sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 0.375rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
+    .link-button {
+        display: inline-block;
+        padding: 0.6rem 1.5rem;
+        background-color: var(--accent-color);
+        color: #ffffff !important;
+        font-family: 'Inter', var(--sl-font), system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
 
-  .link-button:hover {
-    background-color: var(--accent-color-hover);
-    text-decoration: none;
-  }
+    .link-button:hover {
+        background-color: var(--accent-color-hover);
+        text-decoration: none;
+    }
 </style>

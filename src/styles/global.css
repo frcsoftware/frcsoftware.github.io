@@ -21,7 +21,7 @@
     --accent-color-dark-hover: #502073;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
     --sl-color-text: #ffffff !important;
     --sl-color-white: #ffffff !important;
 
@@ -29,7 +29,7 @@
     --sl-color-text-accent-hover: #a25ed2 !important;
 }
 
-:root[data-theme="light"] {
+:root[data-theme='light'] {
     --sl-color-text: #1a1a1a !important;
     --sl-color-white: #1a1a1a !important;
 
@@ -38,7 +38,7 @@
 
     /* Darker aside backgrounds for better visibility in light mode */
     --sl-color-blue-low: rgba(56, 139, 253, 0.3) !important;
-    --sl-color-green-low: rgba(67,160,71, 0.25) !important;
+    --sl-color-green-low: rgba(67, 160, 71, 0.25) !important;
     --sl-color-orange-low: rgba(210, 153, 34, 0.2) !important;
     --sl-color-red-low: rgba(248, 81, 73, 0.2) !important;
     --sl-color-purple-low: rgba(163, 113, 247, 0.3) !important;
@@ -117,7 +117,7 @@
     margin-right: auto;
 }
 
-:root[data-theme="light"] .sl-markdown-content figure figcaption {
+:root[data-theme='light'] .sl-markdown-content figure figcaption {
     color: var(--sl-color-gray-4);
 }
 
@@ -125,27 +125,28 @@
    Hero Section
    ========================================================================== */
 
-img[src*="tilt-book-white"],
-img[src*="tilt-book-green"],
+img[src*='tilt-book-white'],
+img[src*='tilt-book-green'],
 .hero-image img,
-[class*="hero"] img,
-section[class*="hero"] img {
+[class*='hero'] img,
+section[class*='hero'] img {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
     transition: filter 0.3s ease;
 }
 
-:root[data-theme="dark"] img[src*="tilt-book-white"],
-:root[data-theme="dark"] .hero-image img {
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.1));
+:root[data-theme='dark'] img[src*='tilt-book-white'],
+:root[data-theme='dark'] .hero-image img {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25))
+        drop-shadow(0 0 40px rgba(255, 255, 255, 0.1));
 }
 
 .hero-actions a,
-[class*="hero"] a[class*="button"],
+[class*='hero'] a[class*='button'],
 .hero a,
-section[class*="hero"] a {
+section[class*='hero'] a {
     background-color: var(--accent-color) !important;
     color: #ffffff !important;
-    font-family: "Inter", var(--sl-font), system-ui, sans-serif !important;
+    font-family: 'Inter', var(--sl-font), system-ui, sans-serif !important;
     font-weight: 700 !important;
     border: none !important;
     transition: all 0.3s ease !important;
@@ -154,43 +155,44 @@ section[class*="hero"] a {
 }
 
 .hero-actions a:hover,
-[class*="hero"] a[class*="button"]:hover,
+[class*='hero'] a[class*='button']:hover,
 .hero a:hover,
-section[class*="hero"] a:hover {
+section[class*='hero'] a:hover {
     background-color: var(--accent-color-hover) !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(163, 113, 247, 0.4);
 }
 
 .hero-actions a:active,
-[class*="hero"] a[class*="button"]:active,
+[class*='hero'] a[class*='button']:active,
 .hero a:active,
-section[class*="hero"] a:active {
+section[class*='hero'] a:active {
     transform: translateY(0);
     box-shadow: 0 2px 8px rgba(163, 113, 247, 0.3);
 }
 
 /* Arrow animation on hover */
 .hero-actions a svg,
-[class*="hero"] a[class*="button"] svg,
-section[class*="hero"] a svg {
+[class*='hero'] a[class*='button'] svg,
+section[class*='hero'] a svg {
     transition: transform 0.3s ease !important;
 }
 
 .hero-actions a:hover svg,
-[class*="hero"] a[class*="button"]:hover svg,
-section[class*="hero"] a:hover svg {
+[class*='hero'] a[class*='button']:hover svg,
+section[class*='hero'] a:hover svg {
     transform: translateX(4px);
 }
 
 /* Hero image shadow/glow animation when hovering button */
-[class*="hero"]:has(a:hover) img {
+[class*='hero']:has(a:hover) img {
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35)) !important;
     transition: filter 0.3s ease !important;
 }
 
-:root[data-theme="dark"] [class*="hero"]:has(a:hover) img {
-    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.15)) !important;
+:root[data-theme='dark'] [class*='hero']:has(a:hover) img {
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3))
+        drop-shadow(0 0 50px rgba(255, 255, 255, 0.15)) !important;
 }
 
 /* ==========================================================================
@@ -237,14 +239,14 @@ aside.sidebar {
     display: none;
 }
 
-.sidebar-pane a[aria-current="page"],
-#starlight__sidebar a[aria-current="page"] {
+.sidebar-pane a[aria-current='page'],
+#starlight__sidebar a[aria-current='page'] {
     background-color: var(--accent-color) !important;
     color: #ffffff !important;
 }
 
-:root[data-theme="dark"] .sidebar-pane,
-:root[data-theme="dark"] #starlight__sidebar {
+:root[data-theme='dark'] .sidebar-pane,
+:root[data-theme='dark'] #starlight__sidebar {
     /* Gray-4 is lighter/brighter than the default, making it visible against dark backgrounds */
     border-right: 1px solid var(--sl-color-gray-6) !important;
 }
@@ -319,7 +321,9 @@ abbr.glossary-term::after {
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.15s ease, visibility 0.15s ease;
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
     pointer-events: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     margin-bottom: 0.5rem;
@@ -342,7 +346,9 @@ abbr.glossary-term::before {
     z-index: 1001;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.15s ease, visibility 0.15s ease;
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
 }
 
 abbr.glossary-term:hover::before {
@@ -359,7 +365,7 @@ html.lightbox-open .header-wrapper,
 html.lightbox-open header,
 html.lightbox-open nav.sidebar,
 html.lightbox-open .sidebar,
-html.lightbox-open [data-pagefind-ignore="all"] {
+html.lightbox-open [data-pagefind-ignore='all'] {
     display: none !important;
 }
 
@@ -420,7 +426,7 @@ html.lightbox-open [data-pagefind-ignore="all"] {
    Embeds (Desmos, etc.)
    ========================================================================== */
 
-.sl-markdown-content iframe[src*="desmos.com"] {
+.sl-markdown-content iframe[src*='desmos.com'] {
     width: 100% !important;
     max-width: 500px;
     height: auto !important;
@@ -438,7 +444,11 @@ html.lightbox-open [data-pagefind-ignore="all"] {
 .sl-link-card {
     --sl-color-bg-badge: transparent;
     position: relative;
-    background: linear-gradient(135deg, var(--sl-color-gray-6) 0%, var(--sl-color-gray-5) 100%) !important;
+    background: linear-gradient(
+        135deg,
+        var(--sl-color-gray-6) 0%,
+        var(--sl-color-gray-5) 100%
+    ) !important;
     border: 1px solid var(--sl-color-gray-5) !important;
     border-radius: 12px !important;
     padding: 1.5rem !important;
@@ -453,14 +463,21 @@ html.lightbox-open [data-pagefind-ignore="all"] {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-color) 0%, #af7cd4 50%, var(--accent-color) 100%);
+    background: linear-gradient(
+        90deg,
+        var(--accent-color) 0%,
+        #af7cd4 50%,
+        var(--accent-color) 100%
+    );
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .sl-link-card:hover {
     border-color: var(--accent-color) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(163, 113, 247, 0.3);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(163, 113, 247, 0.3);
 }
 
 .sl-link-card:hover::before {
@@ -492,12 +509,12 @@ html.lightbox-open [data-pagefind-ignore="all"] {
 }
 
 /* Arrow icon */
-.sl-link-card svg[aria-hidden="true"] {
+.sl-link-card svg[aria-hidden='true'] {
     color: var(--sl-color-gray-3);
     transition: all 0.3s ease;
 }
 
-.sl-link-card:hover svg[aria-hidden="true"] {
+.sl-link-card:hover svg[aria-hidden='true'] {
     color: var(--accent-color);
     transform: translateX(4px);
 }
@@ -508,24 +525,26 @@ html.lightbox-open [data-pagefind-ignore="all"] {
 }
 
 /* Light mode adjustments */
-:root[data-theme="light"] .sl-link-card {
+:root[data-theme='light'] .sl-link-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
     border-color: #e0e0e0 !important;
 }
 
-:root[data-theme="light"] .sl-link-card:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(163, 113, 247, 0.3);
+:root[data-theme='light'] .sl-link-card:hover {
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(163, 113, 247, 0.3);
 }
 
-:root[data-theme="light"] .sl-link-card .card-title {
+:root[data-theme='light'] .sl-link-card .card-title {
     color: #1a1a1a !important;
 }
 
-:root[data-theme="light"] .sl-link-card:hover .card-title {
+:root[data-theme='light'] .sl-link-card:hover .card-title {
     color: var(--accent-color-hover) !important;
 }
 
-:root[data-theme="light"] .sl-link-card .card-description {
+:root[data-theme='light'] .sl-link-card .card-description {
     color: #555 !important;
 }
 
@@ -721,7 +740,7 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
 }
 
 .md-figure-border img {
-    border: var(--figure-border, 5px solid #ADADAD);
+    border: var(--figure-border, 5px solid #adadad);
 }
 
 .sl-markdown-content .md-figure .md-figcaption {

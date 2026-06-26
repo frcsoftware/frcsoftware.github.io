@@ -1,6 +1,7 @@
 # FRCSoftware.org
 
-A community-driven learning course and resource hub for FRC software. Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
+A community-driven learning course and resource hub for FRC software.
+Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
 ## Project Structure
 
@@ -47,15 +48,20 @@ Styled callout boxes with optional collapse functionality.
 
 ```mdx
 <Aside type="tip">This is a tip!</Aside>
-<Aside type="note" title="Custom Title">Content here</Aside>
-<Aside type="caution" collapse>Collapsible content</Aside>
+<Aside type="note" title="Custom Title">
+    Content here
+</Aside>
+<Aside type="caution" collapse>
+    Collapsible content
+</Aside>
 ```
 
 Types: `note`, `tip`, `caution`, `danger`, `example`
 
 ### Slides
 
-Image and video slideshow with lightbox support. Images are automatically optimized when placed in `src/assets/content/`.
+Image and video slideshow with lightbox support.
+Images are automatically optimized when placed in `src/assets/content/`.
 
 **Format:** Each slide is an image immediately followed by its caption:
 
@@ -64,11 +70,12 @@ Image and video slideshow with lightbox support. Images are automatically optimi
   ![alt text](/path/to/image1.webp)
   Caption for slide 1
 
-  ![](/path/to/image2.webp)
-  Caption for slide 2
+![](/path/to/image2.webp)
+Caption for slide 2
 
-  ![](https://www.youtube.com/embed/VIDEO_ID)
-  Caption for YouTube video
+![](https://www.youtube.com/embed/VIDEO_ID)
+Caption for YouTube video
+
 </Slides>
 ```
 
@@ -76,15 +83,16 @@ Image and video slideshow with lightbox support. Images are automatically optimi
 
 ```mdx
 <Slides scale={0.6}>
-  ![](/path/to/image.webp)
-  A smaller slideshow at 60% width
+    ![](/path/to/image.webp) A smaller slideshow at 60% width
 </Slides>
 ```
 
 Props:
+
 - `scale`: Controls the width of the slideshow (default: `0.8` = 80% width)
 
 Supported media types:
+
 - Images (`.webp`, `.png`, `.jpg`, `.jpeg`) - automatically optimized
 - YouTube videos (watch URLs, embed URLs, or short URLs) - displayed at 16:9
 - Video files (`.webm`, `.mp4`)
@@ -98,7 +106,7 @@ import YouTube from '@components/YouTube.astro';
 
 <YouTube id="VIDEO_ID" />
 <YouTube url="https://www.youtube.com/watch?v=VIDEO_ID">
-  Optional caption with **markdown** support
+    Optional caption with **markdown** support
 </YouTube>
 ```
 
@@ -108,11 +116,16 @@ Styled button link component.
 
 ```mdx
 <LinkButton href="/path">Button Text</LinkButton>
-<LinkButton href="/path" center>Centered Button</LinkButton>
-<LinkButton href="/path" blank={false}>Internal Link (no new tab)</LinkButton>
+<LinkButton href="/path" center>
+    Centered Button
+</LinkButton>
+<LinkButton href="/path" blank={false}>
+    Internal Link (no new tab)
+</LinkButton>
 ```
 
 Props:
+
 - `href` (required): Link URL
 - `center`: Centers the button (default: `false`)
 - `blank`: Opens in new tab (default: `true`)
@@ -127,24 +140,32 @@ Use the `:::center` block directive to center text content:
 :::
 ```
 
-This works with any content including text, images, videos, or other elements. The directive uses the [remark-directive](https://github.com/remarkjs/remark-directive) syntax (already included in Starlight).
+This works with any content including text, images, videos, or other elements.
+The directive uses the [remark-directive](https://github.com/remarkjs/remark-directive) syntax (already included in Starlight).
 
 ## CustomCard
-Cards with styling custom for the website. Can be used with [CardGrid](https://starlight.astro.build/components/card-grids/)
+
+Cards with styling custom for the website.
+Can be used with [CardGrid](https://starlight.astro.build/components/card-grids/)
 
 ```mdx
 import CustomCard from '@components/CustomCard.astro';
 
 <CustomCard title="Visible title" subTitle="Italicized unlinked text next to title" href="hyperlink for the title">
 
-   Any markdown text, images, components or styling.
+Any markdown text, images, components or styling.
 
 </CustomCard>
 
-<CustomCard title="Visible title" subTitle="Italicized unlinked text next to title" href="hyperlink for the title" />
+<CustomCard
+    title="Visible title"
+    subTitle="Italicized unlinked text next to title"
+    href="hyperlink for the title"
+/>
 ```
 
 Props:
+
 - `title`: Bold card title
 - `subTitle`: Italicized text next to the title
 - `href`: Link to make the title text a hyperlink
@@ -159,13 +180,13 @@ import CustomCard from '@components/CustomCard.astro';
 
 <CustomCard title="Visible title" subTitle="Italicized unlinked text next to title" href="hyperlink for the title">
 
-   Any markdown text, images, components or styling.
+Any markdown text, images, components or styling.
 
 </CustomCard>
 
 <CustomCard title="Visible title" subTitle="Italicized unlinked text next to title" href="hyperlink for the title">
 
-   Any markdown text, images, components or styling.
+Any markdown text, images, components or styling.
 
 </CustomCard>
 
@@ -213,10 +234,13 @@ Caption at 60% width with border
 ```
 
 Attributes:
-- `w`: Width as a percentage (e.g., `w=70` for 70% width). Omit for 100% width.
+
+- `w`: Width as a percentage (e.g., `w=70` for 70% width).
+  Omit for 100% width.
 - `border`: Adds a gray border around the image
 
 The figure directive:
+
 - Centers the image and caption automatically
 - Renders as semantic `<figure>` and `<figcaption>` HTML elements
 - Supports markdown formatting in captions (links, bold, etc.)
@@ -264,13 +288,16 @@ Add width, alignment, and border to images using URL hash syntax:
 ```
 
 Attributes:
+
 - `w`: Width as a percentage (e.g., `w=60` for 60% width)
-- `align`: Alignment (`left`, `center`, `right`). Default is `center`.
+- `align`: Alignment (`left`, `center`, `right`).
+  Default is `center`.
 - `border`: Adds default border (5px solid gray), or specify custom: `border=2px_solid_red` (use underscores for spaces)
 
 ### Image Location
 
-Place images in `src/assets/content/` for automatic optimization. The path should match the folder structure without the `src/assets/content` prefix:
+Place images in `src/assets/content/` for automatic optimization.
+The path should match the folder structure without the `src/assets/content` prefix:
 
 - File location: `src/assets/content/learning-course/stage1/image.webp`
 - Component path: `src="/learning-course/stage1/image.webp"`
@@ -297,32 +324,37 @@ For multiple images, use the Slides component instead.
 ### Setup Instructions
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/frcsoftware/frcsoftware.org
-   cd frcsoftware.org
-   ```
+
+    ```bash
+    git clone https://github.com/frcsoftware/frcsoftware.org
+    cd frcsoftware.org
+    ```
 
 2. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+
+    ```bash
+    pnpm install
+    ```
 
 3. **Start the development server**
-   ```bash
-   pnpm dev
-   ```
+
+    ```bash
+    pnpm dev
+    ```
 
 4. **Open in browser**
 
-   Visit [http://localhost:4321](http://localhost:4321) to see the site running locally.
+    Visit [http://localhost:4321](http://localhost:4321) to see the site running locally.
 
 5. **Make changes**
 
-   Edit files in `src/content/docs/` to modify content. The browser will automatically reload when you save changes.
+    Edit files in `src/content/docs/` to modify content.
+    The browser will automatically reload when you save changes.
 
 ### Verify Installation
 
 To check your Node.js and pnpm versions:
+
 ```bash
 node --version   # Should be 18.x or higher
 pnpm --version   # Should be 10.x or higher
@@ -330,18 +362,19 @@ pnpm --version   # Should be 10.x or higher
 
 ## Commands
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `pnpm install`    | Install dependencies                         |
-| `pnpm dev`        | Start local dev server at `localhost:4321`   |
-| `pnpm build`      | Build production site to `./dist/`           |
-| `pnpm preview`    | Preview build locally before deploying       |
+| Command        | Action                                     |
+| :------------- | :----------------------------------------- |
+| `pnpm install` | Install dependencies                       |
+| `pnpm dev`     | Start local dev server at `localhost:4321` |
+| `pnpm build`   | Build production site to `./dist/`         |
+| `pnpm preview` | Preview build locally before deploying     |
 
 ## Deployment
 
 This site is configured for deployment on GitHub Pages using the workflow in `.github/workflows/deploy.yml`.
 
 To deploy:
+
 1. Enable GitHub Pages in repository settings and set the source to **GitHub Actions**.
 2. Push to `main` (or run the workflow manually from the Actions tab).
 
