@@ -5,6 +5,7 @@ import remarkCenter from './src/plugins/remark-center';
 import remarkFigure from './src/plugins/remark-figure';
 import remarkImageAttributes from './src/plugins/remark-image-attributes';
 import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports.ts';
+import remarkCodeRegion from './src/plugins/remark-code-region';
 
 export default defineConfig({
     site: 'https://frcsoftware.org',
@@ -17,6 +18,7 @@ export default defineConfig({
             remarkGlossary,
             remarkImageAttributes,
             remarkMdxGlobalImports,
+            remarkCodeRegion,
         ],
         rehypePlugins: [],
     },
