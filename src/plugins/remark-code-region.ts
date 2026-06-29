@@ -7,7 +7,7 @@ export default function remarkCodeRegion() {
     return (tree: Root) => {
         const examplesDir = resolve(process.cwd(), 'examples');
 
-        visit(tree, 'code', (node: any) => {
+        visit(tree, 'code', (node) => {
             const meta: string = node.meta || '';
 
             const token = meta.match(/^(\S+)/);

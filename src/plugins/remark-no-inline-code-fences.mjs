@@ -7,7 +7,10 @@ export default function remarkNoInlineCodeFences() {
         visit(tree, 'code', (node, index, parent) => {
             if (index !== undefined && parent) {
                 const prev = parent.children[index - 1];
-                if (prev?.type === 'mdxFlowExpression' && IGNORE_RE.test(prev.value)) {
+                if (
+                    prev?.type === 'mdxFlowExpression' &&
+                    IGNORE_RE.test(prev.value)
+                ) {
                     return;
                 }
             }

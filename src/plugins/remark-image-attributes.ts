@@ -14,21 +14,22 @@
  */
 
 import { visit } from 'unist-util-visit';
-import type { Root, Image } from 'mdast';
+import type { Root } from 'mdast';
 
-interface ImageNode extends Image {
+interface ImageNode {
+    url: string;
     data?: {
         hName?: string;
-        hProperties?: Record<string, any>;
+        hProperties?: Record<string, unknown>;
     };
 }
 
 interface ParentNode {
     type: string;
-    children: any[];
+    children: { type: string }[];
     data?: {
         hName?: string;
-        hProperties?: Record<string, any>;
+        hProperties?: Record<string, unknown>;
     };
 }
 
@@ -51,7 +52,7 @@ export function remarkImageAttributes() {
                     const child = children[i];
 
                     if (child.type === 'image') {
-                        const imageNode = child as ImageNode;
+                        const imageNode = child as unknown as ImageNode;
                         const url = imageNode.url;
 
                         // Check for hash in URL

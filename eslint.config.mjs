@@ -17,7 +17,7 @@ export default [
                 'warn',
                 { argsIgnorePattern: '^_' },
             ],
-            '@typescript-eslint/no-explicit-any': 'warn',
+            '@typescript-eslint/no-explicit-any': 'error',
         },
     },
 

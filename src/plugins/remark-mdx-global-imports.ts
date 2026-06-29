@@ -11,6 +11,16 @@
 import type { Root } from 'mdast';
 import type { VFile } from 'vfile';
 
+declare module 'mdast' {
+    interface RootContentMap {
+        mdxjsEsm: {
+            type: 'mdxjsEsm';
+            value: string;
+            data?: { estree?: unknown };
+        };
+    }
+}
+
 const GLOBAL_IMPORTS = [
     { name: 'ContentFigure', path: '@components/ContentFigure.astro' },
     { name: 'Aside', path: '@components/Aside.astro' },
@@ -54,10 +64,8 @@ export function remarkMdxGlobalImports() {
 
         const existingNames = new Set<string>();
         for (const node of tree.children) {
-            if ((node as any).type === 'mdxjsEsm') {
-                const match = (node as any).value?.match(
-                    /\bimport\s+(\w+)\s+from\b/,
-                );
+            if (node.type === 'mdxjsEsm') {
+                const match = node.value?.match(/\bimport\s+(\w+)\s+from\b/);
                 if (match) existingNames.add(match[1]);
             }
         }
@@ -67,7 +75,7 @@ export function remarkMdxGlobalImports() {
         ).map(({ name, path }) => makeImportNode(name, path));
 
         if (toInsert.length > 0) {
-            tree.children.unshift(...(toInsert as any[]));
+            tree.children.unshift(...toInsert);
         }
     };
 }

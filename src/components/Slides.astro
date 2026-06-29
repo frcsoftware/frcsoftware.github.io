@@ -878,9 +878,19 @@ const slideId = `slides-${Math.random().toString(36).substring(2, 11)}`;
 </style>
 
 <script>
+    interface SlideClientData {
+        url: string;
+        type: string;
+        alt: string;
+        caption: string;
+        width: number | null;
+        height: number | null;
+        attrs: Record<string, string | undefined>;
+    }
+
     function initSlides() {
         document.querySelectorAll('.slides-component').forEach((component) => {
-            const slidesData = JSON.parse(
+            const slidesData: SlideClientData[] = JSON.parse(
                 component.getAttribute('data-slides') || '[]',
             );
             // Skip if already initialized
@@ -924,7 +934,7 @@ const slideId = `slides-${Math.random().toString(36).substring(2, 11)}`;
             let lightboxIndex = 0;
             let imagesLoaded = 0;
             const totalImages = slidesData.filter(
-                (s: any) => s.type === 'image',
+                (s) => s.type === 'image',
             ).length;
 
             // Track image dimensions for scaling
@@ -950,7 +960,7 @@ const slideId = `slides-${Math.random().toString(36).substring(2, 11)}`;
                 });
 
                 // Also consider YouTube videos as 16:9
-                slidesData.forEach((slide: any) => {
+                slidesData.forEach((slide) => {
                     if (slide.type === 'youtube') {
                         const youtubeAspectRatio = 16 / 9;
                         if (youtubeAspectRatio > widestAspectRatio) {
