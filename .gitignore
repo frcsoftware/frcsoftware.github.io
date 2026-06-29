@@ -24,3 +24,8 @@ bun.lock
 .DS_Store
 
 .vscode
+
+# Build files
+.gradle
+*/build/*
+
