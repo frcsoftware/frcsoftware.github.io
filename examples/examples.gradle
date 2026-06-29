@@ -1,0 +1,18 @@
+// Auto-discover subprojects by scanning for build.gradle files
+// Excludes build artifacts, hidden dirs, and the root itself
+def excluded = ['build', '.gradle', 'bin', 'gradle', 'node_modules']
+ext.exampleProjectDirs = []
+
+file(rootDir).eachDir { stageDir ->
+    if (stageDir.name.startsWith('.') || stageDir.name in excluded) return
+    stageDir.eachDir { projectDir ->
+        if (projectDir.name.startsWith('.') || projectDir.name in excluded) return
+        def candidates = [projectDir, new File(projectDir, 'solution')]
+        for (d in candidates) {
+            if (new File(d, 'build.gradle').exists()) {
+                exampleProjectDirs << rootDir.toPath().relativize(d.toPath()).toString()
+                break
+            }
+        }
+    }
+}

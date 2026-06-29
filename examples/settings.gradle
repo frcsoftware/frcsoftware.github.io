@@ -1,0 +1,9 @@
+apply from: 'examples.gradle'
+
+rootProject.name = 'frcsoftware-examples'
+
+exampleProjectDirs.each { dir ->
+    includeBuild(dir) {
+        name = dir.replace('/', '-')
+    }
+}
