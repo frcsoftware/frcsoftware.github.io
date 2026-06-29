@@ -117,3 +117,11 @@ pnpm lint && pnpm format:check
 ```
 
 If `pnpm format:check` fails, run `pnpm prettier --write .` to auto-fix.
+
+#### RLI (region-based code fences)
+
+Code fences must use the RLI system: ` ```language path/to/file#regionName ` with an empty body.
+The referenced file lives under `examples/` and uses `// [regionName]` / `// [/regionName]` markers to delimit the snippet.
+This keeps example code in real source files that are compiled and tested.
+
+If you need an inline code fence that doesn't reference an example file, suppress the rule by placing `{/* rli:ignore */}` on the line immediately before it.
