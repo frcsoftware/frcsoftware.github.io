@@ -6,7 +6,7 @@ on:
     pull_request:
 
 jobs:
-    lint-format:
+    website:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
@@ -21,3 +21,13 @@ jobs:
             - run: pnpm install --frozen-lockfile
             - run: pnpm lint
             - run: pnpm format:check
+    examples:
+      runs-on: ubuntu-latest
+      steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: '25'
+            - run: ./gradlew spotlessCheck
+              working-directory: examples

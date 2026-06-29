@@ -7,3 +7,11 @@ tasks.register('build') {
 tasks.register('clean') {
     dependsOn gradle.includedBuilds.collect { it.task(':clean') }
 }
+
+tasks.register('spotlessCheck') {
+    dependsOn gradle.includedBuilds.collect { it.task(':spotlessCheck') }
+}
+
+tasks.register('spotlessApply') {
+    dependsOn gradle.includedBuilds.collect { it.task(':spotlessApply') }
+}
