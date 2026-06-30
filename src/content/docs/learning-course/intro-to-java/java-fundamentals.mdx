@@ -3,6 +3,7 @@ title: Java Fundamentals
 description: An Intro to print statements and variables
 prev: intro-to-java/java-fundamentals
 next: false
+defaultCodeRegionSource: stage0/snippets/JavaFundamentals.java
 ---
 
 ## Syntax
@@ -81,7 +82,7 @@ In FRC, variables can be used to hold information about the robot and its differ
 The example below shows 3 variables that were used for a climber mechanism, CLIMBER_ID is an integer that holds the motor controller ID number which is 51.
 UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double that holds the value 0.
 
-```java stage0/snippets/JavaFundamentals.java#variables
+```java #variables
 
 ```
 
@@ -98,7 +99,7 @@ This can be helpful for making programs that display information to the user or 
 In Java, we can print information to a terminal using a print statement.
 A print statement in Java looks like:
 
-```java stage0/snippets/JavaFundamentals.java#printLiteral
+```java #printLiteral
 
 ```
 
@@ -106,7 +107,7 @@ What the print statement does is take information inside the parentheses, in the
 When using a print statement, the text that we want to print out goes inside the parentheses and is in quotes.
 However, if we are printing out the value of a variable, then we do not need quotes, as shown below.
 
-```java stage0/snippets/JavaFundamentals.java#printVariable
+```java #printVariable
 
 ```
 
@@ -122,13 +123,13 @@ In Java, there are two types of comments: single-line comments and multi-line co
 Single line comments begin with `//` and mark the rest of the line as being a comment.
 For example, the code below leave the note of "This prints out Hello World." above the print statment
 
-```java stage0/snippets/JavaFundamentals.java#singleLineComment
+```java #singleLineComment
 
 ```
 
 You will also see comments placed at the end of a line like the following
 
-```java stage0/snippets/JavaFundamentals.java#inlineComment
+```java #inlineComment
 
 ```
 
@@ -141,6 +142,6 @@ Multi-line Comments start with `/*` and end with `*/` The text or code that is i
 Multi-line Comments are commonly used when you have many lines of text or need to turn a large amount of code into a comment.
 For example, this is a comment with two lines of text
 
-```java stage0/snippets/JavaFundamentals.java#multiLineComment
+```java #multiLineComment
 
 ```
