@@ -1,0 +1,41 @@
+name: Sync to Target Repos (Copybara)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'examples/stage1/**'
+      - 'copy.bara.sky'
+      - '.github/workflows/copybara.yml'
+
+jobs:
+  copybara:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Run the workflows in parallel
+      matrix:
+        workflow: 
+          - rev_solution
+          - ctre_solution
+          # Uncomment the below workflows once the template directories are added to main
+          # - rev_template
+          # - ctre_template
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # This action automatically pulls the copybara docker image and runs your configuration
+      - name: Run Copybara Action
+        uses: olivr/copybara-action@v1.2.3
+        with:
+          # This specifies which workflow in your copy.bara.sky file to run
+          workflow: ${{ matrix.workflow }}
+          # Path to your config file
+          custom_config: copy.bara.sky
+          # Provide the bot's single SSH key for authentication
+          ssh_key: ${{ secrets.COPYBARA_SSH_KEY }}
