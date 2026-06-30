@@ -20,7 +20,7 @@ jobs:
                       javac "$f"
                       java "${f%.java}"
                   done
-              working-directory: examples/stage0
+              working-directory: examples/stage0/snippets
 
     robotProjects:
         runs-on: ubuntu-latest
