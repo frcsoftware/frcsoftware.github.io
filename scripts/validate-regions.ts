@@ -8,7 +8,8 @@ const DOCS_DIR = join(ROOT, 'src', 'content', 'docs');
 
 const START_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[(\w+)\]\s*$/;
 const END_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/(\w+)\]\s*$/;
-const CODEBLOCK_RE = /^\s*```\w+\s+(\S+)#(\w+)/;
+const CODEBLOCK_RE = /^\s*```\w+\s+(\S*)#(\w+)/;
+const DEFAULT_CODE_REGION_SOURCE_RE = /^---(?:.*\n)*defaultCodeRegionSource:\s*([^\n]+)(?:.*\n)*---$/m;
 
 const errors: string[] = [];
 
@@ -23,10 +24,15 @@ function walkMdx(dir: string) {
             walkMdx(full);
         } else if (entry.name.endsWith('.mdx')) {
             const content = readFileSync(full, 'utf-8');
+            const defaultSource = content.match(DEFAULT_CODE_REGION_SOURCE_RE)?.[1];
             for (const line of content.split('\n')) {
                 const m = line.match(CODEBLOCK_RE);
                 if (m) {
-                    const [, filePath, regionName] = m;
+                    const [, definedFilePath, regionName] = m;
+                    const filePath = definedFilePath || defaultSource;
+                    if (!filePath) {
+                        continue;
+                    }
                     if (!referencedRegions.has(filePath)) {
                         referencedRegions.set(filePath, new Set());
                     }

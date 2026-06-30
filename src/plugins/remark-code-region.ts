@@ -2,10 +2,15 @@ import { visit } from 'unist-util-visit';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import type { Root } from 'mdast';
+import { VFile } from 'vfile';
 
 export default function remarkCodeRegion() {
-    return (tree: Root) => {
+    return (tree: Root, file: VFile) => {
         const examplesDir = resolve(process.cwd(), 'examples');
+        let defaultSource = file.data.astro?.frontmatter?.defaultCodeRegionSource;
+        if (typeof defaultSource !== 'string') {
+            defaultSource = null;
+        }
 
         visit(tree, 'code', (node) => {
             const meta: string = node.meta || '';
@@ -15,7 +20,13 @@ export default function remarkCodeRegion() {
 
             const raw = token[1];
             const hashIdx = raw.indexOf('#');
-            const filePath = hashIdx !== -1 ? raw.slice(0, hashIdx) : raw;
+            const filePath = (() => {
+                switch (hashIdx) {
+                    case -1: return raw;
+                    case 0: return defaultSource;
+                    default: return raw.slice(0, hashIdx);
+                }
+            })();
             const regionName = hashIdx !== -1 ? raw.slice(hashIdx + 1) : null;
 
             node.meta = meta.slice(raw.length).trim();
