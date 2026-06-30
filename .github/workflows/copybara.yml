@@ -39,3 +39,5 @@ jobs:
                   custom_config: copy.bara.sky
                   # Provide the bot's single SSH key for authentication
                   ssh_key: ${{ secrets.COPYBARA_SSH_KEY }}
+                  # Provide the known_hosts signature to prevent MITM false positives
+                  ssh_known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
