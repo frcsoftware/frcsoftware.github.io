@@ -29,15 +29,16 @@ jobs:
               with:
                   fetch-depth: 0
 
-            # This action automatically pulls the copybara docker image and runs your configuration
-            - name: Run Copybara Action
-              uses: olivr/copybara-action@v1.2.3
-              with:
-                  # This specifies which workflow in your copy.bara.sky file to run
-                  workflow: ${{ matrix.workflow }}
-                  # Path to your config file
-                  custom_config: copy.bara.sky
-                  # Provide the bot's single SSH key for authentication
-                  ssh_key: ${{ secrets.COPYBARA_SSH_KEY }}
-                  # Provide the known_hosts signature to prevent MITM false positives
-                  ssh_known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+            - name: Configure Git Auth
+              run: |
+                  # Configure git to use your PAT for all HTTPS connections to GitHub
+                  git config --global url."https://x-access-token:${{ secrets.COPYBARA_PAT }}@github.com/".insteadOf "https://github.com/"
+
+            - name: Run Copybara via Docker
+              run: |
+                  docker run --rm \
+                    -v ${{ github.workspace }}:/usr/src/app \
+                    -w /usr/src/app \
+                    -v ~/.gitconfig:/root/.gitconfig \
+                    ghcr.io/copybara/copybara:latest \
+                    copybara copy.bara.sky ${{ matrix.workflow }}

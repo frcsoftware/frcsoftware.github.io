@@ -1,16 +1,16 @@
-source_url = "git@github.com:frcsoftware/frcsoftware.git"
+source_url = "https://github.com/frcsoftware/frcsoftware.git"
 
-dest_rev_solution   = "git@github.com:frcsoftware/stage1-rev-solution.git"
-dest_ctre_solution  = "git@github.com:frcsoftware/stage1-ctre-solution.git"
+dest_rev_solution   = "https://github.com/frcsoftware/stage1-rev-solution.git"
+dest_ctre_solution  = "https://github.com/frcsoftware/stage1-ctre-solution.git"
 
 def create_workflow(name, source_path, dest_url):
     core.workflow(
         name = name,
-        origin = git.origin(
+        origin = git.github_origin(
             url = source_url,
             ref = "main",
         ),
-        destination = git.destination(
+        destination = git.github_destination(
             url = dest_url,
             fetch = "main",
             push = "main",
