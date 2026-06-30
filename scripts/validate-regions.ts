@@ -9,7 +9,8 @@ const DOCS_DIR = join(ROOT, 'src', 'content', 'docs');
 const START_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[(\w+)\]\s*$/;
 const END_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/(\w+)\]\s*$/;
 const CODEBLOCK_RE = /^\s*```\w+\s+(\S*)#(\w+)/;
-const DEFAULT_CODE_REGION_SOURCE_RE = /^---(?:.*\n)*defaultCodeRegionSource:\s*([^\n]+)(?:.*\n)*---$/m;
+const DEFAULT_CODE_REGION_SOURCE_RE =
+    /^---(?:.*\n)*defaultCodeRegionSource:\s*([^\n]+)(?:.*\n)*---$/m;
 
 const errors: string[] = [];
 
@@ -24,12 +25,20 @@ function walkMdx(dir: string) {
             walkMdx(full);
         } else if (entry.name.endsWith('.mdx')) {
             const content = readFileSync(full, 'utf-8');
-            const defaultSource = content.match(DEFAULT_CODE_REGION_SOURCE_RE)?.[1];
+            const defaultSource = content.match(
+                DEFAULT_CODE_REGION_SOURCE_RE,
+            )?.[1];
             for (const line of content.split('\n')) {
                 const m = line.match(CODEBLOCK_RE);
                 if (m) {
                     const [, definedFilePath, regionName] = m;
                     const filePath = definedFilePath || defaultSource;
+                    if (!filePath) {
+                        errors.push(
+                            `${relative(DOCS_DIR, full)}: Region "${regionName}" has no source file specified`,
+                        );
+                        continue;
+                    }
                     if (!filePath) {
                         continue;
                     }

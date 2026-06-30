@@ -7,7 +7,8 @@ import { VFile } from 'vfile';
 export default function remarkCodeRegion() {
     return (tree: Root, file: VFile) => {
         const examplesDir = resolve(process.cwd(), 'examples');
-        let defaultSource = file.data.astro?.frontmatter?.defaultCodeRegionSource;
+        let defaultSource =
+            file.data.astro?.frontmatter?.defaultCodeRegionSource;
         if (typeof defaultSource !== 'string') {
             defaultSource = null;
         }
@@ -22,9 +23,12 @@ export default function remarkCodeRegion() {
             const hashIdx = raw.indexOf('#');
             const filePath = (() => {
                 switch (hashIdx) {
-                    case -1: return raw;
-                    case 0: return defaultSource;
-                    default: return raw.slice(0, hashIdx);
+                    case -1:
+                        return raw;
+                    case 0:
+                        return defaultSource;
+                    default:
+                        return raw.slice(0, hashIdx);
                 }
             })();
             const regionName = hashIdx !== -1 ? raw.slice(hashIdx + 1) : null;
