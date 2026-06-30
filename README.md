@@ -3,6 +3,8 @@
 A community-driven learning course and resource hub for FRC software.
 Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
+All content is licensed under CC BY-NC-SA 4.0 except for the `examples` directory, which is licensed under the BSD 3-Clause license.
+
 ## Project Structure
 
 ```
