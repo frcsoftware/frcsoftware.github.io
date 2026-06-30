@@ -29,16 +29,19 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: Setup Java
+              uses: actions/setup-java@v4
+              with:
+                  distribution: 'temurin'
+                  java-version: '21'
+
             - name: Configure Git Auth
               run: |
                   # Configure git to use your PAT for all HTTPS connections to GitHub
                   git config --global url."https://x-access-token:${{ secrets.COPYBARA_PAT }}@github.com/".insteadOf "https://github.com/"
 
-            - name: Run Copybara via Docker
-              run: |
-                  docker run --rm \
-                    -v ${{ github.workspace }}:/usr/src/app \
-                    -w /usr/src/app \
-                    -v ~/.gitconfig:/root/.gitconfig \
-                    ghcr.io/copybara/copybara:latest \
-                    copybara copy.bara.sky ${{ matrix.workflow }}
+            - name: Download Copybara
+              run: wget https://github.com/google/copybara/releases/latest/download/copybara_deploy.jar
+
+            - name: Run Copybara
+              run: java -jar copybara_deploy.jar copy.bara.sky ${{ matrix.workflow }}
