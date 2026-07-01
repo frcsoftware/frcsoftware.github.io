@@ -1,0 +1,39 @@
+---
+title: Kitbot Drivetrain
+description: Programing the kitbot drivetrain
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+# Motor Controllers
+
+The core of frc programing is telling motors what to do by giving commands to their motor controllers. 
+Vendors provide classes that can be used to both control and get sensor data from their motor controllers.
+While each individual type of motor controller has its own class, motor controllers from the same vendor are
+largely the same so this stage will only use the SparkMax for REV code and the TalonFX for CTRE code.
+
+When creating a motor controller object, the physical motor controller's CAN ID and the CAN Bus ID so the code can
+comunicate with the proper controller. For this exercise the motor controllers will have the Ids:
+- LeftLeader: CAN Bus 0, CAN ID 0
+- LeftFollower: CAN Bus 0, CAN ID 1
+- RightLeader: CAN Bus 0, CAN ID 2
+- Right Follower: CAN Bus 0, CAN ID 3
+
+<Tabs>
+    <TabItem label = "REV">
+        The spark max constructor takes the form of
+        ```java 
+        SparkMax(int busId, int deviceId, MotorType type)
+        ```
+        Since the Spark Max can control both brushed and brushless motors it's neccesary to specify the type as
+        MotorType.Brushless for motors like a NEO and MotorType.brushed for motors like a CIM. This results in
+        the motor construction looking like this.
+
+        ```java stage1/rev/solution/src/main/java/first/robot/Robot.java#DriveMotors
+        ```
+    </TabItem>
+    <TabItem label = "CTRE">
+        ```java stage1/ctre/solution/src/main/java/first/robot/Robot.java#DriveMotors
+        ```
+    </TabItem>
+</Tabs>

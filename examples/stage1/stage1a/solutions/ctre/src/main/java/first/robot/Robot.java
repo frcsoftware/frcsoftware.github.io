@@ -27,6 +27,7 @@ import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
  */
 public class Robot extends OpModeRobot {
 
+  // [DriveMotors]
   private final int leftLeaderID = 0;
   public TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
   private TalonFX leftFollower = new TalonFX(1, CANBus.systemcore(0));
@@ -34,6 +35,7 @@ public class Robot extends OpModeRobot {
   private final int rightLeaderID = 2;
   public TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
   private TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
+  // [/DriveMotors]
 
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
