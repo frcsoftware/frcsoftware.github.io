@@ -7,7 +7,7 @@ assignees: ''
 ---
 
 **Which example?**
-e.g. stage 1a CTRE `src/main/java/first/robot/opmode/MyTeleop.java`
+e.g. Stage 1a CTRE `src/main/java/first/robot/opmode/MyTeleop.java`
 
 **What's wrong?**
 A clear and concise description of the bug or issue in the code.
