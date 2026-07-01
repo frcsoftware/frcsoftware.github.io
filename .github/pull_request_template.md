@@ -2,7 +2,7 @@
 
 What changed? Why? (the code + comments should speak for itself on the "how")
 
-Include screenshots or a video of what was changed, to collect evidence in a place where we can later reference it.
+We highly recommend including screenshots or a video of what was changed, to collect evidence in a place where we can later reference it.
 
 Any issues this pull request closes or pull requests this supersedes should be linked with `Closes #issuenumber`.
 
