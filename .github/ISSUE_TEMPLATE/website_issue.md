@@ -13,7 +13,7 @@ A clear and concise description of the problem.
 Which page, component, or area of the site is affected? Include a URL if applicable.
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Describe the steps needed to reproduce the issue.
 
 1. Go to '...'
 2. Click on '....'

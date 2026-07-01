@@ -7,6 +7,7 @@ assignees: ''
 ---
 
 **Which example?**
+Include the path to the example directory and relevant file(s).
 e.g. Stage 1a CTRE `src/main/java/first/robot/opmode/MyTeleop.java`
 
 **What's wrong?**
