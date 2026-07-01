@@ -10,7 +10,8 @@ assignees: ''
 Include the URL or path of the page with the error.
 
 **What's wrong?**
-Describe the inaccuracy or mistake in the content. Include the exact text currently shown and why you believe it's incorrect.
+Describe the inaccuracy or mistake in the content.
+Include the exact text currently shown and why you believe it's incorrect.
 
 **What should it say? (optional)**
 Provide the corrected text.
