@@ -24,7 +24,7 @@ const body = [
 for (const { term, definition } of sorted) {
     body.push(`**${term}**`);
     body.push('');
-    body.push(`: ${definition}`);
+    body.push(`${definition}`);
     body.push('');
 }
 
