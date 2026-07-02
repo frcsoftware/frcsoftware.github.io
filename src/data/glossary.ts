@@ -17,7 +17,6 @@ export interface GlossaryTerm {
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
-
     // Electronics
     {
         term: 'PDH',
@@ -64,7 +63,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         term: 'Repository',
         definition:
             'A storage location for software packages, often used in version control systems like Git. Repositories are just folders that contain files and subfolders, and they can be hosted on platforms like GitHub to facilitate collaboration and version tracking',
-    }
+    },
 ];
 
 /**
