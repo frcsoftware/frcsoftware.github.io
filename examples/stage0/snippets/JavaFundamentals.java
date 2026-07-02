@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 // [variables]
 int CLIMBER_ID = 51;
 double UP_POSITION = -33.5;
