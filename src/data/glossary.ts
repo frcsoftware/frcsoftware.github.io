@@ -28,15 +28,18 @@ export const glossaryTerms: GlossaryTerm[] = [
     },
     {
         term: 'SystemCore',
-        definition: 'Main Robot Controller (MRC), contains a CM5 chip and has CAN and USB inputs.',
+        definition:
+            'Main Robot Controller (MRC), contains a CM5 chip and has CAN and USB inputs.',
     },
     {
         term: 'CAN',
-        definition: 'Controller Area Network: yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC.'
+        definition:
+            'Controller Area Network: yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC.',
     },
     {
         term: 'PWM',
-        definition: 'Pulse Width Modulation: three-wire cable used to communicate with motor controllers and sensors, needs to connect back to MRC',
+        definition:
+            'Pulse Width Modulation: three-wire cable used to communicate with motor controllers and sensors, needs to connect back to MRC',
     },
     {
         term: 'Blinkin',
