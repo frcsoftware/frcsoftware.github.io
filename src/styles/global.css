@@ -302,7 +302,7 @@ abbr.glossary-term:hover {
 }
 
 abbr.glossary-term::after {
-    content: attr(title);
+    content: attr(data-tooltip);
     position: absolute;
     bottom: 100%;
     left: 50%;

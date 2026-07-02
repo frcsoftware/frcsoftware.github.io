@@ -66,7 +66,7 @@ export function remarkGlossary() {
 
                 newNodes.push({
                     type: 'html',
-                    value: `<abbr class="glossary-term" title="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
+                    value: `<abbr class="glossary-term" data-tooltip="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
                 });
 
                 lastIndex = matchEnd;
