@@ -31,7 +31,8 @@ public class SingleFlywheelSim {
     this.name = name;
     this.motor = motor;
     var gearbox = DCMotor.getNEO(1);
-    this.m_flywheelSim = new FlywheelSim(Models.flywheelFromPhysicalConstants(gearbox, 0.001, 1.0), gearbox);
+    this.m_flywheelSim =
+        new FlywheelSim(Models.flywheelFromPhysicalConstants(gearbox, 0.001, 1.0), gearbox);
 
     var table = NetworkTableInstance.getDefault().getTable(this.name);
     this.motorVoltagePub = table.getDoubleTopic("MotorVoltage").publish();
