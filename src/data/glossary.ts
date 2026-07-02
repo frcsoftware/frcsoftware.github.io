@@ -27,12 +27,16 @@ export const glossaryTerms: GlossaryTerm[] = [
         definition: 'Motor controller for REV motors',
     },
     {
-        term: 'PWM',
-        definition: 'Pulse Width Modulation cable',
+        term: 'SystemCore',
+        definition: 'Main Robot Controller (MRC), contains a CM5 chip and has CAN and USB inputs.',
     },
     {
-        term: 'SystemCore',
-        definition: 'SystemCore - The brain of the robot',
+        term: 'CAN',
+        definition: 'Controller Area Network: yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC.'
+    },
+    {
+        term: 'PWM',
+        definition: 'Pulse Width Modulation: three-wire cable used to communicate with motor controllers and sensors, needs to connect back to MRC',
     },
     {
         term: 'Blinkin',
@@ -40,12 +44,12 @@ export const glossaryTerms: GlossaryTerm[] = [
     },
     {
         term: 'Main Breaker',
-        definition: 'Switch for the robot',
+        definition: 'Power switch for the robot',
     },
     {
         term: 'Limit Switch',
         definition:
-            'Type of sensor that acts as a soft limit when physically or magnetically hit',
+            'Type of sensor that triggers when physically or magnetically hit. Can be used to trigger actions on a rising or falling edge',
     },
     {
         term: 'Throughbore Encoder',
@@ -55,7 +59,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     {
         term: 'Magnetic Encoder',
         definition:
-            'An encoder that uses magnetic fields to measure position or motion',
+            'An encoder that uses a receiver and a magnet to measure position and motion',
     },
 
     // Software
