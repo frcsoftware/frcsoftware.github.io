@@ -5,6 +5,14 @@ description: Programing the kitbot drivetrain
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
+# Drivetrain
+
+The kitbot uses a 4 motor tank drive meaning the left and right sides are driven independently by 2 motors each. This allows 
+the robot to move similar to a tank by driving the left and right sides at different speeds. For this stage the four drivetrain
+motors will be refered to as LeftLeader, LeftFollower, RightLeader, RightFollower. "Becasue the motion of the robot is dependent
+on the diference in the velocity of the left and the right side, we can call this a differential drivetrain." <- SUSPECT SENTANCE IMPROVE PLS
+
+
 # Motor Controllers
 
 The core of frc programing is telling motors what to do by giving commands to their motor controllers. 
@@ -12,8 +20,8 @@ Vendors provide classes that can be used to both control and get sensor data fro
 While each individual type of motor controller has its own class, motor controllers from the same vendor are
 largely the same so this stage will only use the SparkMax for REV code and the TalonFX for CTRE code.
 
-When creating a motor controller object, the physical motor controller's CAN ID and the CAN Bus ID so the code can
-comunicate with the proper controller. For this exercise the motor controllers will have the Ids:
+When creating a motor controller object, the physical motor controller's CAN ID and the CAN Bus ID are given
+in the constructor so the code can comunicate with the proper controller. For this exercise the motor controllers will have the Ids:
 - LeftLeader: CAN Bus 0, CAN ID 0
 - LeftFollower: CAN Bus 0, CAN ID 1
 - RightLeader: CAN Bus 0, CAN ID 2
@@ -35,5 +43,8 @@ comunicate with the proper controller. For this exercise the motor controllers w
     <TabItem label = "CTRE">
         ```java stage1/ctre/solution/src/main/java/first/robot/Robot.java#DriveMotors
         ```
+        For the CTRE code the CAN ID of the leader motors are stored as a variable since they will be used latter on.
+        This helps prevent errors from occuring by ensuring that there is a single source of truth for the corrrect CAN ID.
     </TabItem>
 </Tabs>
+
