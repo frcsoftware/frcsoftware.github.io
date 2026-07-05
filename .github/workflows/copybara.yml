@@ -15,6 +15,7 @@ jobs:
 
         strategy:
             # Run the workflows in parallel
+            fail-fast: false
             matrix:
                 workflow:
                     - rev_solution
