@@ -1,10 +1,15 @@
-import { writeFileSync } from 'fs';
-import { resolve } from 'path';
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { glossaryTerms } from '../src/data/glossary';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const OUTPUT = resolve(ROOT, '.styles/config/ignore/vale.txt');
+const OUTPUT_DIR = dirname(OUTPUT);
+
+if (!existsSync(OUTPUT_DIR)) {
+  mkdirSync(OUTPUT_DIR, { recursive: true });
+}
 
 const terms = [...new Set(glossaryTerms.map(({ term }) => term))].sort(
     (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()),
