@@ -3,6 +3,9 @@ source_url = "https://github.com/frcsoftware/frcsoftware.org.git"
 dest_rev_solution   = "https://github.com/frcsoftware/stage1-solution-rev.git"
 dest_ctre_solution  = "https://github.com/frcsoftware/stage1-solution-ctre.git"
 
+dest_rev_template = "https://github.com/frcsoftware/stage1-template-rev.git"
+dest_ctre_template = "https://github.com/frcsoftware/stage1-template-ctre.git"
+
 def create_workflow(name, source_path, dest_url):
     core.workflow(
         name = name,
@@ -42,4 +45,16 @@ create_workflow(
     name = "rev_solution",
     source_path = "examples/stage1/solutions/rev",
     dest_url = dest_rev_solution
+)
+
+create_workflow(
+    name = "ctre_template",
+    source_path = "examples/stage1/templates/ctre",
+    dest_url = dest_ctre_template
+)
+
+create_workflow(
+    name = "rev_template",
+    source_path = "examples/stage1/templates/rev",
+    dest_url = dest_rev_template
 )
