@@ -19,9 +19,8 @@ jobs:
                 workflow:
                     - rev_solution
                     - ctre_solution
-                    # Uncomment the below workflows once the template directories are added to main
-                    # - rev_template
-                    # - ctre_template
+                    - rev_template
+                    - ctre_template
 
         steps:
             - name: Checkout
