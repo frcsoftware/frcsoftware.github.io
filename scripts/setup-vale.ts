@@ -6,7 +6,7 @@ import { pipeline } from 'stream/promises';
 
 // Update glossary terms
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const OUTPUT = resolve(ROOT, '.styles/config/ignore/vale.txt');
+const OUTPUT = resolve(ROOT, '.styles/config/ignore/glossary.txt');
 const OUTPUT_DIR = dirname(OUTPUT);
 
 if (!existsSync(OUTPUT_DIR)) {

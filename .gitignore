@@ -6,10 +6,15 @@ dist/
 # dependencies
 node_modules/
 
-# Vale styles (downloaded by vale sync) — keep Project/ custom files
+# Vale styles (downloaded by vale sync) — keep Project/ and config files, but gitignore glossary file as it's generated
 .styles/*
 !.styles/Project/
 !.styles/Project/**
+!.styles/config/
+.styles/config/**
+!.styles/config/ignore/
+.styles/config/ignore/**
+!.styles/config/ignore/ignore.txt
 
 # logs
 npm-debug.log*
