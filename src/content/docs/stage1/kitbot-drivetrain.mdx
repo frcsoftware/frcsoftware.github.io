@@ -8,9 +8,9 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 # Drivetrain
 
 The kitbot uses a 4 motor tank drive meaning the left and right sides are driven independently by 2 motors each. This allows 
-the robot to move similar to a tank by driving the left and right sides at different speeds. For this stage the four drivetrain
-motors will be refered to as LeftLeader, LeftFollower, RightLeader, RightFollower. "Becasue the motion of the robot is dependent
-on the diference in the velocity of the left and the right side, we can call this a differential drivetrain." <- SUSPECT SENTANCE IMPROVE PLS
+the robot to move similar to a tank by driving the left and right sides at different speeds. "Becasue the motion of the robot is dependent
+on the diference in the velocity of the left and the right side, we can call this a differential drivetrain." < SUSPECT SENTANCE IMPROVE PLS
+For this stage the four drivetrain motors will be refered to as LeftLeader, LeftFollower, RightLeader, RightFollower.
 
 
 # Motor Controllers
@@ -48,3 +48,27 @@ in the constructor so the code can comunicate with the proper controller. For th
     </TabItem>
 </Tabs>
 
+Motor Controllers have many settings that can be changed to ensure the motors are driven correctly < BAD
+Vendors provide software like REV Client and Pheonix Tuner X to run and configure their devices from a computer;
+however, it is recomended to configure devices through code to ensure that all motor controllers are properly configured.
+This is especially useful when a motor controler needs to be swaped since the new motor controller may have configurations
+that need to be removed and the proper configurations need to be added. Under time pressure it can be easy to forget all
+of the configurations that need to be added and their proper values.
+
+For this section only the motor controller's invert setting will be configured. This setting controls what direction
+the motor spins when the motor control is given a command with a positive sign.
+
+Since there are 2 motors on each side of the drivetrain, its important to ensure that the each of the motors on a side 
+move in sync with eachother. This can be accomplished by telling one of the motor controllers to follow the other. This
+tells the Follower to listen to the commands given to the Leader and is why we gave one motor the name Leader and the other Follower.
+
+<Tabs>
+    <TabItem label = "REV">
+        ```java stage1/rev/solution/src/main/java/first/robot/Robot.java#MotorConfig
+        ```
+    </TabItem>
+    <TabItem label = "CTRE">
+        ```java stage1/ctre/solution/src/main/java/first/robot/Robot.java#MotorConfig
+        ```
+    </TabItem>
+</Tabs>
