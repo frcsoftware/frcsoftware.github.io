@@ -5,13 +5,16 @@ ext.exampleProjectDirs = []
 
 file(rootDir).eachDir { stageDir ->
     if (stageDir.name.startsWith('.') || stageDir.name in excluded) return
-    stageDir.eachDir { projectDir ->
-        if (projectDir.name.startsWith('.') || projectDir.name in excluded) return
-        def candidates = [projectDir, new File(projectDir, 'solution')]
-        for (d in candidates) {
-            if (new File(d, 'build.gradle').exists()) {
-                exampleProjectDirs << rootDir.toPath().relativize(d.toPath()).toString()
-                break
+    stageDir.eachDir { dir ->
+        if (dir.name.startsWith('.') || dir.name in excluded) return
+        if (new File(dir, 'build.gradle').exists()) {
+            exampleProjectDirs << rootDir.toPath().relativize(dir.toPath()).toString()
+        } else {
+            dir.eachDir { sub ->
+                if (sub.name.startsWith('.') || sub.name in excluded) return
+                if (new File(sub, 'build.gradle').exists()) {
+                    exampleProjectDirs << rootDir.toPath().relativize(sub.toPath()).toString()
+                }
             }
         }
     }
