@@ -40,7 +40,7 @@ public class Robot extends OpModeRobot {
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   public Robot() {
-
+    // [MotorConfig]
     var leftConfig = new SparkMaxConfig().inverted(true);
     leftLeader.configure(
         leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -56,6 +56,7 @@ public class Robot extends OpModeRobot {
         rightConfig.follow(rightLeader),
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
+    // [/MotorConfig]
   }
 
   @Override
