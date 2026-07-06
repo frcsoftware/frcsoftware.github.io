@@ -35,17 +35,17 @@ export const glossaryTerms: GlossaryTerm[] = [
     {
         term: 'SystemCore',
         definition:
-            'Mobile Robot Controller (MRC), main processor for robot code containing various IO',
+            'Main processor for robot code, contains various IO',
     },
     {
         term: 'CAN',
         definition:
-            'Controller Area Network: typically yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC',
+            'Controller Area Network: typically yellow and green cable used to communicate with motor controllers and sensors, can be run in various topographies instead of each cable needing to connect to SystemCore',
     },
     {
         term: 'PWM',
         definition:
-            'Pulse Width Modulation: A communication spec used to communicate with motor controllers and sensors, needs to connect back to the MRC',
+            'Pulse Width Modulation: A communication spec used to communicate with motor controllers and sensors, needs to connect back to SystemCore',
     },
     {
         term: 'Main Breaker',
