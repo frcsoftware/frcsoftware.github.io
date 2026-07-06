@@ -13,6 +13,7 @@ import org.wpilib.opmode.PeriodicOpMode;
 public class MyAuto extends PeriodicOpMode {
   private final Robot robot;
 
+  /** The Robot instance is passed into the opmode via the constructor. */
   public MyAuto(Robot robot) {
     this.robot = robot;
   }
@@ -20,6 +21,12 @@ public class MyAuto extends PeriodicOpMode {
   @Override
   public void start() {}
 
+  /*
+   * This method runs periodically, using the same period as the Robot instance.
+   *
+   * Additional periodic methods may be configured with addPeriodic(),
+   * which can have periods that differ from the main Robot instance.
+   */
   @Override
   public void periodic() {}
 }
