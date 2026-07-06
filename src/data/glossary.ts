@@ -34,8 +34,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     },
     {
         term: 'SystemCore',
-        definition:
-            'Main processor for robot code, contains various IO',
+        definition: 'Main processor for robot code, contains various IO',
     },
     {
         term: 'CAN',
