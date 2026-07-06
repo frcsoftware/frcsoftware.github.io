@@ -17,6 +17,13 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+/**
+ * The methods in this class are called automatically as described in the OpModeRobot documentation.
+ * OpMode classes anywhere in the package (or sub-packages) where this class is located are
+ * automatically registered to display in the Driver Station. If you change the name of this class
+ * or the package after creating this project, you must also update the Main.java file in the
+ * project.
+ */
 public class Robot extends OpModeRobot {
 
   private SparkMax leftLeader = new SparkMax(0, 0, MotorType.kBrushless);
@@ -37,8 +44,11 @@ public class Robot extends OpModeRobot {
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
+/**
+   * This function is run when the robot is first started up and should be used for any
+   * initialization code.
+   */
   public Robot() {
-
     var leftConfig = new SparkMaxConfig().inverted(true);
     leftLeader.configure(
         leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);

@@ -15,18 +15,25 @@ public class MyAuto extends PeriodicOpMode {
   private final Robot robot;
   private Timer timer = new Timer();
 
+  /** The Robot instance is passed into the opmode via the constructor. */
   public MyAuto(Robot robot) {
     this.robot = robot;
   }
 
   @Override
   public void start() {
-    timer.restart();
+    timer.restart(); // Reset the timer to zero at the start of auto
   }
 
+  /*
+   * This method runs periodically, using the same period as the Robot instance.
+   *
+   * Additional periodic methods may be configured with addPeriodic(),
+   * which can have periods that differ from the main Robot instance.
+   */
   @Override
   public void periodic() {
-    if (timer.hasElapsed(4)) {
+    if (timer.hasElapsed(4)) { // Drive for 4 seconds after the start of auto
       robot.drivetrain.arcadeDrive(0.0, 0.0); // Stop the robot after 4 seconds
     } else {
       robot.drivetrain.arcadeDrive(0.5, 0.0); // Drive forward at half speed with no rotation
