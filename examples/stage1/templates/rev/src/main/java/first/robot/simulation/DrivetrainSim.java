@@ -21,14 +21,15 @@ public class DrivetrainSim {
   private final double kWheelRadiusMeters = 0.0762; // 3 inches
   private static final double kBusVoltage = 12.0;
 
-  private final DifferentialDrivetrainSim m_driveSim = new DifferentialDrivetrainSim(
-      DCMotor.getNEO(2), // 2 NEO motors on each side of the drivetrain.
-      kGearRatio,
-      2.1, // MOI of 2.1 kg m^2 (from CAD model).
-      26.5, // Mass of the robot is 26.5 kg.
-      kWheelRadiusMeters, // Robot uses 3" radius (6" diameter) wheels.
-      0.546, // Distance between wheels in meters.
-      null);
+  private final DifferentialDrivetrainSim m_driveSim =
+      new DifferentialDrivetrainSim(
+          DCMotor.getNEO(2), // 2 NEO motors on each side of the drivetrain.
+          kGearRatio,
+          2.1, // MOI of 2.1 kg m^2 (from CAD model).
+          26.5, // Mass of the robot is 26.5 kg.
+          kWheelRadiusMeters, // Robot uses 3" radius (6" diameter) wheels.
+          0.546, // Distance between wheels in meters.
+          null);
 
   private final StructPublisher<Pose2d> simPosePublisher;
 
