@@ -47,4 +47,6 @@ jobs:
               run: wget https://github.com/google/copybara/releases/download/v20260629/copybara_deploy.jar
 
             - name: Run Copybara
-              run: java -jar copybara_deploy.jar copy.bara.sky ${{ matrix.workflow }} --force --ignore-noop
+              # Copybara uses exit code 4 to indicate a no-op (no files were updated).
+              # We catch this and treat it as success so the workflow doesn't fail.
+              run: java -jar copybara_deploy.jar copy.bara.sky ${{ matrix.workflow }} --force --ignore-noop || test $? -eq 4
