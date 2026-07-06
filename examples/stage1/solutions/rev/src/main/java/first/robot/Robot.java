@@ -44,7 +44,7 @@ public class Robot extends OpModeRobot {
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
-/**
+  /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
