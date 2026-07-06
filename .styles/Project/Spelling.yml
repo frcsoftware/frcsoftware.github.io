@@ -1,0 +1,5 @@
+extends: spelling
+message: "'%s' seems misspelled. Add it to the glossary."
+level: error
+ignore:
+  - vale.txt

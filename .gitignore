@@ -6,8 +6,10 @@ dist/
 # dependencies
 node_modules/
 
-# Vale styles (downloaded by vale sync)
-.styles/
+# Vale styles (downloaded by vale sync) — keep Project/ custom files
+.styles/*
+!.styles/Project/
+!.styles/Project/**
 
 # logs
 npm-debug.log*
