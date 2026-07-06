@@ -17,6 +17,7 @@
         "lint:eslint": "eslint .",
         "lint:md": "remark src/content/docs --ext mdx --frail",
         "lint:regions": "tsx scripts/validate-regions.ts",
+        "vale": "vale sync && vale src/content",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "typecheck": "astro check"
@@ -35,6 +36,7 @@
         "astro-eslint-parser": "^1.4.0",
         "eslint": "^10.5.0",
         "eslint-plugin-astro": "^1.7.0",
+        "mdx2vast": "^0.3.1",
         "prettier": "^3.8.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-sentences-per-line": "^0.2.3",
