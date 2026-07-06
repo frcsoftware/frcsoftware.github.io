@@ -18,10 +18,11 @@ def create_workflow(name, source_path, dest_url):
             fetch = "main",
             push = "main",
         ),
-        origin_files = glob([source_path + "/**"]),
+        origin_files = glob([source_path + "/**", "examples/LICENSE"]),
         authoring = authoring.pass_thru("Automated Sync <noreply@frcsoftware.org>"),
         transformations = [
             core.move(source_path, ""),
+            core.move("examples/LICENSE", "LICENSE"),
 
             # Remove website embedding code region markers (e.g., // [region] or // [/region])
             core.replace(

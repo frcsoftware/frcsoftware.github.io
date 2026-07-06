@@ -6,6 +6,7 @@ on:
             - main
         paths:
             - 'examples/stage1/**'
+            - 'examples/LICENSE'
             - 'copy.bara.sky'
             - '.github/workflows/copybara.yml'
 
