@@ -4,6 +4,8 @@
  * Add terms here to automatically highlight them across the site
  * with a dotted underline and hover tooltip.
  *
+ * Definitions should not have a period at the end
+ *
  * Format:
  * {
  *   term: "TERM",           // The word/abbreviation to match (case-insensitive)
@@ -27,23 +29,23 @@ export const glossaryTerms: GlossaryTerm[] = [
         definition: 'Motor controller for REV motors',
     },
     {
+        term: 'Talon FX',
+        definition: 'Motor controller for CTRE motors',
+    },
+    {
         term: 'SystemCore',
         definition:
-            'Main Robot Controller (MRC), contains a CM5 chip and has CAN and USB inputs.',
+            'Mobile Robot Controller (MRC), main processor for robot code containing various IO',
     },
     {
         term: 'CAN',
         definition:
-            'Controller Area Network: yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC.',
+            'Controller Area Network: typically yellow and green cable used to communicate with motor controllers and sensors, can be run in a loop instead of each cable needing to connect to the MRC',
     },
     {
         term: 'PWM',
         definition:
-            'Pulse Width Modulation: three-wire cable used to communicate with motor controllers and sensors, needs to connect back to MRC',
-    },
-    {
-        term: 'Blinkin',
-        definition: 'LED controller for REV',
+            'Pulse Width Modulation: A communication spec used to communicate with motor controllers and sensors, needs to connect back to the MRC',
     },
     {
         term: 'Main Breaker',
@@ -52,12 +54,12 @@ export const glossaryTerms: GlossaryTerm[] = [
     {
         term: 'Limit Switch',
         definition:
-            'Type of sensor that triggers when physically or magnetically hit. Can be used to trigger actions on a rising or falling edge',
+            'Type of sensor that triggers when physically or magnetically hit. Can be used to trigger actions on a rising or falling edge, or check state of a mechanism',
     },
     {
         term: 'Throughbore Encoder',
         definition:
-            'An encoder that allows shafts to pass through its center to record position',
+            'An encoder that allows shafts to pass through its center to record angular position',
     },
     {
         term: 'Magnetic Encoder',
