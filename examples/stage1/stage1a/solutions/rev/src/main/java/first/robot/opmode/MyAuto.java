@@ -22,6 +22,7 @@ public class MyAuto extends PeriodicOpMode {
 
   @Override
   public void start() {
+    /* Called once when the robot is enabled. */
     timer.restart(); // Reset the timer to zero at the start of auto
   }
 
