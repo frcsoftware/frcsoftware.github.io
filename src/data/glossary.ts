@@ -77,6 +77,11 @@ export const glossaryTerms: GlossaryTerm[] = [
         definition:
             'WPILib is the standard software library and toolsuite provided for teams to write, test, and debug code for their FIRST® Robotics Competition and FIRST® Tech Challenge robots',
     },
+    {
+        term: 'GitHub',
+        definition:
+            'GitHub is a remote location that hosts git repositories and allows for improved collaboration on projects through pull requests and issues',
+    },
 ];
 
 /**
