@@ -42,6 +42,10 @@ function walkMdx(dir: string) {
 const definedRegions = new Map<string, Map<string, number>>();
 
 function validateSource(filePath: string) {
+    // ignore generated files
+    if (filePath.includes('build')) {
+        return;
+    }
     const content = readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
     const regions = new Map<string, number>();
