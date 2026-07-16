@@ -1,7 +1,8 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 package first.robot;
 
 import com.ctre.phoenix6.CANBus;
@@ -43,7 +44,8 @@ public class Robot extends OpModeRobot {
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
-  private SingleFlywheelSim intakeLauncherSim = new SingleFlywheelSim(intakeLauncher, "intakeLauncher");
+  private SingleFlywheelSim intakeLauncherSim =
+      new SingleFlywheelSim(intakeLauncher, "intakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "feeder");
 
   /**

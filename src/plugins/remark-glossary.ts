@@ -1,5 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Root, Text } from 'mdast';
+import type { VFile } from 'vfile';
 import { glossaryTerms } from '../data/glossary';
 
 const sortedTerms = [...glossaryTerms].sort(
@@ -21,7 +22,9 @@ function escapeRegex(str: string): string {
 }
 
 export function remarkGlossary() {
-    return (tree: Root) => {
+    return (tree: Root, file: VFile) => {
+        if (file.path?.endsWith('glossary.mdx')) return;
+
         visit(tree, 'text', (node: Text, index, parent) => {
             if (!parent || index === undefined) return;
 
@@ -63,7 +66,7 @@ export function remarkGlossary() {
 
                 newNodes.push({
                     type: 'html',
-                    value: `<abbr class="glossary-term" title="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
+                    value: `<abbr class="glossary-term" data-tooltip="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
                 });
 
                 lastIndex = matchEnd;

@@ -1,17 +1,37 @@
+plugins {
+    id "com.diffplug.spotless" version "8.0.0"
+}
+
 defaultTasks 'build'
 
-tasks.register('build') {
+tasks.named('build') {
     dependsOn gradle.includedBuilds.collect { it.task(':build') }
 }
 
-tasks.register('clean') {
+tasks.named('clean') {
     dependsOn gradle.includedBuilds.collect { it.task(':clean') }
 }
 
-tasks.register('spotlessCheck') {
+spotless {
+    java {
+        target fileTree(rootDir) {
+            include "**/*.java"
+            exclude "**/build/**", "**/.gradle/**", "stage0/snippets/**"
+        }
+        licenseHeaderFile rootProject.file('gradle/LICENSE_HEADER')
+    }
+    format 'javaSnippets', {
+        target fileTree(rootDir) {
+            include "stage0/snippets/*.java"
+        }
+        licenseHeaderFile(rootProject.file('gradle/LICENSE_HEADER'), '// \\[')
+    }
+}
+
+tasks.named('spotlessCheck') {
     dependsOn gradle.includedBuilds.collect { it.task(':spotlessCheck') }
 }
 
-tasks.register('spotlessApply') {
+tasks.named('spotlessApply') {
     dependsOn gradle.includedBuilds.collect { it.task(':spotlessApply') }
 }

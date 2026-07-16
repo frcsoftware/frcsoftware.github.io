@@ -1,7 +1,8 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 package first.robot;
 
 import com.revrobotics.PersistMode;
@@ -29,7 +30,8 @@ public class Robot extends OpModeRobot {
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
 
-  private SingleFlywheelSim intakeLauncherSim = new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
+  private SingleFlywheelSim intakeLauncherSim =
+      new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
   public final DifferentialDrive drivetrain =
@@ -38,14 +40,20 @@ public class Robot extends OpModeRobot {
   public Robot() {
 
     var leftConfig = new SparkMaxConfig().inverted(true);
-    leftLeader.configure(leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    leftLeader.configure(
+        leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     leftFollower.configure(
-        leftConfig.follow(leftLeader), ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        leftConfig.follow(leftLeader),
+        ResetMode.kResetSafeParameters,
+        PersistMode.kPersistParameters);
 
     var rightConfig = new SparkMaxConfig().inverted(false);
-    rightLeader.configure(rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightLeader.configure(
+        rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     rightFollower.configure(
-        rightConfig.follow(rightLeader), ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightConfig.follow(rightLeader),
+        ResetMode.kResetSafeParameters,
+        PersistMode.kPersistParameters);
   }
 
   @Override

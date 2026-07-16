@@ -26,6 +26,153 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
         },
     ],
 
+    // Learning Course section
+    '/learning-course': [
+        {
+            label: 'Learning Course',
+            items: [
+                { label: 'Overview', slug: 'learning-course' },
+                {
+                    label: 'Feature Guide',
+                    slug: 'learning-course/getting-started/website-feature-guide',
+                },
+                {
+                    label: 'Course Setup',
+                    collapsed: true,
+                    items: [
+                        {
+                            label: 'Required Tools',
+                            slug: 'learning-course/getting-started/required-tools',
+                        },
+                        {
+                            label: 'VS Code Overview',
+                            slug: 'learning-course/getting-started/vscode-overview',
+                        },
+                        {
+                            label: 'Forking and Cloning',
+                            slug: 'learning-course/getting-started/forking-and-cloning',
+                        },
+                    ],
+                },
+                {
+                    label: 'Stage 0',
+                    collapsed: true,
+                    items: [
+                        {
+                            label: 'Stage 0 Introduction',
+                            slug: 'learning-course/intro-to-java/stage-overview',
+                        },
+                        {
+                            label: 'Intro To Java',
+                            collapsed: true,
+                            items: [
+                                {
+                                    label: 'Java Fundamentals',
+                                    slug: 'learning-course/intro-to-java/java-fundamentals',
+                                },
+                                // {
+                                //     label: 'Operators',
+                                //     slug: 'learning-course/intro-to-java/operators',
+                                // },
+                                // {
+                                //     label: 'Conditionals',
+                                //     slug: 'learning-course/intro-to-java/conditionals',
+                                // },
+                                // {
+                                //     label: 'Loops',
+                                //     slug: 'learning-course/intro-to-java/loops',
+                                // },
+                                // {
+                                //     label: 'Objects',
+                                //     slug: 'learning-course/intro-to-java/objects',
+                                // },
+                                // {
+                                //     label: 'Methods',
+                                //     slug: 'learning-course/intro-to-java/methods',
+                                // },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    label: 'Stage 1',
+                    collapsed: true,
+                    items: [
+                        // {
+                        //     label: 'Stage 1 Introduction',
+                        //     slug: 'learning-course/stage-1a-commands/overview',
+                        // },
+                        {
+                            label: 'Stage 1A: TBD',
+                            collapsed: true,
+                            items: [
+                                // {
+                                //     label: 'TBD',
+                                //     slug: 'stage-1a-commands/command-based-overview',
+                                // },
+                                // {
+                                //     label: 'TBD',
+                                //     slug: 'stage-1a-commands/the-command-body',
+                                // },
+                                // {
+                                //     label: 'TBD',
+                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
+                                // },
+                            ],
+                        },
+                        {
+                            label: 'Stage 1B: Commands',
+                            collapsed: true,
+                            items: [
+                                // {
+                                //     label: 'Stage 1B Introduction',
+                                //     slug: 'learning-course/stage1b/overview',
+                                // },
+                                // {
+                                //     label: '1B',
+                                //     collapsed: true,
+                                //     items: [
+                                //         {
+                                //             label: 'The Concepts',
+                                //             slug: 'stage-1b-commands/command-based-overview',
+                                //         },
+                                //         {
+                                //             label: 'The Body of a Command',
+                                //             slug: 'stage-1b-commands/the-command-body',
+                                //         },
+                                //         {
+                                //             label: 'Commands & Mechanisms, Pt. 1',
+                                //             slug: 'stage-1b-commands/commands-and-mechanisms',
+                                //         },
+                                //         {
+                                //             label: 'Triggers and Scheduling',
+                                //             slug: 'stage-1b-commands/triggers',
+                                //         },
+                                //         {
+                                //             label: 'Commands & Mechanisms, Pt. 2',
+                                //             slug: 'stage-1b-commands/commands-and-mechanisms-pt2',
+                                //         },
+                                //         {
+                                //             label: 'Exercise - Kitbot Rewrite, Pt. 1',
+                                //             slug: 'stage-1b-commands/command-based-kitbot',
+                                //         },
+                                //         {
+                                //             label: 'Suppliers in Command-Based',
+                                //             slug: 'stage-1b-commands/suppliers-in-command-based',
+                                //         },
+                                //         {
+                                //             label: 'Exercise - Kitbot Rewrite, Pt. 2',
+                                //             slug: 'stage-1b-commands/command-based-kitbot-pt2',
+                                //         },
+                                //     ],
+                                // },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
     // Educator's Guide section
     '/educators-guide': [
         {
@@ -94,7 +241,11 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             label: 'Getting Started',
             items: [
                 {
-                    label: 'Intro to Programmming',
+                    label: 'Website Feature Guide',
+                    slug: 'getting-started/website-feature-guide',
+                },
+                {
+                    label: 'Intro to Programming',
                     slug: 'getting-started/intro-to-prog',
                 },
                 {

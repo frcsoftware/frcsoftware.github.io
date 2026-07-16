@@ -46,7 +46,7 @@ function validateSource(filePath: string) {
     const lines = content.split('\n');
     const regions = new Map<string, number>();
     const stack: { name: string; lineNum: number }[] = [];
-    const rel = relative(EXAMPLES_DIR, filePath);
+    const rel = relative(EXAMPLES_DIR, filePath).replace(/\\/g, '/');
 
     for (let i = 0; i < lines.length; i++) {
         let m = lines[i].match(START_RE);
