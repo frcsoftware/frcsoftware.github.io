@@ -1,12 +1,24 @@
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 package sources;
 
 import org.wpilib.command3.Command;
+import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.framework.OpModeRobot;
 import org.wpilib.opmode.PeriodicOpMode;
 
 class CommandBasedKitbot {
+  // [feederDef]
+  public class Feeder implements Mechanism {
+    // your code here...
+  }
+  // [/feederDef]
+
   void schedulerExample() {
     // [robotDef]
     class Robot extends OpModeRobot {
@@ -30,6 +42,16 @@ class CommandBasedKitbot {
     // [/triggerBindingDef]
   }
 
+  private final ExampleMotor motor = new ExampleMotor();
+
+  // [feederSim]
+  private final SingleFlywheelSim sim = new SingleFlywheelSim(motor, "Feeder");
+
+  public void periodic() {
+    sim.periodic();
+  }
+  // [/feederSim]
+
   class ExampleMechanism {
     Command intake() {
       return null;
@@ -39,5 +61,11 @@ class CommandBasedKitbot {
   class Robot {
     ExampleMechanism intake = new ExampleMechanism();
     ExampleMechanism feeder = new ExampleMechanism();
+  }
+
+  class SingleFlywheelSim {
+    SingleFlywheelSim(ExampleMotor motor, String name) {}
+
+    void periodic() {}
   }
 }

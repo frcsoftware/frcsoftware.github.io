@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 package sources;
 
 import org.wpilib.command3.Command;

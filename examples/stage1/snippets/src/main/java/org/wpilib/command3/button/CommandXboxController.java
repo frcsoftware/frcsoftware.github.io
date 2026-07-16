@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 FRCSoftware
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 package org.wpilib.command3.button;
 
 import org.wpilib.command3.Trigger;

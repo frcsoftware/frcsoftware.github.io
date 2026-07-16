@@ -5,7 +5,7 @@ prev: stage-1b-commands/suppliers-in-command-based
 next: false
 ---
 
-import Aside from '../../../components/Aside.astro';
+import Aside from '../../../../components/Aside.astro';
 
 ### What You'll Accomplish
 
@@ -18,14 +18,24 @@ In this second part of the kitbot rewrite, you will:
 
 ### Task 1: The Drivetrain Mechanism
 
-In `Drivetrain.java`, implement the following:
+Create a new file named `Drivetrain.java` in the `mechanisms` package.
+Then,
+copy-paste the following code into the file:
+
+```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#drivetrainDef
+
+```
+
+Then implement the following:
 
 1. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the constructor.
 2. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates the drive motor speeds using the values from the suppliers.
+3. The drivetrain motor configuration code, which can be found in `Robot.java` from stage 1A.
+   Where should this code
+   be placed?
 
-{/* prettier-ignore */}
 <details class="accordion">
-    <summary>Hint</summary>
+    <summary>Item 2 Hint</summary>
     Since the joystick values change constantly, you must fetch the speed and
     rotation from the suppliers inside the command's loop. You should have the
     following inside of your command's body: 
@@ -34,12 +44,23 @@ In `Drivetrain.java`, implement the following:
     ```
 
 </details>
+<details class="accordion">
+    <summary>Item 3, Hint 1</summary>
+    The constructor of the `Robot` class in stage 1A contains the code to
+    configure the drivetrain motors.
+</details>
+<details class="accordion">
+    <summary>Item 3, Hint 2</summary>
+    We want to configure our motors when a new `Drivetrain` instance is created.
+    What java declaration defines the code that runs when a class is instantiated?
+</details>
 
 ### Task 2: Drivetrain Setup
 
 1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`.
    It should be a public instead of private.
-2. Then, open `MyTeleop.java` (your teleop OpMode).
+2. Call `drivetrain.periodic();` in the `robotPeriodic` method.
+3. Then, open `MyTeleop.java` (your teleop OpMode).
    In the constructor, set the drivetrain's default command to `arcadeDrive`.
    Pass lambda expressions that read from your controller's joystick axes.
 
@@ -67,14 +88,27 @@ In `Drivetrain.java`, implement the following:
     command set in the constructor (`idle()`) will apply.
 </Aside>
 
+### Task 3: Create Auto Mode Files
+
+Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
+before deleting the `MyAuto.java` file.
+Copy-paste the following code in each file,
+while replacing `MyOpModeName` with the correct name for each opmode:
+
+```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#opModeSkeleton
+
+```
+
 ### Task 3: Drive Straight Autonomous
 
-Go to the `DriveStraightAutoMode.java` file.
-In the `start()` method, schedule
+In the `start()` method of `DriveStraightAutoMode.java`, schedule
 an `arcadeDrive` command with a timeout of 4 seconds.
+Then, do the following:
 
-This `arcadeDrive` command should have a constant forward throttle of `0.5`
-and a constant rotational throttle of `0`.
+1. Rename the class defined in `DriveStraightAutoMode.java` to `DriveStraightAutoMode`.
+2. In the `start()` method, schedule an `arcadeDrive` command with a timeout of 4 seconds.
+   This `arcadeDrive` command should have a constant forward throttle of `0.5`
+   and a constant rotational throttle of `0`.
 
 <details class="accordion">
     <summary>Hint 1</summary>
@@ -117,7 +151,7 @@ It should execute these actions, in order:
 
 ### Task 5: Rotate in Place Autonomous
 
-Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `RotationAutoMode.java`.
+Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `TurnInPlaceAutoMode.java`.
 It should rotate the robot 90 degrees from its starting position, at a throttle of 0.2.
 
 <details class="accordion">
