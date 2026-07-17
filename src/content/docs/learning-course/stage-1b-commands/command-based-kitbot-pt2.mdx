@@ -22,7 +22,7 @@ Create a new file named `Drivetrain.java` in the `mechanisms` package.
 Then,
 copy-paste the following code into the file:
 
-```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#drivetrainDef
+```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#drivetrainDef
 
 ```
 
@@ -39,7 +39,7 @@ Then implement the following:
     Since the joystick values change constantly, you must fetch the speed and
     rotation from the suppliers inside the command's loop. You should have the
     following inside of your command's body: 
-    ```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#arcadeDriveBody
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#arcadeDriveBody
 
     ```
 
@@ -67,7 +67,7 @@ Then implement the following:
 <details class="accordion">
     <summary>Hint 1</summary>
     You can create an arcade drive command like so:
-    ```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#driveCommand
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#driveCommand
     
     ```
     Can you figure out the expressions to replace `forwardThrottle` and `rotationThrottle` with?
@@ -95,7 +95,7 @@ before deleting the `MyAuto.java` file.
 Copy-paste the following code in each file,
 while replacing `MyOpModeName` with the correct name for each opmode:
 
-```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#opModeSkeleton
+```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#opModeSkeleton
 
 ```
 
@@ -113,7 +113,7 @@ Then, do the following:
 <details class="accordion">
     <summary>Hint 1</summary>
     To schedule a command without a trigger, use `Scheduler.getDefault().schedule(Command)`:
-    ```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#startMethod
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#startMethod
     
     ```
     Can you figure out what `myAutoCommand` should be? 
@@ -124,7 +124,7 @@ Then, do the following:
     0.5 when its `getAsDouble()` method is called. <br /> <br />
     Use this information to complete the following `Command` by
     replacing `forwardThrottle` and `rotationalThrottle` with `DoubleSupplier`s:
-    ```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#4SecDriveCommand
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#4SecDriveCommand
     
     ```
 
@@ -143,7 +143,7 @@ It should execute these actions, in order:
 
 <details class="accordion">
     <summary>Hint</summary>
-    ```java stage1/snippets/src/main/java/sources/CommandBasedKitbotPt2.java#rotateInPlaceBody
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#rotateInPlaceBody
 
     ```
 
