@@ -3,6 +3,7 @@ title: Conditionals
 description: An Intro To Conditional Statements
 prev: intro-to-java/operators
 next: false
+defaultCodeRegionSource: stage0/snippets/Conditionals.java
 ---
 
 In everyday life, we make decisions based on different situations.
@@ -38,7 +39,7 @@ In Java, we use the following keywords for conditionals: `if`, `else if`, `else`
 An `if` statement is a basic conditional.
 The syntax for an `if` statement is as follows:
 
-```java stage0/snippets/conditionals.java#ifSyntax
+```java #ifSyntax
 
 ```
 
@@ -77,7 +78,7 @@ We want our robot's drivetrain motors to keep spinning until the robot is 10cm a
 Our robot is currently 6cm away.
 Looking at the example below, what should happen?
 
-```java stage0/snippets/conditionals.java#ifExample
+```java #ifExample
 
 ```
 
@@ -94,7 +95,7 @@ This is one example where we could use an `else` statement.
 
 The syntax for an else statement is as follows:
 
-```java stage0/snippets/conditionals.java#ifElseSyntax
+```java #ifElseSyntax
 
 ```
 
@@ -108,7 +109,7 @@ This is also described in the flowchart below
 
 In this example, we now have an `else` statement that sets the motor speed to 0 if `distance` is greater than 20. Since our `distance` is set to 21, what would the code print out?
 
-```java stage0/snippets/conditionals.java#elseExample
+```java #elseExample
 
 ```
 
@@ -125,7 +126,7 @@ This can be done by adding an `else if` statement.
 
 The syntax for an `else if` statement goes as follows:
 
-```java stage0/snippets/conditionals.java#elseIfSyntax
+```java #elseIfSyntax
 
 ```
 
@@ -145,7 +146,7 @@ In the example, we now have an `else if` statement that sets the motor to half s
 Our `distance` is now 15cm.
 With the new addition, what would the code print out?
 
-```java stage0/snippets/conditionals.java#elseIfExample
+```java #elseIfExample
 
 ```
 
@@ -162,7 +163,7 @@ This means the motors are set to drive at full speed and "Motors are at full spe
 Our code above has the robot drive at full speed if the distance is greater than 10cm, and drive at half speed if the distance is less than 10cm, but it doesn't stop if it reaches its target distance.
 You could add another else if, or you could put everything that we learned above together and add an else conditional.
 
-```java stage0/snippets/conditionals.java#conditionalExample
+```java #conditionalExample
 
 ```
 
