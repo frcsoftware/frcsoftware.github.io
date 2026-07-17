@@ -54,6 +54,7 @@
         "**/*": [
             "pnpm format",
             "pnpm lint"
-        ]
+        ],
+        "examples/**/*.java": "sh -c 'cd examples && ./gradlew spotlessApply'"
     }
 }
