@@ -33,19 +33,19 @@ async function downloadFile(url: string, path: string) {
 }
 
 const dictsToDownload = [
-    [
-        resolve(ROOT, '.styles/config/dictionaries/en_US.dic'),
-        'https://raw.githubusercontent.com/LibreOffice/dictionaries/refs/tags/libreoffice-26.2.5.1/en/en_US.dic',
-    ],
-    [
-        resolve(ROOT, '.styles/config/dictionaries/en_US.aff'),
-        'https://raw.githubusercontent.com/LibreOffice/dictionaries/refs/tags/libreoffice-26.2.5.1/en/en_US.aff',
-    ],
+    {
+        path: resolve(ROOT, '.styles/config/dictionaries/en_US.dic'),
+        url: 'https://raw.githubusercontent.com/LibreOffice/dictionaries/refs/tags/libreoffice-26.2.5.1/en/en_US.dic',
+    },
+    {
+        path: resolve(ROOT, '.styles/config/dictionaries/en_US.aff'),
+        url: 'https://raw.githubusercontent.com/LibreOffice/dictionaries/refs/tags/libreoffice-26.2.5.1/en/en_US.aff',
+    },
 ];
 
 dictsToDownload.forEach((dict) => {
-    if (!existsSync(dict[0])) {
-        mkdirSync(dirname(dict[0]), { recursive: true });
-        downloadFile(dict[1], dict[0]);
+    if (!existsSync(dict.path)) {
+        mkdirSync(dirname(dict.path), { recursive: true });
+        downloadFile(dict.url, dict.path);
     }
 });
