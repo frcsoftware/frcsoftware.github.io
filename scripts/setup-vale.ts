@@ -25,9 +25,15 @@ console.log(`Wrote ${terms.length} glossary terms to ${OUTPUT}.`);
 // If not already present, download dictionary
 async function downloadFile(url: string, path: string) {
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`Error downloading dictionaries: HTTP error! status: ${response.status}`);
+    if (!response.ok)
+        throw new Error(
+            `Error downloading dictionaries: HTTP error! status: ${response.status}`,
+        );
 
-    if (!response.body) throw new Error(`Error downloading dictionaries: No body in response for ${url}`);
+    if (!response.body)
+        throw new Error(
+            `Error downloading dictionaries: No body in response for ${url}`,
+        );
     const fileStream = createWriteStream(path);
     await pipeline(response.body, fileStream);
 }
