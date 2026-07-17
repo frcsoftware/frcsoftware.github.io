@@ -33,7 +33,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 { label: 'Overview', slug: 'learning-course' },
                 {
-                    label: 'Feature Guide',
+                    label: 'Website Feature Guide',
                     slug: 'learning-course/getting-started/website-feature-guide',
                 },
                 {
@@ -74,10 +74,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                 //     label: 'Operators',
                                 //     slug: 'learning-course/intro-to-java/operators',
                                 // },
-                                // {
-                                //     label: 'Conditionals',
-                                //     slug: 'learning-course/intro-to-java/conditionals',
-                                // },
+                                {
+                                    label: 'Conditionals',
+                                    slug: 'learning-course/intro-to-java/conditionals',
+                                },
                                 // {
                                 //     label: 'Loops',
                                 //     slug: 'learning-course/intro-to-java/loops',
@@ -222,10 +222,6 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                     slug: 'getting-started/website-feature-guide',
                 },
                 {
-                    label: 'Intro to Programming',
-                    slug: 'getting-started/intro-to-prog',
-                },
-                {
                     label: 'Required Tools',
                     slug: 'getting-started/required-tools',
                 },
@@ -257,6 +253,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                 {
                     label: 'Java fundamentals',
                     slug: 'intro-to-java/java-fundamentals',
+                },
+                {
+                    label: 'Java fundamentals',
+                    slug: 'intro-to-java/conditionals',
                 },
             ],
         },

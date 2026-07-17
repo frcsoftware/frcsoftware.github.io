@@ -24,7 +24,7 @@ spotless {
         target fileTree(rootDir) {
             include "stage0/snippets/*.java"
         }
-        licenseHeaderFile(rootProject.file('gradle/LICENSE_HEADER'), '// \\[')
+        licenseHeaderFile(rootProject.file('gradle/LICENSE_HEADER'), "^(?!/\\*|\\s*\\*)")
     }
 }
 
