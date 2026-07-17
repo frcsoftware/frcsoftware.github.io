@@ -1,4 +1,0 @@
-subfolders
-roadmap
-frcsoftware
-toolsuite
