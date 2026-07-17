@@ -1,3 +1,2 @@
-pnpm exec lint-staged
 pnpm generate:glossary
-cd examples && ./gradlew spotlessApply
+pnpm exec lint-staged
