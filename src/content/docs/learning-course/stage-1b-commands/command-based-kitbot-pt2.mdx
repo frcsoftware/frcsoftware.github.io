@@ -1,0 +1,161 @@
+---
+title: Exercise - Kitbot Rewrite, Pt. 2
+description: Rewriting the kitbot code in stage 1A to command-based
+prev: stage-1b-commands/suppliers-in-command-based
+next: false
+---
+
+import Aside from '../../../../components/Aside.astro';
+
+### What You'll Accomplish
+
+In this second part of the kitbot rewrite, you will:
+
+1. Create a `Drivetrain` mechanism class.
+2. Define an `arcadeDrive` command that dynamically reads controller inputs using `DoubleSupplier`s.
+3. Bind the default drivetrain command in your teleop OpMode to enable driving.
+4. Define some basic autonomous modes.
+
+### Task 1: The Drivetrain Mechanism
+
+Create a new file named `Drivetrain.java` in the `mechanisms` package.
+Then,
+copy-paste the following code into the file:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#drivetrainDef
+
+```
+
+Then implement the following:
+
+1. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the constructor.
+2. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates the drive motor speeds using the values from the suppliers.
+3. The drivetrain motor configuration code, which can be found in `Robot.java` from stage 1A.
+   Where should this code
+   be placed?
+
+<details class="accordion">
+    <summary>Item 2 Hint</summary>
+    Since the joystick values change constantly, you must fetch the speed and
+    rotation from the suppliers inside the command's loop. You should have the
+    following inside of your command's body: 
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#arcadeDriveBody
+
+    ```
+
+</details>
+<details class="accordion">
+    <summary>Item 3, Hint 1</summary>
+    The constructor of the `Robot` class in stage 1A contains the code to
+    configure the drivetrain motors.
+</details>
+<details class="accordion">
+    <summary>Item 3, Hint 2</summary>
+    We want to configure our motors when a new `Drivetrain` instance is created.
+    What java declaration defines the code that runs when a class is instantiated?
+</details>
+
+### Task 2: Drivetrain Setup
+
+1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`.
+   It should be a public instead of private.
+2. Call `drivetrain.periodic();` in the `robotPeriodic` method.
+3. Then, open `MyTeleop.java` (your teleop OpMode).
+   In the constructor, set the drivetrain's default command to `arcadeDrive`.
+   Pass lambda expressions that read from your controller's joystick axes.
+
+<details class="accordion">
+    <summary>Hint 1</summary>
+    You can create an arcade drive command like so:
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#driveCommand
+    
+    ```
+    Can you figure out the expressions to replace `forwardThrottle` and `rotationThrottle` with?
+</details>
+<details class="accordion">
+    <summary>Hint 2</summary>
+    The expression for the `forwardThrottle` argument is `() -> -xbox.getLeftY()`, since we 
+    want to recompute the value of `-xbox.getLeftY()` while the `arcadeDrive` command is running. <br /> <br />
+    Can you figure out the expression for the `rotationThrottle` argument, considering
+    that the goal is to recompute the value of `xbox.getRightX()`?
+</details>
+
+<Aside type="note">
+    You might notice that we're calling `setDefaultCommand` twice - once in
+    `Drivetrain.java`, and once in `MyTeleop.java`. <br /> <br />
+    The `setDefaultCommand()` call in `MyTeleop.java` will only be active while
+    the MyTeleop opmode is selected. In all other circumstances, the default
+    command set in the constructor (`idle()`) will apply.
+</Aside>
+
+### Task 3: Create Auto Mode Files
+
+Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
+before deleting the `MyAuto.java` file.
+Copy-paste the following code in each file,
+while replacing `MyOpModeName` with the correct name for each opmode:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#opModeSkeleton
+
+```
+
+### Task 3: Drive Straight Autonomous
+
+In the `start()` method of `DriveStraightAutoMode.java`, schedule
+an `arcadeDrive` command with a timeout of 4 seconds.
+Then, do the following:
+
+1. Rename the class defined in `DriveStraightAutoMode.java` to `DriveStraightAutoMode`.
+2. In the `start()` method, schedule an `arcadeDrive` command with a timeout of 4 seconds.
+   This `arcadeDrive` command should have a constant forward throttle of `0.5`
+   and a constant rotational throttle of `0`.
+
+<details class="accordion">
+    <summary>Hint 1</summary>
+    To schedule a command without a trigger, use `Scheduler.getDefault().schedule(Command)`:
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#startMethod
+    
+    ```
+    Can you figure out what `myAutoCommand` should be? 
+</details>
+<details class="accordion">
+    <summary>Hint 2</summary>
+    A `DoubleSupplier` with syntax `() -> 0.5` will always return 
+    0.5 when its `getAsDouble()` method is called. <br /> <br />
+    Use this information to complete the following `Command` by
+    replacing `forwardThrottle` and `rotationalThrottle` with `DoubleSupplier`s:
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#4SecDriveCommand
+    
+    ```
+
+</details>
+
+### Task 4: Rotate in Place Command
+
+Create a new `Command` in `Drivetrain.java`, called `rotateInPlace`,
+with the parameters `double angleDegrees` and `DoubleSupplier rotationThrottle`.
+It should execute these actions, in order:
+
+1. Define a local variable, named `targetAngle`, whose value is the sum of `angleDegrees` and the robot's current yaw.
+   To get the robot's current yaw, call `imu.getRotation2d().getDegrees()`.
+2. Call `differentialDrive.arcadeDrive()` in a while loop,
+   which should continue while the robot's current yaw is less than the `targetAngle`.
+
+<details class="accordion">
+    <summary>Hint</summary>
+    ```java stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java#rotateInPlaceBody
+
+    ```
+
+</details>
+
+### Task 5: Rotate in Place Autonomous
+
+Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `TurnInPlaceAutoMode.java`.
+It should rotate the robot 90 degrees from its starting position, at a throttle of 0.2.
+
+<details class="accordion">
+    <summary>Hint</summary>
+    Use the `Scheduler` to schedule a new `rotateInPlace` command, just like how
+    task 3 accomplishes this.
+</details>

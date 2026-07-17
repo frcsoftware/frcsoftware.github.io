@@ -32,3 +32,5 @@ bun.lock
 .gradle
 */build/*
 
+# IntelliJ
+.idea

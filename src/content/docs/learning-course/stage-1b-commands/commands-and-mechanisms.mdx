@@ -1,0 +1,135 @@
+---
+title: Commands & Mechanisms, Part 1
+description: The basics of defining mechanisms and writing commands
+prev: stage-1b-commands/the-command-body
+next: stage-1b-commands/why-mechanisms
+---
+
+import Aside from '../../../../components/Aside.astro';
+
+### Defining Mechanisms
+
+Mechanisms are simply classes that have the `implements Mechanism` keyword:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#mechanismDef
+
+```
+
+In general, you should create one instance of each mechanism, and that instance should be stored
+in your robot class:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#mechanismInRobotDef
+
+```
+
+<Aside type="note">
+    **Ignore this if you haven't used Commands V2!** Mechanisms in Commands V3
+    are identical to Subsystems in Commands V2. The difference is that you have
+    to define your own `periodic()` method while calling it manually in
+    `robotPeriodic()`, instead of overriding a method from `SubsystemBase`.
+</Aside>
+
+### Defining Commands
+
+Most commands are defined inside of the file containing the class of a mechanism
+(like Intake.java or Shooter.java).
+The code below defines a new `Command`:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandDef
+
+```
+
+Notice that:
+
+- Every line of code between `coroutine -> {` and `}` will be run
+  when the command runs, like a method body.
+- This command will print "Full Speed Baby!" once before commanding
+  the motor to spin at max speed.
+- The `named("Set to Full Throttle")` call is required to create a `Command`.
+  This allows coders to distinguish this command from others when debugging their code.
+
+To change the priority of the command, simply add a `withPriority(int)` call before
+you call `named()`:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandWithPriorityDef
+
+```
+
+<Aside type="note">
+    **Ignore this if you haven't used Commands V2!** Unlike in Commands V2, the
+    code inside of a `run()` method won't run repeatedly! Use while loops inside
+    of the `run()` method to run code repeatedly.
+</Aside>
+
+### Combining Commands and Mechanisms
+
+Here's an example of a command defined inside of a mechanism class:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#fullThrottleIntake
+
+```
+
+Commands created with `run()` will automatically require the mechanism that they are defined inside.
+Here, the full throttle command requires the `Intake`.
+
+Also, notice that the fullThrottle method creates and returns a command.
+All mechanism-specific commands should be defined this way, for 2 reasons:
+
+1. It allows for commands to define parameters, just like a method.
+2. It gives the `Robot` class easy access to these commands.
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#runAtThrottleCommand
+
+```
+
+However, this approach requires caution.
+Observe the snippet below:
+
+{/* rli:ignore */}
+
+```java
+public Command printHiThenFullThrottle() {
+  return run(coroutine -> {
+      System.out.println("Hi!");
+      runAtThrottle(1.0); // Error: Commands must be used! Did you mean to fork it or bind it to a trigger?
+    })
+    .named("Set to Full Throttle");
+}
+```
+
+Calling the `fullThrottle()`
+method, as shown, doesn't spin the motor, but instead creates a `Command` object that must be run separately.
+The java
+compiler will catch this and throw a compile-time error.
+
+<Aside type="note">
+    Can you figure out why the error message says "bind it to a trigger"?
+    This is left as an exercise to the reader.
+
+    <details class="accordion">
+        <summary>JK, we'll give you the solution</summary>
+        Remember that in the command-based overview section, we mentioned how
+        `Trigger`s are the stimuli that cause actions, or commands, to run.
+    </details>
+
+</Aside>
+
+<Aside type="note">
+    Note that "forking", in this error message, means to schedule a command.
+    It's not the same as the "git fork" terminal command.
+</Aside>
+
+### Command Sequences
+
+If you want to run the `fullThrottle` command inside of another command, you must
+call `coroutine.await(Command)`, like so:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandAwait
+
+```
+
+That means you can run multiple commands in sequence:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandSequence
+
+```

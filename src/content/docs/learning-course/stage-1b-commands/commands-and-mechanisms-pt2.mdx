@@ -1,0 +1,71 @@
+---
+title: Commands and Mechanisms, Part 2
+description: Intermediate-level uses of commands and mechanisms
+prev: stage-1b-commands/triggers
+next: stage-1b-commands/command-based-kitbot
+---
+
+import ContentImage from '../../../../components/ContentImage.astro';
+
+### Default Commands
+
+Most mechanisms define a "default command" that runs when
+no other commands requiring it are active.
+The default command
+of an intake or a shooter, for instance, would be setting the throttle
+of all motors to 0, forever.
+
+<Aside type="note">
+    In humans, this is like our brain telling our arms to hang by our shoulders
+    when they aren't in use.
+</Aside>
+
+To set a mechanism's default command, simply call `setDefaultCommand(Command)`, which is
+an instance method of all mechanisms:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#defaultCommand
+
+```
+
+### Adding Delays to Commands
+
+Use `coroutine.wait()` to wait for a predefined amount of time within
+the body of a command:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#delayCommand
+
+```
+
+You can also give an existing command a timeout with the `withTimeout()` modifier:
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#timeoutCommand
+
+```
+
+### More commands info
+
+The following information isn't strictly needed for
+the exercises in stage 1b; however, they will be very
+useful for future exercises and coding a real robot.
+
+#### Commands without requirements
+
+Sometimes, you need to create a command that doesn't require any mechanisms.
+To do so, you can replace `run(...)` with `Command.noRequirements(...)`.
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#noRequirementsCommand
+
+```
+
+#### Running Commands in parallel
+
+`coroutine.awaitAll(a, b, c)` will run the commands a, b, and c in parallel,
+waiting for all 3 to finish before proceeding.
+
+```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#parallelCommands
+
+```
+
+On the other hand, `coroutine.awaitAny(a, b, c)` runs a, b, and c in parallel
+until any of a, b, or c finishes.
+Then, it will cancel the remaining commands.

@@ -1,0 +1,85 @@
+---
+title: The Concepts of Command-Based Programming
+description: The what, how, and why of commands
+prev: false
+next: stage-1b-commands/the-command-body
+---
+
+import Aside from '../../../../components/Aside.astro';
+import ContentImage from '../../../../components/ContentImage.astro';
+
+### What is Command-Based Programming?
+
+Up until now, most of the code you've written has been akin to a
+set of instructions (execute this task, then this, and finally this).
+However, robots (and humans!) don't just execute a set of tasks and shut down.
+
+Imagine your daily routine.
+When an alarm clock rings, you turn it off and tumble out of bed.
+When your belly rumbles, you walk to the fridge and get a snack.
+When the clock strikes 8 AM,
+you open the front door to leave for school.
+
+<ContentImage src="/stage1/commands/human-flow-diagram.png" />
+
+Notice how none of these actions had a predefined order; rather, they were a reaction to
+to certain kinds of stimuli.
+
+Command-based programming models robot behavior in a similar way.
+
+1. It defines behaviors/actions(tumbling out of bed, getting a snack, etc.) as `Command`s.
+2. It defines the stimuli that trigger these behaviors (a ringing alarm clock, a rumbling belly, etc.) as `Trigger`s.
+
+For instance, a command-based robot might have the following structure:
+
+<ContentImage src="/stage1/commands/robot-flow-diagram.png" />
+
+Here, everything on the left is a `Trigger`, while everything on the right is a `Command`.
+
+<Aside type="note">
+    We say that triggers "schedule" commands. So, the "y button pressed" trigger
+    would schedule the "Run Intake Motor" command. In a similar way, commands
+    are "bound" to triggers.
+</Aside>
+
+### Mechanisms and Priority
+
+However, the structure of using `Command`s to represent behaviors misses an important component.
+
+Think back to the human example: you’re walking to the fridge, but the clock hits 8 AM before you get there.
+You can't do both at once, since both actions require your arms and legs.
+So, you stop and leave for school.
+
+Next, the robot.
+If the X and Y buttons are held, the shooter and intake motors should both run.
+But if the X and A buttons are held, the robot code must choose between running the shooter
+at a fast speed or a slow speed.
+
+Command-Based models this relationship with 2 concepts: Mechansisms and Priority.
+
+##### Mechanisms
+
+A Mechanism is a robot component whose state can be updated through commands.
+`Command`s declare
+the mechanisms they require - thus, mechanisms are also called "requirements".
+
+An intake is a mechanism because your code controls its speed.
+On the other hand,
+an apriltag camera wouldn't be because your code only reads data from it, but doesn't update its state.
+
+<Aside type="note">
+    In the human case, your arms and legs would be mechanisms, but your ears
+    wouldn't be.
+</Aside>
+
+##### Priority
+
+When 2 commands share one or more requirements, priority determines which command
+should be cancelled and which command should continue.
+
+In the human example, the "leave for school" `Command` would have a higher priority
+than the "get a snack" `Command`.
+
+Priority is represented as an `int`.
+Commands default to a priority of 0, and a
+larger number represents a higher priority.

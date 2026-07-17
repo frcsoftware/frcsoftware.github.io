@@ -105,67 +105,44 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         {
                             label: 'Stage 1A: TBD',
                             collapsed: true,
-                            items: [
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/command-based-overview',
-                                // },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/the-command-body',
-                                // },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
-                                // },
-                            ],
+                            items: [],
                         },
                         {
                             label: 'Stage 1B: Commands',
                             collapsed: true,
                             items: [
-                                // {
-                                //     label: 'Stage 1B Introduction',
-                                //     slug: 'learning-course/stage1b/overview',
-                                // },
-                                // {
-                                //     label: '1B',
-                                //     collapsed: true,
-                                //     items: [
-                                //         {
-                                //             label: 'The Concepts',
-                                //             slug: 'stage-1b-commands/command-based-overview',
-                                //         },
-                                //         {
-                                //             label: 'The Body of a Command',
-                                //             slug: 'stage-1b-commands/the-command-body',
-                                //         },
-                                //         {
-                                //             label: 'Commands & Mechanisms, Pt. 1',
-                                //             slug: 'stage-1b-commands/commands-and-mechanisms',
-                                //         },
-                                //         {
-                                //             label: 'Triggers and Scheduling',
-                                //             slug: 'stage-1b-commands/triggers',
-                                //         },
-                                //         {
-                                //             label: 'Commands & Mechanisms, Pt. 2',
-                                //             slug: 'stage-1b-commands/commands-and-mechanisms-pt2',
-                                //         },
-                                //         {
-                                //             label: 'Exercise - Kitbot Rewrite, Pt. 1',
-                                //             slug: 'stage-1b-commands/command-based-kitbot',
-                                //         },
-                                //         {
-                                //             label: 'Suppliers in Command-Based',
-                                //             slug: 'stage-1b-commands/suppliers-in-command-based',
-                                //         },
-                                //         {
-                                //             label: 'Exercise - Kitbot Rewrite, Pt. 2',
-                                //             slug: 'stage-1b-commands/command-based-kitbot-pt2',
-                                //         },
-                                //     ],
-                                // },
+                                {
+                                    label: 'The Concepts',
+                                    slug: 'learning-course/stage-1b-commands/command-based-overview',
+                                },
+                                {
+                                    label: 'The Body of a Command',
+                                    slug: 'learning-course/stage-1b-commands/the-command-body',
+                                },
+                                {
+                                    label: 'Commands & Mechanisms, Pt. 1',
+                                    slug: 'learning-course/stage-1b-commands/commands-and-mechanisms',
+                                },
+                                {
+                                    label: 'Triggers and Scheduling',
+                                    slug: 'learning-course/stage-1b-commands/triggers',
+                                },
+                                {
+                                    label: 'Commands & Mechanisms, Pt. 2',
+                                    slug: 'learning-course/stage-1b-commands/commands-and-mechanisms-pt2',
+                                },
+                                {
+                                    label: 'Exercise - Kitbot Rewrite, Pt. 1',
+                                    slug: 'learning-course/stage-1b-commands/command-based-kitbot',
+                                },
+                                {
+                                    label: 'Suppliers in Command-Based',
+                                    slug: 'learning-course/stage-1b-commands/suppliers-in-command-based',
+                                },
+                                {
+                                    label: 'Exercise - Kitbot Rewrite, Pt. 2',
+                                    slug: 'learning-course/stage-1b-commands/command-based-kitbot-pt2',
+                                },
                             ],
                         },
                     ],
