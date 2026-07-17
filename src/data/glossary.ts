@@ -80,7 +80,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     {
         term: 'GitHub',
         definition:
-            'GitHub is a remote location that hosts git repositories and allows for improved collaboration on projects through pull requests and issues',
+            'GitHub is like Google Drive, but for code. It hosts git repositories and allows for improved collaboration on projects through pull requests and issues',
     },
 ];
 
