@@ -21,7 +21,8 @@
         "vale:setup": "tsx scripts/setup-vale.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "typecheck": "astro check"
+        "typecheck": "astro check",
+        "prepare": "husky"
     },
     "dependencies": {
         "@astrojs/starlight": "^0.39.2",
@@ -38,6 +39,8 @@
         "eslint": "^10.5.0",
         "eslint-plugin-astro": "^1.7.0",
         "mdx2vast": "^0.3.1",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.0.8",
         "prettier": "^3.8.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-sentences-per-line": "^0.2.3",
@@ -49,5 +52,11 @@
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.61.1",
         "vfile": "^6.0.3"
+    },
+    "lint-staged": {
+        "**/*": [
+            "pnpm format",
+            "pnpm lint"
+        ]
     }
 }
