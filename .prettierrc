@@ -14,6 +14,7 @@
         {
             "files": "*.mdx",
             "options": {
+                "singleAttributePerLine": false,
                 "proseWrap": "preserve"
             }
         }
