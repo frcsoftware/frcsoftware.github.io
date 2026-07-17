@@ -18,7 +18,7 @@ jobs:
             - parallel:
                   - name: Install Vale
                     run: |
-                        gh release download --repo errata-ai/vale --pattern '*Linux_64-bit.tar.gz'
+                        gh release download --repo vale-cli/vale --pattern '*Linux_64-bit.tar.gz'
                         tar -xf vale_*.tar.gz -C /usr/local/bin vale
                     env:
                         GH_TOKEN: ${{ github.token }}
