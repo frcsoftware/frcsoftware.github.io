@@ -49,7 +49,11 @@ const referencedRegions = new Map<string, Set<string>>();
 function walkMdx(dir: string) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
         const full = join(dir, entry.name);
-        if (entry.isDirectory()) {
+        // Not the most optimal strategy, but ignoring code region warnings
+        // isn't really applicable anywhere else
+        if (entry.name === 'styleguide.mdx') {
+            continue;
+        } else if (entry.isDirectory()) {
             walkMdx(full);
         } else if (entry.name.endsWith('.mdx')) {
             const content = readFileSync(full, 'utf-8');
