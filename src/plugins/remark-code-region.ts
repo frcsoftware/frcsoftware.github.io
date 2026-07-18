@@ -8,7 +8,10 @@ export default function remarkCodeRegion() {
     return (tree: Root, file: VFile) => {
         const examplesDir = resolve(process.cwd(), 'examples');
         let codeRegionSources = file.data.astro?.frontmatter?.codeRegionSources;
-        if (typeof codeRegionSources !== 'object') {
+        if (
+            codeRegionSources == null ||
+            typeof codeRegionSources !== 'object'
+        ) {
             codeRegionSources = {};
         }
 
@@ -24,9 +27,8 @@ export default function remarkCodeRegion() {
             if (filePath === '' && codeRegionSources.default) {
                 filePath = codeRegionSources.default;
             } else {
-                for (const [source, pathAlias] of Object.entries(
-                    codeRegionSources,
-                )) {
+                const entries = Object.entries(codeRegionSources);
+                for (const [source, pathAlias] of entries) {
                     if (
                         typeof source === 'string' &&
                         typeof pathAlias === 'string' &&
