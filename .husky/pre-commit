@@ -1,0 +1,2 @@
+pnpm generate:glossary
+pnpm exec lint-staged

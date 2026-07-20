@@ -125,3 +125,34 @@ The referenced file lives under `examples/` and uses `// [regionName]` / `// [/r
 This keeps example code in real source files that are compiled and tested.
 
 If you need an inline code fence that doesn't reference an example file, suppress the rule by placing `{/* rli:ignore */}` on the line immediately before it.
+
+#### Code Region Source Aliases
+
+Alternatively, you can define the filepaths for code region source files in
+the frontmatter of a page to reduce verbosity.
+The default source will be used
+for code regions with no specified source; otherwise, you can specify sources
+with the `{sourceName}` syntax.
+
+{/* rli:ignore */}
+
+````md
+---
+title: My Page
+codeRegionSources:
+    default: stage1/snippets-1b/src/main/java/sources/CommandBasedKitbot.java
+    other_region: stage1/snippets-1b/src/main/java/sources/CommandBasedKitbotPt2.java
+---
+
+This pulls from `CommandBasedKitbot.java`:
+
+```java #robotDef
+
+```
+
+This pulls from `CommandBasedKitbotPt2.java`:
+
+```java {other_region}#drivetrainDef
+
+```
+````
