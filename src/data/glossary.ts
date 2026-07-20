@@ -6,16 +6,27 @@
  *
  * Definitions should not have a period at the end
  *
- * Format:
- * {
- *   term: "TERM",           // The word/abbreviation to match (case-insensitive)
- *   definition: "..."       // The explanation shown on hover
- * }
+ *   @property definition: The explanation shown on hover
+ *   @property autoDetect: Optional, defaults to true. If true, automatically highlight this term throughout site content. If false the term will only be highlighted when explicitly wrapped in <Glossary> component.
+ *   @property term: The word/abbreviation to match (case-insensitive)
  */
 
 export interface GlossaryTerm {
+    /**
+     * The word/abbreviation to match (case-insensitive)
+     * @example "SystemCore"
+     */
     term: string;
+    /**
+     * The explanation shown on hover
+     * @example "Main processor for robot code, contains various IO"
+     */
     definition: string;
+    /**
+     * Whether to automatically detect this term throughout the site. Set to false for common terms (eg: CAN) to avoid false positives.
+     * @default true
+     */
+    autoDetect?: boolean;
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -40,6 +51,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         term: 'CAN',
         definition:
             'Controller Area Network: typically yellow and green cable used to communicate with motor controllers and sensors, can be run in various topographies instead of each cable needing to connect to SystemCore',
+        autoDetect: false,
     },
     {
         term: 'PWM',

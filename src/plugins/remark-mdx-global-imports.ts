@@ -26,6 +26,7 @@ const GLOBAL_IMPORTS = [
     { name: 'Aside', path: '@components/Aside.astro' },
     { name: 'Slides', path: '@components/Slides.astro' },
     { name: 'LinkButton', path: '@components/LinkButton.astro' },
+    { name: 'Glossary', path: '@components/Glossary.astro' },
     //   { name: 'ImageTable',    path: '@components/ImageTable.astro' },
 ];
 

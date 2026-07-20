@@ -1,9 +1,13 @@
+/// <reference types="mdast-util-mdx" />
+import type { Root } from 'mdast';
 import { visit } from 'unist-util-visit';
+import type { VFile } from 'vfile';
+
 
 const IGNORE_RE = /rli:\s*ignore/;
 
 export default function remarkNoInlineCodeFences() {
-    return (tree, file) => {
+    return (tree: Root, file: VFile) => {
         visit(tree, 'code', (node, index, parent) => {
             if (index !== undefined && parent) {
                 const prev = parent.children[index - 1];
