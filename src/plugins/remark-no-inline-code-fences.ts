@@ -3,7 +3,6 @@ import type { Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 import type { VFile } from 'vfile';
 
-
 const IGNORE_RE = /rli:\s*ignore/;
 
 export default function remarkNoInlineCodeFences() {

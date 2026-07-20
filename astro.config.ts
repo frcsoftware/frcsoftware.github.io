@@ -1,12 +1,11 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import remarkGlossary from './src/plugins/remark-glossary';
-import remarkCenter from './src/plugins/remark-center';
-import remarkFigure from './src/plugins/remark-figure';
-import remarkImageAttributes from './src/plugins/remark-image-attributes';
+import remarkGlossary from './src/plugins/remark-glossary.ts';
+import remarkCenter from './src/plugins/remark-center.ts';
+import remarkFigure from './src/plugins/remark-figure.ts';
+import remarkImageAttributes from './src/plugins/remark-image-attributes.ts';
 import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports.ts';
-import remarkCodeRegion from './src/plugins/remark-code-region';
+import remarkCodeRegion from './src/plugins/remark-code-region.ts';
 
 export default defineConfig({
     site: 'https://frcsoftware.org',
