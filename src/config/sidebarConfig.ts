@@ -13,6 +13,12 @@ export type SidebarSection = {
     items: SidebarItem[];
 };
 
+export type Item = {
+    label: string;
+    href?: string;
+    items?: Item[];
+};
+
 // Define which URL paths belong to which sidebar section
 export const sidebarSections: Record<string, SidebarSection[]> = {
     // Home page - minimal sidebar or none

@@ -1,5 +1,6 @@
+/// <reference types="mdast-util-mdx-jsx" />
 import { visit } from 'unist-util-visit';
-import type { Root, Text } from 'mdast';
+import type { Root, RootContent, Text } from 'mdast';
 import type { VFile } from 'vfile';
 import { glossaryTerms } from '../data/glossary';
 
@@ -28,17 +29,7 @@ export function remarkGlossary() {
         visit(tree, 'text', (node: Text, index, parent) => {
             if (!parent || index === undefined) return;
 
-            if (
-                parent.type === 'link' ||
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (parent as any).type === 'code' ||
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (parent as any).type === 'inlineCode' ||
-                (parent as unknown as { tagName?: string }).tagName ===
-                    'abbr' ||
-                (parent as unknown as { tagName?: string }).tagName === 'a' ||
-                (parent as unknown as { tagName?: string }).tagName === 'code'
-            ) {
+            if (parent.type === 'link') {
                 return;
             }
 
@@ -47,12 +38,11 @@ export function remarkGlossary() {
 
             if (matches.length === 0) return;
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const newNodes: any[] = [];
+            const newNodes: RootContent[] = [];
             let lastIndex = 0;
 
             matches.forEach((match) => {
-                const matchStart = match.index!;
+                const matchStart = match.index;
                 const matchEnd = matchStart + match[0].length;
                 const matchedTerm = match[0];
                 const definition = termMap.get(matchedTerm.toLowerCase());
