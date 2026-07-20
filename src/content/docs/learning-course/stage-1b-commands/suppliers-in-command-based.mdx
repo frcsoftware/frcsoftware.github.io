@@ -3,6 +3,8 @@ title: Suppliers in Command-Based
 description: The basics of suppliers and their use in command-based programming
 prev: stage-1b-commands/command-based-kitbot
 next: stage-1b-commands/command-based-kitbot-pt2
+codeRegionSources:
+    default: stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java
 ---
 
 import Aside from '../../../../components/Aside.astro';
@@ -11,13 +13,13 @@ import Aside from '../../../../components/Aside.astro';
 
 Let's say that we define an `Intake` mechanism:
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#runAtThrottleDouble
+```java #runAtThrottleDouble
 
 ```
 
 And the following code in Robot.java:
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#incorrectCommand
+```java #incorrectCommand
 
 ```
 
@@ -56,7 +58,7 @@ before the command has even began.
 In java, we use a `DoubleSupplier` to represent a value of type `double` that is constantly changing.
 We call `getAsDouble()` to fetch its current value.
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#runAtThrottleSupplier
+```java #runAtThrottleSupplier
 
 ```
 
@@ -64,7 +66,7 @@ We call `getAsDouble()` to fetch its current value.
 the expression must return a `double`.
 Calling `getAsDouble()` will evaluate that expression.
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#doubleSupplierExample
+```java #doubleSupplierExample
 
 ```
 
@@ -74,7 +76,7 @@ The `() -> ...` syntax for defining a `DoubleSupplier` is also called a *lambda 
 
 Here is how we would define and use a `DoubleSupplier` in our previous example:
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#correctCommand
+```java #correctCommand
 
 ```
 
@@ -84,7 +86,7 @@ You might recognize the `() ->` syntax used to define `DoubleSupplier`s.
 As it turns out,
 we define `Trigger`s with that syntax:
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#triggerBooleanSupplier
+```java #triggerBooleanSupplier
 
 ```
 
@@ -102,6 +104,6 @@ takes a `BooleanSupplier`.
 You can use the `until(BooleanSupplier)` method to add an arbitrary stop condition
 to a command:
 
-```java stage1/snippets-1b/src/main/java/sources/SuppliersInCommandBased.java#untilModifier
+```java #untilModifier
 
 ```

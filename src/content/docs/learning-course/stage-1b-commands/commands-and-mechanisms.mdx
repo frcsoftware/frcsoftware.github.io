@@ -3,6 +3,8 @@ title: Commands & Mechanisms, Part 1
 description: The basics of defining mechanisms and writing commands
 prev: stage-1b-commands/the-command-body
 next: stage-1b-commands/why-mechanisms
+codeRegionSources:
+    default: stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java
 ---
 
 import Aside from '../../../../components/Aside.astro';
@@ -11,14 +13,14 @@ import Aside from '../../../../components/Aside.astro';
 
 Mechanisms are simply classes that have the `implements Mechanism` keyword:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#mechanismDef
+```java #mechanismDef
 
 ```
 
 In general, you should create one instance of each mechanism, and that instance should be stored
 in your robot class:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#mechanismInRobotDef
+```java #mechanismInRobotDef
 
 ```
 
@@ -35,7 +37,7 @@ Most commands are defined inside of the file containing the class of a mechanism
 (like Intake.java or Shooter.java).
 The code below defines a new `Command`:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandDef
+```java #commandDef
 
 ```
 
@@ -51,7 +53,7 @@ Notice that:
 To change the priority of the command, simply add a `withPriority(int)` call before
 you call `named()`:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandWithPriorityDef
+```java #commandWithPriorityDef
 
 ```
 
@@ -65,7 +67,7 @@ you call `named()`:
 
 Here's an example of a command defined inside of a mechanism class:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#fullThrottleIntake
+```java #fullThrottleIntake
 
 ```
 
@@ -78,7 +80,7 @@ All mechanism-specific commands should be defined this way, for 2 reasons:
 1. It allows for commands to define parameters, just like a method.
 2. It gives the `Robot` class easy access to these commands.
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#runAtThrottleCommand
+```java #runAtThrottleCommand
 
 ```
 
@@ -124,12 +126,12 @@ compiler will catch this and throw a compile-time error.
 If you want to run the `fullThrottle` command inside of another command, you must
 call `coroutine.await(Command)`, like so:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandAwait
+```java #commandAwait
 
 ```
 
 That means you can run multiple commands in sequence:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java#commandSequence
+```java #commandSequence
 
 ```

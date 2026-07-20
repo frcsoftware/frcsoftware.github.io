@@ -3,6 +3,8 @@ title: Commands and Mechanisms, Part 2
 description: Intermediate-level uses of commands and mechanisms
 prev: stage-1b-commands/triggers
 next: stage-1b-commands/command-based-kitbot
+codeRegionSources:
+    default: stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java
 ---
 
 import ContentImage from '../../../../components/ContentImage.astro';
@@ -23,7 +25,7 @@ of all motors to 0, forever.
 To set a mechanism's default command, simply call `setDefaultCommand(Command)`, which is
 an instance method of all mechanisms:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#defaultCommand
+```java #defaultCommand
 
 ```
 
@@ -32,13 +34,13 @@ an instance method of all mechanisms:
 Use `coroutine.wait()` to wait for a predefined amount of time within
 the body of a command:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#delayCommand
+```java #delayCommand
 
 ```
 
 You can also give an existing command a timeout with the `withTimeout()` modifier:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#timeoutCommand
+```java #timeoutCommand
 
 ```
 
@@ -53,7 +55,7 @@ useful for future exercises and coding a real robot.
 Sometimes, you need to create a command that doesn't require any mechanisms.
 To do so, you can replace `run(...)` with `Command.noRequirements(...)`.
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#noRequirementsCommand
+```java #noRequirementsCommand
 
 ```
 
@@ -62,7 +64,7 @@ To do so, you can replace `run(...)` with `Command.noRequirements(...)`.
 `coroutine.awaitAll(a, b, c)` will run the commands a, b, and c in parallel,
 waiting for all 3 to finish before proceeding.
 
-```java stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt2.java#parallelCommands
+```java #parallelCommands
 
 ```
 

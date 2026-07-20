@@ -3,6 +3,8 @@ title: The Body of a Command
 description: How the behavior of commands are written
 prev: stage-1b-commands/command-based-overview
 next: stage-1b-commands/commands-and-mechanisms
+codeRegionSources:
+    default: stage1/snippets-1b/src/main/java/sources/CommandBody.java
 ---
 
 import Aside from '../../../../components/Aside.astro';
@@ -13,7 +15,7 @@ If you've ever coded in Scratch, with blocks, or taken an intro to programming c
 you've probably written software as a sequence of statements.
 Like so:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandBody.java#triangleLoop
+```java #triangleLoop
 
 ```
 
@@ -25,13 +27,13 @@ However, individual commands (or robot actions) can.
 
 For instance, this command body runs a motor at full speed forever:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandBody.java#fullThrottleCmdBody
+```java #fullThrottleCmdBody
 
 ```
 
 And this command body would rotate your robot by roughly 90 degrees, then stop:
 
-```java stage1/snippets-1b/src/main/java/sources/CommandBody.java#rotate90CommandBody
+```java #rotate90CommandBody
 
 ```
 
