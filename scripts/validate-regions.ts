@@ -30,6 +30,8 @@ function parseCodeRegionSources(content: string): Map<string, string> {
 
     for (let i = startIdx + 1; i < lines.length; i++) {
         const line = lines[i];
+        if (!line) continue;
+
         // Stop once we hit a line that isn't indented (end of the map).
         if (!/^\s+\S/.test(line)) break;
 
@@ -61,8 +63,7 @@ function walkMdx(dir: string) {
 
             for (const line of content.split('\n')) {
                 const m = line.match(CODEBLOCK_RE);
-                if (!m?.[1] || !m[2]) continue;
-                if (!m) continue;
+                if (!m || !m[1] || m[2] || !m[3]) continue;
 
                 const [, alias, definedFilePath, regionName] = m;
 
@@ -178,7 +179,7 @@ for (const [filePath, names] of referencedRegions) {
 for (const [filePath, names] of definedRegions) {
     const refs = referencedRegions.get(filePath);
     for (const [name, lineNum] of names) {
-        if (!refs?.has(name)) {
+        if (!refs || !refs.has(name)) {
             errors.push(
                 `${filePath}:${lineNum}: Orphaned region "${name}" — defined but never referenced in any .mdx file`,
             );
