@@ -17,6 +17,9 @@ importers:
       astro:
         specifier: ^6.3.7
         version: 6.3.7(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0)
+      mdast-util-mdx-jsx:
+        specifier: ^3.2.0
+        version: 3.2.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -48,6 +51,9 @@ importers:
       lint-staged:
         specifier: ^17.0.8
         version: 17.0.8
+      mdast-util-mdx:
+        specifier: ^3.0.0
+        version: 3.0.0
       prettier:
         specifier: ^3.8.4
         version: 3.8.4
