@@ -10,17 +10,22 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
-
             - uses: pnpm/action-setup@v6
-
             - uses: actions/setup-node@v6
               with:
                   node-version: 24
                   cache: pnpm
-
-            - run: pnpm install --frozen-lockfile
-            - run: pnpm lint
-            - run: pnpm format:check
+            - parallel:
+                  - name: Install Vale
+                    run: |
+                        gh release download --repo vale-cli/vale --pattern '*Linux_64-bit.tar.gz'
+                        tar -xf vale_*.tar.gz -C /usr/local/bin vale
+                    env:
+                        GH_TOKEN: ${{ github.token }}
+                  - run: pnpm install --frozen-lockfile
+            - parallel:
+                  - run: pnpm lint
+                  - run: pnpm format:check
     examples:
         runs-on: ubuntu-latest
         steps:

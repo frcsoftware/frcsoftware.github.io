@@ -46,6 +46,10 @@ Windows installers will almost always need to be the 64-bit version if there is 
     - Use all default options for installation, except creating a desktop icon if you want
     - A WPILib VSCode installation will work perfectly fine
     - Recommended: Install a spellcheck extension to catch mistakes early
+- [Vale](https://vale.sh) (prose linter)
+    - Used to check writing style and consistency in documentation
+    - Install via the [latest release](https://github.com/vale-cli/vale/releases/latest) for your OS
+    - Run `pnpm lint:vale` or `pnpm lint` after setup
 
 ### Steps to Start Writing Contributions
 
@@ -65,7 +69,7 @@ Windows installers will almost always need to be the 64-bit version if there is 
     - Use `pnpm format` to run the formatter
     - Use `pnpm lint` to run all lint steps
     - The formatter will apply code formatting to the docs section of the side, to maintain a consistent style
-    - The linter steps will perform various checks in the code to ensure basic functionality
+    - The linter steps will perform various checks in the code to ensure best practices are followed
 6. Make and commit your changes
 
 <Aside type="tip">

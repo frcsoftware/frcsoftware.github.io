@@ -45,7 +45,7 @@ Don't deal in absolutes.
     - For example, we all know that splitting code into multiple files (but not too many) is better than one giant file.
       But don't just say that it's better, say "Breaking up your code into separate files makes it easier to read and isolates independent sections of the robot code from one another, making it easier to maintain."
     - Similarly, this course uses a command-based architecture because its authors believe that it's generally the best option for teams.
-      However, many teams are successful with different structures, such as ones based around non-command state machines, ROS setups, or even just a smart application of if statements and logic inside a periodic function.
+      However, many teams are successful with different structures, such as ones based around non-command state machines, ROS setups, or even just smart usage of if statements and logic inside a periodic function.
       Instead of saying "Use commands because they make it easier to program your robot," say that "The commands library is a good choice for programming your robot as it ensures that no two actions can conflict with each other by only allowing each mechanism to be used by one action/command at a time, while also providing a strong framework to build autonomous sequences and integrate automation."
 - Still emphasize that teams are free to explore and innovate, but help set realistic expectations (see the following point)
 
@@ -102,11 +102,12 @@ Enforced by `prettier-plugin-sentences-per-line`.
 
 #### Running the checks
 
-| Command             | Action                                                            |
-| ------------------- | ----------------------------------------------------------------- |
-| `pnpm lint`         | Run all lint steps (ESLint, remark, region validation, typecheck) |
-| `pnpm format`       | Auto-fix all formatting and sentence-per-line issues              |
-| `pnpm format:check` | Prettier check — all file types (includes sentence-per-line)      |
+| Command             | Action                                                                  |
+| ------------------- | ----------------------------------------------------------------------- |
+| `pnpm lint`         | Run all lint steps (ESLint, remark, region validation, vale, typecheck) |
+| `pnpm lint:vale`    | Run Vale prose style checks on `src/content`                            |
+| `pnpm format`       | Auto-fix all formatting and sentence-per-line issues                    |
+| `pnpm format:check` | Prettier check — all file types (includes sentence-per-line)            |
 
 Run all checks locally before pushing:
 

@@ -84,6 +84,16 @@ export const glossaryTerms: GlossaryTerm[] = [
         definition:
             'A storage location for software packages, often used in version control systems like Git. Repositories are just folders that contain files and subfolders, and they can be hosted on platforms like GitHub to facilitate collaboration and version tracking',
     },
+    {
+        term: 'WPILib',
+        definition:
+            'WPILib is the standard software library and toolsuite provided for teams to write, test, and debug code for their FIRST® Robotics Competition and FIRST® Tech Challenge robots',
+    },
+    {
+        term: 'GitHub',
+        definition:
+            'GitHub is like Google Drive, but for code. It hosts git repositories and allows for improved collaboration on projects through pull requests and issues',
+    },
 ];
 
 /**

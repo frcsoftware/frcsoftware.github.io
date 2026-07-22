@@ -1,7 +1,7 @@
 ---
 title: Conditionals
 description: An Intro To Conditional Statements
-prev: intro-to-java/operators
+prev: learning-course/stage0/operators
 next: false
 codeRegionSources:
     default: stage0/snippets/Conditionals.java
@@ -67,7 +67,7 @@ If `condition` is false, the code inside the `if` block will be skipped.
 This is also described in the flowchart below
 
 <ContentFigure
-    src="/conditionals/ifstatement.png"
+    src="/learning-course/stage0/conditionals/ifstatement.png"
     width="400px"
     height="800px"
 />
@@ -101,12 +101,16 @@ The syntax for an else statement is as follows:
 ```
 
 `else` statements do not have parentheses because they do not need a condition to decide if they should run or not.
-Here's how this works: if the`if` statement's condition is `true`, then the the code inside will run.
+Here's how this works: if the`if` statement's condition is `true`, then the code inside will run.
 If the `if` statement's condition is `false`, the `if` block will be skipped, and the code inside the `else` block will run.
 
 This is also described in the flowchart below
 
-<ContentFigure src="/conditionals/else.png" width="600px" height="800px" />
+<ContentFigure
+    src="/learning-course/stage0/conditionals/else.png"
+    width="600px"
+    height="800px"
+/>
 
 In this example, we now have an `else` statement that sets the motor speed to 0 if `distance` is greater than 20. Since our `distance` is set to 21, what would the code print out?
 
@@ -141,7 +145,11 @@ If `condition_B` is true, the code inside the `else if` block will run.
 If `condition_B` if false, then it will exit the statement and none of the code will run.
 This is also described in the flowchart below
 
-<ContentFigure src="/conditionals/elseif.png" width="700px" height="800px" />
+<ContentFigure
+    src="/learning-course/stage0/conditionals/elseif.png"
+    width="700px"
+    height="800px"
+/>
 
 In the example, we now have an `else if` statement that sets the motor to half speed if the distance from an object is less than 10cm.
 Our `distance` is now 15cm.
@@ -161,8 +169,8 @@ This means the motors are set to drive at full speed and "Motors are at full spe
 
 ## Putting Everything Together
 
-Our code above has the robot drive at full speed if the distance is greater than 10cm, and drive at half speed if the distance is less than 10cm, but it doesn't stop if it reaches its target distance.
-You could add another else if, or you could put everything that we learned above together and add an else conditional.
+The previous code has the robot drive at full speed if the distance is greater than 10cm, and drive at half speed if the distance is less than 10cm, but it doesn't stop if it reaches its target distance.
+You could add another else if, or you could put everything that we previously learned together and add an else conditional.
 
 ```java #conditionalExample
 
