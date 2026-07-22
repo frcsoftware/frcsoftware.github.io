@@ -63,7 +63,7 @@ function walkMdx(dir: string) {
 
             for (const line of content.split('\n')) {
                 const m = line.match(CODEBLOCK_RE);
-                if (!m || !m[1] || m[2] || !m[3]) continue;
+                if (!m?.[1] || m[2] || !m[3]) continue;
 
                 const [, alias, definedFilePath, regionName] = m;
 
@@ -179,7 +179,7 @@ for (const [filePath, names] of referencedRegions) {
 for (const [filePath, names] of definedRegions) {
     const refs = referencedRegions.get(filePath);
     for (const [name, lineNum] of names) {
-        if (!refs || !refs.has(name)) {
+        if (!refs?.has(name)) {
             errors.push(
                 `${filePath}:${lineNum}: Orphaned region "${name}" — defined but never referenced in any .mdx file`,
             );
