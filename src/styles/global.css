@@ -205,6 +205,9 @@ section[class*='hero'] a:hover svg {
         display: none !important;
     }
 }
+.main-pane {
+    isolation: auto !important;
+}
 
 /* ==========================================================================
    Sidebar
