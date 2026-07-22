@@ -5,13 +5,17 @@ import type { MdxJsxTextElement } from 'mdast-util-mdx-jsx';
 
 import { glossaryTerms } from '../data/glossary';
 
-const sortedTerms = [...glossaryTerms]
-    .sort((a, b) => b.term.length - a.term.length)
-    .filter((term) => term.autoDetect !== false);
+const sortedTerms = [...glossaryTerms].sort(
+    (a, b) => b.term.length - a.term.length,
+);
 
 const pattern = new RegExp(
     `(?<![\\p{L}\\p{N}_])(${sortedTerms
-        .map((t) => escapeRegex(t.term))
+        .map((t) =>
+            t.caseSensitive
+                ? `(?-i:${escapeRegex(t.term)})`
+                : escapeRegex(t.term),
+        )
         .join('|')})(?![\\p{L}\\p{N}_])`,
     'giu',
 );
