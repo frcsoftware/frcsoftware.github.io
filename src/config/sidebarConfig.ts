@@ -63,35 +63,29 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             slug: 'learning-course/stage0/stage-overview',
                         },
                         {
-                            label: 'Intro To Java',
-                            collapsed: true,
-                            items: [
-                                {
-                                    label: 'Java Fundamentals',
-                                    slug: 'learning-course/stage0/java-fundamentals',
-                                },
-                                {
-                                    label: 'Operators',
-                                    slug: 'learning-course/stage0/operators',
-                                },
-                                {
-                                    label: 'Conditionals',
-                                    slug: 'learning-course/stage0/conditionals',
-                                },
-                                // {
-                                //     label: 'Loops',
-                                //     slug: 'learning-course/stage0/loops',
-                                // },
-                                // {
-                                //     label: 'Objects',
-                                //     slug: 'learning-course/stage0/objects',
-                                // },
-                                // {
-                                //     label: 'Methods',
-                                //     slug: 'learning-course/stage0/methods',
-                                // },
-                            ],
+                            label: 'Java Fundamentals',
+                            slug: 'learning-course/stage0/java-fundamentals',
                         },
+                        {
+                            label: 'Operators',
+                            slug: 'learning-course/stage0/operators',
+                        },
+                        {
+                            label: 'Conditionals',
+                            slug: 'learning-course/stage0/conditionals',
+                        },
+                        // {
+                        //     label: 'Loops',
+                        //     slug: 'learning-course/stage0/loops',
+                        // },
+                        // {
+                        //     label: 'Objects',
+                        //     slug: 'learning-course/stage0/objects',
+                        // },
+                        // {
+                        //     label: 'Methods',
+                        //     slug: 'learning-course/stage0/methods',
+                        // },
                     ],
                 },
                 {
