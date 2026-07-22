@@ -1,5 +1,1 @@
-.github/workflows @frcsoftware/infra
-package.json @frcsoftware/infra
-pnpm-workspace.yaml @frcsoftware/infra
-pnpm-lock.yamol @frcsoftware/infra
-coby.bara.sky @frcsoftware/infra
+.github/workflows package.json pnpm-workspace.yaml pnpm-lock.yamol coby.bara.sky @frcsoftware/infra
