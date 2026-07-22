@@ -201,7 +201,6 @@ for (const section of sidebarSections) {
             ) {
                 let html = '';
                 for (const item of items) {
-                    console.log(item);
                     const indent = depth * 12;
                     const isCurrentPage =
                         item.href &&
@@ -255,44 +254,6 @@ for (const section of sidebarSections) {
                 tmp instanceof HTMLElement
                     ? tmp
                     : document.createElement('div');
-            if (!tmp) {
-                lightbox.id = 'global-image-lightbox';
-                lightbox.className = 'global-image-lightbox';
-                lightbox.innerHTML = `
-          <button class="global-lightbox-close" aria-label="Close lightbox">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-          </button>
-          <div class="global-lightbox-content">
-            <img class="global-lightbox-image" src="" alt="">
-          </div>
-        `;
-            }
-            document.body.appendChild(lightbox);
-
-            // Close on backdrop click
-            lightbox.addEventListener('click', (e) => {
-                const target = e.target;
-                if (
-                    target instanceof HTMLElement &&
-                    (target === lightbox ||
-                        target.classList.contains('global-lightbox-content'))
-                ) {
-                    closeLightbox();
-                }
-            });
-            const closeSelector = lightbox.querySelector(
-                '.global-lightbox-close',
-            );
-            if (closeSelector) {
-                closeSelector.addEventListener('click', closeLightbox);
-            }
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-                    closeLightbox();
-                }
-            });
-
             /**
              * @param {string} imgSrc
              * @param {string} imgAlt
@@ -314,6 +275,47 @@ for (const section of sidebarSections) {
                 lightbox.classList.remove('open');
                 document.body.style.overflow = '';
                 document.documentElement.classList.remove('lightbox-open');
+            }
+
+            if (!tmp) {
+                lightbox.id = 'global-image-lightbox';
+                lightbox.className = 'global-image-lightbox';
+                lightbox.innerHTML = `
+          <button class="global-lightbox-close" aria-label="Close lightbox">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+          </button>
+          <div class="global-lightbox-content">
+            <img class="global-lightbox-image" src="" alt="">
+          </div>
+        `;
+                document.body.appendChild(lightbox);
+
+                // Close on backdrop click
+                lightbox.addEventListener('click', (e) => {
+                    const target = e.target;
+                    if (
+                        target instanceof HTMLElement &&
+                        (target === lightbox ||
+                            target.classList.contains('global-lightbox-content'))
+                    ) {
+                        closeLightbox();
+                    }
+                });
+                const closeSelector = lightbox.querySelector(
+                    '.global-lightbox-close',
+                );
+                if (closeSelector) {
+                    closeSelector.addEventListener('click', closeLightbox);
+                }
+                // Close on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (
+                        e.key === 'Escape' &&
+                        lightbox.classList.contains('open')
+                    ) {
+                        closeLightbox();
+                    }
+                });
             }
 
             // Attach click handlers to all images in markdown content
