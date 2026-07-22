@@ -20,10 +20,10 @@ jobs:
             fail-fast: false
             matrix:
                 workflow:
-                    - rev_solution
-                    - ctre_solution
-                    - rev_template
-                    - ctre_template
+                    - stage1a_rev_solution
+                    - stage1a_ctre_solution
+                    - stage1_rev_template
+                    - stage1_ctre_template
 
         steps:
             - name: Checkout
