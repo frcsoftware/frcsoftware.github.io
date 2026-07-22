@@ -1,1 +1,5 @@
-.github/workflows @frcsoftware/ci-reviewers
+.github/workflows @frcsoftware/infra
+package.json @frcsoftware/infra
+pnpm-workspace.yaml @frcsoftware/infra
+pnpm-lock.yamol @frcsoftware/infra
+coby.bara.sky @frcsoftware/infra
