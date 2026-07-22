@@ -1,1 +1,5 @@
-.github/** package.json pnpm-workspace.yaml pnpm-lock.yaml coby.bara.sky @frcsoftware/infra
+.github/** @frcsoftware/infra
+package.json @frcsoftware/infra
+pnpm-workspace.yaml @frcsoftware/infra
+pnpm-lock.yaml @frcsoftware/infra
+coby.bara.sky @frcsoftware/infra
