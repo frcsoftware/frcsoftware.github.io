@@ -107,35 +107,35 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             items: [
                                 {
                                     label: 'The Concepts',
-                                    slug: 'learning-course/stage1/stage1b-commands/command-based-overview',
+                                    slug: 'learning-course/stage1/stage1b/command-based-overview',
                                 },
                                 {
                                     label: 'The Body of a Command',
-                                    slug: 'learning-course/stage1/stage1b-commands/the-command-body',
+                                    slug: 'learning-course/stage1/stage1b/the-command-body',
                                 },
                                 {
                                     label: 'Commands & Mechanisms, Pt. 1',
-                                    slug: 'learning-course/stage1/stage1b-commands/commands-and-mechanisms',
+                                    slug: 'learning-course/stage1/stage1b/commands-and-mechanisms',
                                 },
                                 {
                                     label: 'Triggers and Scheduling',
-                                    slug: 'learning-course/stage1/stage1b-commands/triggers',
+                                    slug: 'learning-course/stage1/stage1b/triggers',
                                 },
                                 {
                                     label: 'Commands & Mechanisms, Pt. 2',
-                                    slug: 'learning-course/stage1/stage1b-commands/commands-and-mechanisms-pt2',
+                                    slug: 'learning-course/stage1/stage1b/commands-and-mechanisms-pt2',
                                 },
                                 {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 1',
-                                    slug: 'learning-course/stage1/stage1b-commands/command-based-kitbot',
+                                    slug: 'learning-course/stage1/stage1b/command-based-kitbot',
                                 },
                                 {
                                     label: 'Suppliers in Command-Based',
-                                    slug: 'learning-course/stage1/stage1b-commands/suppliers-in-command-based',
+                                    slug: 'learning-course/stage1/stage1b/suppliers-in-command-based',
                                 },
                                 {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 2',
-                                    slug: 'learning-course/stage1/stage1b-commands/command-based-kitbot-pt2',
+                                    slug: 'learning-course/stage1/stage1b/command-based-kitbot-pt2',
                                 },
                             ],
                         },
