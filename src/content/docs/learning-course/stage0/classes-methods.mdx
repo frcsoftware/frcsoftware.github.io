@@ -1,0 +1,268 @@
+---
+title: Classes, Fields, and Methods
+description: An Introduction to Java classes and objects, as well as their members (fields and methods)
+prev: learning-course/stage0/conditionals
+next: false
+codeRegionSources:
+    point: stage0/snippets/classes-methods/Point.java
+    tracker: stage0/snippets/classes-methods/RobotTracker.java
+    usage: stage0/snippets/classes-methods/Usage.java
+---
+
+import Aside from '@components/Aside.astro';
+
+In an [earlier lesson](../java-fundamentals/), we discussed different data types in Java,
+such as `int`, `double`, and `String`.
+In this lesson, we're going to learn about classes, which are a way to create our own data types,
+how to use them to create objects, and how to define a class's components: fields and methods.
+
+## Types of Types
+
+The Java programming language has two types of types: **primitive types** and **reference types**.
+**Primitive types** are the most basic types that are built into the language,
+such as `int`, `double`, and `char`.
+**Object types** are more complex types that are defined by programmers.
+Many object types come with the Java Development Kit (JDK), such as `String`,
+and other libraries, such as WPILib,
+but you can also define your own object types.
+
+Classes are a way to define object types.
+A class is a template for creating objects,
+with fields and methods that define the object's state and behavior.
+An object is an instance of a class.
+
+<Aside title="Literal Values">
+    Primitive types are **literal values** that are directly stored in memory.
+    For example, `123` is a literal value of type `int`.
+
+    The `String` type is special, because it is a **reference type**,
+    but it can be created using a literal value, such as `"Hello, world!"`.
+    For example, `"Hello, world!"` is a reference value of type `String`.
+    This means you can access its methods, such as `length()`.
+    For example, `"Hello, world!".length()` returns `13`.
+
+</Aside>
+
+## Defining Our Own Classes
+
+Now that we know what a class is, let's define our own class.
+Our first example will be a simple `Point` class that represents a point in a two-dimensional space.
+
+In Java, every class is defined in a `.java` file, and starts with the `public class` keywords.
+Let's create a new file called `Point.java` and start it like this:
+
+{/* rli:ignore */}
+
+```java
+public class Point {
+
+}
+```
+
+Then, we're going to add three fields.
+Firstly, we add two `double` fields, x and y, which represent the point's coordinates.
+
+```java {point}#finalFields
+
+```
+
+Notice that we used the `final` keyword to make these fields **immutable**.
+This means that once they are created, they cannot be changed.
+A general rule of thumb is to make all fields `final` unless you have a good reason not to,
+which we'll see later in this lesson.
+We also use the `private` keyword to make these fields **private**.
+This means that they can only be accessed by methods in the same class.
+
+Next, we're going to add a static constant field, ORIGIN, which represents the point at the origin (0, 0).
+
+```java {point}#staticConstant
+
+```
+
+The `static` keyword is used to make a field **static**.
+A static field is a field shared by all instances of a class.
+In this case, the ORIGIN field is shared by all Point objects, and it represents the point at the origin (0, 0).
+Static fields and methods are accessed using the class name, instead of an instance of the class,
+so the ORIGIN field is accessed using `Point.ORIGIN`.
+The ORIGIN field is also `public`, so it can be accessed from anywhere in the program.
+
+<Aside type="tip">
+    Non-static fields and methods are called **instance fields** and **instance
+    methods**, respectively, to distinguish them from static fields and methods.
+</Aside>
+
+## Methods and Constructors
+
+A method is a block of code that is defined inside a class.
+Methods are used to define the behavior of the class.
+We already saw one example of a method, which is `length()` in the `String` class.
+Methods can have parameters, which are values that are passed into the method when it is called.
+They can also return a value, which is the result of the method's computation.
+For example, the `length()` method in the `String` class returns the length of the string,
+and has no parameters.
+
+The general syntax for a method is:
+
+{/* rli:ignore */}
+
+```java
+public ReturnType methodName(ParameterType1 param1, ParameterType2 param2, ...) {
+    // method body
+}
+```
+
+A method can have any number of parameters, including none, and the parameters can be of any type.
+A method doesn't have to return something; if it doesn't return anything,
+we use the return type `void`, which is a keyword that indicates that the method doesn't return anything.
+
+A constructor is a special method that is called when an object is created.
+The constructor is a special method called when an object is created with the `new` keyword.
+It is often used to initialize the object's fields.
+
+To define a constructor, we use the `public` keyword,
+followed by the class name, and then a parameter list in parentheses.
+
+```java {point}#constructor
+
+```
+
+You'll notice that we use the `this` keyword.
+The `this` keyword is used to refer to the current object.
+It is used to access the object's fields and methods.
+In this example, we use the `this` keyword to access the `x` and `y` fields of the current object,
+and set them to the values of the parameters `x` and `y`.
+Using `this` is necessary here because the parameter names are the same as the field names,
+so we use `this.x` to refer to the field `x`, and `x` to refer to the parameter `x`.
+
+Next we're going to define some getter methods.
+Getter methods are methods that simply return the value of a field.
+They have the same return type as the field they return, and no parameters.
+Because the `x` and `y` fields are private, we need to define getter methods to
+allow other classes to access them:
+
+```java {point}#getters
+
+```
+
+As you can see, getter methods conventionally start with `get`, followed by the name of the field.
+
+Next, we're going to define the `plus` method.
+The `plus` method takes another `Point` object as a parameter,
+and returns a new `Point` object that is the sum of the two `Point` objects.
+
+```java {point}#plus
+
+```
+
+In this method, we use the `new` keyword to create a new `Point` object.
+Because the constructor we defined earlier takes two parameters,
+we then pass `this.x + other.x` and `this.y + other.y` as the parameters to the constructor,
+so the new `Point` object will have the sum of the two `Point` objects' coordinates.
+
+Finally, we're going to define a `norm` method that returns the length of the `Point` object.
+
+```java {point}#norm
+
+```
+
+This method has a **local variable**, `sumOfSquares`, that stores the sum of the squares of the `x` and `y` fields.
+Local variables are variables that are only visible inside the method,
+and are used to store intermediate values.
+This method also uses the `Math.sqrt()` method,
+which is a static method in the `Math` class,
+which returns the square root of its argument.
+
+Here is the complete `Point` class:
+
+```java {point}#pointFull
+
+```
+
+And here is an example of how to use it:
+
+```java {usage}#createAndUse
+
+```
+
+We create new `Point` objects using the `new` keyword followed by the constructor.
+We then call methods on them using the dot operator (`.`).
+
+We can also access the `ORIGIN` constant directly on the class, without creating an instance:
+
+```java {usage}#accessStaticConstant
+
+```
+
+## Mutable State
+
+The `Point` class we defined is **immutable**, meaning that once a `Point` is created,
+its `x` and `y` values can never change, because the fields are `final`.
+Immutability is generally a good thing: it makes classes easier to reason about, since you never have to worry about a value changing unexpectedly.
+
+Sometimes, however, we need a class whose state changes over time.
+Let's define a `RobotTracker` class that tracks a robot's current position on the field.
+The position starts somewhere and is updated as the robot moves, so it cannot be `final`:
+
+```java {tracker}#mutableField
+
+```
+
+We still use `private` to prevent other classes from directly modifying the field,
+so the only way to change the position is through the methods we define.
+
+The constructor works the same as before, initializing `position` to a given starting value:
+
+```java {tracker}#robotTrackerConstructor
+
+```
+
+The `move` method accepts a `delta`, the change in position, and adds it to the current position.
+This is mutation, as the method reassigns `this.position`, changing the object's state:
+
+```java {tracker}#stateMutation
+
+```
+
+`distanceTo` computes the straight-line distance from the current position to a target.
+It uses a local variable `diff` to hold the vector between the two points before taking its length:
+
+```java {tracker}#localVariableChain
+
+```
+
+`reset` sets the position back to the origin.
+Instead of writing `new Point(0, 0)`, we reuse the `Point.ORIGIN` constant:
+
+```java {tracker}#useStaticConstant
+
+```
+
+Here is the complete `RobotTracker` class:
+
+```java {tracker}#robotTrackerFull
+
+```
+
+And an example of using it:
+
+```java {usage}#trackerUsage
+
+```
+
+<Aside>
+    The `Point` class we created is a simplified version of WPILib's `Translation2d` class,
+    which has many more methods that are often used in robot projects.
+
+    The `RobotTracker` class we created is the start of the concept of localization,
+    which is the process of determining a robot's position on the field.
+    We're going to explore this concept in much more detail in later stages of the course.
+
+</Aside>
+
+## Classes and Methods Exercise
+
+<Aside type="exercise">
+
+WIP
+
+</Aside>

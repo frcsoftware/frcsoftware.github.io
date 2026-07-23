@@ -84,10 +84,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         //     label: 'Loops',
                         //     slug: 'learning-course/stage0/loops',
                         // },
-                        // {
-                        //     label: 'Objects',
-                        //     slug: 'learning-course/stage0/objects',
-                        // },
+                        {
+                            label: 'Classes, Fields, and Methods',
+                            slug: 'learning-course/stage0/classes-methods',
+                        },
                         // {
                         //     label: 'Methods',
                         //     slug: 'learning-course/stage0/methods',
