@@ -48,6 +48,9 @@ importers:
       lint-staged:
         specifier: ^17.0.8
         version: 17.0.8
+      mdast-util-mdx-jsx:
+        specifier: ^3.2.0
+        version: 3.2.0
       mdx2vast:
         specifier: ^0.3.1
         version: 0.3.1

@@ -1,0 +1,14 @@
+---
+title: Code Formatter
+description: Best practices for using a code formatter
+---
+
+Code formatters help ensure that the style of code written is consistent throughout the entire codebase.
+[Spotless](https://github.com/diffplug/spotless) is a Gradle plugin that can automatically format code with configurable options.
+Steps for configuring Spotless are provided in the [Using a Code Formatter WPILib docs](https://docs.wpilib.org/en/stable/docs/software/advanced-gradlerio/code-formatting.html).
+
+## Spotless Gradle Commands
+
+`./gradlew spotlessCheck` checks for formatting violations and fails if code isn't formatted correctly.
+
+`./gradlew spotlessApply` applies formatting rules and fixes the style of the code.
