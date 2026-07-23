@@ -34,10 +34,9 @@ ctre/
 ```
 
 You'll notice that we're skipping a lot of files here, because you don't have to edit those.
-What's great about about using a framework
-like WPILib is that it automatically generates these files when you create a new project, so you can get started coding quicker.
+What's great about using a framework like WPILib is that it automatically generates these files when you create a new project, so you can get started coding quicker.
 The other folders, like `src/main/deploy/` for example, will come in handy as your robot code becomes more advanced.
-Thus, the only files shown above are the ones directly responsible for controlling what our kitbot will do.
+Thus, the only files shown in the structure tree are the ones directly responsible for controlling what our kitbot will do.
 
 <Aside type="note">
     For those who have programmed in FRC before, WPILib is currently undergoing
@@ -75,16 +74,16 @@ It seems to be "starting" an instance of the `first.robot.Robot` class, and if w
 This is the core of your robot code, where:
 
 - your subsystems are defined
-- your controls are binded
+- your controls are bound
 - your opmodes are modified and used
-- your debugging data is logged (aka telemetry).
+- your debugging data is logged (telemetry).
 
 <Aside type="note">
     For prior FRC programmers, you might have noticed a `RobotContainer.java`
     file is missing. This file is being removed in WPILib 2027.
 </Aside>
 
-We'll go through this file, as well as all of the above functionalities, more in detail later.
+We'll go through this file, as well as all of the functionalities, more in detail later.
 
 ### `opmode/`
 
