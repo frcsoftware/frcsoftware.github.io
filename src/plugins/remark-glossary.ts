@@ -1,4 +1,3 @@
-/// <reference types="mdast-util-mdx-jsx" />
 import { visit, SKIP } from 'unist-util-visit';
 import type { Root, RootContent, Text } from 'mdast';
 import type { VFile } from 'vfile';
