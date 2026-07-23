@@ -58,6 +58,10 @@
             "pnpm format",
             "pnpm lint"
         ],
-        "examples/**/*.java": "sh -c 'cd examples && ./gradlew spotlessApply'"
+        "examples/**/*.java": "sh -c 'cd examples && ./gradlew spotlessApply'",
+        "src/data/glossary.ts": [
+            "pnpm generate:glossary",
+            "git add src/content/docs/resources/glossary.mdx"
+        ]
     }
 }
