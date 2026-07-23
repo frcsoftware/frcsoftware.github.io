@@ -1,21 +1,24 @@
 /// <reference types="mdast-util-mdx-jsx" />
-import { visit } from 'unist-util-visit';
+import { visit, SKIP } from 'unist-util-visit';
 import type { Root, RootContent, Text } from 'mdast';
 import type { VFile } from 'vfile';
+import type { MdxJsxTextElement } from 'mdast-util-mdx-jsx';
+
 import { glossaryTerms } from '../data/glossary';
 
 const sortedTerms = [...glossaryTerms].sort(
     (a, b) => b.term.length - a.term.length,
 );
 
-const termMap = new Map<string, string>();
-glossaryTerms.forEach(({ term, definition }) => {
-    termMap.set(term.toLowerCase(), definition);
-});
-
 const pattern = new RegExp(
-    `\\b(${sortedTerms.map((t) => escapeRegex(t.term)).join('|')})\\b`,
-    'gi',
+    `(?<![\\p{L}\\p{N}_])(${sortedTerms
+        .map((t) =>
+            t.caseSensitive
+                ? `(?-i:${escapeRegex(t.term)})`
+                : escapeRegex(t.term),
+        )
+        .join('|')})(?![\\p{L}\\p{N}_])`,
+    'giu',
 );
 
 function escapeRegex(str: string): string {
@@ -29,7 +32,7 @@ export function remarkGlossary() {
         visit(tree, 'text', (node: Text, index, parent) => {
             if (!parent || index === undefined) return;
 
-            if (parent.type === 'link') {
+            if (parent.type === 'link' || parent.type === 'mdxJsxTextElement') {
                 return;
             }
 
@@ -45,7 +48,6 @@ export function remarkGlossary() {
                 const matchStart = match.index;
                 const matchEnd = matchStart + match[0].length;
                 const matchedTerm = match[0];
-                const definition = termMap.get(matchedTerm.toLowerCase());
 
                 if (matchStart > lastIndex) {
                     newNodes.push({
@@ -54,10 +56,19 @@ export function remarkGlossary() {
                     });
                 }
 
-                newNodes.push({
-                    type: 'html',
-                    value: `<abbr class="glossary-term" data-tooltip="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
-                });
+                const glossaryNode: MdxJsxTextElement = {
+                    type: 'mdxJsxTextElement',
+                    name: 'Glossary',
+                    attributes: [
+                        {
+                            type: 'mdxJsxAttribute',
+                            name: 'term',
+                            value: matchedTerm,
+                        },
+                    ],
+                    children: [],
+                };
+                newNodes.push(glossaryNode);
 
                 lastIndex = matchEnd;
             });
@@ -70,17 +81,9 @@ export function remarkGlossary() {
             }
 
             parent.children.splice(index, 1, ...newNodes);
+            return [SKIP, index + newNodes.length];
         });
     };
-}
-
-function escapeHtml(str: string): string {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
 }
 
 export default remarkGlossary;

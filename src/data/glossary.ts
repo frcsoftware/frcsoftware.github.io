@@ -6,16 +6,27 @@
  *
  * Definitions should not have a period at the end
  *
- * Format:
- * {
- *   term: "TERM",           // The word/abbreviation to match (case-insensitive)
- *   definition: "..."       // The explanation shown on hover
- * }
+ *   @property definition: The explanation shown on hover
+ *   @property caseSensitive: If true, match this term only in its exact casing (e.g. "CAN" won't match "can"). Defaults to false.
+ *   @property term: The word/abbreviation to match (case-insensitive unless caseSensitive is true)
  */
 
 export interface GlossaryTerm {
+    /**
+     * The word/abbreviation to match (case-insensitive)
+     * @example "SystemCore"
+     */
     term: string;
+    /**
+     * The explanation shown on hover
+     * @example "Main processor for robot code, contains various IO"
+     */
     definition: string;
+    /**
+     * If true, match this term only in its exact casing (e.g. "CAN" won't match "can").
+     * @default false
+     */
+    caseSensitive?: boolean;
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -40,6 +51,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         term: 'CAN',
         definition:
             'Controller Area Network: typically yellow and green cable used to communicate with motor controllers and sensors, can be run in various topographies instead of each cable needing to connect to SystemCore',
+        caseSensitive: true,
     },
     {
         term: 'PWM',
