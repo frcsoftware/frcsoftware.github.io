@@ -296,7 +296,9 @@ for (const section of sidebarSections) {
                     if (
                         target instanceof HTMLElement &&
                         (target === lightbox ||
-                            target.classList.contains('global-lightbox-content'))
+                            target.classList.contains(
+                                'global-lightbox-content',
+                            ))
                     ) {
                         closeLightbox();
                     }
