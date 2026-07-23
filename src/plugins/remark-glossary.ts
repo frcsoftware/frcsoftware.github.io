@@ -7,9 +7,9 @@ const sortedTerms = [...glossaryTerms].sort(
     (a, b) => b.term.length - a.term.length,
 );
 
-const termMap = new Map<string, string>();
+const termMap = new Map<string, { canonical: string; definition: string }>();
 glossaryTerms.forEach(({ term, definition }) => {
-    termMap.set(term.toLowerCase(), definition);
+    termMap.set(term.toLowerCase(), { canonical: term, definition });
 });
 
 const pattern = new RegExp(
@@ -55,7 +55,7 @@ export function remarkGlossary() {
                 const matchStart = match.index!;
                 const matchEnd = matchStart + match[0].length;
                 const matchedTerm = match[0];
-                const definition = termMap.get(matchedTerm.toLowerCase());
+                const entry = termMap.get(matchedTerm.toLowerCase());
 
                 if (matchStart > lastIndex) {
                     newNodes.push({
@@ -66,7 +66,7 @@ export function remarkGlossary() {
 
                 newNodes.push({
                     type: 'html',
-                    value: `<abbr class="glossary-term" data-tooltip="${escapeHtml(definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
+                    value: `<abbr class="glossary-term" data-term="${escapeHtml(entry?.canonical || matchedTerm)}" data-tooltip="${escapeHtml(entry?.definition || '')}">${escapeHtml(matchedTerm)}</abbr>`,
                 });
 
                 lastIndex = matchEnd;

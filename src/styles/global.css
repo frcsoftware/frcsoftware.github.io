@@ -770,3 +770,14 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
     margin-left: 0;
     margin-right: auto;
 }
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+
+@media print {
+    .header-wrapper,
+    .site-footer {
+        display: none !important;
+    }
+}

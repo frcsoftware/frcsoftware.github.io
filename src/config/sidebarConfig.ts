@@ -186,6 +186,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 { label: 'Overview', slug: 'resources' },
                 { label: 'Glossary', slug: 'resources/glossary' },
+                { label: 'PDF Downloads', slug: 'resources/pdf-downloads' },
             ],
         },
     ],
@@ -306,7 +307,7 @@ export function getSidebarForPath(pathname: string): SidebarSection[] {
 /**
  * Flattens sidebar items into a linear list of links for prev/next navigation
  */
-function flattenSidebarItems(
+export function flattenSidebarItems(
     items: SidebarItem[],
 ): { label: string; href: string }[] {
     const result: { label: string; href: string }[] = [];
