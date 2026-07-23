@@ -19,8 +19,11 @@ void main() {
     int x = 6;
     int y = 7;
 
-    System.out.println(x++);
-    System.out.println(y--);
+    x++; // x is now 7!
+    y--; // y is now 6!
+
+    System.out.println(x); // prints 7
+    System.out.println(y); // prints 6
     // [/increments]
 
     // [arithmetic]
@@ -36,7 +39,7 @@ void main() {
     // [comparison]
     int c = 2;
     int d = 4;
-    System.out.print(c > d);
+    System.out.print(c > d); // prints False
     // [/comparison]
 
     // [logical]
