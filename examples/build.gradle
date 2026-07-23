@@ -16,7 +16,7 @@ spotless {
     java {
         target fileTree(rootDir) {
             include "**/*.java"
-            exclude "**/build/**", "**/.gradle/**", "stage0/snippets/**"
+            exclude "**/build/**", "**/.gradle/**", "stage0/snippets/**", "stage1/snippets/**"
         }
         licenseHeaderFile rootProject.file('gradle/LICENSE_HEADER')
     }

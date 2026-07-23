@@ -1,0 +1,55 @@
+---
+title: CI Checks
+description: Best practices for CI Checks
+codeRegionSources:
+    build: best-practices/ci-checks/build.yml
+    staticAnalysis: best-practices/ci-checks/static-analysis.gradle
+    codeQuality: best-practices/ci-checks/code-quality.yml
+    format: best-practices/ci-checks/format.yml
+---
+
+Continuous Integration (CI) is a software development practice where developers frequently merge code changes into a shared repository, triggering automated builds and tests to ensures the codebase remains stable.
+CI checks are automated tests that run when code is pushed or a pull request is opened.
+They help ensure that your code builds, meets programming standards, and is formatted correctly before merging.
+You can create CI checks using [GitHub Actions](https://docs.github.com/en/actions/get-started/continuous-integration).
+
+<Aside type="note">
+CI checks can only check for certain attributes of the code and cannot ensure that the code is functional or well-written.
+CI checks do not replace pull request reviews.
+
+</Aside>
+
+## Build
+
+To verify that your robot code builds, create a GitHub Actions workflow file `.github/workflows/build.yml` with the following code:
+
+```yaml {build}
+
+```
+
+## Code Quality
+
+Static analysis is the process of analyzing code without executing it.
+Static analysis tools help catch bugs, maintain programming standards, and improve code quality.
+Using static analysis tools is considered a good practice because they offer automated ways of flagging bad programming practices such as unused code.
+
+To configure, add the [PMD](https://docs.gradle.org/current/userguide/pmd_plugin.html) and [Spotbugs](https://plugins.gradle.org/plugin/com.github.spotbugs) plugin in the `plugins {}` block of your `build.gradle` file.
+
+```groovy {staticAnalysis}
+
+```
+
+To run code quality checks, create a GitHub Actions workflow file `.github/workflows/code-quality.yml` with the following code:
+
+```yaml {codeQuality}
+
+```
+
+## Code Formatting
+
+[Spotless](https://github.com/diffplug/spotless) can also be run as a CI check to verify that code is formatted correctly.
+To add a code formatting CI check, create a GitHub Actions workflow file `.github/workflows/format.yml` with the following code:
+
+```yaml {format}
+
+```

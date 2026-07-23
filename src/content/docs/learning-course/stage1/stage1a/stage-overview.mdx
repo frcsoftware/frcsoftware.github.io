@@ -1,0 +1,119 @@
+---
+title: Stage 1A Overview
+description: An overview of Stage 1A
+prev: ../stage-overview
+next: false
+---
+
+import YouTube from '../../../../../components/YouTube.astro';
+
+Now, before we get into the depths of the robot code, it's useful to look at a high-level overview of the contents of a
+typical WPILib project.
+As your code gets more advanced, you'll see more folders and files appear, but they're all controlled
+by the same basic components.
+Below, you can see the sample file structure you'll be starting off with as a template for Stage 1A.
+If your robot has REV electronics, then the template folder's name will be `rev/` instead of `ctre/`
+
+### Stage 1A Template Structure
+
+{/* rli:ignore */}
+
+```text
+ctre/
+├── src/main/
+|   ├── java/first/
+|   |   ├── robot/
+|   |   |   ├── opmode/
+|   |   |   |   ├── MyAuto.java
+|   |   |   |   ├── MyTeleop.Java
+|   |   |   ├── simulation/
+|   |   |   |   ├── DrivetrainSim.Java
+|   |   |   |   ├── SingleFlywheelSim.java
+|   |   |   ├── Robot.java
+|   |   ├── Main.java
+```
+
+You'll notice that we're skipping a lot of files here, because you don't have to edit those.
+What's great about about using a framework
+like WPILib is that it automatically generates these files when you create a new project, so you can get started coding quicker.
+The other folders, like `src/main/deploy/` for example, will come in handy as your robot code becomes more advanced.
+Thus, the only files shown above are the ones directly responsible for controlling what our kitbot will do.
+
+<Aside type="note">
+    For those who have programmed in FRC before, WPILib is currently undergoing
+    a massive rewrite for the 2027 version, especially with regards to OpModes
+    and Commands V3, so some files and components may be completely new!
+</Aside>
+
+### `Main.java`
+
+The first file to take note of is the `Main.java` file; this is the entrypoint for any Java project in real life.
+Its contents are pretty short and sweet (comments and package declaration removed for brevity):
+
+```java stage1/snippets/Main.java#main
+
+```
+
+You can see that all the `Main.java` file is doing is, quite literally, starting up the robot,
+so there's really no reason to edit this file for now.
+
+<Aside type="note">
+    Notice that the names of all Java files in the project are capitalized. This
+    is a convention you should follow throughout your code.
+</Aside>
+
+### `Robot.java`
+
+But what is that one line in `Main.java` doing?
+{/* rli:ignore */}
+
+```java
+RobotBase.startRobot(first.robot.Robot.class);
+```
+
+It seems to be "starting" an instance of the `first.robot.Robot` class, and if we go to that class file, we end up at `Robot.java`.
+This is the core of your robot code, where:
+
+- your subsystems are defined
+- your controls are binded
+- your opmodes are modified and used
+- your debugging data is logged (aka telemetry).
+
+<Aside type="note">
+    For prior FRC programmers, you might have noticed a `RobotContainer.java`
+    file is missing. This file is being removed in WPILib 2027.
+</Aside>
+
+We'll go through this file, as well as all of the above functionalities, more in detail later.
+
+### `opmode/`
+
+For those who are used to WPILib 2026 and earlier versions, this will probably be the most significant change.
+In WPILib 2027 and later versions, robot frameworks are getting a new way to control the current "mode" of the robot: OpModes.
+We'll talk about this a bit more in-depth later, but they essentially allow you to define various "states" for a robot during
+autonomous and teleop, which can then be set directly through the FIRST Driver Station.
+This would be useful, for example,
+when picking what autonomous routine to run without having to push a different version of the code for every single match.
+WPILib 2027 decouples many of the functions that used to be in `Robot.java` and moves them to separate files for autonomous
+and teleop periods, making it easier to differentiate what functionalities the robot has during each stage of the match.
+
+### `simulation/`
+
+These are the files that control simulation of the robot, allowing you to test code without actually having a physical robot in front of you.
+We've set this up for you already; you'll just have to set up the simulation software yourself, which we'll cover at the end of Stage 1A.
+
+### The 2026 Kitbot
+
+But what is all this code actually going to control? Well, the answer is the 2026 FIRST Robotics Competition kitbot, the best starting point
+for new FRC teams, as well as the simplest robot to get fully working.
+You can watch the below video to learn more about what functionalities the kitbot has.
+If you're a bit confused after watching that video, don't worry.
+We'll explain the kitbot more in depth in the next section.
+
+<YouTube url="https://www.youtube.com/watch?v=nTmZXOgHntM" />
+
+And that's all you need to know to get started! The rest of Stage 1A will cover how to get from the template code to a working kitbot.
+
+This stage will cover the following topics:
+
+- <a href="#">WIP</a>

@@ -47,8 +47,9 @@ export default function remarkCodeRegion() {
             const content = readFileSync(srcPath, 'utf-8');
             const lines = content.split('\n');
 
+            const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/?\w+\]\s*$/;
+
             if (!regionName) {
-                const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/?\w+\]\s*$/;
                 node.value = dedent(
                     lines.filter((l) => !markerRE.test(l)).join('\n'),
                 );
@@ -77,7 +78,7 @@ export default function remarkCodeRegion() {
                     inRegion = false;
                     continue;
                 }
-                if (inRegion) regionLines.push(line);
+                if (inRegion && !markerRE.test(line)) regionLines.push(line);
             }
 
             if (!found)

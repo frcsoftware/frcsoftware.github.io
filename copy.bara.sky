@@ -39,13 +39,13 @@ def create_workflow(name, source_path, dest_url):
 create_workflow(
     name = "stage1a_ctre_solution",
     source_path = "examples/stage1/stage1a/solutions/ctre",
-    dest_url = stage1_dest_ctre_solution
+    dest_url = stage1a_dest_ctre_solution
 )
 
 create_workflow(
     name = "stage1a_rev_solution",
     source_path = "examples/stage1/stage1a/solutions/rev",
-    dest_url = stage1_dest_rev_solution
+    dest_url = stage1a_dest_rev_solution
 )
 
 create_workflow(
