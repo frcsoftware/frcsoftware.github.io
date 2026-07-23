@@ -28,10 +28,7 @@ function parseCodeRegionSources(content: string): Map<string, string> {
     );
     if (startIdx === -1) return sources;
 
-    for (let i = startIdx + 1; i < lines.length; i++) {
-        const line = lines[i];
-        if (!line) continue;
-
+    for (const line of lines.slice(startIdx + 1)) {
         // Stop once we hit a line that isn't indented (end of the map).
         if (!/^\s+\S/.test(line)) break;
 
