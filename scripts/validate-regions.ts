@@ -22,7 +22,7 @@ function parseCodeRegionSources(content: string): Map<string, string> {
     const frontmatterMatch = content.match(FRONTMATTER_RE);
     if (!frontmatterMatch) return sources;
 
-    const lines = frontmatterMatch[1].split('\n');
+    const lines = frontmatterMatch[1]!.split('\n');
     const startIdx = lines.findIndex((line) =>
         CODE_REGION_SOURCES_KEY_RE.test(line),
     );
@@ -37,7 +37,7 @@ function parseCodeRegionSources(content: string): Map<string, string> {
 
         const m = line.match(CODE_REGION_SOURCE_ENTRY_RE);
         if (m) {
-            sources.set(m[1], m[2]);
+            sources.set(m[1]!, m[2]!);
         }
     }
 
@@ -63,7 +63,7 @@ function walkMdx(dir: string) {
 
             for (const line of content.split('\n')) {
                 const m = line.match(CODEBLOCK_RE);
-                if (!m?.[1] || m[2] || !m[3]) continue;
+                if (!m) continue;
 
                 const [, alias, definedFilePath, regionName] = m;
 
@@ -91,7 +91,7 @@ function walkMdx(dir: string) {
                 if (!referencedRegions.has(filePath)) {
                     referencedRegions.set(filePath, new Set());
                 }
-                referencedRegions.get(filePath)?.add(regionName);
+                referencedRegions.get(filePath!)?.add(regionName!);
             }
         }
     }
