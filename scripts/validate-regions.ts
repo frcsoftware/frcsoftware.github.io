@@ -91,7 +91,7 @@ function walkMdx(dir: string) {
                 if (!referencedRegions.has(filePath)) {
                     referencedRegions.set(filePath, new Set());
                 }
-                referencedRegions.get(filePath!)?.add(regionName!);
+                referencedRegions.get(filePath)!.add(regionName!);
             }
         }
     }
