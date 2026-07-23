@@ -40,7 +40,6 @@
         "eslint-plugin-astro": "^1.7.0",
         "mdx2vast": "^0.3.1",
         "mdast-util-mdx": "^3.0.0",
-        "mdast-util-mdx-jsx": "^3.2.0",
         "husky": "^9.1.7",
         "lint-staged": "^17.0.8",
         "prettier": "^3.8.4",
