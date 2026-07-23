@@ -4,7 +4,7 @@ import remarkGlossary from './src/plugins/remark-glossary';
 import remarkCenter from './src/plugins/remark-center';
 import remarkFigure from './src/plugins/remark-figure';
 import remarkImageAttributes from './src/plugins/remark-image-attributes';
-import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports';
+import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports.ts';
 import remarkCodeRegion from './src/plugins/remark-code-region';
 
 export default defineConfig({
@@ -64,10 +64,10 @@ export default defineConfig({
                 TableOfContents:
                     './src/starlightOverrides/TableOfContents.astro',
             },
-            // TOC is disabled globally but can be enabled per-directory in src/config/tocConfig
+            // TOC is disabled globally but can be enabled per-directory in src/config/tocConfig.ts
             // or per-page via frontmatter (tableOfContents: true)
             tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
-            // Sidebar configuration is now managed in src/config/sidebarConfig
+            // Sidebar configuration is now managed in src/config/sidebarConfig.ts
             // This allows different sidebars per top-level navigation section
         }),
     ],
