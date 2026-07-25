@@ -1,6 +1,8 @@
-import remarkPresetLintRecommended from 'remark-preset-lint-recommended';
+// @ts-check
+
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdx from 'remark-mdx';
+import remarkPresetLintRecommended from 'remark-preset-lint-recommended';
 import remarkNoInlineCodeFences from './src/plugins/remark-no-inline-code-fences.mjs';
 import remarkNoHtmlLinks from './src/plugins/remark-no-html-links.mjs';
 import remarkLintNoDeadUrls from 'remark-lint-no-dead-urls';
