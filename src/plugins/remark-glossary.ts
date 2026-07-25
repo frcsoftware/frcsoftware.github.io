@@ -9,19 +9,51 @@ const sortedTerms = [...glossaryTerms].sort(
     (a, b) => b.term.length - a.term.length,
 );
 
-const pattern = new RegExp(
-    `(?<![\\p{L}\\p{N}_])(${sortedTerms
-        .map((t) =>
-            t.caseSensitive
-                ? `(?-i:${escapeRegex(t.term)})`
-                : escapeRegex(t.term),
-        )
-        .join('|')})(?![\\p{L}\\p{N}_])`,
+function escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function buildPattern(terms: typeof sortedTerms, flags: string): RegExp | null {
+    if (terms.length === 0) return null;
+    return new RegExp(
+        `(?<![\\p{L}\\p{N}_])(${terms.map((t) => escapeRegex(t.term)).join('|')})(?![\\p{L}\\p{N}_])`,
+        flags,
+    );
+}
+
+const caseSensitivePattern = buildPattern(
+    sortedTerms.filter((t) => t.caseSensitive),
+    'gu',
+);
+const caseInsensitivePattern = buildPattern(
+    sortedTerms.filter((t) => !t.caseSensitive),
     'giu',
 );
 
-function escapeRegex(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+interface TermMatch {
+    index: number;
+    text: string;
+}
+
+function findMatches(text: string): TermMatch[] {
+    const raw: TermMatch[] = [];
+    for (const p of [caseSensitivePattern, caseInsensitivePattern]) {
+        if (!p) continue;
+        for (const m of text.matchAll(p)) {
+            raw.push({ index: m.index, text: m[0] });
+        }
+    }
+
+    raw.sort((a, b) => a.index - b.index || b.text.length - a.text.length);
+
+    const matches: TermMatch[] = [];
+    let lastEnd = -1;
+    for (const m of raw) {
+        if (m.index < lastEnd) continue;
+        matches.push(m);
+        lastEnd = m.index + m.text.length;
+    }
+    return matches;
 }
 
 export function remarkGlossary() {
@@ -36,7 +68,7 @@ export function remarkGlossary() {
             }
 
             const text = node.value;
-            const matches = [...text.matchAll(pattern)];
+            const matches = findMatches(text);
 
             if (matches.length === 0) return;
 
@@ -45,8 +77,8 @@ export function remarkGlossary() {
 
             matches.forEach((match) => {
                 const matchStart = match.index;
-                const matchEnd = matchStart + match[0].length;
-                const matchedTerm = match[0];
+                const matchEnd = matchStart + match.text.length;
+                const matchedTerm = match.text;
 
                 if (matchStart > lastIndex) {
                     newNodes.push({
