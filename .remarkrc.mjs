@@ -17,7 +17,10 @@ export default {
             {
                 skipLocalhost: false,
                 skipOffline: true,
-                skipUrlPatterns: ['https://github.com/signup'], // Add known flaky URL patterns here
+                skipUrlPatterns: [
+                    'https://github.com/signup',
+                    'https://code.visualstudio.com/',
+                ], // Add known flaky URL patterns here
             },
         ],
     ],
