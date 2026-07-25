@@ -18,6 +18,7 @@ export default [
                 { argsIgnorePattern: '^_' },
             ],
             '@typescript-eslint/no-explicit-any': 'error',
+            'no-undef': 'off',
         },
     },
 
@@ -27,9 +28,6 @@ export default [
             globals: {
                 ImageMetadata: 'readonly',
             },
-        },
-        rules: {
-            'no-undef': 'off',
         },
     },
 ];
