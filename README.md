@@ -319,8 +319,11 @@ For multiple images, use the Slides component instead.
 
 ### Prerequisites
 
-- **Node.js** (version 18 or higher): Download from [nodejs.org](https://nodejs.org/)
+- **Node.js** (version 24 or higher): Download from [nodejs.org](https://nodejs.org/)
+- **pnpm**: Download from [pnpm.io/installation](https://pnpm.io/installation).
+  If you just downloaded **Node.js**, follow the `corepack` or `npm` installation options.
 - **Git**: Download from [git-scm.com](https://git-scm.com/)
+- **Vale**: Download from [docs.vale.sh/topics/installation](https://docs.vale.sh/topics/installation)
 - A code editor (e.g., [VS Code](https://code.visualstudio.com/))
 
 ### Setup Instructions
@@ -358,7 +361,7 @@ For multiple images, use the Slides component instead.
 To check your Node.js and pnpm versions:
 
 ```bash
-node --version   # Should be 18.x or higher
+node --version   # Should be 24.x or higher
 pnpm --version   # Should be 10.x or higher
 ```
 
