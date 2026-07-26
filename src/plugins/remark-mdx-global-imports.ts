@@ -8,18 +8,9 @@
  * imported to avoid duplicate identifier errors. No-ops on plain .md files.
  */
 
-import type { Root } from 'mdast';
+import type { Root, RootContent } from 'mdast';
 import type { VFile } from 'vfile';
-
-declare module 'mdast' {
-    interface RootContentMap {
-        mdxjsEsm: {
-            type: 'mdxjsEsm';
-            value: string;
-            data?: { estree?: unknown };
-        };
-    }
-}
+import type { Program } from 'estree';
 
 const GLOBAL_IMPORTS = [
     { name: 'ContentFigure', path: '@components/ContentFigure.astro' },
@@ -30,33 +21,35 @@ const GLOBAL_IMPORTS = [
     //   { name: 'ImageTable',    path: '@components/ImageTable.astro' },
 ];
 
-function makeImportNode(name: string, importPath: string) {
-    return {
-        type: 'mdxjsEsm' as const,
-        value: `import ${name} from '${importPath}';`,
-        data: {
-            estree: {
-                type: 'Program',
-                body: [
+function makeImportNode(name: string, importPath: string): RootContent {
+    const estree: Program = {
+        type: 'Program',
+        body: [
+            {
+                type: 'ImportDeclaration',
+                specifiers: [
                     {
-                        type: 'ImportDeclaration',
-                        specifiers: [
-                            {
-                                type: 'ImportDefaultSpecifier',
-                                local: { type: 'Identifier', name },
-                            },
-                        ],
-                        source: {
-                            type: 'Literal',
-                            value: importPath,
-                            raw: `'${importPath}'`,
-                        },
+                        type: 'ImportDefaultSpecifier',
+                        local: { type: 'Identifier', name },
                     },
                 ],
-                sourceType: 'module',
+                source: {
+                    type: 'Literal',
+                    value: importPath,
+                    raw: `'${importPath}'`,
+                },
+                attributes: [],
             },
-        },
+        ],
+        sourceType: 'module',
+        comments: [],
     };
+
+    return {
+        type: 'mdxjsEsm',
+        value: `import ${name} from '${importPath}';`,
+        data: { estree },
+    } as RootContent;
 }
 
 export function remarkMdxGlobalImports() {

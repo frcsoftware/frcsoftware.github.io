@@ -7,21 +7,23 @@ import remarkFigure from './src/plugins/remark-figure';
 import remarkImageAttributes from './src/plugins/remark-image-attributes';
 import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports';
 import remarkCodeRegion from './src/plugins/remark-code-region';
+import { unified } from '@astrojs/markdown-remark';
 
 export default defineConfig({
     site: 'https://frcsoftware.org',
     prefetch: true,
 
     markdown: {
-        remarkPlugins: [
-            remarkCenter,
-            remarkFigure,
-            remarkGlossary,
-            remarkImageAttributes,
-            remarkMdxGlobalImports,
-            remarkCodeRegion,
-        ],
-        rehypePlugins: [],
+        processor: unified({
+            remarkPlugins: [
+                remarkCenter,
+                remarkFigure,
+                remarkGlossary,
+                remarkImageAttributes,
+                remarkMdxGlobalImports,
+                remarkCodeRegion,
+            ],
+        }),
     },
 
     integrations: [
