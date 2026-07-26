@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-boolean condition_A;
-boolean condition_B;
+boolean conditionA;
+boolean conditionB;
 boolean condition;
 
 class Drivetrain {
