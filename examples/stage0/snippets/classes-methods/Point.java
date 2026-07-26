@@ -32,9 +32,11 @@ class Point {
     }
     // [/plus]
 
+    // [minus]
     public Point minus(Point other) {
         return new Point(this.x - other.x, this.y - other.y);
     }
+    // [/minus]
 
     // [norm]
     public double norm() {

@@ -16,6 +16,12 @@ class RobotTracker {
     }
     // [/robotTrackerConstructor]
 
+    // [constructorChaining]
+    public RobotTracker() {
+        this(Point.ORIGIN);
+    }
+    // [/constructorChaining]
+
     // [stateMutation]
     public void move(Point delta) {
         this.position = this.position.plus(delta);
@@ -29,9 +35,11 @@ class RobotTracker {
     }
     // [/localVariableChain]
 
+    // [getPosition]
     public Point getPosition() {
         return this.position;
     }
+    // [/getPosition]
 
     // [useStaticConstant]
     public void reset() {

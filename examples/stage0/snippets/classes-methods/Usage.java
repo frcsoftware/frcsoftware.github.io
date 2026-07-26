@@ -13,7 +13,6 @@ void main() {
     System.out.println(sum.getX()); // 4.0
     System.out.println(sum.getY()); // 6.0
     System.out.println(a.norm());   // 5.0
-    System.out.println(a.equals(b)); // false
     // [/createAndUse]
 
     // [accessStaticConstant]
