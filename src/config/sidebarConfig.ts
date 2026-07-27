@@ -13,6 +13,12 @@ export type SidebarSection = {
     items: SidebarItem[];
 };
 
+export type Item = {
+    label: string;
+    href?: string;
+    items?: Item[];
+};
+
 // Define which URL paths belong to which sidebar section
 export const sidebarSections: Record<string, SidebarSection[]> = {
     // Home page - minimal sidebar or none
@@ -341,12 +347,7 @@ export function getSidebarForPath(pathname: string): SidebarSection[] {
         }
     }
 
-    if (bestMatch) {
-        return sidebarSections[bestMatch];
-    }
-
-    // Default to home (empty sidebar)
-    return sidebarSections['/'] || [];
+    return sidebarSections[bestMatch || '/'] ?? sidebarSections['/'] ?? [];
 }
 
 /**
@@ -395,12 +396,10 @@ export function getPrevNextLinks(pathname: string): {
     if (currentIndex === -1) {
         return { prev: null, next: null };
     }
-
+    const prev = allLinks.at(currentIndex - 1) ?? null;
+    const next = allLinks.at(currentIndex + 1) ?? null;
     return {
-        prev: currentIndex > 0 ? allLinks[currentIndex - 1] : null,
-        next:
-            currentIndex < allLinks.length - 1
-                ? allLinks[currentIndex + 1]
-                : null,
+        prev,
+        next,
     };
 }

@@ -2,9 +2,9 @@
 
 /** @type {import('lint-staged').Configuration} */
 export default {
-    '**/*': (files) => `prettier --write ${files.join(' ')}`,
+    '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
     '**/*.{astro,ts,mjs,js}': (files) => `eslint --fix ${files.join(' ')}`,
-    '**/*.{md,mdx}': (files) => [
+    'src/content/*.{md,mdx}': (files) => [
         `pnpm remark  ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
     ],
     'examples/**/*.{java,gradle}': () => [

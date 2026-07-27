@@ -4,5 +4,3 @@ dist/
 .styles/
 pnpm-lock.yaml
 examples/
-.husky/
-.prettierignore

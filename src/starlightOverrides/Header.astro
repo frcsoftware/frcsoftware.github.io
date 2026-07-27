@@ -196,7 +196,10 @@ for (const section of sidebarSections) {
             const items = JSON.parse(container.dataset.items || '[]');
             const currentPath = container.dataset.currentPath || '';
 
-            function renderItems(items, depth = 0) {
+            function renderItems(
+                /** @type {import('../config/sidebarConfig').Item[]} */ items,
+                depth = 0,
+            ) {
                 let html = '';
                 for (const item of items) {
                     const indent = depth * 12;
@@ -247,9 +250,35 @@ for (const section of sidebarSections) {
         // Global image lightbox functionality
         const initImageLightbox = () => {
             // Create lightbox element if it doesn't exist
-            let lightbox = document.getElementById('global-image-lightbox');
-            if (!lightbox) {
-                lightbox = document.createElement('div');
+            const tmp = document.getElementById('global-image-lightbox');
+            const lightbox =
+                tmp instanceof HTMLElement
+                    ? tmp
+                    : document.createElement('div');
+            /**
+             * @param {string} imgSrc
+             * @param {string} imgAlt
+             */
+            function openLightbox(imgSrc, imgAlt) {
+                /** @type {HTMLImageElement | null} */
+                const lightboxImg = lightbox.querySelector(
+                    '.global-lightbox-image',
+                );
+                if (!lightboxImg) return;
+                lightboxImg.src = imgSrc;
+                lightboxImg.alt = imgAlt || '';
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                document.documentElement.classList.add('lightbox-open');
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+                document.documentElement.classList.remove('lightbox-open');
+            }
+
+            if (!tmp) {
                 lightbox.id = 'global-image-lightbox';
                 lightbox.className = 'global-image-lightbox';
                 lightbox.innerHTML = `
@@ -264,19 +293,23 @@ for (const section of sidebarSections) {
 
                 // Close on backdrop click
                 lightbox.addEventListener('click', (e) => {
+                    const target = e.target;
                     if (
-                        e.target === lightbox ||
-                        e.target.classList.contains('global-lightbox-content')
+                        target instanceof HTMLElement &&
+                        (target === lightbox ||
+                            target.classList.contains(
+                                'global-lightbox-content',
+                            ))
                     ) {
                         closeLightbox();
                     }
                 });
-
-                // Close button
-                lightbox
-                    .querySelector('.global-lightbox-close')
-                    .addEventListener('click', closeLightbox);
-
+                const closeSelector = lightbox.querySelector(
+                    '.global-lightbox-close',
+                );
+                if (closeSelector) {
+                    closeSelector.addEventListener('click', closeLightbox);
+                }
                 // Close on Escape key
                 document.addEventListener('keydown', (e) => {
                     if (
@@ -288,29 +321,14 @@ for (const section of sidebarSections) {
                 });
             }
 
-            function openLightbox(imgSrc, imgAlt) {
-                const lightboxImg = lightbox.querySelector(
-                    '.global-lightbox-image',
-                );
-                lightboxImg.src = imgSrc;
-                lightboxImg.alt = imgAlt || '';
-                lightbox.classList.add('open');
-                document.body.style.overflow = 'hidden';
-                document.documentElement.classList.add('lightbox-open');
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove('open');
-                document.body.style.overflow = '';
-                document.documentElement.classList.remove('lightbox-open');
-            }
-
             // Attach click handlers to all images in markdown content
             // Exclude images that are already in a Slides component or have data-no-lightbox
             const contentImages = document.querySelectorAll(
                 '.sl-markdown-content img:not(.slides-component img):not([data-no-lightbox])',
             );
-            contentImages.forEach((img) => {
+            contentImages.forEach((v) => {
+                if (!(v instanceof HTMLImageElement)) return;
+                const img = /** @type {HTMLImageElement} */ (v);
                 // Skip if already has lightbox handler
                 if (img.dataset.lightboxAttached) return;
                 img.dataset.lightboxAttached = 'true';
@@ -347,8 +365,7 @@ for (const section of sidebarSections) {
                 return null;
             }
         };
-
-        const setStoredTheme = (value) => {
+        const setStoredTheme = (/** @type {'light' | 'dark'} */ value) => {
             try {
                 localStorage.setItem(storageKey, value);
             } catch {
@@ -356,14 +373,15 @@ for (const section of sidebarSections) {
             }
         };
 
-        const applyTheme = (theme) => {
+        const applyTheme = (/** @type {'light' | string} */ theme) => {
             const html = document.documentElement;
             const normalized = theme === 'light' ? 'light' : 'dark';
 
             html.dataset.theme = normalized;
             setStoredTheme(normalized);
-
+            // @ts-expect-error javascript...
             if (window.StarlightThemeProvider?.updatePickers) {
+                // @ts-expect-error javascript...
                 window.StarlightThemeProvider.updatePickers(normalized);
             }
         };
@@ -396,9 +414,12 @@ for (const section of sidebarSections) {
             });
 
             document.addEventListener('click', (e) => {
+                const target = e.target;
                 if (
-                    !toggle.contains(e.target) &&
-                    !menu.contains(e.target) &&
+                    target instanceof Node &&
+                    target !== toggle &&
+                    !toggle.contains(target) &&
+                    !menu.contains(target) &&
                     toggle.getAttribute('aria-expanded') === 'true'
                 ) {
                     toggle.setAttribute('aria-expanded', 'false');
