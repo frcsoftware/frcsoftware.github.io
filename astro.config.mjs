@@ -8,7 +8,7 @@ import remarkImageAttributes from './src/plugins/remark-image-attributes';
 import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports';
 import remarkCodeRegion from './src/plugins/remark-code-region';
 import { unified } from '@astrojs/markdown-remark';
-import remarkTargetBlank from './src/plugins/remark-external-links';
+import remarkTargetBlank from './src/plugins/rehype-external-links';
 
 export default defineConfig({
     site: 'https://frcsoftware.org',
