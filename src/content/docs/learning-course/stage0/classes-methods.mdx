@@ -107,7 +107,7 @@ Static fields and methods are accessed using the class name, instead of an insta
 so the ORIGIN field is accessed using `Point.ORIGIN`.
 The ORIGIN field is also `public`, so it can be accessed from anywhere in the program.
 
-<Aside type="tip">
+<Aside type="tip" title="Static vs. Instance">
     Non-static fields and methods are called **instance fields** and **instance
     methods**, respectively, to distinguish them from static fields and methods.
 </Aside>
@@ -203,6 +203,15 @@ and are used to store intermediate values.
 This method also uses the `Math.sqrt()` method,
 which is a static method in the `Math` class,
 which returns the square root of its argument.
+
+<Aside type="note" title="The Math Class">
+    The `Math` class, built into the JDK, is a collection of static methods and
+    constants for common mathematical operations, such as `Math.sqrt()`,
+    `Math.abs()`, and `Math.pow()`, as well as constants like `Math.PI`. Because
+    all of these methods and constants are static, we access them using only the
+    name of the class, like when we called `Math.sqrt()` in the `Point.norm()`
+    method.
+</Aside>
 
 Here is the complete `Point` class:
 
