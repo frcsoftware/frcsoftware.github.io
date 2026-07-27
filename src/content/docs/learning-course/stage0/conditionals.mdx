@@ -1,8 +1,10 @@
 ---
 title: Conditionals
 description: An Intro To Conditional Statements
-prev: intro-to-java/operators
+prev: learning-course/stage0/operators
 next: false
+codeRegionSources:
+    default: stage0/snippets/Conditionals.java
 ---
 
 In everyday life, we make decisions based on different situations.
@@ -21,14 +23,11 @@ This section will cover three types of conditionals which are:
     There is also another type of conditional, called switch, but we will not be
     covering it in this section because it is not used as frequently in FRC
     programming. However, if you want to learn more about the switch statement,
-    you can learn more on w3school's page on{' '}
-    <a href="https://www.w3schools.com/java/java_switch.asp">
-        {' '}
-        which covers this type of conditional.{' '}
-    </a>
+    you can learn more on w3school's page [which covers this type of
+    conditional.](https://www.w3schools.com/java/java_switch.asp)
 </Aside>
 
-Like we mentioned earlier in <a href="/intro-to-java/java-fundamentals/"> Java Fundamentals </a>, all programming languages have syntax that needs to be followed.
+Like we mentioned earlier in [Java Fundamentals](/learning-course/stage0/java-fundamentals/), all programming languages have syntax that needs to be followed.
 One part of syntax is keywords.
 As a reminder, a keyword is a reserved word that the compiler uses to run the code.
 In Java, we use the following keywords for conditionals: `if`, `else if`, `else`
@@ -38,7 +37,7 @@ In Java, we use the following keywords for conditionals: `if`, `else if`, `else`
 An `if` statement is a basic conditional.
 The syntax for an `if` statement is as follows:
 
-```java stage0/snippets/conditionals.java#ifSyntax
+```java #ifSyntax
 
 ```
 
@@ -65,7 +64,7 @@ If `condition` is false, the code inside the `if` block will be skipped.
 This is also described in the flowchart below
 
 <ContentFigure
-    src="/conditionals/ifstatement.png"
+    src="/learning-course/stage0/conditionals/ifstatement.png"
     width="400px"
     height="800px"
 />
@@ -77,7 +76,7 @@ We want our robot's drivetrain motors to keep spinning until the robot is 10cm a
 Our robot is currently 6cm away.
 Looking at the example below, what should happen?
 
-```java stage0/snippets/conditionals.java#ifExample
+```java #ifExample
 
 ```
 
@@ -94,21 +93,25 @@ This is one example where we could use an `else` statement.
 
 The syntax for an else statement is as follows:
 
-```java stage0/snippets/conditionals.java#ifElseSyntax
+```java #ifElseSyntax
 
 ```
 
 `else` statements do not have parentheses because they do not need a condition to decide if they should run or not.
-Here's how this works: if the`if` statement's condition is `true`, then the the code inside will run.
+Here's how this works: if the`if` statement's condition is `true`, then the code inside will run.
 If the `if` statement's condition is `false`, the `if` block will be skipped, and the code inside the `else` block will run.
 
 This is also described in the flowchart below
 
-<ContentFigure src="/conditionals/else.png" width="600px" height="800px" />
+<ContentFigure
+    src="/learning-course/stage0/conditionals/else.png"
+    width="600px"
+    height="800px"
+/>
 
 In this example, we now have an `else` statement that sets the motor speed to 0 if `distance` is greater than 20. Since our `distance` is set to 21, what would the code print out?
 
-```java stage0/snippets/conditionals.java#elseExample
+```java #elseExample
 
 ```
 
@@ -125,7 +128,7 @@ This can be done by adding an `else if` statement.
 
 The syntax for an `else if` statement goes as follows:
 
-```java stage0/snippets/conditionals.java#elseIfSyntax
+```java #elseIfSyntax
 
 ```
 
@@ -133,19 +136,23 @@ The syntax is similar to an `if` statement but now it has `else if` at the end.
 Let's break down what this new addition means.
 `else if` is a keyword that allows the conditional to run a different task if the if statement is false.
 
-If `condition_A` is true then the code inside the `if` block will run.
-If `condition_A` if false, then it will go to the `else if` statement.
-If `condition_B` is true, the code inside the `else if` block will run.
-If `condition_B` if false, then it will exit the statement and none of the code will run.
+If `conditionA` is true then the code inside the `if` block will run.
+If `conditionA` if false, then it will go to the `else if` statement.
+If `conditionB` is true, the code inside the `else if` block will run.
+If `conditionB` if false, then it will exit the statement and none of the code will run.
 This is also described in the flowchart below
 
-<ContentFigure src="/conditionals/elseif.png" width="700px" height="800px" />
+<ContentFigure
+    src="/learning-course/stage0/conditionals/elseif.webp"
+    width="700px"
+    height="800px"
+/>
 
 In the example, we now have an `else if` statement that sets the motor to half speed if the distance from an object is less than 10cm.
 Our `distance` is now 15cm.
 With the new addition, what would the code print out?
 
-```java stage0/snippets/conditionals.java#elseIfExample
+```java #elseIfExample
 
 ```
 
@@ -159,10 +166,10 @@ This means the motors are set to drive at full speed and "Motors are at full spe
 
 ## Putting Everything Together
 
-Our code above has the robot drive at full speed if the distance is greater than 10cm, and drive at half speed if the distance is less than 10cm, but it doesn't stop if it reaches its target distance.
-You could add another else if, or you could put everything that we learned above together and add an else conditional.
+The previous code has the robot drive at full speed if the distance is greater than 10cm, and drive at half speed if the distance is less than 10cm, but it doesn't stop if it reaches its target distance.
+You could add another else if, or you could put everything that we previously learned together and add an else conditional.
 
-```java stage0/snippets/conditionals.java#conditionalExample
+```java #conditionalExample
 
 ```
 

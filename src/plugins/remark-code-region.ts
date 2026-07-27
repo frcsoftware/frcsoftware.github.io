@@ -2,20 +2,43 @@ import { visit } from 'unist-util-visit';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import type { Root } from 'mdast';
+import { VFile } from 'vfile';
 
 export default function remarkCodeRegion() {
-    return (tree: Root) => {
+    return (tree: Root, file: VFile) => {
         const examplesDir = resolve(process.cwd(), 'examples');
+        let codeRegionSources = file.data.astro?.frontmatter?.codeRegionSources;
+        if (
+            codeRegionSources == null ||
+            typeof codeRegionSources !== 'object'
+        ) {
+            codeRegionSources = {};
+        }
 
         visit(tree, 'code', (node) => {
             const meta: string = node.meta || '';
 
             const token = meta.match(/^(\S+)/);
-            if (!token) return;
+            if (!token?.[1]) return;
 
             const raw = token[1];
             const hashIdx = raw.indexOf('#');
-            const filePath = hashIdx !== -1 ? raw.slice(0, hashIdx) : raw;
+            let filePath = hashIdx === -1 ? raw : raw.slice(0, hashIdx);
+            if (filePath === '' && codeRegionSources.default) {
+                filePath = codeRegionSources.default;
+            } else {
+                const entries = Object.entries(codeRegionSources);
+                for (const [source, pathAlias] of entries) {
+                    if (
+                        typeof source === 'string' &&
+                        typeof pathAlias === 'string' &&
+                        filePath === '{' + source + '}'
+                    ) {
+                        filePath = pathAlias;
+                        break;
+                    }
+                }
+            }
             const regionName = hashIdx !== -1 ? raw.slice(hashIdx + 1) : null;
 
             node.meta = meta.slice(raw.length).trim();
@@ -24,8 +47,9 @@ export default function remarkCodeRegion() {
             const content = readFileSync(srcPath, 'utf-8');
             const lines = content.split('\n');
 
+            const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/?\w+\]\s*$/;
+
             if (!regionName) {
-                const markerRE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/?\w+\]\s*$/;
                 node.value = dedent(
                     lines.filter((l) => !markerRE.test(l)).join('\n'),
                 );
@@ -54,7 +78,7 @@ export default function remarkCodeRegion() {
                     inRegion = false;
                     continue;
                 }
-                if (inRegion) regionLines.push(line);
+                if (inRegion && !markerRE.test(line)) regionLines.push(line);
             }
 
             if (!found)
@@ -83,6 +107,6 @@ function dedent(str: string): string {
                 Math.min(min, l.match(/^[ \t]*/)?.[0].length ?? Infinity),
             Infinity,
         );
-    if (indent === 0 || !isFinite(indent)) return str;
+    if (indent === 0 || !Number.isFinite(indent)) return str;
     return lines.map((l) => l.slice(indent)).join('\n');
 }

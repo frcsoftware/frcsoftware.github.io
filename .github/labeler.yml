@@ -1,0 +1,23 @@
+'stage0':
+    - changed-files:
+          - any-glob-to-any-file:
+                [examples/stage0/**, src/content/docs/learning-course/stage0/**]
+'stage1':
+    - changed-files:
+          - any-glob-to-any-file:
+                [examples/stage1/**, src/content/docs/learning-course/stage1/**]
+'examples':
+    - changed-files:
+          - any-glob-to-any-file: examples/**
+'Curriculum material':
+    - changed-files:
+          - any-glob-to-any-file:
+                - src/content/docs/**
+'infra':
+    - changed-files:
+          - any-glob-to-any-file:
+                - .github/**
+                - package.json
+                - pnpm-lock.yaml
+                - pnpm-workspace.yaml
+                - copy.bara.sky
