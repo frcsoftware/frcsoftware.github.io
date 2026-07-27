@@ -13,6 +13,7 @@ export default function remarkTargetBlank() {
                 return;
             }
             node.properties.target = '_blank';
+            node.properties.rel = ['noreferrer', 'noopener'];
         });
     };
 }
