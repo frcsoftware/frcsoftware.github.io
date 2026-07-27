@@ -1,13 +1,13 @@
 ---
 title: Commands & Mechanisms, Part 1
 description: The basics of defining mechanisms and writing commands
-prev: stage-1b-commands/the-command-body
-next: stage-1b-commands/why-mechanisms
+prev: learning-course/stage1/stage1b/the-command-body
+next: learning-course/stage1/stage1b/why-mechanisms
 codeRegionSources:
-    default: stage1/snippets-1b/src/main/java/sources/CommandsAndMechsPt1.java
+    default: stage1/stage1b/snippets/src/main/java/sources/CommandsAndMechsPt1.java
 ---
 
-import Aside from '../../../../components/Aside.astro';
+import Aside from '@components/Aside.astro';
 
 ### Defining Mechanisms
 
@@ -74,7 +74,7 @@ Here's an example of a command defined inside of a mechanism class:
 Commands created with `run()` will automatically require the mechanism that they are defined inside.
 Here, the full throttle command requires the `Intake`.
 
-Also, notice that the fullThrottle method creates and returns a command.
+Also, notice that the `fullThrottle` method creates and returns a command.
 All mechanism-specific commands should be defined this way, for 2 reasons:
 
 1. It allows for commands to define parameters, just like a method.

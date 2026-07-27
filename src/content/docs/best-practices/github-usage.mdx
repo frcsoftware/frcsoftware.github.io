@@ -1,0 +1,59 @@
+---
+title: GitHub Usage
+description: Best practices for GitHub project management and merge procedures
+codeRegionSources:
+    prTemplate: best-practices/github-usage/pr-template.yml
+    task: best-practices/github-usage/task.yml
+---
+
+## Issues
+
+An issue is a way of planning tasks and tracking bugs.
+You can create issues in your repository to plan, discuss, and share tasks.
+When opening an issue, you should add a title and description to clearly summarize the task.
+The Assignees feature is helpful for delegating tasks to programmers within your team.
+The Milestones feature can be used to group issues with specific deadlines and track progress.
+
+Issue templates are helpful for providing guidance for opening issues and encourage students to specify the content of their issue.
+To create issue templates, create a `.github/ISSUE_TEMPLATE` folder and add Markdown files for different types of issues.
+
+Here's an example issue template:
+
+```markdown {task}
+
+```
+
+See [Configuring issue templates for your repository](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository) for a more in-depth guide to using issue templates.
+
+## Pull Requests
+
+Pull requests are proposals to merge changes on a separate branch into the `main` branch of a repository, providing a space for comments and suggestions to be made and implemented and ensuring that any code that goes on the robot is reviewed beforehand.
+Pull requests help programmers review changes before merging them, catch bugs early, and maintain code quality.
+
+Pull request templates encourage students to provide context for their changes and offer checklists to enforce programming standards.
+To create a template, create a `.github/pull_request_template.md` file.
+The template could ask to include:
+
+- A description of changes made
+- A link to any issues this pull request closes
+- A checklist to verify code standards and successful builds
+
+Here's an example pull request template:
+
+```markdown {prTemplate}
+
+```
+
+To review a pull request, read the pull request title and description, verify that all CI checks passed, and open the **Files changed** tab to view the diff.
+You can comment on specific lines and suggest changes.
+
+Squash and merge is a clean way of merging a branch into `main`.
+It combines multiple commits on a branch into a single one rather than adding them individually to `main` and cluttering version history.
+
+## GitHub Projects
+
+GitHub Projects are a tool for project management that integrates with your issues and pull requests.
+You can create customized tables, boards, and roadmaps to plan, track, and visualize changes and their metadata.
+With Projects, issues can be ranked by priority and organized by completion status.
+You can use automation with pre-built workflow to update your Projects automatically.
+Read more about Projects in the [About Projects GitHub docs](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects).

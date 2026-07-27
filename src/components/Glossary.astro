@@ -21,9 +21,7 @@ const definition =
     slotContent?.trim() || glossaryEntry?.definition || 'Definition not found';
 ---
 
-<span class="glossary-term" data-tooltip={definition}>
-    {term}
-</span>
+<span class="glossary-term" data-tooltip={definition}>{term.trim()}</span>
 
 <style>
     .glossary-term {

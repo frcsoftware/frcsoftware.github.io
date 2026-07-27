@@ -22,20 +22,19 @@ function parseCodeRegionSources(content: string): Map<string, string> {
     const frontmatterMatch = content.match(FRONTMATTER_RE);
     if (!frontmatterMatch) return sources;
 
-    const lines = frontmatterMatch[1].split('\n');
+    const lines = frontmatterMatch[1]!.split('\n');
     const startIdx = lines.findIndex((line) =>
         CODE_REGION_SOURCES_KEY_RE.test(line),
     );
     if (startIdx === -1) return sources;
 
-    for (let i = startIdx + 1; i < lines.length; i++) {
-        const line = lines[i];
+    for (const line of lines.slice(startIdx + 1)) {
         // Stop once we hit a line that isn't indented (end of the map).
         if (!/^\s+\S/.test(line)) break;
 
         const m = line.match(CODE_REGION_SOURCE_ENTRY_RE);
         if (m) {
-            sources.set(m[1], m[2]);
+            sources.set(m[1]!, m[2]!);
         }
     }
 
@@ -89,7 +88,7 @@ function walkMdx(dir: string) {
                 if (!referencedRegions.has(filePath)) {
                     referencedRegions.set(filePath, new Set());
                 }
-                referencedRegions.get(filePath)!.add(regionName);
+                referencedRegions.get(filePath)!.add(regionName!);
             }
         }
     }
@@ -106,10 +105,11 @@ function validateSource(filePath: string) {
     const stack: { name: string; lineNum: number }[] = [];
     const rel = relative(EXAMPLES_DIR, filePath).replace(/\\/g, '/');
 
-    for (let i = 0; i < lines.length; i++) {
-        let m = lines[i].match(START_RE);
+    for (const [i, line] of lines.entries()) {
+        let m = line.match(START_RE);
         if (m) {
-            const name = m[1];
+            const name = m.at(1);
+            if (!name) continue;
             if (regions.has(name)) {
                 errors.push(`${rel}:${i + 1}: Duplicate region "${name}"`);
             }
@@ -118,15 +118,16 @@ function validateSource(filePath: string) {
             continue;
         }
 
-        m = lines[i].match(END_RE);
+        m = line.match(END_RE);
         if (m) {
             const name = m[1];
-            if (stack.length === 0) {
+            const top = stack.at(-1);
+            if (top === undefined) {
                 errors.push(
                     `${rel}:${i + 1}: Unmatched closing tag [/${name}] — no region opened`,
                 );
-            } else if (stack[stack.length - 1].name !== name) {
-                const expected = stack[stack.length - 1].name;
+            } else if (top.name !== name) {
+                const expected = top.name;
                 errors.push(
                     `${rel}:${i + 1}: Region mismatch — expected [/${expected}] but found [/${name}]`,
                 );
@@ -164,7 +165,7 @@ walkExamples(EXAMPLES_DIR);
 for (const [filePath, names] of referencedRegions) {
     const defs = definedRegions.get(filePath);
     for (const name of names) {
-        if (!defs || !defs.has(name)) {
+        if (!defs?.has(name)) {
             errors.push(
                 `${filePath}: Region "${name}" referenced in MDX but not defined in examples/${filePath}`,
             );
@@ -175,7 +176,7 @@ for (const [filePath, names] of referencedRegions) {
 for (const [filePath, names] of definedRegions) {
     const refs = referencedRegions.get(filePath);
     for (const [name, lineNum] of names) {
-        if (!refs || !refs.has(name)) {
+        if (!refs?.has(name)) {
             errors.push(
                 `${filePath}:${lineNum}: Orphaned region "${name}" — defined but never referenced in any .mdx file`,
             );

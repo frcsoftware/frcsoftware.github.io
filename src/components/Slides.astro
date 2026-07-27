@@ -152,7 +152,7 @@ function parseSequentialContent(content: string): ParsedSlide[] {
         const srcMatch = tagAttrs.match(/src=["']([^"']+)["']/);
         const rawSrc = srcMatch ? srcMatch[1] : '';
         const altMatch = tagAttrs.match(/alt=["']([^"']*?)["']/);
-        const alt = altMatch ? altMatch[1] : '';
+        const alt = altMatch?.[1] ?? '';
 
         if (!rawSrc) return;
 

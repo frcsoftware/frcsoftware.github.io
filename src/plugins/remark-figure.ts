@@ -1,106 +1,80 @@
 import { visit } from 'unist-util-visit';
-import type { Root } from 'mdast';
-
-interface ContainerDirective {
-    type: 'containerDirective';
-    name: string;
-    attributes?: Record<string, string>;
-    children: unknown[];
-    data?: {
-        hName?: string;
-        hProperties?: Record<string, unknown>;
-    };
-}
+import type { BlockContent, PhrasingContent, Root } from 'mdast';
 
 export function remarkFigure() {
     return (tree: Root) => {
-        visit(
-            tree,
-            'containerDirective',
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (node: any) => {
-                const dir = node as ContainerDirective;
-                if (dir.name !== 'figure') return;
+        visit(tree, 'containerDirective', (node) => {
+            if (node.name !== 'figure') return;
 
-                const attrs = dir.attributes || {};
+            const attrs = node.attributes || {};
 
-                let style = '';
+            let style = '';
 
-                if (attrs.width) {
-                    style += `width: ${attrs.width};`;
-                } else if (attrs.w) {
-                    style += `width: ${attrs.w}%;`;
-                }
+            if (attrs.width) {
+                style += `width: ${attrs.width};`;
+            } else if (attrs.w) {
+                style += `width: ${attrs.w}%;`;
+            }
 
-                if ('border' in attrs) {
-                    const borderValue = attrs.border || '5px solid #ADADAD';
-                    style += ` --figure-border: ${borderValue.replace(/_/g, ' ')};`;
-                }
+            if ('border' in attrs) {
+                const borderValue = attrs.border || '5px solid #ADADAD';
+                style += ` --figure-border: ${borderValue.replace(/_/g, ' ')};`;
+            }
 
-                dir.data = dir.data || {};
-                dir.data.hName = 'figure';
-                dir.data.hProperties = dir.data.hProperties || {};
-                dir.data.hProperties.class =
-                    'md-figure' +
-                    ('border' in attrs ? ' md-figure-border' : '');
+            node.data = node.data || {};
+            node.data.hName = 'figure';
+            node.data.hProperties = node.data.hProperties || {};
+            node.data.hProperties.class =
+                'md-figure' + ('border' in attrs ? ' md-figure-border' : '');
 
-                if (style) {
-                    dir.data.hProperties.style = style.trim();
-                }
+            if (style) {
+                node.data.hProperties.style = style.trim();
+            }
 
-                const newChildren: unknown[] = [];
+            const newChildren = [];
 
-                for (const child of dir.children) {
-                    const c = child as {
-                        type: string;
-                        children?: unknown[];
-                        data?: unknown;
-                        value?: string;
-                    };
-                    if (c.type === 'paragraph' && c.children) {
-                        const images: unknown[] = [];
-                        const textNodes: unknown[] = [];
+            for (const child of node.children) {
+                const c = child;
+                if (c.type === 'paragraph' && c.children) {
+                    const images = [];
+                    const textNodes: PhrasingContent[] = [];
 
-                        for (const subChild of c.children) {
-                            const sc = subChild as {
-                                type: string;
-                                value?: string;
-                            };
-                            if (sc.type === 'image') {
-                                images.push(subChild);
-                            } else if (sc.type === 'text' && sc.value?.trim()) {
-                                textNodes.push(subChild);
-                            } else if (sc.type !== 'text' || sc.value?.trim()) {
-                                textNodes.push(subChild);
-                            }
+                    for (const subChild of c.children) {
+                        const sc = subChild;
+                        if (sc.type === 'image') {
+                            images.push(subChild);
+                        } else if (sc.type === 'text' && sc.value?.trim()) {
+                            textNodes.push(subChild);
+                        } else if (sc.type !== 'text' || sc.value?.trim()) {
+                            textNodes.push(subChild);
                         }
-
-                        if (images.length > 0) {
-                            newChildren.push({
-                                type: 'paragraph',
-                                children: images,
-                                data: c.data,
-                            });
-                        }
-
-                        if (textNodes.length > 0) {
-                            newChildren.push({
-                                type: 'paragraph',
-                                children: textNodes,
-                                data: {
-                                    hName: 'figcaption',
-                                    hProperties: { class: 'md-figcaption' },
-                                },
-                            });
-                        }
-                    } else {
-                        newChildren.push(child);
                     }
-                }
 
-                dir.children = newChildren;
-            },
-        );
+                    if (images.length > 0) {
+                        newChildren.push({
+                            type: 'paragraph',
+                            children: images,
+                            data: c.data,
+                        } as BlockContent);
+                    }
+
+                    if (textNodes.length > 0) {
+                        newChildren.push({
+                            type: 'paragraph',
+                            children: textNodes,
+                            data: {
+                                hName: 'figcaption',
+                                hProperties: { class: 'md-figcaption' },
+                            },
+                        } as BlockContent);
+                    }
+                } else {
+                    newChildren.push(child);
+                }
+            }
+
+            node.children = newChildren;
+        });
     };
 }
 

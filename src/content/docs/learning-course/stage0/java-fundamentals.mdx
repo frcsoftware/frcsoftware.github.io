@@ -1,7 +1,7 @@
 ---
 title: Java Fundamentals
 description: An Intro to print statements and variables
-prev: intro-to-java/java-fundamentals
+prev: learning-course/stage0/java-fundamentals
 next: false
 codeRegionSources:
     default: stage0/snippets/JavaFundamentals.java
@@ -22,9 +22,9 @@ Error messages will not tell you exactly what's wrong with your code.
 If you’re unsure on what the error message means, you can look it up to get additional context.
 
 <Slides>
-![Slide 1](/java-fundamentals/ErrorExample1.png) An example of a syntax error (note the squiggly line)
+![Slide 1](/learning-course/stage0/java-fundamentals/ErrorExample1.png) An example of a syntax error (note the squiggly line)
 
-![Slide 2](/java-fundamentals/ErrorExample2.png) An example of a syntax error popup
+![Slide 2](/learning-course/stage0/java-fundamentals/ErrorExample2.png) An example of a syntax error popup
 
 </Slides>
 
@@ -43,28 +43,29 @@ Datatype name = value;
 
 Data types refer to the type of value that our variable has.
 It helps tell our program more information about our variables such as what type of information it holds and how it can be used.
-Data types can include numbers, characters or a string of words.
+Data types can include numbers, characters, or a string of words.
 Some example data types that are commonly used in FRC programming are:
 
-- int: integer numbers that are positive or negative.
-  Int only allows numbers without decimals.
+- int: Integer numbers that are positive or negative.
+  int only allows numbers without decimals.
   Example: 12
-- double: numbers that are positive or negative.
+- double: Numbers that are positive or negative.
   Unlike int, double allows numbers with or without decimals.
   Example: 34.1
-- boolean: either True or False.
-- string: holds a sequence of characters.
+- boolean: Either `true` or `false`.
+- String: Holds a sequence of characters.
+  Denoted by double quotes (").
   Example: “Hello World”
-- char: holds a Single character.
+- char: Holds a single character.
+  Denoted by single quotes (').
   Example: 'A'
 
-The name of your variable can be whatever you want.
-However, it should be easy to read and make sense to others who may be reading your code.
-There are also some rules with variable names.
-The name of the variable can not include spaces.
-Instead you can write variables with camel case (frontLeftDrive).
-Upper camel case (FRONT_LEFT_DRIVE) is used for constants which we will learn about later on in the course.
-Variable names can have numbers any point except the first character.
+The name of your variable can be almost anything you want, but it should be easy to read and make sense to others who may be reading your code.
+One major exception is spaces, which are forbidden in variable names.
+Instead, you should write variables in what's known as camel case (`frontLeftDrive`).
+Upper snake case (`FRONT_LEFT_DRIVE`) should be used instead for constants, which we will learn about later in the course.
+Variable names can have numbers at any point except for the first character.
+(`motor2` is a valid name, `2motor` is not).
 
 <Aside type="note">
 Java is a case-sensitive programming language!
@@ -80,8 +81,8 @@ Semi-colons are used commonly in programming and aren’t only for creating vari
 We will see more examples of this later in the course.
 
 In FRC, variables can be used to hold information about the robot and its different mechanisms.
-The example below shows 3 variables that were used for a climber mechanism, CLIMBER_ID is an integer that holds the motor controller ID number which is 51.
-UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double that holds the value 0.
+The example below shows 3 variables that were used for a climber mechanism, `CLIMBER_ID` is an integer that holds the motor controller ID number which is 51.
+`UP_POSITION` is a double that holds the value -33.5 and `DOWN_POSITION` is a double that holds the value 0.
 
 ```java #variables
 
@@ -91,7 +92,7 @@ UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double
 
 <Aside type="note">
 In FRC, we tend to avoid print statements and instead have other methods of debugging code, which we will talk about in a later section.
-However, for this section of the course we will use print statments.
+However, for this section of the course we will use print statements.
 
 </Aside>
 
@@ -104,7 +105,7 @@ A print statement in Java looks like:
 
 ```
 
-What the print statement does is take information inside the parentheses, in the above example, it’s “hello!”, and prints it out to the terminal screen.
+What the print statement does is take information inside the parentheses, in the previous example, it’s “hello!”, and prints it out to the terminal screen.
 When using a print statement, the text that we want to print out goes inside the parentheses and is in quotes.
 However, if we are printing out the value of a variable, then we do not need quotes, as shown below.
 
@@ -122,7 +123,7 @@ In Java, there are two types of comments: single-line comments and multi-line co
 ### Single-line Comments
 
 Single line comments begin with `//` and mark the rest of the line as being a comment.
-For example, the code below leave the note of "This prints out Hello World." above the print statment
+For example, the code below leaves the note of "This prints out Hello World." preceding the print statement
 
 ```java #singleLineComment
 
@@ -135,14 +136,18 @@ You will also see comments placed at the end of a line like the following
 ```
 
 Both examples accomplish the same tasks and there is no difference.
-Whether you put your comments above or next to code is up to you and what makes the most sense for your code.
+Whether you put your comments preceding or alongside code is up to you and what makes the most sense for your code.
 
 ### Multi-line Comments
 
 Multi-line Comments start with `/*` and end with `*/` The text or code that is in between the two will turn into comments.
 Multi-line Comments are commonly used when you have many lines of text or need to turn a large amount of code into a comment.
-For example, this is a comment with two lines of text
+For example, this is a comment with two lines of text.
 
 ```java #multiLineComment
 
 ```
+
+## Java Fundamentals Exercise
+
+<Aside type="exercise">WIP</Aside>
