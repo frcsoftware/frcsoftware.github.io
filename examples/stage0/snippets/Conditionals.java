@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-boolean condition_A;
-boolean condition_B;
+boolean conditionA;
+boolean conditionB;
 boolean condition;
 
 class Drivetrain {
@@ -33,10 +33,10 @@ void main() {
     // [/ifExample]
 
     // [elseIfSyntax]
-    if (condition_A) {
-    // code to run when condition_A is true
-    } else if (condition_B) {
-    // code to run when Condition_B is true
+    if (conditionA) {
+    // code to run when conditionA is true
+    } else if (conditionB) {
+    // code to run when ConditionB is true
     }
     // [/elseIfSyntax]
 
