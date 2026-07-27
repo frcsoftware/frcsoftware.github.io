@@ -1,5 +1,3 @@
-// @ts-check
-
 // Script to check if pnpm-lock.yaml is in sync with package.json.
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';

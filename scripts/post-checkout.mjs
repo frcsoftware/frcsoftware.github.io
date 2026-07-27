@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// @ts-check
 // scripts/post-checkout.ts
 //
 // Cross-platform pnpm sync check for git's post-checkout hook.

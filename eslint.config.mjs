@@ -1,9 +1,8 @@
-// @ts-check
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
-import process from 'node:process';
 import globals from 'globals';
+import process from 'node:process';
+import tseslint from 'typescript-eslint';
 
 import { defineConfig } from 'eslint/config';
 export default defineConfig([

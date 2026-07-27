@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import('lint-staged').Configuration} */
 export default {
     '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
