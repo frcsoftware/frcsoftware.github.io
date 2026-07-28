@@ -147,11 +147,19 @@ function validateSource(filePath: string) {
 }
 
 function walkExamples(dir: string) {
+    if (dir.indexOf('build') != -1 || dir.indexOf('gradle') != -1) {
+        // don't even bother with directories that won't contain source files
+        return;
+    }
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
         const full = join(dir, entry.name);
         if (entry.isDirectory()) {
             walkExamples(full);
         } else {
+            if (!full.endsWith('.java')) {
+                // we only care about source files
+                continue;
+            }
             validateSource(full);
         }
     }
