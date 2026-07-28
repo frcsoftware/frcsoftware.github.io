@@ -14,7 +14,6 @@ export default {
         remarkPresetLintRecommended,
         remarkNoInlineCodeFences,
         remarkNoHtmlLinks,
-        // @ts-expect-error I don't think we should add node types to an astro project?
         // only run dead link checker in CI to save time in dev
         process.env.CI
             ? [
