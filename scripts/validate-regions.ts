@@ -1,10 +1,11 @@
 import { readFileSync, readdirSync } from 'fs';
-import { join, relative } from 'path';
+import { basename, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const EXAMPLES_DIR = join(ROOT, 'examples');
 const DOCS_DIR = join(ROOT, 'src', 'content', 'docs');
+const SKIP_DIRS = new Set(['build', '.gradle', 'node_modules']);
 
 const START_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[(\w+)\]\s*$/;
 const END_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/(\w+)\]\s*$/;
@@ -148,8 +149,7 @@ function validateSource(filePath: string) {
 }
 
 function walkExamples(dir: string) {
-    if (dir.indexOf('build') != -1 || dir.indexOf('gradle') != -1) {
-        // don't even bother with directories that won't contain source files
+    if (SKIP_DIRS.has(basename(dir))) {
         return;
     }
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
