@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-// scripts/post-checkout.ts
-//
-// Cross-platform pnpm sync check for git's post-checkout hook.
-// Git calls this with three args: <prevHead> <newHead> <isBranchCheckout>
 
 import { execSync } from 'node:child_process';
 import { hashLockfile, readStamp } from './stamp.mjs';
