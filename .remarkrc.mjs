@@ -14,19 +14,23 @@ export default {
         remarkPresetLintRecommended,
         remarkNoInlineCodeFences,
         remarkNoHtmlLinks,
-        [
-            remarkLintNoDeadUrls,
-            {
-                skipLocalhost: false,
-                skipOffline: true,
-                skipUrlPatterns: [
-                    'https://github.com/signup',
-                    'https://code.visualstudio.com/',
-                    'https://www.conventionalcommits.org/en/v1.0.0/',
-                    'https://vale.sh/',
-                    'https://squoosh.app/',
-                ], // Add known flaky URL patterns here
-            },
-        ],
+        // @ts-expect-error I don't think we should add node types to an astro project?
+        // only run dead link checker in CI to save time in dev
+        process.env.CI
+            ? [
+                  remarkLintNoDeadUrls,
+                  {
+                      skipLocalhost: false,
+                      skipOffline: true,
+                      skipUrlPatterns: [
+                          'https://github.com/signup',
+                          'https://code.visualstudio.com/',
+                          'https://www.conventionalcommits.org/en/v1.0.0/',
+                          'https://vale.sh/',
+                          'https://squoosh.app/',
+                      ], // Add known flaky URL patterns here
+                  },
+              ]
+            : () => undefined,
     ],
 };
