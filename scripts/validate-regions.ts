@@ -15,6 +15,7 @@ const CODE_REGION_SOURCES_KEY_RE = /^codeRegionSources:\s*$/;
 const CODE_REGION_SOURCE_ENTRY_RE = /^\s+([\w-]+):\s*(.+?)\s*$/;
 
 const errors: string[] = [];
+const extensions: Set<string> = new Set();
 
 function parseCodeRegionSources(content: string): Map<string, string> {
     const sources = new Map<string, string>();
@@ -35,9 +36,9 @@ function parseCodeRegionSources(content: string): Map<string, string> {
         const m = line.match(CODE_REGION_SOURCE_ENTRY_RE);
         if (m) {
             sources.set(m[1]!, m[2]!);
+            extensions.add(m[2]!.split('.').at(-1)!);
         }
     }
-
     return sources;
 }
 
@@ -156,7 +157,7 @@ function walkExamples(dir: string) {
         if (entry.isDirectory()) {
             walkExamples(full);
         } else {
-            if (!full.endsWith('.java')) {
+            if (!extensions.has(full.split('.').at(-1)!)) {
                 // we only care about source files
                 continue;
             }
