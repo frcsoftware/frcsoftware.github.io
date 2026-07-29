@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const EXAMPLES_DIR = join(ROOT, 'examples');
 const DOCS_DIR = join(ROOT, 'src', 'content', 'docs');
-const SKIP_DIRS = new Set(['build', '.gradle', 'node_modules']);
+const SKIP_DIRS = new Set(['build', '.gradle', 'node_modules', 'gradle']);
 
 const START_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[(\w+)\]\s*$/;
 const END_RE = /^\s*(?:\/\/|#|--|<!--|-->)?\s*\[\/(\w+)\]\s*$/;
