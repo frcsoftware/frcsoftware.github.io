@@ -35,3 +35,4 @@ bun.lock
 # IntelliJ
 .idea
 .eslintcache
+tsconfig.tsbuildinfo

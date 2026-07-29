@@ -3,9 +3,11 @@
     "include": [".astro/types.d.ts", "**/*"],
     "exclude": ["dist"],
     "compilerOptions": {
+        "lib": ["DOM", "ESNext"],
         "paths": {
             "@components/*": ["./src/components/*"]
         },
-        "checkJs": true
+        "checkJs": true,
+        "incremental": true
     }
 }
