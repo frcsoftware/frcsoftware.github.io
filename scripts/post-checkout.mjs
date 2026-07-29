@@ -4,7 +4,7 @@ import { execSync } from 'node:child_process';
 import { hashLockfile, readStamp } from './stamp.mjs';
 
 function main() {
-    const [, , , isBranchCheckoutArg] = process.argv;
+    const [, , , , isBranchCheckoutArg] = process.argv;
 
     if (isBranchCheckoutArg !== '1') {
         process.exit(0);

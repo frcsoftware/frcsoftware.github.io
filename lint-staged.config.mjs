@@ -2,7 +2,7 @@
 export default {
     '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
     '**/*.{astro,ts,mjs,js}': (files) => `eslint --fix ${files.join(' ')}`,
-    'src/content/*.{md,mdx}': (files) => [
+    'src/content/**/*.{md,mdx}': (files) => [
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
     ],
     'examples/**/*.{java,gradle}': () => [
