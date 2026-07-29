@@ -56,22 +56,12 @@
         "remark-frontmatter": "^5.0.0",
         "remark-lint-no-dead-urls": "^2.0.1",
         "remark-mdx": "^3.1.1",
+        "globals": "^16.5.0",
         "remark-preset-lint-recommended": "^7.0.1",
         "starlight-links-validator": "^0.20.0",
         "tsx": "^4.22.4",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.61.1",
         "vfile": "^6.0.3"
-    },
-    "lint-staged": {
-        "**/*": [
-            "pnpm format",
-            "pnpm lint"
-        ],
-        "examples/**/*.java": "sh -c 'cd examples && ./gradlew spotlessApply'",
-        "src/data/glossary.ts": [
-            "pnpm generate:glossary",
-            "git add src/content/docs/resources/glossary.mdx"
-        ]
     }
 }
