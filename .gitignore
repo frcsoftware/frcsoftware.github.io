@@ -34,3 +34,4 @@ bun.lock
 
 # IntelliJ
 .idea
+.eslintcache
