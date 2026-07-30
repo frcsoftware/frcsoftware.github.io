@@ -7,7 +7,7 @@
 :root {
     /* Layout */
     --sl-content-width: 85rem !important;
-    --sl-nav-height: 5.5rem !important;
+    --sl-nav-height: 3.5rem !important;
 
     /* Typography */
     --sl-font: 'Inter', system-ui, sans-serif !important;
@@ -193,17 +193,6 @@ section[class*='hero'] a:hover svg {
 :root[data-theme='dark'] [class*='hero']:has(a:hover) img {
     filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3))
         drop-shadow(0 0 50px rgba(255, 255, 255, 0.15)) !important;
-}
-
-/* ==========================================================================
-   Mobile Sidebar Toggle (Hide Starlight's default - we use unified menu)
-   ========================================================================== */
-
-@media (max-width: 1350px) {
-    /* Hide Starlight's default sidebar toggle - we merged it into header menu */
-    starlight-menu-button {
-        display: none !important;
-    }
 }
 
 /* ==========================================================================
