@@ -112,7 +112,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                 },
                                 {
                                     label: 'Kitbot Drivetrain',
-                                    slug:'learning-course/stage1/stage1a/kitbot-drivetrain'
+                                    slug: 'learning-course/stage1/stage1a/kitbot-drivetrain',
                                 },
                                 // {
                                 //     label: 'TBD',
