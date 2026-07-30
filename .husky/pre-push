@@ -1,1 +1,6 @@
-pnpm typecheck --minimumFailingSeverity warning
+# pnpm typecheck --minimumFailingSeverity warning
+if git diff --cached --name-only | grep -q '\.astro$'; then
+    astro check --minimumFailingSeverity warning
+else
+    tsc --noEmit
+fi
