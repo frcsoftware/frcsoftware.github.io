@@ -11,16 +11,16 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 The kitbot uses a 4 motor tank drive meaning the left and right sides are driven independently by 2 motors each. This allows 
 the robot to move similar to a tank by driving the left and right sides at different speeds.
-For this stage the four drivetrain motors will be refered to as `leftLeader`, `leftFollower`, `rightLeader`, `rightFollower`.
+For this stage, the four drivetrain motors will be referred to as `leftLeader`, `leftFollower`, `rightLeader`, `rightFollower`.
 
 # Motor Controllers
 The core of frc programing is controlling motors. This can be done by giving commands to their motor controllers.
-Vendors provide classes that can be used to both control and get sensor data from their motor controllers.
+Vendors, such as REV or CTRE, provide classes that can be used to both control and get sensor data from their motor controllers.
 While each individual type of motor controller has its own class, motor controllers from the same vendor are
 mostly interacted with in the same way so this stage will only use the `SparkMax` for REV code and the `TalonFX` for CTRE code.
 
 When creating a motor controller object, the physical motor controller's CAN ID and the CAN Bus ID are given
-in the constructor so the code can comunicate with the proper controller. For this exercise the motor controllers will have the Ids:
+in the constructor so the code can communicate with the proper controller. For this exercise the motor controllers will have the IDs:
 - `leftLeader`: CAN Bus 0, CAN ID 0
 - `leftFollower`: CAN Bus 0, CAN ID 1
 - `rightLeader`: CAN Bus 0, CAN ID 2
@@ -32,13 +32,15 @@ This is how the motor controller objects for the left motors will look.
     <TabItem label = "CTRE">
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsLeft
         ```
-        For the CTRE code the CAN ID of the leader motors are stored as a variable since they will be used latter on to tell the follower what motor controller to follow.
+For the CTRE code, the CAN ID of the leader motors are stored as a variable since they will be used later on to tell the follower what motor controller to follow.
         This helps prevent errors from occuring by ensuring that there is a single source of truth for the corrrect CAN ID.
     </TabItem>
     <TabItem label = "REV">
         ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DriveMotorsLeft
         ```
-        Since the Spark Max can control both brushed and brushless motors it's neccesary to specify the type as `MotorType.kBrushless` for motors like a NEO and `MotorType.kBrushed` for motors like a CIM.
+ Since the Spark Max can control both brushed and brushless motors it's necessary to specify the type as `MotorType.kBrushless` for motors like a NEO and `MotorType.kBrushed` for motors like a CIM.
+
+When writing code for a real robot, make sure your motor type is set correctly! Setting a NEO to `MotorType.kBrushed` may cause unintended or unwanted effects.  
     </TabItem>
 </Tabs>
 
@@ -56,19 +58,17 @@ Now try creating the right motor controllers on your own.
         </TabItem>
     </Tabs>
 </details>
-
-# Configuration
+Motor Controllers have many settings that can be changed such as IDs, motor types, and limits.
+Vendors provide software, such as REV's REV Hardware Client 2 and CTRE's Phoenix Tuner X, to run and configure their devices from a computer.
 Motor Controllers have many settings that can be changed.
-Vendors provide software like REV Hardware Client and Pheonix Tuner X to run and configure their devices from a computer;
-however, it is recomended to configure devices through code to ensure that all motor controllers are properly configured.
+Vendors provide software, such as REV's REV Hardware Client 2 and CTRE's Phoenix Tuner X, to run and configure their devices from a computer.  
+However, it is recommended to configure devices through code to ensure that all motor controllers are properly configured.
 This is especially useful because it can be easy to forget all of the configurations that need to be added and their proper values.
 
 For this section only the motor controller's invert setting will be configured. This setting controls what direction
-the motor spins when the motor control is given a command with a positive speed.
-
 Since there are 2 motors on each side of the drivetrain, its important to ensure that the each of the motors on a side 
 move in sync with eachother. This can be accomplished by telling one of the motor controllers to follow the other. This
-tells the Follower to listen to the commands given to the Leader and is why one of the motors is named Leader and the other Follower.
+This is why one motor is named Leader and the other is Follower. The code tells the Follower to listen to the commands given to the Leader.
 
 Motor Controllers are configured by first creating a motor controller configuration object.
 This object stores the configuration so it can be changed and shared across different Motor Controllers.
@@ -85,7 +85,7 @@ This object stores the configuration so it can be changed and shared across diff
 </Tabs>
 
 Next, settings can be changed from their default by calling various functions on the configuration object with their new values.
-For the left motors, the invert setting will be true for REV code and Clockwise_Positive for CTRE code.
+For the left motors, the invert setting will be `true` for REV code and `Clockwise_Positive` for CTRE code.
 For the right motors the value will be the opposite.
 
 <Tabs>
