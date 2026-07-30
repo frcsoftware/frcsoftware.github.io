@@ -14,6 +14,20 @@ const props = Astro.props;
                 <div class="header-logo-section">
                     <SiteTitle {...props} />
                 </div>
+
+                <button
+                    type="button"
+                    class="mobile-menu-toggle"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="starlight__sidebar"
+                    data-mobile-menu-toggle
+                >
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
                 <div class="header-actions-section">
                     <div class="theme-toggle-wrapper">
                         <button
@@ -150,6 +164,45 @@ const props = Astro.props;
             document.addEventListener('DOMContentLoaded', initImageLightbox);
         }
         document.addEventListener('astro:page-load', initImageLightbox);
+    })();
+</script>
+
+<script is:inline>
+    (() => {
+        const initMobileMenuToggle = () => {
+            const toggle = document.querySelector('[data-mobile-menu-toggle]');
+            const nativeButton = document.querySelector(
+                'starlight-menu-button',
+            );
+            const nativeInnerButton = nativeButton?.querySelector('button');
+
+            if (!toggle || !nativeButton || !nativeInnerButton) return;
+
+            toggle.addEventListener('click', () => nativeInnerButton.click());
+
+            const syncExpanded = () => {
+                toggle.setAttribute(
+                    'aria-expanded',
+                    nativeButton.getAttribute('aria-expanded') || 'false',
+                );
+            };
+
+            syncExpanded();
+            new MutationObserver(syncExpanded).observe(nativeButton, {
+                attributes: true,
+                attributeFilter: ['aria-expanded'],
+            });
+        };
+
+        if (
+            document.readyState === 'complete' ||
+            document.readyState === 'interactive'
+        ) {
+            initMobileMenuToggle();
+        } else {
+            document.addEventListener('DOMContentLoaded', initMobileMenuToggle);
+        }
+        document.addEventListener('astro:page-load', initMobileMenuToggle);
     })();
 </script>
 
@@ -343,7 +396,15 @@ const props = Astro.props;
         display: none !important;
     }
 
-    @media (max-width: 1350px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    @media (max-width: 50rem) {
+        .header-logo-section :global(.site-title span) {
+            display: none !important;
+        }
+
         .site-header-inner {
             padding: 0.5rem 1rem;
         }
@@ -360,6 +421,73 @@ const props = Astro.props;
             flex: 1 1 auto;
             min-width: 0;
             max-width: 200px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            gap: 6px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            overflow: visible;
+            position: relative;
+        }
+
+        .mobile-menu-toggle:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.9);
+            outline-offset: 2px;
+        }
+
+        .hamburger-line {
+            width: 22px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            position: absolute;
+            left: 50%;
+            margin-left: -11px;
+        }
+
+        .hamburger-line:nth-child(1) {
+            top: 11px;
+        }
+
+        .hamburger-line:nth-child(2) {
+            top: 50%;
+            margin-top: -1.5px;
+        }
+
+        .hamburger-line:nth-child(3) {
+            bottom: 11px;
+        }
+
+        .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(1) {
+            top: 50%;
+            margin-top: -1.5px;
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .mobile-menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(3) {
+            bottom: auto;
+            top: 50%;
+            margin-top: -1.5px;
+            transform: rotate(-45deg);
         }
     }
 </style>
