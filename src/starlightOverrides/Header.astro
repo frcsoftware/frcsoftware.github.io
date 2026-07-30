@@ -5,6 +5,7 @@ import { mdiWeatherNight, mdiWhiteBalanceSunny } from '@mdi/js';
 import MdiIcon from '../components/MdiIcon.astro';
 
 const props = Astro.props;
+const { hasSidebar } = Astro.locals.starlightRoute;
 ---
 
 <div class="header-wrapper">
@@ -15,18 +16,22 @@ const props = Astro.props;
                     <SiteTitle {...props} />
                 </div>
 
-                <button
-                    type="button"
-                    class="mobile-menu-toggle"
-                    aria-label="Toggle navigation menu"
-                    aria-expanded="false"
-                    aria-controls="starlight__sidebar"
-                    data-mobile-menu-toggle
-                >
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+                {
+                    hasSidebar && (
+                        <button
+                            type="button"
+                            class="mobile-menu-toggle"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded="false"
+                            aria-controls="starlight__sidebar"
+                            data-mobile-menu-toggle
+                        >
+                            <span class="hamburger-line" />
+                            <span class="hamburger-line" />
+                            <span class="hamburger-line" />
+                        </button>
+                    )
+                }
 
                 <div class="header-actions-section">
                     <div class="theme-toggle-wrapper">
