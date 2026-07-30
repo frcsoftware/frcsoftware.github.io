@@ -63,7 +63,7 @@ These include:
                 Remainder: Returns the remainder of two numbers after division
             </td>
             <td>int, double</td>
-            <td>`a / b`</td>
+            <td>`a % b`</td>
         </tr>
     </tbody>
 </table>
@@ -104,9 +104,9 @@ Without running the code, what is the value of `magicNumber`?
     <summary>Answer</summary>
     <div class="content">
         <p>
-            `magicNumber`'s new value is 12. This is because `magicNumber` holds
-            the value 6. When multiplied by 2, 6 becomes 12, which is the new
-            value of `magicNumber`.
+            `magicNumber`'s value remains 6. The value calculated inside
+            `println` only affects what gets printed, since it's never assigned
+            back to `magicNumber` using an equal sign.
         </p>
     </div>
 </details>
@@ -181,7 +181,7 @@ The main difference is that assignment operators are the shorthand version.
 Using assignment operators can help make code easier to read.
 It prevents having to write the variable name twice which can also be helpful in preventing code errors.
 
-In the example below, we have variables `a` which is set to 10, and variable `b` which is set to 5. Since `+=` adds 1 to `a`, `a` will hold the value of 11. Similarly, `b` will now hold the value of 4
+In the example below, we have variables `a` which is set to 10, and variable `b` which is set to 5. Since `+=` adds 2 to `a`, `a` will hold the value of 12. Similarly, `b` will now hold the value of 4
 
 ```java #arithmetic
 
@@ -196,19 +196,20 @@ For now, we can use the operators to change variables without using conditionals
         <tr>
             <th>Operator</th>
             <th>Description</th>
+            <th>Compatible Data Types</th>
             <th>Example</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>`++`</td>
-            <td>Increment: add 1 to a variable</td>
+            <td>Increment: adds 1 to a variable</td>
             <td>int, double</td>
             <td>`a++`</td>
         </tr>
         <tr>
             <td>`--`</td>
-            <td>Decrement: subtracts 1 to a variable</td>
+            <td>Decrement: subtracts 1 from a variable</td>
             <td>int, double</td>
             <td>`a--`</td>
         </tr>

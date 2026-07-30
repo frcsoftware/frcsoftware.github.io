@@ -3,6 +3,9 @@
     "type": "module",
     "version": "0.0.1",
     "packageManager": "pnpm@10.16.0",
+    "engines": {
+        "node": ">=24.0.0"
+    },
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
@@ -25,39 +28,39 @@
         "prepare": "husky"
     },
     "dependencies": {
-        "@astrojs/starlight": "^0.39.2",
+        "@astrojs/markdown-remark": "^7.2.1",
+        "@astrojs/starlight": "^0.41.4",
         "@mdi/js": "^7.4.47",
-        "astro": "^6.3.7",
+        "astro": "^7.1.3",
         "sharp": "^0.34.5",
         "unist-util-visit": "^5.1.0"
     },
     "devDependencies": {
         "@astrojs/check": "^0.9.9",
         "@eslint/js": "^10.0.1",
+        "@types/estree": "^1.0.9",
         "@types/mdast": "^4.0.4",
         "astro-eslint-parser": "^1.4.0",
         "eslint": "^10.5.0",
         "eslint-plugin-astro": "^1.7.0",
-        "mdx2vast": "^0.3.1",
+        "mdast-util-mdx": "^3.0.0",
         "husky": "^9.1.7",
         "lint-staged": "^17.0.8",
+        "mdast-util-mdx-jsx": "^3.2.0",
+        "mdx2vast": "^0.3.1",
         "prettier": "^3.8.4",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-sentences-per-line": "^0.2.3",
         "remark-cli": "^12.0.1",
         "remark-frontmatter": "^5.0.0",
+        "remark-lint-no-dead-urls": "^2.0.1",
         "remark-mdx": "^3.1.1",
+        "globals": "^16.5.0",
         "remark-preset-lint-recommended": "^7.0.1",
+        "starlight-links-validator": "^0.20.0",
         "tsx": "^4.22.4",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.61.1",
         "vfile": "^6.0.3"
-    },
-    "lint-staged": {
-        "**/*": [
-            "pnpm format",
-            "pnpm lint"
-        ],
-        "examples/**/*.java": "sh -c 'cd examples && ./gradlew spotlessApply'"
     }
 }

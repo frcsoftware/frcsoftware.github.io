@@ -19,7 +19,7 @@ export default function remarkCodeRegion() {
             const meta: string = node.meta || '';
 
             const token = meta.match(/^(\S+)/);
-            if (!token) return;
+            if (!token?.[1]) return;
 
             const raw = token[1];
             const hashIdx = raw.indexOf('#');
@@ -107,6 +107,6 @@ function dedent(str: string): string {
                 Math.min(min, l.match(/^[ \t]*/)?.[0].length ?? Infinity),
             Infinity,
         );
-    if (indent === 0 || !isFinite(indent)) return str;
+    if (indent === 0 || !Number.isFinite(indent)) return str;
     return lines.map((l) => l.slice(indent)).join('\n');
 }

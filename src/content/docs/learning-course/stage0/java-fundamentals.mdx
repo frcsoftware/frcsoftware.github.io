@@ -46,22 +46,26 @@ It helps tell our program more information about our variables such as what type
 Data types can include numbers, characters, or a string of words.
 Some example data types that are commonly used in FRC programming are:
 
-- int: integer numbers that are positive or negative.
-  Int only allows numbers without decimals.
+- int: Integer numbers that are positive or negative.
+  int only allows numbers without decimals.
   Example: 12
-- double: numbers that are positive or negative.
+- double: Numbers that are positive or negative.
   Unlike int, double allows numbers with or without decimals.
   Example: 34.1
-- boolean: either True or False.
-- string: holds a sequence of characters.
+- boolean: Either `true` or `false`.
+- String: Holds a sequence of characters.
+  Denoted by double quotes (").
   Example: “Hello World”
-- char: holds a Single character.
+- char: Holds a single character.
+  Denoted by single quotes (').
   Example: 'A'
 
-The name of your variable can be whatever you want, but it should be easy to read and make sense to others who may be reading your code.
-Some rules for variables include not using spaces, instead you writing variables with camel case (frontLeftDrive).
-Upper snake case (FRONT_LEFT_DRIVE) can be used for constants, which we will learn about later in the course.
-It should also be noted that variable names can have numbers at any point except for the first character.
+The name of your variable can be almost anything you want, but it should be easy to read and make sense to others who may be reading your code.
+One major exception is spaces, which are forbidden in variable names.
+Instead, you should write variables in what's known as camel case (`frontLeftDrive`).
+Upper snake case (`FRONT_LEFT_DRIVE`) should be used instead for constants, which we will learn about later in the course.
+Variable names can have numbers at any point except for the first character.
+(`motor2` is a valid name, `2motor` is not).
 
 <Aside type="note">
 Java is a case-sensitive programming language!
@@ -77,8 +81,8 @@ Semi-colons are used commonly in programming and aren’t only for creating vari
 We will see more examples of this later in the course.
 
 In FRC, variables can be used to hold information about the robot and its different mechanisms.
-The example below shows 3 variables that were used for a climber mechanism, CLIMBER_ID is an integer that holds the motor controller ID number which is 51.
-UP_POSITION is a double that holds the value -33.5 and DOWN_POSITION is a double that holds the value 0.
+The example below shows 3 variables that were used for a climber mechanism, `CLIMBER_ID` is an integer that holds the motor controller ID number which is 51.
+`UP_POSITION` is a double that holds the value -33.5 and `DOWN_POSITION` is a double that holds the value 0.
 
 ```java #variables
 
@@ -138,7 +142,7 @@ Whether you put your comments preceding or alongside code is up to you and what 
 
 Multi-line Comments start with `/*` and end with `*/` The text or code that is in between the two will turn into comments.
 Multi-line Comments are commonly used when you have many lines of text or need to turn a large amount of code into a comment.
-For example, this is a comment with two lines of text
+For example, this is a comment with two lines of text.
 
 ```java #multiLineComment
 

@@ -13,6 +13,12 @@ export type SidebarSection = {
     items: SidebarItem[];
 };
 
+export type Item = {
+    label: string;
+    href?: string;
+    items?: Item[];
+};
+
 // Define which URL paths belong to which sidebar section
 export const sidebarSections: Record<string, SidebarSection[]> = {
     // Home page - minimal sidebar or none
@@ -92,19 +98,36 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                     label: 'Stage 1',
                     collapsed: true,
                     items: [
-                        // {
-                        //     label: 'Stage 1 Introduction',
-                        //     slug: 'learning-course/stage-1a-commands/overview',
-                        // },
                         {
-                            label: 'Stage 1A: TBD',
+                            label: 'Stage 1 Introduction',
+                            slug: 'learning-course/stage1/stage-overview',
+                        },
+                        {
+                            label: 'Stage 1A',
                             collapsed: true,
-                            items: [],
+                            items: [
+                                {
+                                    label: 'Stage 1A Introduction',
+                                    slug: 'learning-course/stage1/stage1a/stage-overview',
+                                },
+                                // {
+                                //     label: 'TBD',
+                                //     slug: 'stage-1a-commands/the-command-body',
+                                // },
+                                // {
+                                //     label: 'TBD',
+                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
+                                // },
+                            ],
                         },
                         {
                             label: 'Stage 1B: Commands',
                             collapsed: true,
                             items: [
+                                {
+                                    label: 'Stage 1B Introduction',
+                                    slug: 'learning-course/stage1/stage1b/stage-overview',
+                                },
                                 {
                                     label: 'The Concepts',
                                     slug: 'learning-course/stage1/stage1b/command-based-overview',
@@ -175,6 +198,35 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                     ],
                 },
                 { label: 'Stage 2', slug: 'educators-guide/stage2' },
+            ],
+        },
+    ],
+
+    // Best Practices section
+    '/best-practices': [
+        {
+            label: 'Best Practices',
+            items: [
+                {
+                    label: 'Overview',
+                    slug: 'best-practices/overview',
+                },
+                {
+                    label: 'Git Usage',
+                    slug: 'best-practices/git-usage',
+                },
+                {
+                    label: 'GitHub Usage',
+                    slug: 'best-practices/github-usage',
+                },
+                {
+                    label: 'Code Formatter',
+                    slug: 'best-practices/code-formatter',
+                },
+                {
+                    label: 'CI Checks',
+                    slug: 'best-practices/ci-checks',
+                },
             ],
         },
     ],
@@ -295,12 +347,7 @@ export function getSidebarForPath(pathname: string): SidebarSection[] {
         }
     }
 
-    if (bestMatch) {
-        return sidebarSections[bestMatch];
-    }
-
-    // Default to home (empty sidebar)
-    return sidebarSections['/'] || [];
+    return sidebarSections[bestMatch || '/'] ?? sidebarSections['/'] ?? [];
 }
 
 /**
@@ -349,12 +396,10 @@ export function getPrevNextLinks(pathname: string): {
     if (currentIndex === -1) {
         return { prev: null, next: null };
     }
-
+    const prev = allLinks.at(currentIndex - 1) ?? null;
+    const next = allLinks.at(currentIndex + 1) ?? null;
     return {
-        prev: currentIndex > 0 ? allLinks[currentIndex - 1] : null,
-        next:
-            currentIndex < allLinks.length - 1
-                ? allLinks[currentIndex + 1]
-                : null,
+        prev,
+        next,
     };
 }
