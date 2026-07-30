@@ -27,15 +27,17 @@ import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
  */
 public class Robot extends OpModeRobot {
 
-  // [DriveMotors]
+  // [DriveMotorsLeft]
   private final int leftLeaderID = 0;
   public TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
   private TalonFX leftFollower = new TalonFX(1, CANBus.systemcore(0));
+  // [/DriveMotorsLeft]
 
+  // [DriveMotorsRight]
   private final int rightLeaderID = 2;
   public TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
   private TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
-  // [/DriveMotors]
+  // [/DriveMotorsRight]
 
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
@@ -55,16 +57,25 @@ public class Robot extends OpModeRobot {
    * initialization code.
    */
   public Robot() {
-    // [MotorConfig]
+    // [MotorConfigCreationLeft]
     var leftConfig = new TalonFXConfiguration();
+    // [/MotorConfigCreationLeft]
+    // [MotorConfigSetLeft]
     leftConfig.MotorOutput.withInverted(InvertedValue.Clockwise_Positive);
+    // [/MotorConfigSetLeft]
+    // [MotorConfigLeft]
     leftLeader.getConfigurator().apply(leftConfig);
+    leftFollower.getConfigurator().apply(leftConfig);
 
+    leftFollower.setControl(new Follower(leftLeaderID, MotorAlignmentValue.Aligned));
+    // [/MotorConfigLeft]
+
+    // [MotorConfig]
     var rightConfig = new TalonFXConfiguration();
     rightConfig.MotorOutput.withInverted(InvertedValue.CounterClockwise_Positive);
     rightLeader.getConfigurator().apply(rightConfig);
+    rightFollower.getConfigurator().apply(leftConfig);
 
-    leftFollower.setControl(new Follower(leftLeaderID, MotorAlignmentValue.Aligned));
     rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
     // [/MotorConfig]
   }

@@ -19,12 +19,14 @@ import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
 public class Robot extends OpModeRobot {
 
-  // [DriveMotors]
+  // [DriveMotorsLeft]
   private SparkMax leftLeader = new SparkMax(0, 0, MotorType.kBrushless);
   private SparkMax leftFollower = new SparkMax(0, 1, MotorType.kBrushless);
+  // [/DriveMotorsLeft]
+  // [DriveMotorsRight]
   private SparkMax rightLeader = new SparkMax(0, 2, MotorType.kBrushless);
   private SparkMax rightFollower = new SparkMax(0, 3, MotorType.kBrushless);
-  // [/DriveMotors]
+  // [/DriveMotorsRight]
 
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
 
@@ -40,16 +42,24 @@ public class Robot extends OpModeRobot {
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   public Robot() {
-    // [MotorConfig]
-    var leftConfig = new SparkMaxConfig().inverted(true);
+    // [MotorConfigCreationLeft]
+    var leftConfig = new SparkMaxConfig();
+    // [/MotorConfigCreationLeft]
+    // [MotorConfigSetLeft]
+    leftConfig.inverted(true);
+    // [/MotorConfigSetLeft]
+    // [MotorConfigLeft]
     leftLeader.configure(
         leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     leftFollower.configure(
         leftConfig.follow(leftLeader),
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
+    // [/MotorConfigLeft]
 
-    var rightConfig = new SparkMaxConfig().inverted(false);
+    // [MotorConfig]
+    var rightConfig = new SparkMaxConfig();
+    rightConfig.inverted(false);
     rightLeader.configure(
         rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     rightFollower.configure(
