@@ -1,6 +1,24 @@
+const runPrettierOn =
+    '**/*.{' +
+    [
+        '.js',
+        '.mjs',
+        '.ts',
+        '.json',
+        '.json5',
+        '.jsonc',
+        '.css',
+        '.md',
+        '.mdx',
+        '.yaml',
+        '.yml',
+        '.astro',
+    ].join(',') +
+    '}';
+
 /** @type {import('lint-staged').Configuration} */
 export default {
-    '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
+    [runPrettierOn]: (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
     '**/*.{astro,ts,mjs,js}': (files) => `eslint --fix ${files.join(' ')}`,
     'src/content/**/*.{md,mdx}': (files) => [
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
