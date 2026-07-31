@@ -16,109 +16,79 @@
 import { visit } from 'unist-util-visit';
 import type { Root } from 'mdast';
 
-interface ImageNode {
-    url: string;
-    data?: {
-        hName?: string;
-        hProperties?: Record<string, unknown>;
-    };
-}
-
-interface ParentNode {
-    type: string;
-    children: { type: string }[];
-    data?: {
-        hName?: string;
-        hProperties?: Record<string, unknown>;
-    };
-}
-
 export function remarkImageAttributes() {
     return (tree: Root) => {
-        visit(
-            tree,
-            'paragraph',
-            (
-                node: ParentNode,
-                index: number | undefined,
-                parent: ParentNode | undefined,
-            ) => {
-                if (!parent || index === undefined) return;
+        visit(tree, 'paragraph', (node, index, parent) => {
+            if (!parent || index === undefined) return;
 
-                const children = node.children;
+            const children = node.children;
 
-                // Look for images with hash attributes in URL
-                for (let i = 0; i < children.length; i++) {
-                    const child = children[i];
+            // Look for images with hash attributes in URL
+            for (const child of children) {
+                if (child.type === 'image') {
+                    const url = child.url;
 
-                    if (child.type === 'image') {
-                        const imageNode = child as unknown as ImageNode;
-                        const url = imageNode.url;
+                    // Check for hash in URL
+                    const hashIndex = url.indexOf('#');
+                    if (hashIndex !== -1) {
+                        const attributesStr = url.substring(hashIndex + 1);
+                        const cleanUrl = url.substring(0, hashIndex);
 
-                        // Check for hash in URL
-                        const hashIndex = url.indexOf('#');
-                        if (hashIndex !== -1) {
-                            const attributesStr = url.substring(hashIndex + 1);
-                            const cleanUrl = url.substring(0, hashIndex);
+                        // Update image URL to remove hash
+                        child.url = cleanUrl;
 
-                            // Update image URL to remove hash
-                            imageNode.url = cleanUrl;
+                        // Parse attributes
+                        const attributes = parseAttributes(attributesStr);
 
-                            // Parse attributes
-                            const attributes = parseAttributes(attributesStr);
+                        // Get alignment (default: center)
+                        const align = attributes.align || 'center';
+                        // Use 'w' for width (number becomes percentage)
+                        const width = attributes.w
+                            ? `${attributes.w}%`
+                            : '100%';
+                        const border = attributes.border || '';
 
-                            // Get alignment (default: center)
-                            const align = attributes.align || 'center';
-                            // Use 'w' for width (number becomes percentage)
-                            const width = attributes.w
-                                ? `${attributes.w}%`
-                                : '100%';
-                            const border = attributes.border || '';
-
-                            // Build inline styles for the image
-                            let imgStyle = `width: ${width};`;
-                            if (border) {
-                                imgStyle += ` border: ${border};`;
-                            }
-
-                            // Set image properties
-                            imageNode.data = imageNode.data || {};
-                            imageNode.data.hProperties =
-                                imageNode.data.hProperties || {};
-                            imageNode.data.hProperties.style = imgStyle;
-
-                            // Store attributes as data-* for Slides component to read
-                            if (attributes.w) {
-                                imageNode.data.hProperties['data-slide-width'] =
-                                    attributes.w;
-                            }
-                            if (border) {
-                                imageNode.data.hProperties[
-                                    'data-slide-border'
-                                ] = border;
-                            }
-                            if (attributes.align) {
-                                imageNode.data.hProperties['data-slide-align'] =
-                                    attributes.align;
-                            }
-
-                            // Wrap the paragraph to act as a container
-                            node.data = node.data || {};
-                            node.data.hName = 'div';
-                            node.data.hProperties = node.data.hProperties || {};
-                            node.data.hProperties.class = `img-wrapper img-align-${align}`;
-                        } else if (children.length === 1) {
-                            // Standalone image without attributes - still wrap and center
-                            node.data = node.data || {};
-                            node.data.hName = 'div';
-                            node.data.hProperties = node.data.hProperties || {};
-                            node.data.hProperties.class =
-                                'img-wrapper img-align-center';
+                        // Build inline styles for the image
+                        let imgStyle = `width: ${width};`;
+                        if (border) {
+                            imgStyle += ` border: ${border};`;
                         }
+
+                        // Set image properties
+                        child.data = child.data || {};
+                        child.data.hProperties = child.data.hProperties || {};
+                        child.data.hProperties.style = imgStyle;
+
+                        // Store attributes as data-* for Slides component to read
+                        if (attributes.w) {
+                            child.data.hProperties['data-slide-width'] =
+                                attributes.w;
+                        }
+                        if (border) {
+                            child.data.hProperties['data-slide-border'] =
+                                border;
+                        }
+                        if (attributes.align) {
+                            child.data.hProperties['data-slide-align'] =
+                                attributes.align;
+                        }
+
+                        // Wrap the paragraph to act as a container
+                        node.data = node.data || {};
+                        node.data.hName = 'div';
+                        node.data.hProperties = node.data.hProperties || {};
+                        node.data.hProperties.class = `img-wrapper img-align-${align}`;
+                    } else if (children.length === 1) {
+                        // Standalone image without attributes - still wrap and center
+                        node.data = node.data || {};
+                        node.data.hName = 'div';
+                        node.data.hProperties = node.data.hProperties || {};
+                        node.data.hProperties.class =
+                            'img-wrapper img-align-center';
                     }
                 }
-            },
-        );
+            }
+        });
     };
 }
 
@@ -131,7 +101,7 @@ function parseAttributes(str: string): Record<string, string> {
     for (const part of parts) {
         if (part.includes('=')) {
             const [key, ...valueParts] = part.split('=');
-            // Replace underscores with spaces for border values
+            if (!key || valueParts.length === 0) continue;
             const value = valueParts.join('=').replace(/_/g, ' ');
             attrs[key] = value;
         } else if (part === 'border') {

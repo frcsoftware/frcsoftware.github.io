@@ -11,26 +11,26 @@ double DOWN_POSITION = 0;
 
 void main() {
     // [printLiteral]
-    System.out.print("hello!");
+    System.out.println("hello!");
     // [/printLiteral]
 
     // [printVariable]
     int number = 4;
-    System.out.print(number); // prints out the value 4
+    System.out.println(number); // prints out the value 4
     // [/printVariable]
 
     // [singleLineComment]
     // This prints Hello World
-    System.out.print("Hello World");
+    System.out.println("Hello World");
     // [/singleLineComment]
 
     // [inlineComment]
-    System.out.print("Hello World"); // This prints Hello World
+    System.out.println("Hello World"); // This prints Hello World
     // [/inlineComment]
 
     // [multiLineComment]
     /* This prints Hello World
     This is another line */
-    System.out.print("Hello World");
+    System.out.println("Hello World");
     // [/multiLineComment]
 }
