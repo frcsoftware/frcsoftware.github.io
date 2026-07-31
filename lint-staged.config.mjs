@@ -1,18 +1,18 @@
 const runPrettierOn =
     '**/*.{' +
     [
-        '.js',
-        '.mjs',
-        '.ts',
-        '.json',
-        '.json5',
-        '.jsonc',
-        '.css',
-        '.md',
-        '.mdx',
-        '.yaml',
-        '.yml',
-        '.astro',
+        'js',
+        'mjs',
+        'ts',
+        'json',
+        'json5',
+        'jsonc',
+        'css',
+        'md',
+        'mdx',
+        'yaml',
+        'yml',
+        'astro',
     ].join(',') +
     '}';
 
