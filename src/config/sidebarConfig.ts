@@ -315,7 +315,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 { label: 'Overview', slug: 'resources' },
                 { label: 'Glossary', slug: 'resources/glossary' },
-                { label: 'Docs', slug: 'resources/docs' },
+                { label: 'Documentation', slug: 'resources/docs' },
             ],
         },
     ],
