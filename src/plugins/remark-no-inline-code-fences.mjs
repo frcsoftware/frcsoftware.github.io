@@ -1,4 +1,3 @@
-// @ts-check
 /// <reference types="mdast-util-mdx" />
 import { visit } from 'unist-util-visit';
 
