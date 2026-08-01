@@ -38,8 +38,10 @@ public class Robot extends OpModeRobot {
       new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
+  // [DrivetrainInstance]
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
+  // [/DrivetrainInstance]
 
   public Robot() {
     // [MotorConfigCreationLeft]

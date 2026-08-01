@@ -206,19 +206,17 @@ Remember that some of the configurations may be different.
 
 </details>
 
-#Arcade Drive
+# Arcade Drive
 
 ADD IMAGE OF LABELED JOYSTICK FOR ARCADE DRIVE PLS
 
 There are several ways to control a tank drive, but this stage will be using arcade drive.
-Arcade drive uses a single joystick to control the direction of travel and rotation.
+Arcade drive uses a single joystick to control both the direction of travel and the rotation of the robot.
 The y-axis of the joystick is used to control how fast the robot drives forward or backward while the x-axis controls how fast the robot rotates clockwise or counter clockwise.
 WPIlib provides a class to convert joystick inputs into commands for the motors to follow called `DifferentialDrive`.
 
 An instance of `DifferentialDrive` should be created under where the motor controllers were declared.
 
-<details class="accordion">
-    <summary>Solution</summary>
     <Tabs>
         <TabItem label="CTRE">
 
@@ -234,16 +232,15 @@ An instance of `DifferentialDrive` should be created under where the motor contr
         </TabItem>
     </Tabs>
 
-</details>
-
 Notice how the `DifferentialDrive` constructor takes the form `DifferentialDrive(DoubleConsumer leftMotor, DoubleConsumer rightMotor)`.
-When created the `DifferentialDrive` is asking for a `DoubleConsumer` for the left and right motors.
+When created the `DifferentialDrive` is asking for a `DoubleConsumer` that it can use to drive the left and right motors.
 A `Consumer` is simply a function that takes something as an input so a `DoubleConsumer` is a function that takes a double as an input when called.
-When given a joystick input, the `DifferentialDrive` instance will call the functions provided to it automatically commanding the motors to move to produce the desired motion.
 The `motorController:setThrottle` syntax is used to proved the `DifferentialDrive` instance with the motor controllers `setThrottle()` function.
 This function commands the motor to run a percentage of their maximum speed, also known as duty cycle, with an input from -1.0 to 1.0.
-Therefore, when provided with input from the joysticks, the `DifferentialDrive` instance will call the provided motors controller's `setThrottle()` functions with the correct duty cycle to produce the commanded motion.
+This allows the `DifferentialDrive` instance to call the provided motors controller's `setThrottle()` functions with the correct duty cycle when provided with input from the joysticks.
 
 <Aside>
-The `DifferentialDrive` instance was only provided with the Leader motor controller's `setThrottle()` functions since the Follower motors will automatically follow.
+    The `DifferentialDrive` instance only needs to be provided with the Lead
+    motor controller's `setThrottle()` functions since the Follower motors will
+    automatically follow.
 </Aside>
