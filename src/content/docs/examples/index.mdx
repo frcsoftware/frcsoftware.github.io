@@ -1,0 +1,70 @@
+---
+title: Examples
+description: A programming reference featuring FRC robot code repositories, best practices, and innovative approaches
+---
+
+export const examples = [
+  {
+    title: '6328 2026 Code',
+    href: '/examples/6328-2026-code/',
+    image: '/examples/6328-2026-robot.png',
+    imageAlt: '6328 2026 robot render',
+    category: '',
+    description: 'Custom vision code, hub shift tracker, sotm with drum shooter, hood anti-decapitation trench bounds, battery state estimator, and a variety of Gradle plugins',
+  },
+  {
+    title: "1678's 2026 Code",
+    href: '/examples/1678-2026-code/',
+    image: '/examples/1678-2026-robot.png',
+    imageAlt: '1678 2026 robot render',
+    category: 'Shooter',
+    description: 'Team library, custom targeting system, and customer power analyzer',
+  },
+  {
+    title: '2910 2026 Code',
+    href: '/examples/581-2026-code/',
+    image: '/examples/581-2026-robot.png',
+    imageAlt: '581 2026 robot render',
+    category: 'Best Practices',
+    description: 'Advanced software practices, automation, and team programming documentation',
+  },
+];
+
+<section class="examples-hero">
+  <div class="examples-hero-copy">
+    <p class="examples-eyebrow">Repository examples</p>
+    <blockquote>
+      <p>Steal from the best, invent the rest.</p>
+      <cite>-Mike Corsetto, Team 1678</cite>
+    </blockquote>
+    <p class="hero-copy">
+      Don't be afraid to take inspiration from robot code that already solved hard programming problems.
+      This library collects code analysis and repositories so teams can study real examples, compare approaches, and build better code faster.
+    </p>
+  </div>
+</section>
+
+<section class="mechanism-section">
+  <div class="section-heading">
+    <p class="mechanism-eyebrow">Code analysis</p>
+    <h2>In-depth Examples</h2>
+    <p>These examples go beyond the source code and explain why the code was designed the way it was.</p>
+  </div>
+
+  <div class="featured-grid">
+    {examples.map((example) => (
+      <article class="featured-card">
+        {example.image && (
+          <div class="featured-image">
+            <img src={example.image} alt={example.imageAlt} loading="lazy" />
+          </div>
+        )}
+        <div class="featured-body">
+          <p class="category-label">{example.category}</p>
+          <h3><a href={example.href} class="featured-card-link">{example.title}</a></h3>
+          <p>{example.description}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

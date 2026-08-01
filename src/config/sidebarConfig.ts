@@ -202,6 +202,19 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
         },
     ],
 
+    // Examples section
+    '/examples': [
+        {
+            label: 'Examples',
+            items: [
+                {
+                    label: 'Overview',
+                    slug: 'examples',
+                },
+            ],
+        },
+    ],
+
     // Best Practices section
     '/best-practices': [
         {
