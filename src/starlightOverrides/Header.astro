@@ -373,12 +373,17 @@ for (const section of sidebarSections) {
             }
         };
 
-        const applyTheme = (/** @type {'light' | string} */ theme) => {
+        const applyTheme = (
+            /** @type {'light' | string} */ theme,
+            store = false,
+        ) => {
             const html = document.documentElement;
             const normalized = theme === 'light' ? 'light' : 'dark';
 
             html.dataset.theme = normalized;
-            setStoredTheme(normalized);
+            // Only persist an explicit user choice. Browser-derived themes must
+            // stay un-stored so the site keeps following the OS/browser setting.
+            if (store) setStoredTheme(normalized);
             // @ts-expect-error javascript...
             if (window.StarlightThemeProvider?.updatePickers) {
                 // @ts-expect-error javascript...
@@ -428,21 +433,37 @@ for (const section of sidebarSections) {
             });
         };
 
-        const init = () => {
-            let theme = getStoredTheme();
+        const getPreferredTheme = () =>
+            window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
 
-            if (!theme) {
-                theme = 'dark';
-            }
-            applyTheme(theme);
+        const init = () => {
+            const stored = getStoredTheme();
+            const explicit =
+                stored === 'light' || stored === 'dark' ? stored : null;
+
+            applyTheme(explicit || getPreferredTheme());
 
             document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
                 btn.addEventListener('click', () => {
-                    const current = getStoredTheme() || 'dark';
+                    const current =
+                        document.documentElement.dataset.theme ||
+                        getPreferredTheme();
                     const next = current === 'dark' ? 'light' : 'dark';
-                    applyTheme(next);
+                    applyTheme(next, true);
                 });
             });
+
+            const schemeQuery = window.matchMedia(
+                '(prefers-color-scheme: light)',
+            );
+            const onSchemeChange = () => {
+                if (!getStoredTheme()) {
+                    applyTheme(getPreferredTheme());
+                }
+            };
+            schemeQuery.addEventListener('change', onSchemeChange);
 
             initMobileMenu();
         };
