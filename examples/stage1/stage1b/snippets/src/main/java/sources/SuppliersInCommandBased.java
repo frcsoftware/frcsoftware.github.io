@@ -72,7 +72,7 @@ class SuppliersInCommandBased {
   void incorrectUsages() {
     // [runAtThrottleDouble]
     class Intake implements Mechanism {
-      // Placeholder for TalonFX, Spark Max or SparkFlex
+      // Placeholder for TalonFX, Spark Max or Spark Flex
       private final ExampleMotor motor = new ExampleMotor();
 
       public Command runAtThrottle(double throttle) {
