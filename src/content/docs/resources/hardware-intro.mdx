@@ -1,13 +1,12 @@
 ---
 title: Hardware Intro
 description: An introduction to hardware components for programmers
-codeRegionSources:
-    default: resources/src/main/java/sources/HardwareIntro.java
 ---
 
 ## Motors
 
-The difference between motors and motor controllers is motors are the physical actuators that move a robot's mechanisms while motor controllers are the electronic interfaces and control the speed and direction of the motor.
+The difference between motors and motor controllers is motors are the physical actuators that spin a robot's mechanisms while motor controllers are the electronic interfaces that control the speed and direction of the motor.
+Most motor controllers also offer smart abilities like onboard PID controllers and integrated encoders.
 
 Motor controllers are used throughout the robot in many mechanisms:
 
@@ -16,10 +15,6 @@ Motor controllers are used throughout the robot in many mechanisms:
 - Indexers: Move game pieces through the robot
 - Arms/Elevators: Raise and lower mechanisms (often with position control)
 - Climbers: Extend or retract climbing mechanisms
-
-```java #intake
-
-```
 
 CAN motor controllers are available through vendors such as CTR Electronics (Talon FX) and REV Robotics (SPARK MAX).
 
@@ -31,46 +26,32 @@ CAN motor controllers are available through vendors such as CTR Electronics (Tal
 Encoders are a sensor for measuring rotational motion.
 They are reliable and less-prone to noise and interference than analog devices (such as potentiometers) because they produce digital signals.
 They can return the position and velocity of a mechanism.
-Three common types of encoders in FRC are shafted encoders, on-shaft encoders, and magnetic encoders that vary in how they are mounted to mechanisms.
+Encoders come in a variety of form factors, and may be mounted at the end of a shaft or have a shaft run through them.
 Many motor controllers also have integrated encoders.
 Relative encoders track changes in position and reset to zero when the robot is turned off, while absolute encoders track exact, unique positions across a full rotation and retain this data even when powered off.
 
-```java #turret
+## Beam Break
 
-```
-
-## Beam Brake
-
-A beam brake detects if anything is between two points and returns a binary value.
-Beam brakes can be used to detect when game pieces pass a specific point on a robot.
-
-```java #indexer
-
-```
+A beam break detects if anything is between two points and returns a binary value.
+Beam breaks are typically [`DigitalInput`](https://github.wpilib.org/allwpilib/docs/2027/java/org/wpilib/hardware/discrete/DigitalInput.html)s and will return a `boolean`.
+Beam breaks can be used to detect when game pieces pass a specific point on a robot.
 
 ## Limit Switch
 
 A limit switch detects if something is at a certain position or distance and returns a binary value.
 Limit switches are often used to restrict the range of motion of a joint or detect the presence of game pieces.
-The main difference between beam brakes and limit switches is beam brakes use an emitter and reciever to identify game pieces while a limit switch is basically a touch sensor for mechanisms.
-
-```java #climber
-
-```
+The main difference between beam breaks and limit switches is beam breaks use an emitter and reciever to identify game pieces while a limit switch is basically a touch sensor for mechanisms.
 
 ## Inertial Measurement Units (IMUs)
 
 An IMU is a sensor that combines an accelerometer and a gyroscope.
-IMUs are used to measure a robot's orientation, rates of rotation, and acceleration.
+IMUs are used to measure a robot's orientation, rates of rotation, and acceleration and return these signals as a [`Rotation2d`](https://github.wpilib.org/allwpilib/docs/2027/java/org/wpilib/math/geometry/Rotation2d.html).
 They typically use degrees or radians for angular position (yaw/heading, pitch, and roll) and degrees per second or radians per second for angular velocity.
-They can be used to control robot heading and calculate its odometry.
+They can be used for robot heading readings and odometry calculations.
 The most popular IMUs in FRC are navX2, Pigeon 2.0, and the onboard SystemCore IMU.
+Note that the onboard SystemCore IMU is new for 2027 and has not undergone significant successful testing.
 
 One important thing to note is that gyros measure rate rather than position.
-Position is inferred by integrating the rate to calculate the total change in angle.
+Position is inferred by repeatedly measuring the angular velocity and multiplying those values by the delta time between readings.
 Gyro angle measurements are always relative to some arbitrary zero angle determined by the angle of the gyro either when the robot was turned on or a zeroing method was called.
 They can have accumulated errors (called “drift”) that increase in magnitude the longer the gyro is used.
-
-```java #drivetrain
-
-```
