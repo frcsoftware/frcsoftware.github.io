@@ -13,7 +13,7 @@ import org.wpilib.command3.Mechanism;
 class CommandsAndMechsPt2 {
   // [defaultCommand]
   class Intake implements Mechanism {
-    // Placeholder for TalonFX, SparkMax or SparkFlex
+    // Placeholder for TalonFX, Spark Max or SparkFlex
     private final ExampleMotor motor = new ExampleMotor();
 
     public Intake() {

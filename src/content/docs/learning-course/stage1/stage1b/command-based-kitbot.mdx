@@ -54,7 +54,7 @@ Then, create a new file in the `mechanisms` package named `Feeder.java`.
 Define a class named `Feeder` that implements `Mechanism`, then add the following:
 
 1. A private `TalonFX` motor controller object, named `motor`, with an ID of 5.
-   It is connected to a systemcore CANBus with ID 0.
+   It is connected to a SystemCore CANBus with ID 0.
 2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
 3. An `intake()` command that sets the throttle of the motor to -1 forever.
 4. An `outtake()` command that sets the throttle of the motor to 1 forever.
@@ -113,7 +113,7 @@ Create a file named `IntakeLauncher.java` in the `mechanisms` package.
 Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the following:
 
 1. A private `TalonFX` motor controller object, named `motor`, with an ID of 4.
-   It is connected to a systemcore CANBus with ID 0.
+   It is connected to a SystemCore CANBus with ID 0.
 2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor to 0.9 forever.
 3. A `intake()` command that sets throttle to 0.8 forever.
 4. A `outtake()` command that sets throttle to -0.8 forever.

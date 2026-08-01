@@ -5,7 +5,7 @@
  */
 package sources;
 
-/** This class acts as a stand-in for a TalonFX, SparkMax, etc. in snippets. */
+/** This class acts as a stand-in for a TalonFX, Spark Max, etc. in snippets. */
 public class ExampleMotor {
   void setThrottle(double throttle) {}
 
