@@ -86,7 +86,8 @@ public class Point {
 Then, we're going to add three fields.
 A **field** is a variable that belongs to a class, and stores part of an object's state.
 Every `Point` object will have its own copy of each field, so two different `Point` objects can have different coordinates.
-Firstly, we add two `double` fields, x and y, which represent the point's coordinates.
+Firstly, we add two `double` fields, x and y, which represent the point's coordinates;
+every `Point` object can have a different value for `x` and `y`.
 
 ```java {point}#finalFields
 
@@ -160,6 +161,9 @@ followed by the class name, and then a parameter list in parentheses.
 
 ```
 
+This allows us to create new `Point` objects with the `new` keyword.
+For example, the point (1, 1) can be created with `new Point(1, 1)`.
+
 You'll notice that we use the `this` keyword.
 The `this` keyword is used to refer to the current object.
 It is used to access the object's fields and methods.
@@ -207,7 +211,7 @@ giving us the vector that points from `other` to this `Point`:
 
 ```
 
-Finally, we're going to define a `norm` method that returns the length of the `Point` object.
+Finally, we're going to define a `norm` method that returns the distance of this object from the origin.
 
 ```java {point}#norm
 
