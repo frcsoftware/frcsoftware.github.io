@@ -41,7 +41,7 @@ Relative encoders track changes in position and reset to zero when the robot is 
 
 ## Beam Brake
 
-A beam brake detects if anything is between two points.
+A beam brake detects if anything is between two points and returns a binary value.
 Beam brakes can be used to detect when game pieces pass a specific point on a robot.
 
 ```java #indexer
@@ -50,8 +50,9 @@ Beam brakes can be used to detect when game pieces pass a specific point on a ro
 
 ## Limit Switch
 
-A limit switch detects if something is past a certain threshold in distance.
+A limit switch detects if something is at a certain position or distance and returns a binary value.
 Limit switches are often used to restrict the range of motion of a joint or detect the presence of game pieces.
+The main difference between beam brakes and limit switches is beam brakes use an emitter and reciever to identify game pieces while a limit switch is basically a touch sensor for mechanisms.
 
 ```java #climber
 
@@ -61,6 +62,7 @@ Limit switches are often used to restrict the range of motion of a joint or dete
 
 An IMU is a sensor that combines an accelerometer and a gyroscope.
 IMUs are used to measure a robot's orientation, rates of rotation, and acceleration.
+They typically use degrees or radians for angular position (yaw/heading, pitch, and roll) and degrees per second or radians per second for angular velocity.
 They can be used to control robot heading and calculate its odometry.
 The most popular IMUs in FRC are navX2, Pigeon 2.0, and the onboard SystemCore IMU.
 
