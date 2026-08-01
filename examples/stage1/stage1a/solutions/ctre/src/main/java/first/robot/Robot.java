@@ -44,8 +44,10 @@ public class Robot extends OpModeRobot {
 
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
 
+  // [DrivetrainInstance]
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
+  // [/DrivetrainInstance]
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   private SingleFlywheelSim intakeLauncherSim =
