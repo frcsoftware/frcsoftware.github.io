@@ -1,3 +1,5 @@
+import process from 'node:process';
+
 /** @type {import('lint-staged').Configuration} */
 export default {
     '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
@@ -6,7 +8,7 @@ export default {
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
     ],
     'examples/**/*.{java,gradle}': () => [
-        `./examples/gradlew -p examples spotlessApply`,
+        `./examples/gradlew${process.platform === 'win32' ? '.bat' : ''} -p examples spotlessApply`,
     ],
     'src/data/glossary.ts': () => [
         'pnpm generate:glossary',
