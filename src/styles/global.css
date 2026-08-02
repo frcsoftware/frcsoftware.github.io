@@ -93,6 +93,11 @@
     text-align: center;
 }
 
+.sl-markdown-content .expressive-code figure {
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
 .sl-markdown-content figure:not(.content-figure) img,
 .sl-markdown-content figure:not(.content-figure) video {
     max-width: 100%;
