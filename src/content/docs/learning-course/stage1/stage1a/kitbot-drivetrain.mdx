@@ -1,6 +1,6 @@
 ---
-title: Drivetrain Motors
-description: Adding motors for the kitbot drivetrain
+title: Kitbot Drivetrain
+description: Programming the kitbot drivetrain
 prev: stage-overview
 next: false
 ---
@@ -90,9 +90,7 @@ Now try creating the right motor controllers on your own.
 
 </details>
 Motor Controllers have many settings that can be changed such as IDs, motor
-types, and limits. Vendors provide software, such as REV's REV Hardware Client 2
-and CTRE's Phoenix Tuner X, to run and configure their devices from a computer.
-Motor Controllers have many settings that can be changed. Vendors provide
+types, and limits. Vendors provide
 software, such as REV's REV Hardware Client 2 and CTRE's Phoenix Tuner X, to run
 and configure their devices from a computer. However, it is recommended to
 configure devices through code to ensure that all motor controllers are properly
@@ -217,20 +215,21 @@ WPIlib provides a class to convert joystick inputs into commands for the motors 
 
 An instance of `DifferentialDrive` should be created under where the motor controllers were declared.
 
-    <Tabs>
-        <TabItem label="CTRE">
+<Tabs>
+    <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainInstance
-            ```
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```
 
-        </TabItem>
-        <TabItem label="REV">
+    </TabItem>
+    <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DrivetrainInstance
-            ```
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```
 
-        </TabItem>
-    </Tabs>
+    </TabItem>
+
+</Tabs>
 
 Notice how the `DifferentialDrive` constructor takes the form `DifferentialDrive(DoubleConsumer leftMotor, DoubleConsumer rightMotor)`.
 When created the `DifferentialDrive` is asking for a `DoubleConsumer` that it can use to drive the left and right motors.
@@ -244,3 +243,81 @@ This allows the `DifferentialDrive` instance to call the provided motors control
     motor controller's `setThrottle()` functions since the Follower motors will
     automatically follow.
 </Aside>
+
+# IMU
+
+An IMU, Inertial Measurement Unit, is a sensor that allows the robot to accurately track its 3d rotation (roll, pitch, and yaw) as it moves around the field.
+While there are several vendors that sell very accurate IMUs, this stage will make use of Systemcore's built in IMU.
+An instance of Systemcore's IMU should be created beneath the `differentialDrive`.
+
+<Tabs>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#IMU
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#IMU
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+<Aside>
+    While IMUs are accurate they can only measure rotation relative to the
+    initial orientation of the robot when powered on. Therefore, to make full
+    use of an IMU the robot must either start in a known orientation or receive
+    its initial orientation through a vision system.
+</Aside>
+
+# Check Up
+
+By now the top of your `Robot` class in `Robot.java` should look like this:
+
+<details class="accordion">
+    <summary>Solution</summary>
+    <Tabs>
+        <TabItem label="CTRE">
+
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#RobotTop
+            ```
+
+        </TabItem>
+        <TabItem label="REV">
+
+            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#RobotTop
+            ```
+
+        </TabItem>
+    </Tabs>
+
+</details>
+
+The constructor for your `Robot` class should look like this:
+
+<details class="accordion">
+    <summary>Solution</summary>
+    <Tabs>
+        <TabItem label="CTRE">
+
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AllConfigs
+            ```
+
+        </TabItem>
+        <TabItem label="REV">
+
+            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#AllConfigs
+            ```
+
+        </TabItem>
+    </Tabs>
+
+</details>
+
+And VS code should not be giving you any errors.
+
+And with that you've written all the code necessary to make a tank drive work on a real robot!
+In the next section, simulation will be added so the code can be ran and tested on a computer.

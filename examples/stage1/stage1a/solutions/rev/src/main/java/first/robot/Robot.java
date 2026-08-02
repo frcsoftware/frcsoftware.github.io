@@ -17,6 +17,14 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [RobotTop]
+/**
+ * The methods in this class are called automatically as described in the OpModeRobot documentation.
+ * OpMode classes anywhere in the package (or sub-packages) where this class is located are
+ * automatically registered to display in the Driver Station. If you change the name of this class
+ * or the package after creating this project, you must also update the Main.java file in the
+ * project.
+ */
 public class Robot extends OpModeRobot {
 
   // [DriveMotorsLeft]
@@ -28,9 +36,18 @@ public class Robot extends OpModeRobot {
   private SparkMax rightFollower = new SparkMax(0, 3, MotorType.kBrushless);
   // [/DriveMotorsRight]
 
+  // [DrivetrainInstance]
+  public final DifferentialDrive drivetrain =
+      new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
+  // [/DrivetrainInstance]
+
+  // [IMU]
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
+  // [/IMU]
+  // [/RobotTop]
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
 
@@ -38,11 +55,12 @@ public class Robot extends OpModeRobot {
       new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
-  // [DrivetrainInstance]
-  public final DifferentialDrive drivetrain =
-      new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
-  // [/DrivetrainInstance]
 
+  // [AllConfigs]
+  /**
+   * This function is run when the robot is first started up and should be used for any
+   * initialization code.
+   */
   public Robot() {
     // [MotorConfigCreationLeft]
     var leftConfig = new SparkMaxConfig();
@@ -70,6 +88,7 @@ public class Robot extends OpModeRobot {
         PersistMode.kPersistParameters);
     // [/MotorConfig]
   }
+  // [/AllConfigs]
 
   @Override
   public void simulationPeriodic() {

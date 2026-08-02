@@ -18,6 +18,7 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [RobotTop]
 /**
  * The methods in this class are called automatically as described in the OpModeRobot documentation.
  * OpMode classes anywhere in the package (or sub-packages) where this class is located are
@@ -39,21 +40,26 @@ public class Robot extends OpModeRobot {
   private TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
   // [/DriveMotorsRight]
 
-  public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
-  public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
-
-  private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
-
   // [DrivetrainInstance]
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
   // [/DrivetrainInstance]
+  
+  // [IMU]
+  private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
+  // [/IMU]
+  // [/RobotTop]
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+  
+  public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
+  public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
+
   private SingleFlywheelSim intakeLauncherSim =
       new SingleFlywheelSim(intakeLauncher, "intakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "feeder");
 
+  // [AllConfigs]
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -81,6 +87,7 @@ public class Robot extends OpModeRobot {
     rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
     // [/MotorConfig]
   }
+  // [/AllConfigs]
 
   @Override
   public void simulationPeriodic() {
