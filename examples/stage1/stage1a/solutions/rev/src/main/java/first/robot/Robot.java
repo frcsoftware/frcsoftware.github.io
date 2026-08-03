@@ -46,7 +46,9 @@ public class Robot extends OpModeRobot {
   // [/IMU]
   // [/RobotTop]
 
+  // [DrivetrainSim]
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+  // [/DrivetrainSim]
 
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);

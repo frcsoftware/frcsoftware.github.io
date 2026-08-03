@@ -50,7 +50,9 @@ public class Robot extends OpModeRobot {
   // [/IMU]
   // [/RobotTop]
 
+  // [DrivetrainSim]
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+  // [/DrivetrainSim]
   
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
