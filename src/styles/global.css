@@ -7,7 +7,7 @@
 :root {
     /* Layout */
     --sl-content-width: 85rem !important;
-    --sl-nav-height: 5.5rem !important;
+    --sl-nav-height: 3.5rem !important;
 
     /* Typography */
     --sl-font: 'Inter', system-ui, sans-serif !important;
@@ -44,7 +44,7 @@
     --sl-color-purple-low: rgba(163, 113, 247, 0.3) !important;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 50rem) {
     :root {
         --sl-nav-height: 3.5rem !important;
     }
@@ -62,6 +62,12 @@
 /* Override PageFrame header border */
 .page .header {
     border-bottom: none !important;
+}
+
+@media (max-width: 50rem) {
+    starlight-menu-button {
+        display: none !important;
+    }
 }
 
 /* ==========================================================================
@@ -196,17 +202,6 @@ section[class*='hero'] a:hover svg {
 }
 
 /* ==========================================================================
-   Mobile Sidebar Toggle (Hide Starlight's default - we use unified menu)
-   ========================================================================== */
-
-@media (max-width: 1350px) {
-    /* Hide Starlight's default sidebar toggle - we merged it into header menu */
-    starlight-menu-button {
-        display: none !important;
-    }
-}
-
-/* ==========================================================================
    Sidebar
    ========================================================================== */
 
@@ -231,12 +226,18 @@ aside.sidebar {
     /* Hide scrollbar but allow scrolling */
     scrollbar-width: none;
     -ms-overflow-style: none;
-    background-color: transparent !important;
 }
 
 .sidebar-pane::-webkit-scrollbar,
 #starlight__sidebar::-webkit-scrollbar {
     display: none;
+}
+
+@media (min-width: 50rem) {
+    .sidebar-pane,
+    #starlight__sidebar {
+        background-color: transparent !important;
+    }
 }
 
 .sidebar-pane a[aria-current='page'],
