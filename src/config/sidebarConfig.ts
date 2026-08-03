@@ -313,15 +313,16 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
     ],
 
     // Resources section (content lives at /resources but navbar says "Other Resources")
-    // '/resources': [
-    //   {
-    //     label: 'Resources',
-    //     items: [
-    //       { label: 'Overview', slug: 'resources' },
-    //       { label: 'Glossary', slug: 'resources/glossary' },
-    //     ],
-    //   },
-    // ],
+    '/resources': [
+        {
+            label: 'Resources',
+            items: [
+                { label: 'Overview', slug: 'resources' },
+                { label: 'Glossary', slug: 'resources/glossary' },
+                { label: 'Documentation', slug: 'resources/docs' },
+            ],
+        },
+    ],
 };
 
 /**
