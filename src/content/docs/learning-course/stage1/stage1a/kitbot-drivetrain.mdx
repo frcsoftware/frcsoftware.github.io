@@ -319,5 +319,65 @@ The constructor for your `Robot` class should look like this:
 
 And VS code should not be giving you any errors.
 
-And with that you've written all the code necessary in a the `Robot` class for a physical robot!
-In the next section, simulation will be added so the code can be ran and tested on a computer.
+# OpModes
+
+`OpMode`s are a class that registers itself with the driverstation providing a name and robot mode (autonomous, teleop, or utility).
+This allows the robot to run different code based on what is selected on the driverstation.
+This stage will use classes that extend `PeriodicOpMode.`
+By extending `PeriodicOpMode` these classes gain a few useful functions that are only called when the OpMode is selected on the driverstation.
+
+- `start()` is called once when the robot transitions from disabled to enabled.
+- `periodic()` is called repeatedly when the robot is enabled.
+- `end()` is called once when the robot transitions from enabled to disabled.
+- `disabledPeriodic()` is called repeatedly when the robot is disabled.
+  Further information about OpModes can be found in [this blog post](https://zharel.me/blog/opmodes/) if you would like to learn more.
+
+Two blank `PeriodicOpMode`s, `MyTeleop.java` and `MyAuto.java` are provided under the `opmode` folder.
+
+To control the robot with joysticks a Teleop OpMode needs to be created that periodically gives the `DifferentialDrive` instance new values from the controller.
+First a instance of `NiDsXboxController` needs to be created.
+This class has functions that provide the state of different buttons on the controller.
+Multiple controllers can be used at once so the driverstation gives each a slot.
+The index provided in the constructor tells the `NiDsXboxController`which slot to listen too.
+
+<Tabs>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#Controller
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#Controller
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+<Aside>
+    There are different classes for different types of controllers. There is
+    also a generic `Gamepad` class that allows you to get button or axis values
+    by index.
+</Aside>
+
+Next, the `periodic()` method inside of `MyTeleop.java' will be used to continually update the `DifferentialDrive`index through the`arcadeDrive`function.
+The`MyTeleop`class has the`Robot`class as a parameter in its constructor.
+This allows the Opmode to access the methods and fields of the`Robot` class.
+
+<Tabs>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#DrivetrainPeriodic
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#DrivetrainPeriodic
+        ```
+
+    </TabItem>
+
+</Tabs>

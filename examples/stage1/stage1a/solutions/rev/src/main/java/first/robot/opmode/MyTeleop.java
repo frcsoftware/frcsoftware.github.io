@@ -13,15 +13,20 @@ import org.wpilib.opmode.Teleop;
 @Teleop
 public class MyTeleop extends PeriodicOpMode {
   private final Robot robot;
+  // [Controller]
   private final NiDsXboxController xboxController = new NiDsXboxController(0);
+
+  // [/Controller]
 
   public MyTeleop(Robot robot) {
     this.robot = robot;
   }
 
+  // [DriveSimPeriodic]
   @Override
   public void periodic() {
     robot.drivetrain.arcadeDrive(-xboxController.getLeftY(), xboxController.getRightX());
+    // [/DriveSimPeriodic]
 
     if (xboxController.getRightBumperButton()) {
       // shoot
