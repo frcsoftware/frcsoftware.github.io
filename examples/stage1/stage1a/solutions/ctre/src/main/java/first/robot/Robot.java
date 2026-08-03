@@ -44,7 +44,7 @@ public class Robot extends OpModeRobot {
   public final DifferentialDrive drivetrain =
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
   // [/DrivetrainInstance]
-  
+
   // [IMU]
   private OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
   // [/IMU]
@@ -53,7 +53,7 @@ public class Robot extends OpModeRobot {
   // [DrivetrainSim]
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   // [/DrivetrainSim]
-  
+
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
 
@@ -89,11 +89,14 @@ public class Robot extends OpModeRobot {
     rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
     // [/MotorConfig]
   }
+
   // [/AllConfigs]
 
+  // [DriveSimPeriodic]
   @Override
   public void simulationPeriodic() {
     drivetrainSim.periodic();
+    // [/DriveSimPeriodic]
     intakeLauncherSim.periodic();
     feederSim.periodic();
   }

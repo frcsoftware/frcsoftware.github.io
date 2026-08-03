@@ -5,15 +5,17 @@ prev: kitbot-drivetrain
 next: false
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 # Simulation
 
-Its common to be write code without immediate access to a physical robot to test changes.
+It's common to be write code without immediate access to a physical robot to test changes.
 Luckily, your computer can also run robot code allowing it to be tested without a robot.
 While there is some things that can be tested by simulating pure robot code, there are no physical motors to move and respond with new positions.
 Instead we use simulation classes that use physics to take the desired input voltage to the motors and estimate how the physical mechanism would respond and update our motor controller instances to match.
 For this stage custom classes have been provided that abstract away much of this logic.
-You can find these files under the `simulation` folder if you would would like to read the implementation.
-You can also read the WPIlib docs on simulation at <ADD LINK WHEN I HAVE WIFI> if you would like to learn more about simulation.
+You can find these files under the `simulation` folder if you would like to read the implementation.
+You can also read the [WPILib docs on simulation](https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/robot-simulation/index.html) if you would like to learn more about simulation.
 
 # Drivetrain Sim
 
@@ -42,7 +44,7 @@ The class will then publish the new drivetrain position so it can be viewed in A
 Robot code needs to be run in a loop so that it can continually make new commands to motor controllers based on new controller and sensor input.
 To accomplish this Periodic Methods are provided in the `Robot` class and `OpMode` classes.
 Periodic methods get called every 20ms by default causing any code placed inside of them to be ran 50 times per second.
-There are also periodic methods for specific robot states.
+Additional periodic methods exist that only run during specific robot states.
 For example, the `teleopPeriodic()` function will only be called when teleop mode is selected on the driverstation.
 
 At the moment the `DrivetrainSim` will not actually do anything because it is not being told to update periodically.
@@ -51,13 +53,13 @@ To fix this, the `DrivetrainSim`'s `periodic()` function should be called inside
 <Tabs>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveSimPeriodic
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DriveSimPeriodic
         ```
 
     </TabItem>

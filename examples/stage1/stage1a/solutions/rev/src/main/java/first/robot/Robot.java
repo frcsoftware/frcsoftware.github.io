@@ -57,7 +57,6 @@ public class Robot extends OpModeRobot {
       new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
-
   // [AllConfigs]
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -90,11 +89,14 @@ public class Robot extends OpModeRobot {
         PersistMode.kPersistParameters);
     // [/MotorConfig]
   }
+
   // [/AllConfigs]
 
+  // [DriveSimPeriodic]
   @Override
   public void simulationPeriodic() {
     drivetrainSim.periodic();
+    // [/DriveSimPeriodic]
     intakeLauncherSim.periodic();
     feederSim.periodic();
   }
