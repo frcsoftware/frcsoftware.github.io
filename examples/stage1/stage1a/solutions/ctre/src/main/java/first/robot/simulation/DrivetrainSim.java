@@ -17,6 +17,7 @@ import com.ctre.phoenix6.sim.ChassisReference;
 import com.ctre.phoenix6.sim.TalonFXSimState;
 import com.ctre.phoenix6.sim.TalonFXSimState.MotorType;
 import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.system.DCMotor;
 import org.wpilib.networktables.DoublePublisher;
 import org.wpilib.networktables.NetworkTableInstance;
@@ -104,6 +105,12 @@ public class DrivetrainSim {
     this.rightTalon = rightTalon;
     rightTalonSim = new TalonFXSimState(rightTalon, ChassisReference.CounterClockwise_Positive);
     rightTalonSim.setMotorType(MotorType.KrakenX60);
+
+    driveSim.setPose(new Pose2d(2.5, 2, Rotation2d.kZero));
+  }
+
+  public Pose2d getPose() {
+    return driveSim.getPose();
   }
 
   public void periodic() {

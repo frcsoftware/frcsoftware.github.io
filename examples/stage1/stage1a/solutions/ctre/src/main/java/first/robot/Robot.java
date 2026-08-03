@@ -12,6 +12,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import first.robot.simulation.DrivetrainSim;
+import first.robot.simulation.FuelSim;
 import first.robot.simulation.SingleFlywheelSim;
 import org.wpilib.drive.DifferentialDrive;
 import org.wpilib.framework.OpModeRobot;
@@ -70,5 +71,6 @@ public class Robot extends OpModeRobot {
     drivetrainSim.periodic();
     intakeLauncherSim.periodic();
     feederSim.periodic();
+    FuelSim.update(drivetrainSim.getPose());
   }
 }

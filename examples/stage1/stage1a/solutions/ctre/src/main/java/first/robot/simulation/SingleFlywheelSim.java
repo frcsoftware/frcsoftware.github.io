@@ -30,8 +30,6 @@ public class SingleFlywheelSim {
           Models.flywheelFromPhysicalConstants(DCMotor.getKrakenX60(1), 0.001, gearRatio),
           DCMotor.getKrakenX60(1));
 
-  private final double kBusVoltage = 12.0;
-
   private final DoublePublisher motorVoltagePub;
   private final DoublePublisher motorVelocityPub;
   private final DoublePublisher motorCurrentPub;
@@ -52,6 +50,10 @@ public class SingleFlywheelSim {
     // Voltage and current properties aren't included since they default to volts and amps already
     motorVelocityPub.getTopic().setProperty("unit", "\"RotationsPerSecond\"");
     motorPositionPub.getTopic().setProperty("unit", "\"Rotations\"");
+  }
+
+  public double getInputVoltage() {
+    return flywheelSim.getInputVoltage();
   }
 
   public void periodic() {
