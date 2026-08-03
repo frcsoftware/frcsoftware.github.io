@@ -21,17 +21,6 @@ export type Item = {
 
 // Define which URL paths belong to which sidebar section
 export const sidebarSections: Record<string, SidebarSection[]> = {
-    // Home page - minimal sidebar or none
-    '/': [],
-
-    // Feature Guide section
-    '/feature-guide': [
-        {
-            label: 'Website Feature Guide',
-            items: [{ label: 'Overview', slug: 'feature-guide' }],
-        },
-    ],
-
     // Learning Course section
     '/learning-course': [
         {
@@ -84,10 +73,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         //     label: 'Loops',
                         //     slug: 'learning-course/stage0/loops',
                         // },
-                        // {
-                        //     label: 'Objects',
-                        //     slug: 'learning-course/stage0/objects',
-                        // },
+                        {
+                            label: 'Classes, Fields, and Methods',
+                            slug: 'learning-course/stage0/classes-methods',
+                        },
                         // {
                         //     label: 'Methods',
                         //     slug: 'learning-course/stage0/methods',
@@ -246,6 +235,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 { label: 'Overview', slug: 'resources' },
                 { label: 'Glossary', slug: 'resources/glossary' },
+                { label: 'Documentation', slug: 'resources/docs' },
             ],
         },
     ],
@@ -262,68 +252,6 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                 { label: 'Style Guide', slug: 'contribution/styleguide' },
                 { label: 'Contributors', slug: 'contribution/contributors' },
                 { label: 'Roadmap', slug: 'contribution/roadmap' },
-            ],
-        },
-    ],
-
-    // Getting Started section
-    '/getting-started': [
-        {
-            label: 'Getting Started',
-            items: [
-                {
-                    label: 'Website Feature Guide',
-                    slug: 'learning-course/getting-started/website-feature-guide',
-                },
-                {
-                    label: 'Required Tools',
-                    slug: 'learning-course/getting-started/required-tools',
-                },
-                {
-                    label: 'VS Code Overview',
-                    slug: 'learning-course/getting-started/vscode-overview',
-                },
-                {
-                    label: 'Forking and Cloning',
-                    slug: 'learning-course/getting-started/forking-and-cloning',
-                },
-                {
-                    label: 'Intro to Java',
-                    slug: 'learning-course/stage0/stage-overview',
-                },
-            ],
-        },
-    ],
-
-    // Intro To Java section
-    '/intro-to-java': [
-        {
-            label: 'Intro to Java',
-            items: [
-                {
-                    label: 'Stage Overview',
-                    slug: 'learning-course/stage0/stage-overview',
-                },
-                {
-                    label: 'Java fundamentals',
-                    slug: 'learning-course/stage0/java-fundamentals',
-                },
-                {
-                    label: 'operators',
-                    slug: 'learning-course/stage0/operators',
-                },
-            ],
-        },
-    ],
-
-    // Resources section (content lives at /resources but navbar says "Other Resources")
-    '/resources': [
-        {
-            label: 'Resources',
-            items: [
-                { label: 'Overview', slug: 'resources' },
-                { label: 'Glossary', slug: 'resources/glossary' },
-                { label: 'Documentation', slug: 'resources/docs' },
             ],
         },
     ],
