@@ -72,3 +72,69 @@ To fix this, the `DrivetrainSim`'s `periodic()` function should be called inside
     interfere with the motor controllers when the code is being ran on a real
     robot.
 </Aside>
+
+# Simulating code
+
+To actually run the code use the WPILib Icon in the top left to open the command palette.
+
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Drivetrain"
+    src="/learning-course/stage1/stage1a/wpilibIcon.webp"
+/>
+
+Then search for Simulate and select `WPILib: Simulate Robot Code`.
+
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Drivetrain"
+    src="/learning-course/stage1/stage1a/simulateSelection.webp"
+/>
+
+After your code builds, a new tab will pop-up.
+Ensure that only `SIM GUI` is selected and click ok.
+This will start simulating your ode and open the Sim GUI in a new tab pictured below.
+Your code will continue running until the Sim GUI is closed.
+
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Drivetrain"
+    src="/learning-course/stage1/stage1a/simGUIscreen.webp"
+/>
+
+The most important boxes in the Sim GUI are as follows...
+
+- `Robot State` is the most important box because it allows you to select robot mode, Opmode, and enabled state.
+- `FMS` allows you to select alliance side and station while the robot is in the Disconnected mode.
+- `Other Devices` shows information about created sim devices and allows you to change some of their values.
+
+To view the robot, First open AdvantageScope.
+It should come installed with your WPILib install.
+Then, open the File menu and select Import Layout and select the `AdvantageScopeLayout.json` file in your robot project.
+
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Drivetrain"
+    src="/learning-course/stage1/stage1a/importLayout.webp"
+/>
+
+After importing the layout, open the File menu and select Connect To Simulator then NetworkTables4 (AdvantageScope).
+AdvantageScope should now be connected to the robot simulation.
+If AdvantageScope still says Searching, ensure that the robot code is still being simulated and that you selected the correct button.
+
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Drivetrain"
+    src="/learning-course/stage1/stage1a/robotMode.webp"
+/>
+
+Now go back to the Sim GUI.
+In the `Robot State` box select Teleop.
+Then pick `MyTeleop` from the dropdown and enable the robot.
+You should now be able to control the robot with WASD on the keyboard while the Sim GUI is in focus.
+In the Field 2d tab of AdvantageScope you should be able to see the robot move.
