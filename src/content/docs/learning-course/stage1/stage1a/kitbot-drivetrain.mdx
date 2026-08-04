@@ -52,7 +52,7 @@ This is how the motor controller objects for the left motors will look.
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsLeft
         ```
 
-For the CTRE code, the CAN ID of the leader motors are stored as a variable since they will be used later on to tell the follower what motor controller to follow.
+For the CTRE code, the CAN ID of the leader motors are stored as a variable since they will be used later on to tell the follower which motor controller to follow.
 This helps prevent errors from occurring by ensuring that there is a single source of truth for the correct CAN ID.
 Additionally, CTRE uses a CANBus object to store the CANBus instead of just an integer.
 
@@ -100,15 +100,15 @@ the configurations that need to be added and their proper values.
 <Aside>
     Motor controllers should usually only configured once and should never be
     configured periodically during the main robot loop. This is because
-    configuring motor controllers is usually a blocking command. This means that
-    the robot code will pause and wait for the motor controller to confirm that
-    it has been properly configured before continuing. This can cause the robot
-    to respond in unexpected and dangerous ways if done repeatedly while the
-    robot is enabled since motor controllers will not be getting new commands.
+    configuring motor controllers is usually a blocking command meaning the
+    robot code will pause and wait for the motor controller to confirm that it
+    has been properly configured before continuing. This can cause the robot to
+    respond in unexpected and dangerous ways if done while the robot is enabled
+    since motor controllers will not be getting new commands.
 </Aside>
 
 For this section only the motor controller's invert setting will be configured.
-This setting controls what direction
+This setting controls what direction a motor spins when the motor controller is given a command with a positive sign.
 Since there are 2 motors on each side of the drivetrain, its important to ensure that the each of the motors on a side
 move in sync with eachother.
 This can be accomplished by telling one of the motor controllers to follow the other.
@@ -206,11 +206,15 @@ Remember that some of the configurations may be different.
 
 # Arcade Drive
 
-ADD IMAGE OF LABELED JOYSTICK FOR ARCADE DRIVE PLS
+<ContentFigure
+    width="564"
+    height="300"
+    alt="Arcade Drive"
+    src="/learning-course/stage1/stage1a/arcadeDriveJoystick.webp"
+/>
 
 While there are several ways to control a tank drive, this stage will be using arcade drive.
-Arcade drive uses a single joystick to control both the direction of travel and the rotation of the robot.
-The y-axis of the joystick is used to control how fast the robot drives forward or backward while the x-axis controls how fast the robot rotates clockwise or counter clockwise.
+Arcade drive uses the y-axis of a joystick to control how fast the robot drives forward or backward while the x-axis controls how fast the robot rotates clockwise or counter clockwise.
 WPIlib provides a class to convert joystick inputs into commands for the motors to follow called `DifferentialDrive`.
 
 An instance of `DifferentialDrive` should be created under where the motor controllers were declared.
