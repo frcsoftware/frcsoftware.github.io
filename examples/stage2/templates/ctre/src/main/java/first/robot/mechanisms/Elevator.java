@@ -134,38 +134,62 @@ public class Elevator extends Mechanism {
         DogLog.log("Elevator/Active Commands", getRunningCommands().toString());
     }
 
+    /**
+     * @param voltage the voltage to apply to the motors
+     * @return a command
+     */
     public Command setVoltage(double voltage) {
         return run(coro -> {
             leader.setControl(voltageRequest.withOutput(voltage));
         }).named("Set Voltage " + voltage + "V");
     }
 
+    /**
+     * @param position the position for the elevator to target, in meters
+     * @return a command
+     */
     public Command setPosition(double position) {
         return run(coro -> {
             setpoint = position;
             leader.setControl(positionRequest.withPosition(position / Constants.PULLEY_CIRCUMFERENCE));
             DogLog.log("Elevator/Setpoint", position);
 
-            coro.await(Command.waitUntil(() -> isAtPosition(position)).named("Is At Position " + position));
+            coro.waitUntil(() -> isAtPosition(position));
         }).named("Set Position " + position + "m");
     }
 
+    /**
+     * @return the position of the elevator, in meters
+     */
     public double getPosition() {
         return positionSignal.getValueAsDouble() * Constants.PULLEY_CIRCUMFERENCE;
     }
 
+    /**
+     * @return the velocity of the elevator, in meters per second
+     */
     public double getVelocity() {
         return velocitySignal.getValueAsDouble() * Constants.PULLEY_CIRCUMFERENCE;
     }
 
+    /**
+     * @return the current voltage being applied to the arm motor
+     */
     public double getAppliedVoltage() {
         return appliedVoltageSignal.getValueAsDouble();
     }
 
+    /**
+     * @param position the position to compare against, in meters
+     * @return whether the elevator is at that position
+     */
     public boolean isAtPosition(double position) {
         return Math.abs(getPosition() - position) < Constants.POSITION_TOLERANCE;
     }
 
+    /**
+     * @return whether the elevator is at its current setpoint
+     */
     public boolean isAtSetpoint() {
         return isAtPosition(setpoint);
     }

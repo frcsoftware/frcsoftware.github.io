@@ -112,10 +112,16 @@ public class Drive extends Mechanism {
         DogLog.log("Drive/Active Commands", getRunningCommands().toString());
     }
 
+    /**
+     * @return the current pose of the drivetrain
+     */
     public Pose2d getPose() {
         return swerve.getState().Pose;
     }
 
+    /**
+     * @return the current heading of the drivetrain
+     */
     public Rotation2d getHeading() {
         return getPose().getRotation();
     }
@@ -128,6 +134,11 @@ public class Drive extends Mechanism {
         return swerve.getState().Velocity.toFieldRelative(getHeading());
     }
 
+    /**
+     * Creates a teleop drive command
+     * @param controller the controller to use for inputs, the left stick controls translation, while the right stick controls rotation
+     * @return a command
+     */
     public Command getDriveCommand(CommandNiDsXboxController controller) {
         return runRepeatedly(() -> {
             double x = -MathUtil.applyDeadband(controller.getLeftY(), 0.1) * MAX_VELOCITY;
@@ -138,8 +149,8 @@ public class Drive extends Mechanism {
             request.withForwardPerspective(SwerveRequest.ForwardPerspectiveValue.OperatorPerspective);
             request.withVelocityX(x);
             request.withVelocityY(y);
-            request.withRotationalRate(rotation)
-            .withDeadband(0.1*4.54);
+            request.withRotationalRate(rotation);
+            request.withDeadband(0.1*4.54);
 
             swerve.setControl(request);
 

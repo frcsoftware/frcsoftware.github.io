@@ -19,6 +19,7 @@ import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.util.Units;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.AngularVelocity;
 import org.wpilib.units.measure.Current;
@@ -42,7 +43,7 @@ public class Arm extends Mechanism {
         static final double kI = 0;
         static final double kD = 7;
 
-        static final double POSITION_TOLERANCE = 3.0/360.0;
+        static final double POSITION_TOLERANCE = Units.degreesToRotations(3);
     }
 
     private TalonFX motor;
@@ -122,38 +123,62 @@ public class Arm extends Mechanism {
         DogLog.log("Arm/Active Commands", getRunningCommands().toString());
     }
 
+    /**
+     * @param voltage the voltage to apply to the motor
+     * @return a command
+     */
     public Command setVoltage(double voltage) {
         return run(coro -> {
             motor.setControl(voltageRequest.withOutput(voltage));
         }).named("Set Voltage " + voltage + "V");
     }
 
+    /**
+     * @param position the position for the arm to target, in rotations
+     * @return a command
+     */
     public Command setPosition(double position) {
         return run(coro -> {
             setpoint = position;
             motor.setControl(positionRequest.withPosition(position));
             DogLog.log("Arm/Setpoint", position);
 
-            coro.await(Command.waitUntil(() -> isAtPosition(position)).named("Is at position " + position));
+            coro.waitUntil(() -> isAtPosition(position));
         }).named("Set Position " + position + "rot");
     }
 
+    /**
+     * @return the current position of the arm, in rotations
+     */
     public double getPosition() {
         return positionSignal.getValueAsDouble();
     }
 
+    /**
+     * @return the current velocity, in rotations per second
+     */
     public double getVelocity() {
         return velocitySignal.getValueAsDouble();
     }
 
+    /**
+     * @return the current voltage being applied to the arm motor
+     */
     public double getAppliedVoltage() {
         return appliedVoltageSignal.getValueAsDouble();
     }
 
+    /**
+     * @param position the position to compare against, in rotations
+     * @return whether the arm is at that positoin
+     */
     public boolean isAtPosition(double position) {
         return Math.abs(getPosition() - position) < Constants.POSITION_TOLERANCE;
     }
 
+    /**
+     * @return whether the arm is at its current setpoint
+     */
     public boolean isAtSetpoint() {
         return isAtPosition(setpoint);
     }

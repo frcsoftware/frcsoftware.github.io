@@ -32,12 +32,13 @@ public class BasicScoringTeleop extends PeriodicOpMode {
     robot.drive.setDefaultCommand(robot.drive.getDriveCommand(controller));
 
     controller.button(0).whileTrue(Command.noRequirements((coro) -> {
-        coro.awaitAll(robot.superstructure.setPosition(1, 1),
-                new AutoAlignCommand(robot.drive, Poses.BLUE_REEF_A.transformBy(Poses.REEF_PREALIGN_TRANSFORM)).withPositionTolerance(Units.inchesToMeters(6)));
+        coro.fork(new AutoAlignCommand(robot.drive, Poses.BLUE_REEF_A.transformBy(Poses.REEF_PREALIGN_TRANSFORM)).withRunningContinuously(true));
+        coro.await(robot.superstructure.setPosition(1, 1));
+
 
         AutoAlignCommand finalAlign = new AutoAlignCommand(robot.drive, Poses.BLUE_REEF_A).withRunningContinuously(true);
         coro.fork(finalAlign);
-        coro.await(finalAlign.waitUntilAtPosition());
+        coro.waitUntil(finalAlign::atPosition);
 
         coro.fork(robot.superstructure.setPosition(0.5, 0.5));
         coro.wait(Seconds.of(0.25));

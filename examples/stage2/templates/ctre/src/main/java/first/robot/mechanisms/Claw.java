@@ -53,6 +53,10 @@ public class Claw extends Mechanism {
         DogLog.log("Claw/Active Commands", getRunningCommands().toString());
     }
 
+    /**
+     * @param voltage the voltage to apply to the motors
+     * @return a command
+     */
     public Command setVoltage(double voltage) {
         return run((coro) -> {
             motor.setControl(voltageRequest.withOutput(voltage));

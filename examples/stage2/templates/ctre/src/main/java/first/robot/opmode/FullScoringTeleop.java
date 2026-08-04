@@ -34,12 +34,12 @@ public class FullScoringTeleop extends PeriodicOpMode {
 
     private NeedsNameBuilderStage createScoreCommand(List<Pose2d> poses) {
         return Command.noRequirements((coro) -> {
-            coro.awaitAll(robot.superstructure.setPosition(1, 1),
-                    new Drive.AutoAlignCommand(robot.drive, () -> robot.drive.getPose().nearest(poses).transformBy(Poses.REEF_PREALIGN_TRANSFORM)).withPositionTolerance(Units.inchesToMeters(6)));
+            coro.fork(new Drive.AutoAlignCommand(robot.drive, () -> robot.drive.getPose().nearest(poses).transformBy(Poses.REEF_PREALIGN_TRANSFORM)).withRunningContinuously(true));
+            coro.await(robot.superstructure.setPosition(1, 1));
 
             Drive.AutoAlignCommand finalAlign = new Drive.AutoAlignCommand(robot.drive, () -> robot.drive.getPose().nearest(poses)).withRunningContinuously(true);
             coro.fork(finalAlign);
-            coro.await(finalAlign.waitUntilAtPosition());
+            coro.waitUntil(finalAlign::atPosition);
 
             coro.fork(robot.superstructure.setPosition(0.5, 0.5));
             coro.wait(Seconds.of(0.25));
