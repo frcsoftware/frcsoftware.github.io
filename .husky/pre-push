@@ -1,15 +1,7 @@
-if git diff --cached --name-only | grep -q '\.astro$'; then
+if git diff --name-only @{u}..HEAD | grep -q '\.astro$'; then
     echo "Running full astro check"
     astro check --minimumFailingSeverity warning
 else
-    if [ -n "${DEBUG}" ]; then 
-        echo "Using TypeScript version: $(tsc --version) at $(which tsc)"
-        start=$(date +%s%N)
-        tsc --noEmit
-        end=$(date +%s%N)
-        echo "TypeScript time (approx): $(((end - start)/1000000))ms"
-    else 
-        echo "Running TypeScript check"
-        tsc --noEmit
-    fi
+    echo "Running TypeScript check"
+    tsc --noEmit
 fi

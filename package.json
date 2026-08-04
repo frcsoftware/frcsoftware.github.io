@@ -17,7 +17,7 @@
         "prebuild": "tsx scripts/generate-glossary.ts",
         "predev": "tsx scripts/generate-glossary.ts",
         "lint": "pnpm lint:eslint && pnpm lint:md && pnpm lint:regions && pnpm lint:glossary && pnpm typecheck && pnpm vale",
-        "lint:eslint": "eslint \"src/**/*.{ts,astro,js,mjs,css}\" \"*.mjs\" --cache",
+        "lint:eslint": "eslint \"src/**/*.{ts,astro,js,mjs,css}\" \"*.mjs\" \"scripts/*.{ts,mjs,js}\" --cache",
         "lint:md": "remark src/content/docs --ext mdx --frail",
         "lint:regions": "tsx scripts/validate-regions.ts",
         "vale": "pnpm vale:setup && vale sync && vale src/content",
@@ -62,7 +62,6 @@
         "tsx": "^4.22.4",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.61.1",
-        "vfile": "^6.0.3",
-        "typescript-7": "npm:typescript@^7.0.2"
+        "vfile": "^6.0.3"
     }
 }
