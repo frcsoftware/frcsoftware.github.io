@@ -18,8 +18,7 @@ const runPrettierOn =
 
 /** @type {import('lint-staged').Configuration} */
 export default {
-    [runPrettierOn]: (files) =>
-        `prettier --write --ignore-unknown ${files.join(' ')}`,
+    [runPrettierOn]: (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
     '**/*.{astro,ts,mjs,js}': (files) => `eslint --fix ${files.join(' ')}`,
     'src/content/**/*.{md,mdx}': (files) => [
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
