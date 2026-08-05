@@ -9,8 +9,9 @@ A commit is a saved state of your repository.
 You should make a commit every time you complete a task (e.g. `Add per-path auto choosers`, `Fix joystick inputs inversion`, `Tune chassis heading PID gains`).
 This helps keep track of when new code is added.
 When you add changes through smaller, focused commits, you can isolate when a bug is introduced and easily roll back to a working state
+
 Writing descriptive commit messages make it easy to see exactly what changed.
-While diffs can only show what changed in code, commit messages can also communicate the context about a change and explain the why.
+Avoid focusing on how you made the change (that's what the diff is for); instead, highlight the what and why.
 By convention, commit messages are concise, begin with a capital letter, don't use punctuation, and are in the imperative mood.
 
 Compare the following examples of good vs bad commit messages:
@@ -27,9 +28,6 @@ See this specification on [Conventional Commits](https://www.conventionalcommits
 Commit early and commit often.
 
 </Aside>
-
-For advanced users, the command line offers more capabilities.
-[GitHub Desktop](https://docs.github.com/en/desktop/managing-commits) presents a simpler way to manage commits, using checkboxes to select files to commit, a text box for commit messages, and a button to create a commit.
 
 ## Branches
 
@@ -55,6 +53,16 @@ It is a good practice to push to your branch frequently to back up your work in 
 
 Creating a new repository for different major projects or new seasons is a helpful way to keep track of projects.
 Repositories should have names that represent the purpose of its code, like "2026-rebuilt", "2026-kitbot", and "2026-offseason-turret".
+
+## Clients
+
+A Git client provides an interface for interacting with a Git repository.
+
+For new Git users, [GitHub Desktop](https://docs.github.com/en/desktop) is recommended because it presents a simple, graphical way to manage a Git repository. Creating a commit is as easy as selecting files, writing the message in a text box, and clicking a button.
+
+[lazygit](https://github.com/jesseduffield/lazygit) is an intermediate option that retains much of the power of Git's CLI while being intuitive to use.
+
+Git's command line interface (CLI) is the most raw and powerful Git client. However, it may be difficult to learn.
 
 ## Additional Information
 
