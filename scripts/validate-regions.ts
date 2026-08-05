@@ -65,7 +65,7 @@ function walkMdx(dir: string) {
                 if (!m) continue;
 
                 const [, alias, definedFilePath, regionName] = m;
-
+                console.dir(m);
                 let filePath: string | undefined;
                 if (alias) {
                     filePath = codeRegionSources.get(alias);
@@ -76,6 +76,14 @@ function walkMdx(dir: string) {
                         continue;
                     }
                 } else if (definedFilePath) {
+                    const ext = basename(definedFilePath).split('.').at(-1);
+                    if (!ext) {
+                        errors.push(
+                            `${relative(DOCS_DIR, full)}: Region "${regionName}" doesn't specify a file extension.`,
+                        );
+                        continue;
+                    }
+                    extensions.add(ext);
                     filePath = definedFilePath;
                 } else {
                     filePath = codeRegionSources.get('default');
