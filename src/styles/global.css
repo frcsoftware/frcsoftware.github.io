@@ -7,7 +7,7 @@
 :root {
     /* Layout */
     --sl-content-width: 85rem !important;
-    --sl-nav-height: 3.5rem !important;
+    --sl-nav-height: 5.5rem !important;
 
     /* Typography */
     --sl-font: 'Inter', system-ui, sans-serif !important;
@@ -46,7 +46,7 @@
 
 @media (max-width: 50rem) {
     :root {
-        --sl-nav-height: 3.5rem !important;
+        --sl-nav-height: 6.7rem !important;
     }
 }
 
