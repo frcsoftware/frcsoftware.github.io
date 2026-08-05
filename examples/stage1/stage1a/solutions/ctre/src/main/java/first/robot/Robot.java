@@ -84,7 +84,7 @@ public class Robot extends OpModeRobot {
     var rightConfig = new TalonFXConfiguration();
     rightConfig.MotorOutput.withInverted(InvertedValue.CounterClockwise_Positive);
     rightLeader.getConfigurator().apply(rightConfig);
-    rightFollower.getConfigurator().apply(leftConfig);
+    rightFollower.getConfigurator().apply(rightConfig);
 
     rightFollower.setControl(new Follower(rightLeaderID, MotorAlignmentValue.Aligned));
     // [/MotorConfig]
