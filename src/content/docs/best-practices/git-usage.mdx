@@ -11,8 +11,9 @@ This helps keep track of when new code is added.
 When you add changes through smaller, focused commits, you can isolate when a bug is introduced and easily roll back to a working state. See [this article](https://www.freshconsulting.com/insights/blog/atomic-commits/) on atomic commits for more information.
 
 Writing descriptive commit messages make it easy to see exactly what changed.
-Avoid focusing on how you made the change (that's what the diff is for); instead, highlight the what and why.
+Avoid focusing on how you made the change (that's what the diff is for). Instead, highlight the what and why.
 By convention, commit messages are concise, begin with a capital letter, don't use punctuation, and are in the imperative mood.
+If you want to include more information in a commit message, consider using the commit body.
 
 Compare the following examples of good vs bad commit messages:
 
@@ -22,7 +23,8 @@ Compare the following examples of good vs bad commit messages:
 | Use the imperative mood: "Refactor swerve drive logic"                                  | Are past tense, lowercase, or punctuated: "refactored swerve drive logic." |
 | Specific and provide context: "Fix swerve drive limiter bug for reliable drive control" | Are vague: "Fix bug" or "WIP"                                              |
 
-See this specification on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to learn about standardized conventions for writing commit messages.
+For more on writing good commit messages, see [this article](https://cbea.ms/git-commit/).
+Standardized specifications such as [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) are also good ways to keep commit messages organized.
 
 ## Branches
 
@@ -57,9 +59,9 @@ For new Git users, [GitHub Desktop](https://docs.github.com/en/desktop) is recom
 
 [Source control in VSCode](https://code.visualstudio.com/docs/sourcecontrol/overview) also offers a simple interface for Git.
 
-[lazygit](https://github.com/jesseduffield/lazygit) is an intermediate option that retains much of the power of Git's CLI while being intuitive to use.
+[lazygit](https://github.com/jesseduffield/lazygit) is an intermediate option that retains much of the power of Git's command-line interface while being intuitive to use.
 
-Git's command line interface (CLI) is the most raw and powerful Git client. However, it may be difficult to learn.
+Git's command-line interface is the most raw and powerful Git client. However, it may be difficult to learn.
 
 ## Additional Resources
 
