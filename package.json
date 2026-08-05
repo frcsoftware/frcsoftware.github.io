@@ -17,7 +17,7 @@
         "prebuild": "tsx scripts/generate-glossary.ts",
         "predev": "tsx scripts/generate-glossary.ts",
         "lint": "pnpm lint:eslint && pnpm lint:md && pnpm lint:regions && pnpm lint:glossary && pnpm typecheck && pnpm vale",
-        "lint:eslint": "eslint \"src/**/*.{ts,astro,js,mjs,css}\" \"*.mjs\" \"scripts/*.{ts,mjs,js}\" --cache",
+        "lint:eslint": "eslint \"src/**/*.{ts,astro,js,mjs}\" \"*.mjs\" \"scripts/*.{ts,mjs,js}\" --cache",
         "lint:md": "remark src/content/docs --ext mdx --frail",
         "lint:regions": "tsx scripts/validate-regions.ts",
         "vale": "pnpm vale:setup && vale sync && vale src/content",
