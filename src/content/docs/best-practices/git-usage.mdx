@@ -8,7 +8,7 @@ description: Best practices for Git
 A commit is a saved state of your repository.
 You should make a commit every time you complete a task (e.g. `Add per-path auto choosers`, `Fix joystick inputs inversion`, `Tune chassis heading PID gains`).
 This helps keep track of when new code is added.
-When you add changes through smaller, focused commits, you can isolate when a bug is introduced and easily roll back to a working state
+When you add changes through smaller, focused commits, you can isolate when a bug is introduced and easily roll back to a working state. See [this article](https://www.freshconsulting.com/insights/blog/atomic-commits/) on atomic commits for more information.
 
 Writing descriptive commit messages make it easy to see exactly what changed.
 Avoid focusing on how you made the change (that's what the diff is for); instead, highlight the what and why.
@@ -23,11 +23,6 @@ Compare the following examples of good vs bad commit messages:
 | Specific and provide context: "Fix swerve drive limiter bug for reliable drive control" | Are vague: "Fix bug" or "WIP"                                              |
 
 See this specification on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to learn about standardized conventions for writing commit messages.
-
-<Aside type="tip">
-Commit early and commit often.
-
-</Aside>
 
 ## Branches
 
