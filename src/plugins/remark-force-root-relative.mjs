@@ -6,7 +6,17 @@ export default function remarkForceRootRelative() {
      * @param {import("vfile").VFile} file
      */
     return (tree, file) => {
-        visit(tree, 'link', (node) => {
+        visit(tree, ['link', 'image', 'definition'], (node) => {
+            if (
+                !(
+                    node.type === 'link' ||
+                    node.type === 'image' ||
+                    node.type === 'definition'
+                )
+            ) {
+                // genuinely just a type guard
+                return;
+            }
             if (!URL.canParse(node.url)) {
                 // already root-relative, skip
                 return;
