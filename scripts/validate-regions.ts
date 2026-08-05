@@ -65,7 +65,6 @@ function walkMdx(dir: string) {
                 if (!m) continue;
 
                 const [, alias, definedFilePath, regionName] = m;
-                console.dir(m);
                 let filePath: string | undefined;
                 if (alias) {
                     filePath = codeRegionSources.get(alias);
