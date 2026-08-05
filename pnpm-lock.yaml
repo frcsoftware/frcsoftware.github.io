@@ -57,6 +57,9 @@ importers:
       eslint-plugin-astro:
         specifier: ^1.7.0
         version: 1.7.0(eslint@10.5.0)
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
       globals:
         specifier: ^16.5.0
         version: 16.5.0

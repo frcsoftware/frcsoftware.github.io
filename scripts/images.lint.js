@@ -1,8 +1,12 @@
 import { styleText } from 'node:util';
 import sharp from 'sharp';
+import fg from 'fast-glob';
 
-const [, , ...images] = process.argv;
-
+let [, , ...images] = process.argv;
+if (images.length === 0 && process.env.CI) {
+    // validate images in CI
+    images = await fg.glob('{src,public}/**/*.{png,jpg,jpeg,webp}');
+}
 /** @type {string[]} */
 const offending = [];
 
