@@ -92,7 +92,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             slug: 'learning-course/stage1/stage-overview',
                         },
                         {
-                            label: 'Stage 1A',
+                            label: 'Stage 1A: Kitbot Intro',
                             collapsed: true,
                             items: [
                                 {
@@ -100,11 +100,11 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     slug: 'learning-course/stage1/stage1a/stage-overview',
                                 },
                                 {
-                                    label: 'Stage 1A Kitbot Drivetrain',
+                                    label: 'Kitbot Drivetrain',
                                     slug: 'learning-course/stage1/stage1a/kitbot-drivetrain',
                                 },
                                 {
-                                    label: 'Stage 1A Drivetrain Simulation',
+                                    label: 'Drivetrain Simulation',
                                     slug: 'learning-course/stage1/stage1a/drivetrain-sim',
                                 },
                                 // {

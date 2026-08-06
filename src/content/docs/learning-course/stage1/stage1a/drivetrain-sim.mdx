@@ -9,9 +9,9 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Simulation
 
-It's common to be write code without immediate access to a physical robot to test changes.
+It's common to write code without having immediate access to a physical robot to test changes.
 Luckily, your computer can also run robot code allowing it to be tested without a robot.
-While there is some things that can be tested by simulating pure robot code, there are no physical motors to move and respond with new positions.
+While there are some things that can be tested by simulating pure robot code, there are no physical motors to move and respond with new positions.
 Instead we use simulation classes that use physics to take the desired input voltage to the motors and estimate how the physical mechanism would respond and update our motor controller instances to match.
 For this stage custom classes have been provided that abstract away much of this logic.
 You can find these files under the `simulation` folder if you would like to read the implementation.
@@ -19,7 +19,7 @@ You can also read the [WPILib docs on simulation](https://docs.wpilib.org/en/sta
 
 # Drivetrain Sim
 
-To simulate the drivetrain simply create an instance of the `DrivetrainSim` class underneath the `DifferentialDrive` instance using the left and right Leader motors as an input.
+To simulate the drivetrain, simply create an instance of the `DrivetrainSim` class under the `DifferentialDrive` instance using the left and right Leader motors as inputs.
 This class will read the voltage commanded to the motors and, using its physics sim, update the motor controllers with new positions.
 The class will then publish the new drivetrain position so it can be viewed in AdvantageScope.
 
@@ -43,12 +43,12 @@ The class will then publish the new drivetrain position so it can be viewed in A
 
 Robot code needs to be run in a loop so that it can continually make new commands to motor controllers based on new controller and sensor input.
 To accomplish this Periodic Methods are provided in the `Robot` class and `OpMode` classes.
-Periodic methods get called every 20ms by default causing any code placed inside of them to be ran 50 times per second.
+Periodic methods get called every 20ms by default, causing any code placed inside of them to be run 50 times per second.
 Additional periodic methods exist that only run during specific robot states.
 For example, the `teleopPeriodic()` function will only be called when teleop mode is selected on the driverstation.
 
-At the moment the `DrivetrainSim` will not actually do anything because it is not being told to update periodically.
-To fix this, the `DrivetrainSim`'s `periodic()` function should be called inside of the `Robot` class' `simulationPeriodic()` function.
+At the moment `DrivetrainSim` will not actually do anything because it is not being told to update periodically.
+To fix this, `DrivetrainSim`'s `periodic()` function should be called inside of the `Robot` class' `simulationPeriodic()` function.
 
 <Tabs>
     <TabItem label="CTRE">
@@ -119,7 +119,7 @@ Then, open the File menu and select Import Layout and select the `AdvantageScope
     width="564"
     height="300"
     alt="Import AScope Screen"
-    src="\learning-course\stage1\stage1a\arcadeDriveJoystick.webp"
+    src="\learning-course\stage1\stage1a\importLayout.webp"
 />
 
 After importing the layout, open the File menu and select Connect To Simulator then NetworkTables4 (AdvantageScope).
