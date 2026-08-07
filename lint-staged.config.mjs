@@ -1,6 +1,8 @@
 /** @type {import('lint-staged').Configuration} */
 export default {
     '**/*': (files) => `prettier --write --ignore-unknown ${files.join(' ')}`,
+    '{src,public}/**/*.{png,jpg,jpeg,webp}': (images) =>
+        `node scripts/images.lint.js ${images.join(' ')}`,
     '**/*.{astro,ts,mjs,js}': (files) => `eslint --fix ${files.join(' ')}`,
     'src/content/**/*.{md,mdx}': (files) => [
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,

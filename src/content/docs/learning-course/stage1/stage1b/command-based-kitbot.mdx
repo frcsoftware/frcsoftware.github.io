@@ -162,11 +162,11 @@ create a private `CommandXboxController` instance named `xbox`.
 In your opmode constructor, define the following behavior:
 
 1. While the `xbox.leftBumper()` trigger is active,
-   run the `robot.intake.intake()` and `robot.feeder.intake()` commands.
+   run the `robot.intakeLauncher.intake()` and `robot.feeder.intake()` commands.
 2. While the `xbox.rightBumper()` trigger is active,
-   run the `robot.intake.shoot()` and `robot.feeder.feed()` commands.
+   run the `robot.intakeLauncher.shoot()` and `robot.feeder.feed()` commands.
 3. While the `xbox.a()` trigger is active,
-   run the `robot.intake.outtake()` and `robot.feeder.outtake()` commands.
+   run the `robot.intakeLauncher.outtake()` and `robot.feeder.outtake()` commands.
 
 <details class="accordion">
     <summary>Hint</summary>
