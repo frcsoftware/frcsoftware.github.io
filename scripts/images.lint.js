@@ -7,6 +7,7 @@ if (images.length === 0 && process.env.CI) {
     // validate images in CI
     images = await fg.glob('{src,public}/**/*.{png,jpg,jpeg,webp}');
 }
+
 /** @type {string[]} */
 const offending = [];
 
