@@ -108,13 +108,13 @@ Can you fix the compile-time error and the logic error?
 ### Exercise 4
 
 You've fixed the intake (reveal the answer to exercise 3 to see the full class),
-and have the following code to run it while the A button is held:
+and have the following code to run it while the left bumper is held:
 
 ```java #intakeWhileTrue
 
 ```
 
-You hold down the A button, and the intake starts spinning; but releasing it doesn't
+You hold down the left bumper, and the intake starts spinning; but releasing it doesn't
 stop the intake.
 Can you spot the error?
 
@@ -125,13 +125,11 @@ Can you spot the error?
 <details class="accordion">
     <summary>Reveal</summary>
     When you call `motor.setThrottle(double)`, the motor will start spinning forever,
-    even if you aren't calling `setThrottle` anymore. Even though releasing the A button
-    will cancel the `runAtThrottle` command, it won't stop the motor.
+    even if you aren't calling `setThrottle` anymore. Releasing the left bumper
+    would cancel the `runAtThrottle` command, but it wouldn't stop the motor.
 
-    To fix this, we set a default command. The default command for a mechanism will always
-    run when no other commands are requiring that mechanism. In this case, "no other
-    command to the intake" = "we want to stop the intake", so the default command is
-    setting the throttle to 0.
+    To fix this, we set a default command, which defines a mechanism's idle state.
+    Here, the intake should stop when no other commands requiring it are running.
     ```java #intakeClassWithDefaultCmd
 
     ```
