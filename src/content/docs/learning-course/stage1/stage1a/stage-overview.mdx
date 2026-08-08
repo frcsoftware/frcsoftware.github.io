@@ -6,7 +6,7 @@ next: false
 ---
 
 import { FileTree } from '@astrojs/starlight/components';
-import YouTube from '../../../../../components/YouTube.astro';
+import YouTube from '@components/YouTube.astro';
 
 Welcome to Stage 1A!
 Before we can start programming, we have to fork and clone the relevant repository:
@@ -78,34 +78,37 @@ But what is that one line in `Main.java` doing?
 {/* rli:ignore */}
 
 ```java
-RobotBase.startRobot(first.robot.Robot.class);
+RobotBase.startRobot(first.robot.Robot::new);
 ```
 
 It seems to be "starting" an instance of the `first.robot.Robot` class, and if we go to that class file, we end up at `Robot.java`.
 This is the core of your robot code, where:
 
 - your subsystems are defined
-- your controls are bound
-- your opmodes are modified and used
+- shared behavior is defined
 - your debugging data is logged (telemetry).
 
 <Aside type="note">
     For prior FRC programmers, you might have noticed a `RobotContainer.java`
-    file is missing. This file is being removed in WPILib 2027.
+    file is missing. This file is not used with the Commands v3 framework.
 </Aside>
 
 We'll go through this file, as well as all of the functionalities, more in detail later.
 
 ### `opmode/`
 
-For those who are used to WPILib 2026 and earlier versions, this will probably be the most significant change.
-In WPILib 2027 and later versions, robot frameworks are getting a new way to control the current "mode" of the robot: OpModes.
-We'll talk about this a bit more in-depth later, but they essentially allow you to define various "states" for a robot during
-autonomous and teleop, which can then be set directly through the FIRST Driver Station.
-This would be useful, for example,
-when picking what autonomous routine to run without having to push a different version of the code for every single match.
-WPILib 2027 decouples many of the functions that used to be in `Robot.java` and moves them to separate files for autonomous
-and teleop periods, making it easier to differentiate what functionalities the robot has during each stage of the match.
+This folder contains all the OpModes that your robot will run.
+An OpMode is a class that controls the behavior of your robot during a specific robot mode (autonomous, teleop, and utility).
+You can have multiple OpModes per robot mode, and they are selected on the Driver Station to tell the robot which one to run.
+This allows you to have different autonomous routines for different situations,
+or multiple teleop routines for different drivers.
+OpModes use the `Robot` class to access the robot's subsystems and other shared behavior.
+
+<Aside type="note">
+    Prior FRC programmers may have used `SendableChooser` to register different
+    autonomous routines. OpModes replace `SendableChooser`, as they are
+    integrated into the Driver Station and registered automatically.
+</Aside>
 
 ### `simulation/`
 
