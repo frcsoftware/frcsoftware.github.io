@@ -35,7 +35,7 @@ class CommandBasedKitbot {
 
     // [triggerBindingDef]
     public MyTeleop(Robot robot) {
-      xbox.leftBumper().whileTrue(robot.intake.intake()).whileTrue(robot.feeder.intake());
+      xbox.leftBumper().whileTrue(robot.intakeLauncher.intake()).whileTrue(robot.feeder.intake());
 
       // now fill in the rest...
     }
@@ -59,7 +59,7 @@ class CommandBasedKitbot {
   }
 
   class Robot {
-    ExampleMechanism intake = new ExampleMechanism();
+    ExampleMechanism intakeLauncher = new ExampleMechanism();
     ExampleMechanism feeder = new ExampleMechanism();
   }
 
