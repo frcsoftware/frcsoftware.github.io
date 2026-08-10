@@ -4,7 +4,8 @@
     "exclude": ["dist"],
     "compilerOptions": {
         "paths": {
-            "@components/*": ["./src/components/*"]
+            "@components/*": ["./src/components/*"],
+            "@data/*": ["./src/data/*"]
         },
         "checkJs": true
     }
