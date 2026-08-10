@@ -70,13 +70,21 @@ Create a new package named `mechanisms` under the `robot` package.
 Remember that packages are folders that contain java files.
 The `mechanisms` package will contain the code for our feeder and intake launcher mechanisms.
 
-Then, create a new file in the `mechanisms` package named `Feeder.java`.
-This will be used to control the feeder.
-Define a class named `Feeder` that implements `Mechanism`, then add the following:
+Then, create a new Java class in the `mechanisms` package named `Feeder.java`, which will be used to control the feeder.
+The `Feeder` class should implement `Mechanism`.
 
-1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 5.
-   It is connected to a Systemcore CANBus with ID 0.
-   This will be used to control the feeder motor at CANBus ID 5 on bus ID 0.
+<details class="accordion">
+    <summary>Hint</summary>
+    A mechanism is defined as a class with the `implements Mechanism` keyword at the end.
+    ```java #feederDef
+
+    ```
+
+</details>
+
+Then, add the following:
+
+1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with CAN ID 5 on Systemcore CANBus 0.
 2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
 3. An `intake()` command that sets the throttle of the motor to -1 forever.
 4. An `outtake()` command that sets the throttle of the motor to 1 forever.
@@ -86,20 +94,13 @@ Define a class named `Feeder` that implements `Mechanism`, then add the followin
 The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned from methods.
 
 <details class="accordion">
-    <summary>Item 1, Hint 1</summary>
-    A mechanism is defined as a class with the `implements Mechanism` keyword at the end.
-    ```java #feederDef
-
-    ```
-
-</details>
-<details class="accordion">
-    <summary>Item 1, Hint 2 (CTRE only)</summary>
-    For CTRE devices, a `CANBus` object can be created via `CANBus.systemcore(id)`.
+    <summary>Item 1, Hint 1 (CTRE only)</summary>
+    For CTRE devices, a `CANBus` object can be created via
+    `CANBus.systemcore(id)`.
 </details>
 {/* prettier-ignore */}
 <details class="accordion">
-    <summary>Item 1, Hint 3</summary>
+    <summary>Item 1, Hint 2</summary>
     Remember that `TalonFX` and `SparkMax` are classes, and that creating objects within another
     class is done like so: <br />
     {/* rli:ignore */}
@@ -134,9 +135,7 @@ to allow for simulation to work:
 Create a file named `IntakeLauncher.java` in the `mechanisms` package.
 Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the following:
 
-1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 4.
-   It is connected to a Systemcore CANBus with ID 0.
-   This will be used to control the motor at CANBus ID 4 on bus ID 0.
+1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with ID 4 on Systemcore bus 0.
 2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor to 0.9 forever.
 3. A `intake()` command that sets throttle to 0.8 forever.
 4. A `outtake()` command that sets throttle to -0.8 forever.
@@ -163,7 +162,7 @@ Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the
 
 ### Task 4: Finish the `Robot` class
 
-Now that we have the mechanism classes created, we need to set them up in the `Robot` class.
+Now that we have the mechanism classes created, we need to instantiate them in the `Robot` class.
 
 Create new instances of the `IntakeLauncher` and `Feeder` classes.
 They should be
