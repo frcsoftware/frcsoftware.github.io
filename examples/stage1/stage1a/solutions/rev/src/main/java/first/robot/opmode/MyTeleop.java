@@ -27,6 +27,7 @@ public class MyTeleop extends PeriodicOpMode {
   public void periodic() {
     robot.drivetrain.arcadeDrive(-xboxController.getLeftY(), xboxController.getRightX());
     // [/DriveSimPeriodic]
+    // [/FullDrivetrain]
 
     if (xboxController.getRightBumperButton()) {
       // shoot

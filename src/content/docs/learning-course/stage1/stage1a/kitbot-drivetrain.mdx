@@ -25,8 +25,7 @@ For this stage, the four drivetrain motors will be referred to as `leftLeader`, 
 
 Motors can not be controlled directly.
 Instead SystemCore talks to a motor controller and the motor controller then drives the motors.
-Motor controllers can also provide sensor data from the motor such as its velocity or temperature.
-Vendors, such as REV or CTRE, provide classes that can be used to both control and get sensor data from their motor controllers.
+Vendors, such as REV or CTRE, provide classes that can be used to both control and get sensor data, such as position, velocity, and temperature, from their motor controllers.
 While each individual type of motor controller has its own class, motor controllers from the same vendor are
 mostly interacted with in the same way so this stage will only use the `SparkMax` for REV code and the `TalonFX` for CTRE code.
 
@@ -94,7 +93,7 @@ Now try creating the right motor controllers on your own.
 Motor Controllers have many settings that can be changed such as IDs, motor
 types, and limits.
 Vendors provide
-software, such as REV's REV Hardware Client 2 and CTRE's Phoenix Tuner X, to run
+software, such as REV's [REV Hardware Client 2](https://docs.revrobotics.com/rev-hardware-client-2) and CTRE's [Phoenix Tuner X](https://v6.docs.ctr-electronics.com/en/stable/docs/tuner/index.html), to run
 and configure their devices from a computer.
 However, it is recommended to
 configure devices through code to ensure that all motor controllers are properly
@@ -389,3 +388,24 @@ This allows the Opmode to access the methods and fields of the`Robot` class.
     </TabItem>
 
 </Tabs>
+
+At this point `MyTeleop.java` should look like this
+
+<details class="accordion">
+    <summary>Solution</summary>
+    <Tabs>
+        <TabItem label="CTRE">
+
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#FullDrivetrain
+            ```
+
+        </TabItem>
+        <TabItem label="REV">
+
+            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#FullDrivetrain
+            ```
+
+        </TabItem>
+    </Tabs>
+
+</details>
