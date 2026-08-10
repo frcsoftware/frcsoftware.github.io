@@ -56,19 +56,27 @@ the robot class' `robotPeriodic()` method.
 
 ```
 
+<details class="accordion">
+    <summary>What does `Scheduler.getDefault().run()` do?</summary>
+    The command scheduler is in charge of running all the commands that are
+    active, and handling any mechanism requirements that those commands may
+    have. Calling this method runs the scheduler, and therefore all active
+    commands, for one iteration.
+</details>
+
 ### Task 2: The Feeder Mechanism
 
 Create a new package named `mechanisms` under the `robot` package.
-Remember that
-packages are folders that contain java files.
-The `mechanisms` package
-will contain the code for our feeder and intake launcher mechanisms.
+Remember that packages are folders that contain java files.
+The `mechanisms` package will contain the code for our feeder and intake launcher mechanisms.
 
 Then, create a new file in the `mechanisms` package named `Feeder.java`.
+This will be used to control the feeder.
 Define a class named `Feeder` that implements `Mechanism`, then add the following:
 
 1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 5.
-   It is connected to a systemcore CANBus with ID 0.
+   It is connected to a Systemcore CANBus with ID 0.
+   This will be used to control the feeder motor at CANBus ID 5 on bus ID 0.
 2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
 3. An `intake()` command that sets the throttle of the motor to -1 forever.
 4. An `outtake()` command that sets the throttle of the motor to 1 forever.
@@ -127,7 +135,8 @@ Create a file named `IntakeLauncher.java` in the `mechanisms` package.
 Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the following:
 
 1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 4.
-   It is connected to a systemcore CANBus with ID 0.
+   It is connected to a Systemcore CANBus with ID 0.
+   This will be used to control the motor at CANBus ID 4 on bus ID 0.
 2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor to 0.9 forever.
 3. A `intake()` command that sets throttle to 0.8 forever.
 4. A `outtake()` command that sets throttle to -0.8 forever.
@@ -154,6 +163,8 @@ Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the
 
 ### Task 4: Finish the `Robot` class
 
+Now that we have the mechanism classes created, we need to set them up in the `Robot` class.
+
 Create new instances of the `IntakeLauncher` and `Feeder` classes.
 They should be
 public properties of the `Robot` class, so that they are accessible from opmodes.
@@ -170,10 +181,10 @@ Which method should it be?
 
 ### Task 5: Finish the teleop OpMode
 
-In the constructor of the teleop opmode (it should be in `MyTeleop.java`),
+In the constructor of the teleop OpMode (it should be in `MyTeleop.java`),
 create a private `CommandXboxController` instance named `xbox`.
 
-In your opmode constructor, define the following behavior:
+In your OpMode constructor, define the following behavior:
 
 1. While the `xbox.leftBumper()` trigger is active,
    run the `robot.intakeLauncher.intake()` and `robot.feeder.intake()` commands.
