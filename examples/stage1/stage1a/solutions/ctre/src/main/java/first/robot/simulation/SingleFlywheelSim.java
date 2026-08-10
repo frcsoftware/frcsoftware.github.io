@@ -35,7 +35,21 @@ public class SingleFlywheelSim {
   private final DoublePublisher motorCurrentPub;
   private final DoublePublisher motorPositionPub;
 
-  public SingleFlywheelSim(TalonFX talonMotor, String name) {
+  /** Creates the physics sim for the intake launcher. */
+  public static SingleFlywheelSim forIntakeLauncher(TalonFX talonMotor) {
+    var sim = new SingleFlywheelSim(talonMotor, "Intake");
+    FuelSim.intakeLauncherSpeedSupplier = sim.flywheelSim::getAngularVelocity;
+    return sim;
+  }
+
+  /** Creates the physics sim for the feeder. */
+  public static SingleFlywheelSim forFeeder(TalonFX talonMotor) {
+    var sim = new SingleFlywheelSim(talonMotor, "Feeder");
+    FuelSim.feederSpeedSupplier = sim.flywheelSim::getAngularVelocity;
+    return sim;
+  }
+
+  private SingleFlywheelSim(TalonFX talonMotor, String name) {
     this.talonMotor = talonMotor;
     this.talonMotorSim =
         new TalonFXSimState(talonMotor, ChassisReference.CounterClockwise_Positive);
@@ -50,10 +64,6 @@ public class SingleFlywheelSim {
     // Voltage and current properties aren't included since they default to volts and amps already
     motorVelocityPub.getTopic().setProperty("unit", "\"RotationsPerSecond\"");
     motorPositionPub.getTopic().setProperty("unit", "\"Rotations\"");
-  }
-
-  public double getInputVoltage() {
-    return flywheelSim.getInputVoltage();
   }
 
   public void periodic() {

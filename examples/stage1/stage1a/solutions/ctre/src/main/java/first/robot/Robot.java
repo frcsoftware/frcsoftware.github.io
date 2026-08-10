@@ -45,9 +45,8 @@ public class Robot extends OpModeRobot {
       new DifferentialDrive(leftLeader::setThrottle, rightLeader::setThrottle);
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
-  private SingleFlywheelSim intakeLauncherSim =
-      new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
-  private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
+  private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -71,6 +70,6 @@ public class Robot extends OpModeRobot {
     drivetrainSim.periodic();
     intakeLauncherSim.periodic();
     feederSim.periodic();
-    FuelSim.update(drivetrainSim.getPose());
+    FuelSim.update();
   }
 }

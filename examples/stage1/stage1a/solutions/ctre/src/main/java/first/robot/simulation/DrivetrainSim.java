@@ -107,10 +107,7 @@ public class DrivetrainSim {
     rightTalonSim.setMotorType(MotorType.KrakenX60);
 
     driveSim.setPose(new Pose2d(2.5, 2, Rotation2d.kZero));
-  }
-
-  public Pose2d getPose() {
-    return driveSim.getPose();
+    FuelSim.robotPoseSupplier = driveSim::getPose;
   }
 
   public void periodic() {
