@@ -45,8 +45,8 @@ public class Robot extends OpModeRobot {
 
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   private SingleFlywheelSim intakeLauncherSim =
-      new SingleFlywheelSim(intakeLauncher, "intakeLauncher");
-  private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "feeder");
+      new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
+  private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
   /**
    * This function is run when the robot is first started up and should be used for any

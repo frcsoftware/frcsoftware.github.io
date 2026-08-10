@@ -48,12 +48,14 @@ public class SingleFlywheelSim {
     motorVelocityPub = table.getDoubleTopic("MotorVelocity").publish();
     motorCurrentPub = table.getDoubleTopic("MotorStatorCurrent").publish();
     motorPositionPub = table.getDoubleTopic("MotorPosition").publish();
+
+    // Voltage and current properties aren't included since they default to volts and amps already
+    motorVelocityPub.getTopic().setProperty("unit", "\"RotationsPerSecond\"");
+    motorPositionPub.getTopic().setProperty("unit", "\"Rotations\"");
   }
 
   public void periodic() {
-    double motorVoltage = talonMotor.getThrottle() * kBusVoltage;
-
-    flywheelSim.setInputVoltage(motorVoltage);
+    flywheelSim.setInputVoltage(talonMotorSim.getMotorVoltage());
     flywheelSim.update(0.02);
 
     double motorVelo = flywheelSim.getAngularVelocity() * gearRatio;
@@ -63,7 +65,7 @@ public class SingleFlywheelSim {
     talonMotorSim.setRawRotorPosition(Radians.of(motorPosition));
     talonMotorSim.setRotorVelocity(RadiansPerSecond.of(motorVelo));
 
-    motorVoltagePub.set(motorVoltage);
+    motorVoltagePub.set(talonMotor.getMotorVoltage().getValueAsDouble());
     motorVelocityPub.set(talonMotor.getVelocity().getValueAsDouble());
     motorCurrentPub.set(talonMotor.getStatorCurrent().getValueAsDouble());
     motorPositionPub.set(talonMotor.getPosition().getValueAsDouble());

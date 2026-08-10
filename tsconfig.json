@@ -5,7 +5,8 @@
     "compilerOptions": {
         "lib": ["DOM", "ESNext"],
         "paths": {
-            "@components/*": ["./src/components/*"]
+            "@components/*": ["./src/components/*"],
+            "@data/*": ["./src/data/*"]
         },
         "checkJs": true,
         "incremental": true
