@@ -19,9 +19,9 @@ public class SingleFlywheelSim {
   private final FlywheelSim m_flywheelSim;
 
   private final DoublePublisher motorVoltagePub;
-  private final DoublePublisher rotorVelocityPub;
+  private final DoublePublisher motorVelocityPub;
   private final DoublePublisher currentPub;
-  private final DoublePublisher rotorPositionPub;
+  private final DoublePublisher motorPositionPub;
   private double rotorPositionRad;
 
   private static final double kBusVoltage = 12.0;
@@ -37,9 +37,13 @@ public class SingleFlywheelSim {
 
     var table = NetworkTableInstance.getDefault().getTable(this.name);
     this.motorVoltagePub = table.getDoubleTopic("MotorVoltage").publish();
-    this.rotorVelocityPub = table.getDoubleTopic("RotorVelocity").publish();
+    this.motorVelocityPub = table.getDoubleTopic("MotorVelocity").publish();
     this.currentPub = table.getDoubleTopic("Current").publish();
-    this.rotorPositionPub = table.getDoubleTopic("RotorPosition").publish();
+    this.motorPositionPub = table.getDoubleTopic("MotorPosition").publish();
+
+    // Voltage and current properties aren't included since they default to volts and amps already
+    this.motorVelocityPub.getTopic().setProperty("unit", "\"RadiansPerSecond\"");
+    this.motorPositionPub.getTopic().setProperty("unit", "\"Radians\"");
   }
 
   public void periodic() {
@@ -52,8 +56,8 @@ public class SingleFlywheelSim {
     rotorPositionRad += radPerSec * 0.02;
 
     motorVoltagePub.set(motorVoltage);
-    rotorVelocityPub.set(radPerSec);
+    motorVelocityPub.set(radPerSec);
     currentPub.set(m_flywheelSim.getCurrentDraw());
-    rotorPositionPub.set(rotorPositionRad);
+    motorPositionPub.set(rotorPositionRad);
   }
 }
