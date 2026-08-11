@@ -18,6 +18,7 @@ import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
 // [RobotTop]
+// [RobotWithSimPart1]
 /**
  * The methods in this class are called automatically as described in the OpModeRobot documentation.
  * OpMode classes anywhere in the package (or sub-packages) where this class is located are
@@ -49,6 +50,7 @@ public class Robot extends OpModeRobot {
   // [DrivetrainSim]
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   // [/DrivetrainSim]
+  //[/RobotWithSimPart1]
 
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
@@ -58,6 +60,7 @@ public class Robot extends OpModeRobot {
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
 
   // [AllConfigs]
+  // [RobotWithSimPart2]
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -100,4 +103,5 @@ public class Robot extends OpModeRobot {
     intakeLauncherSim.periodic();
     feederSim.periodic();
   }
+  // [/RobotWithSimPart2]
 }

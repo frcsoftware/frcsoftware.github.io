@@ -18,6 +18,7 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [RobotWithSimPart1]
 // [RobotTop]
 /**
  * The methods in this class are called automatically as described in the OpModeRobot documentation.
@@ -53,6 +54,7 @@ public class Robot extends OpModeRobot {
   // [DrivetrainSim]
   private DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
   // [/DrivetrainSim]
+  // [/RobotWithSimPart1]
 
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
@@ -61,6 +63,7 @@ public class Robot extends OpModeRobot {
       new SingleFlywheelSim(intakeLauncher, "intakeLauncher");
   private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "feeder");
 
+  // [RobotWithSimPart2]
   // [AllConfigs]
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -100,4 +103,5 @@ public class Robot extends OpModeRobot {
     intakeLauncherSim.periodic();
     feederSim.periodic();
   }
+  // [/RobotWithSimPart2]
 }
