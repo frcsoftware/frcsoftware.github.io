@@ -3,11 +3,11 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
+package first.robot.opmode;
 
 import first.robot.Robot;
 import org.wpilib.driverstation.NiDsXboxController;
 import org.wpilib.opmode.PeriodicOpMode;
-package first.robot.opmode;
 import org.wpilib.opmode.Teleop;
 
 // [FullDrivetrain]
