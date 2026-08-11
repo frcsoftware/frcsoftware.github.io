@@ -25,7 +25,7 @@
         "vale:setup": "tsx scripts/setup-vale.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "typecheck": "astro check",
+        "typecheck": "astro check --minimumFailingSeverity warning",
         "prepare": "husky"
     },
     "dependencies": {
