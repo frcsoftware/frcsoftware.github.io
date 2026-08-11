@@ -17,7 +17,7 @@ import ContentImage from '@components/ContentImage.astro';
     src="/learning-course/stage1/stage1a/kitbotDrivetrain.webp"
 />
 
-The kitbot uses a 4 motor tank drive meaning the left and right sides are driven independently by 2 motors each.
+The kitbot uses a four motor tank drive meaning the left and right sides are driven independently by two motors each.
 This allows
 the robot to move similar to a tank by driving the left and right sides at different speeds.
 For this stage, the four drivetrain motors will be referred to as `leftLeader`, `leftFollower`, `rightLeader`, `rightFollower`.
@@ -25,13 +25,13 @@ For this stage, the four drivetrain motors will be referred to as `leftLeader`, 
 # Motor Controllers
 
 Motors can not be controlled directly.
-Instead SystemCore talks to a motor controller and the motor controller then drives the motors.
+Instead, Systemcore talks to a motor controller and the motor controller then drives the motors.
 Vendors, such as REV or CTRE, provide classes that can be used to both control and get sensor data, such as position, velocity, and temperature, from their motor controllers.
 While each individual type of motor controller has its own class, motor controllers from the same vendor are
 mostly interacted with in the same way so this stage will only use the `SparkMax` for REV code and the `TalonFX` for CTRE code.
 
 When creating a motor controller object, the physical motor controller's CAN ID and the CAN Bus ID are given.
-CAN Bus refers to which of the 5 SystemCore CAN ports, or which CANivore, the device is plugged into.
+CAN Bus refers to which of the 5 Systemcore CAN ports, or which CANivore, the device is plugged into.
 CAN ID is an integer that each CAN device is configured to have.
 All devices on a given CAN Bus must have a unique ID.
 Using the combination of CAN Bus and CAN ID SystemCore can give commands to the correct motor controller.
@@ -114,13 +114,13 @@ the configurations that need to be added and their proper values.
 
 For this section only the motor controller's invert setting will be configured.
 This setting controls what direction a motor spins when the motor controller is given a command with a positive sign.
-Since there are 2 motors on each side of the drivetrain, its important to ensure that the each of the motors on a side
+Since there are two motors on each side of the drivetrain, its important to ensure that the each of the motors on a side
 move in sync with eachother.
 This can be accomplished by telling one of the motor controllers to follow the other.
 This is why one motor is named Leader and the other is Follower.
 The code tells the Follower to listen to the commands given to the Leader.
 
-The motor controller configuration will be done inside of the constructor for the robot class
+The motor controller configuration will be done inside of the constructor for the robot class.
 Motor Controllers are configured by first creating a motor controller configuration object.
 This object stores the configuration so it can be changed and shared across different Motor Controllers.
 
