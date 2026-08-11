@@ -18,6 +18,10 @@ public class CommandXboxController {
     return 0;
   }
 
+  public double getRightX() {
+    return 0;
+  }
+
   public Trigger a() {
     return new Trigger(() -> false);
   }

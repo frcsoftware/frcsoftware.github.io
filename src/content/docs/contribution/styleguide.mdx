@@ -157,3 +157,64 @@ This pulls from `CommandBasedKitbotPt2.java`:
 
 ```
 ````
+
+#### Code Block Tabs
+
+Use Starlight's `Tabs` and `TabItem` components to show alternate versions of a code block, such as CTRE vs.
+REV variants of the same code.
+Import them from `@astrojs/starlight/components`, then wrap each variant's code fence in its own `TabItem`:
+
+{/* rli:ignore */}
+
+````mdx
+import { TabItem, Tabs } from '@astrojs/starlight/components';
+
+<Tabs>
+    <TabItem label="CTRE">
+        ```java #ctreDrivetrainDef
+
+        ```
+    </TabItem>
+    <TabItem label="REV">
+        ```java #revDrivetrainDef
+
+        ```
+    </TabItem>
+
+</Tabs>
+````
+
+If multiple `Tabs` on the same page (or across different pages) should stay in sync when the reader switches
+between CTRE and REV, give the `Tabs` component a `syncKey`.
+Rather than inlining a raw string, define a shared constant in `src/data/tabsSyncKeys.ts` and import it:
+
+{/* rli:ignore */}
+
+```ts
+/** The sync key for REV/CTRE choosers */
+export const REV_CTRE_CHOOSER_KEY = 'rev-ctre-chooser';
+```
+
+{/* rli:ignore */}
+
+````mdx
+import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
+import { TabItem, Tabs } from '@astrojs/starlight/components';
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+        ```
+
+        ```
+    </TabItem>
+    <TabItem label="REV">
+        ```
+
+        ```
+    </TabItem>
+
+</Tabs>
+````
+
+This way, once a reader picks CTRE or REV in one set of tabs, every other synced `Tabs` block on the site
+defaults to the same choice, instead of having to reselect it on every page.

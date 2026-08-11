@@ -146,6 +146,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     slug: 'learning-course/stage1/stage1b/commands-and-mechanisms-pt2',
                                 },
                                 {
+                                    label: 'Bonus: Spot the Error',
+                                    slug: 'learning-course/stage1/stage1b/spot-the-error',
+                                },
+                                {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 1',
                                     slug: 'learning-course/stage1/stage1b/command-based-kitbot',
                                 },
@@ -156,6 +160,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                 {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 2',
                                     slug: 'learning-course/stage1/stage1b/command-based-kitbot-pt2',
+                                },
+                                {
+                                    label: 'Bonus: Spot the Error, Pt 2',
+                                    slug: 'learning-course/stage1/stage1b/spot-the-error-pt2',
                                 },
                             ],
                         },

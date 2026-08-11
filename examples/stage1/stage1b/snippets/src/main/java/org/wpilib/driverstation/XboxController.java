@@ -15,4 +15,8 @@ public class XboxController {
   public boolean getAButton() {
     return false;
   }
+
+  public boolean getLeftBumper() {
+    return false;
+  }
 }
