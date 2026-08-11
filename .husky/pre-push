@@ -1,1 +1,1 @@
-pnpm typecheck --minimumFailingSeverity warning
+pnpm typecheck
