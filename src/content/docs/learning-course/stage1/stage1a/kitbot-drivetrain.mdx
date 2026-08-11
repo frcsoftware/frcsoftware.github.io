@@ -6,6 +6,7 @@ next: drivetrain-sim
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
 import ContentImage from '@components/ContentImage.astro';
 
 # Drivetrain
@@ -45,7 +46,7 @@ For this exercise the motor controllers will have the IDs:
 The motor controller objects should be created inside the `Robot.java` at the top of the class.
 This is how the motor controller objects for the left motors will look.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label = "CTRE">
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsLeft
         ```
@@ -71,7 +72,7 @@ Now try creating the right motor controllers on your own.
 
 <details class="accordion">
     <summary>Solution</summary>
-    <Tabs>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
             ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsRight
@@ -123,7 +124,7 @@ The motor controller configuration will be done inside of the constructor for th
 Motor Controllers are configured by first creating a motor controller configuration object.
 This object stores the configuration so it can be changed and shared across different Motor Controllers.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfigCreationLeft
@@ -145,7 +146,7 @@ This will cause the motors to spin in a direction that would drive the robot for
 Since the motors on the right side of the drivetrain are facing the opposite direction they would cause the wheels try and drive the robot backwards when given a positive input if they were configured the same way.
 Instead they should be configured with an invert setting of `false` or `Counter_Clockwise_Positive` so they also drive the robot forward when given a positive input.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfigSetLeft
@@ -164,7 +165,7 @@ Instead they should be configured with an invert setting of `false` or `Counter_
 Finally, the configuration object gets given to the motor controller object.
 It's important to remember that settings only get changed when the configuration gets given to the motor controller.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label = "CTRE">
         For CTRE Motor Controllers, becoming a follower is a `ControlRequest` instead of a configuration.
 
@@ -191,7 +192,7 @@ Remember that some of the configurations may be different.
 
 <details class="accordion">
     <summary>Solution</summary>
-    <Tabs>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
             ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfig
@@ -222,7 +223,7 @@ WPIlib provides a class to convert joystick inputs into commands for the motors 
 
 An instance of `DifferentialDrive` should be created under where the motor controllers were declared.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainInstance
@@ -257,7 +258,7 @@ An IMU, Inertial Measurement Unit, is a sensor that allows the robot to accurate
 While there are several vendors that sell very accurate IMUs, this stage will make use of Systemcore's built in IMU.
 An instance of Systemcore's IMU should be created beneath the `differentialDrive`.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#IMU
@@ -282,14 +283,16 @@ An instance of Systemcore's IMU should be created beneath the `differentialDrive
 
 # Check Up
 
-By now the top of your `Robot` class in `Robot.java` should look like this:
+By now your `Robot` class in `Robot.java` should look like this and VS code should not be giving you any errors.
 
 <details class="accordion">
     <summary>Solution</summary>
-    <Tabs>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
             ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#RobotTop
+            ```
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AllConfigs
             ```
 
         </TabItem>
@@ -297,25 +300,6 @@ By now the top of your `Robot` class in `Robot.java` should look like this:
 
             ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#RobotTop
             ```
-
-        </TabItem>
-    </Tabs>
-
-</details>
-
-The constructor for your `Robot` class should look like this:
-
-<details class="accordion">
-    <summary>Solution</summary>
-    <Tabs>
-        <TabItem label="CTRE">
-
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AllConfigs
-            ```
-
-        </TabItem>
-        <TabItem label="REV">
-
             ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#AllConfigs
             ```
 
@@ -323,8 +307,6 @@ The constructor for your `Robot` class should look like this:
     </Tabs>
 
 </details>
-
-And VS code should not be giving you any errors.
 
 # OpModes
 
@@ -347,7 +329,7 @@ This class has functions that provide the state of different buttons on the cont
 Multiple controllers can be used at once so the driverstation gives each a slot.
 The index provided in the constructor tells the `NiDsXboxController`which slot to listen too.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#Controller
@@ -373,7 +355,7 @@ Next, the `periodic()` method inside of `MyTeleop.java' will be used to continua
 The`MyTeleop`class has the`Robot`class as a parameter in its constructor.
 This allows the Opmode to access the methods and fields of the`Robot` class.
 
-<Tabs>
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
         ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#DriveSimPeriodic
@@ -393,7 +375,7 @@ At this point `MyTeleop.java` should look like this
 
 <details class="accordion">
     <summary>Solution</summary>
-    <Tabs>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
             ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#FullDrivetrain
