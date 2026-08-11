@@ -101,7 +101,7 @@ configured.
 This is especially useful because it can be easy to forget all of
 the configurations that need to be added and their proper values.
 
-<Aside>
+<Aside type="note">
     Motor controllers should usually only configured once and should never be
     configured periodically during the main robot loop. This is because
     configuring motor controllers is usually a blocking command meaning the
@@ -245,7 +245,7 @@ The `motorController:setThrottle` syntax is used to proved the `DifferentialDriv
 This function commands the motor to run a percentage of their maximum speed, also known as duty cycle, with an input from -1.0 to 1.0.
 This allows the `DifferentialDrive` instance to call the provided motors controller's `setThrottle()` functions with the correct duty cycle when provided with input from the joysticks.
 
-<Aside>
+<Aside type="note">
     The `DifferentialDrive` instance only needs to be provided with the Lead
     motor controller's `setThrottle()` functions since the Follower motors will
     automatically follow.
@@ -273,7 +273,7 @@ An instance of Systemcore's IMU should be created beneath the `differentialDrive
 
 </Tabs>
 
-<Aside>
+<Aside type="note">
     While IMUs are accurate they can only measure rotation relative to the
     initial orientation of the robot when powered on. Therefore, to make full
     use of an IMU the robot must either start in a known orientation or receive
@@ -363,7 +363,7 @@ The index provided in the constructor tells the `NiDsXboxController`which slot t
 
 </Tabs>
 
-<Aside>
+<Aside type="note">
     There are different classes for different types of controllers. There is
     also a generic `Gamepad` class that allows you to get button or axis values
     by index.
