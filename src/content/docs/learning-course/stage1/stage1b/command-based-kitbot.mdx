@@ -93,10 +93,25 @@ Then, add the following:
         5. An `idle()` command that sets the throttle of the motor to 0 forever.
         Make this the default command.
 
+        The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned from methods.
+
         <details class="accordion">
             <summary>Item 1, Hint 1</summary>
             For CTRE devices, a `CANBus` object can be created via
             `CANBus.systemcore(id)`.
+        </details>
+        {/* prettier-ignore */}
+        <details class="accordion">
+            <summary>Item 1, Hint 2</summary>
+            Remember that `TalonFX` is a class, and that creating objects within another
+            class is done like so: <br />
+            {/* rli:ignore */}
+            ```java
+            private TypeOfClass myMotor = new TypeOfClass();
+            ```
+            First, figure out what to replace `TypeOfClass` with. Next,
+            add the appropriate constructor parameters by hovering over
+            the red squiggly line.
         </details>
     </TabItem>
     <TabItem label="REV">
@@ -106,25 +121,25 @@ Then, add the following:
         4. An `outtake()` command that sets the throttle of the motor to 1 forever.
         5. An `idle()` command that sets the throttle of the motor to 0 forever.
         Make this the default command.
+
+        The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned from methods.
+
+        <details class="accordion">
+            <summary>Item 1 Hint</summary>
+            Remember that `SparkMax` is a class, and that creating objects within another
+            class is done like so: <br />
+            {/* rli:ignore */}
+            ```java
+            private TypeOfClass myMotor = new TypeOfClass();
+            ```
+            First, figure out what to replace `TypeOfClass` with. Next,
+            add the appropriate constructor parameters by hovering over
+            the red squiggly line.
+        </details>
     </TabItem>
 
 </Tabs>
 
-The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned from methods.
-
-{/* prettier-ignore */}
-<details class="accordion">
-    <summary>Item 1, Hint 2</summary>
-    Remember that `TalonFX` and `SparkMax` are classes, and that creating objects within another
-    class is done like so: <br />
-    {/* rli:ignore */}
-    ```java
-    private TypeOfClass myMotor = new TypeOfClass();
-    ```
-    First, figure out what to replace `TypeOfClass` with. Next,
-    add the appropriate constructor parameters by hovering over
-    the red squiggly line.
-</details>
 <details class="accordion">
     <summary>Items 2-4, Hint 1</summary>
     Re-read the "Defining Commands" and "Combining Commands and Mechanisms"
