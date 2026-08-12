@@ -84,20 +84,34 @@ The `Feeder` class should implement `Mechanism`.
 
 Then, add the following:
 
-1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with CAN ID 5 on Systemcore CANBus 0.
-2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
-3. An `intake()` command that sets the throttle of the motor to -1 forever.
-4. An `outtake()` command that sets the throttle of the motor to 1 forever.
-5. An `idle()` command that sets the throttle of the motor to 0 forever.
-   Make this the default command.
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+        1. A private `TalonFX` motor controller object, named `motor`, with CAN ID 5 on Systemcore CANBus 0.
+        2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
+        3. An `intake()` command that sets the throttle of the motor to -1 forever.
+        4. An `outtake()` command that sets the throttle of the motor to 1 forever.
+        5. An `idle()` command that sets the throttle of the motor to 0 forever.
+        Make this the default command.
+
+        <details class="accordion">
+            <summary>Item 1, Hint 1</summary>
+            For CTRE devices, a `CANBus` object can be created via
+            `CANBus.systemcore(id)`.
+        </details>
+    </TabItem>
+    <TabItem label="REV">
+        1. A private `SparkMax` motor controller object, named `motor`, with CAN ID 5 on Systemcore CANBus 0.
+        2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
+        3. An `intake()` command that sets the throttle of the motor to -1 forever.
+        4. An `outtake()` command that sets the throttle of the motor to 1 forever.
+        5. An `idle()` command that sets the throttle of the motor to 0 forever.
+        Make this the default command.
+    </TabItem>
+
+</Tabs>
 
 The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned from methods.
 
-<details class="accordion">
-    <summary>Item 1, Hint 1 (CTRE only)</summary>
-    For CTRE devices, a `CANBus` object can be created via
-    `CANBus.systemcore(id)`.
-</details>
 {/* prettier-ignore */}
 <details class="accordion">
     <summary>Item 1, Hint 2</summary>
@@ -135,16 +149,22 @@ to allow for simulation to work:
 Create a file named `IntakeLauncher.java` in the `mechanisms` package.
 Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the following:
 
-1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with ID 4 on Systemcore bus 0.
-2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor to 0.9 forever.
-3. A `intake()` command that sets throttle to 0.8 forever.
-4. A `outtake()` command that sets throttle to -0.8 forever.
-5. A `idle()` command that sets throttle to 0 forever.
-   Make this the default command.
-6. The code needed for simulating the intake launcher.
-   You haven't officially learned
-   how to do this, but task 2's final section gives a hint.
-   Can you figure it out?
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+        1. A private `TalonFX` motor controller object, named `motor`, with ID 4
+        on Systemcore bus 0.
+    </TabItem>
+    <TabItem label="REV">
+        1. A private `SparkMax` motor controller object, named `motor`, with ID
+        4 on Systemcore bus 0.
+    </TabItem>
+</Tabs>
+2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor
+to 0.9 forever. 3. A `intake()` command that sets throttle to 0.8 forever. 4. A
+`outtake()` command that sets throttle to -0.8 forever. 5. A `idle()` command
+that sets throttle to 0 forever. Make this the default command. 6. The code
+needed for simulating the intake launcher. You haven't officially learned how to
+do this, but task 2's final section gives a hint. Can you figure it out?
 
 <details class="accordion">
     <summary>Item 2 Hint</summary>
