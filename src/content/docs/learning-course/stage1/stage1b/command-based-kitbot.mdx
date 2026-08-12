@@ -159,6 +159,8 @@ to allow for simulation to work:
 
 ```
 
+This code creates a `SingleFlywheelSim` object named `sim` that simulates the feeder by representing it as a single spinning flywheel, then updates the simulation in `sim.periodic()`.
+
 ### Task 3: The IntakeLauncher Mechanism
 
 Create a file named `IntakeLauncher.java` in the `mechanisms` package.
@@ -191,7 +193,7 @@ do this, but task 2's final section gives a hint. Can you figure it out?
     ```java #feederSim
 
     ```
-    Change one thing, and copy-paste the code into `IntakeLauncher.java`.
+    Copy-paste the code into `IntakeLauncher.java`, and change one thing.
 
 </details>
 
@@ -199,9 +201,8 @@ do this, but task 2's final section gives a hint. Can you figure it out?
 
 Now that we have the mechanism classes created, we need to instantiate them in the `Robot` class.
 
-Create new instances of the `IntakeLauncher` and `Feeder` classes.
-They should be
-public properties of the `Robot` class, so that they are accessible from opmodes.
+Go to the `Robot` class and create new instances of the `IntakeLauncher` and `Feeder` classes.
+They should be public properties of the `Robot` class, so that they are accessible from OpModes.
 Name them `intakeLauncher` and `feeder`, respectively.
 
 You also need to call `intakeLauncher.periodic();` and `feeder.periodic();`
