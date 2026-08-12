@@ -10,7 +10,7 @@
           "width": 300,
           "expanded": [
             "/DrivetrainSim",
-            "/Intake",
+            "/IntakeLauncher",
             "/Feeder",
             "/Drivetrain"
           ]
@@ -33,7 +33,7 @@
                 "leftSources": [
                   {
                     "type": "stepped",
-                    "logKey": "NT:/Intake/MotorVoltage",
+                    "logKey": "NT:/IntakeLauncher/MotorVoltage",
                     "logType": "Number",
                     "visible": true,
                     "options": {
@@ -55,7 +55,7 @@
                 "rightSources": [
                   {
                     "type": "stepped",
-                    "logKey": "NT:/Intake/MotorVelocity",
+                    "logKey": "NT:/IntakeLauncher/MotorVelocity",
                     "logType": "Number",
                     "visible": true,
                     "options": {
