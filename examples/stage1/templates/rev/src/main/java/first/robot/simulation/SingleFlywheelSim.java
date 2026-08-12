@@ -28,7 +28,7 @@ public class SingleFlywheelSim {
 
   /** Creates the physics sim for the intake launcher. */
   public static SingleFlywheelSim forIntakeLauncher(SparkMax motor) {
-    var sim = new SingleFlywheelSim(motor, "Intake");
+    var sim = new SingleFlywheelSim(motor, "IntakeLauncher");
     FuelSim.intakeLauncherSpeedSupplier = sim.m_flywheelSim::getAngularVelocity;
     return sim;
   }

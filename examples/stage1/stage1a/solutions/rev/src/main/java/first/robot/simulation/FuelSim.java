@@ -42,7 +42,7 @@ public class FuelSim {
       parabolaFuelPub = logTable.getStructArrayTopic("ParabolaFuel", Pose3d.struct).publish();
   private static Mode mode = null;
   private static boolean isPaused = false;
-  private static double rowsOfFuel = 0.3;
+  private static double rowsOfFuel = 0;
 
   /** A supplier that fetches the velocity of the feeder. */
   static DoubleSupplier feederSpeedSupplier = () -> 0;
@@ -84,23 +84,16 @@ public class FuelSim {
     return poses;
   }
 
-  private static void setMode(Mode newMode) {
-    if (mode == newMode) {
-      return;
-    }
-    isPaused = false;
-    mode = newMode;
-  }
-
   private static void updateMode() {
     double intakeLauncherSpeed = intakeLauncherSpeedSupplier.getAsDouble();
     double feederSpeed = feederSpeedSupplier.getAsDouble();
+    isPaused = false;
     if (intakeLauncherSpeed > SPEED_EPSILON && feederSpeed > SPEED_EPSILON) {
-      setMode(Mode.SHOOT);
+      mode = Mode.SHOOT;
     } else if (intakeLauncherSpeed < SPEED_EPSILON && feederSpeed > SPEED_EPSILON) {
-      setMode(Mode.OUTTAKE);
+      mode = Mode.OUTTAKE;
     } else if (intakeLauncherSpeed > SPEED_EPSILON && feederSpeed < SPEED_EPSILON) {
-      setMode(Mode.INTAKE);
+      mode = Mode.INTAKE;
     } else {
       isPaused = true;
     }
@@ -108,7 +101,7 @@ public class FuelSim {
 
   private static void updateVisualization() {
     var robotPose = new Pose3d(robotPoseSupplier.get());
-    if (mode == Mode.SHOOT && rowsOfFuel > 0.3 && !isPaused) {
+    if (mode == Mode.SHOOT && rowsOfFuel > 0 && !isPaused) {
       parabolaFuelPub.set(basicParabola(robotPose.plus(SHOT_ORIGIN)));
     } else {
       parabolaFuelPub.set(new Pose3d[0]);

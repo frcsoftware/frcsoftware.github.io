@@ -37,7 +37,7 @@ public class SingleFlywheelSim {
 
   /** Creates the physics sim for the intake launcher. */
   public static SingleFlywheelSim forIntakeLauncher(TalonFX talonMotor) {
-    var sim = new SingleFlywheelSim(talonMotor, "Intake");
+    var sim = new SingleFlywheelSim(talonMotor, "IntakeLauncher");
     FuelSim.intakeLauncherSpeedSupplier = sim.flywheelSim::getAngularVelocity;
     return sim;
   }
