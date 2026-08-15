@@ -107,14 +107,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     label: 'Drivetrain Simulation',
                                     slug: 'learning-course/stage1/stage1a/drivetrain-sim',
                                 },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/the-command-body',
-                                // },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
-                                // },
+                                {
+                                    label: 'Simple Auto',
+                                    slug: 'learning-course/stage1/stage1a/simple-auto',
+                                },
                             ],
                         },
                         {

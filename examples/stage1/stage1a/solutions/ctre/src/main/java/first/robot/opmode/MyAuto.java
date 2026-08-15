@@ -25,6 +25,7 @@ public class MyAuto extends PeriodicOpMode {
     autoTimer.restart(); // Reset the timer to zero at the start of auto
   }
 
+  // [SimpleAuto]
   /*
    * This method runs periodically, using the same period as the Robot instance.
    *
@@ -39,4 +40,5 @@ public class MyAuto extends PeriodicOpMode {
       robot.drivetrain.arcadeDrive(0.5, 0.0); // Drive forward at half speed with no rotation
     }
   }
+  // [/SimpleAuto]
 }

@@ -1,0 +1,48 @@
+---
+title: Simple Auto
+description: Programming a time based autonomous
+prev: drivetrain-sim
+next: false
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
+
+# Autonomous OpMode
+
+Now that the kitbot can move in teleop mode, it is time to make it move during the auto mode.
+To do this, another `OpMode` needs to be written that contains all the code needed to make the robot do what's wanted in auto.
+Additionally the `@Autonomous` annotation is added above the class definition so it shows up in the driverstation under autonomous OpModes.
+This auto will be a timed based auto, meaning everything the robot does will be based on how long it has been since the start of autonomous.
+To keep track of how long it has been since the start of auto an instance of `Timer` is created in the OpMode and reset when the robot is enabled.
+
+The code for the auto should be added to the `MyAuto.java` file inside the opmode folder.
+The goal of the auto is to drive forward at half speed for four seconds then stop.
+This can be accomplished by periodically checking if it has been four seconds since the start of auto using the `Timer` instance.
+If it has been at least four seconds then command the drivetrain with zero speed.
+Otherwise command the drivetrain to drive forward at half speed.
+Writing that out in code will look like this
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAuto
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAuto
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+# Running Your Auto
+
+# Practice
+
+Try adding on to this auto yourself.
+For example, you could drive forward at half speed for four seconds, turn counter clockwise for two seconds, then drive forward at full speed for three seconds.
+You could also try creating additional autonomous OpModes so you can select between the different autos you have created.
