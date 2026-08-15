@@ -10,20 +10,27 @@ import org.wpilib.driverstation.NiDsXboxController;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
 
+// [FullDrivetrain]
 @Teleop
 public class MyTeleop extends PeriodicOpMode {
   private final Robot robot;
+  // [Controller]
   private final NiDsXboxController xboxController = new NiDsXboxController(0);
+
+  // [/Controller]
 
   /** The Robot instance is passed into the opmode via the constructor. */
   public MyTeleop(Robot robot) {
     this.robot = robot;
   }
 
+  // [DriveSimPeriodic]
   @Override
   public void periodic() {
     /* Called periodically (set time interval) while the robot is enabled. */
     robot.drivetrain.arcadeDrive(-xboxController.getLeftY(), xboxController.getRightX());
+    // [/DriveSimPeriodic]
+    // [/FullDrivetrain]
 
     if (xboxController.getRightBumperButton()) {
       // shoot

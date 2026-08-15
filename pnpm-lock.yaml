@@ -23,6 +23,12 @@ importers:
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
+      starlight-sidebar-topics:
+        specifier: ^0.8.0
+        version: 0.8.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3))
+      starlight-sidebar-topics-dropdown:
+        specifier: ^0.6.0
+        version: 0.6.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3))(starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3)))
       unist-util-visit:
         specifier: ^5.1.0
         version: 5.1.0
@@ -41,7 +47,7 @@ importers:
         version: 4.0.4
       '@vvago/vale':
         specifier: ^3.16.0
-        version: 3.16.0
+        version: 3.17.0
       astro-eslint-parser:
         specifier: ^1.4.0
         version: 1.4.0
@@ -51,6 +57,9 @@ importers:
       eslint-plugin-astro:
         specifier: ^1.7.0
         version: 1.7.0(eslint@10.5.0)
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
       globals:
         specifier: ^16.5.0
         version: 16.5.0
@@ -1272,8 +1281,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@vvago/vale@3.16.0':
-    resolution: {integrity: sha512-Cm5cW8bEsnXQHqJDcwWtrONtbpNxA41gpp/YNRLmax8Wn+lWg0YROmk4zs3VAldQ813QOARqoUfZIbUVp2LOzw==}
+  '@vvago/vale@3.17.0':
+    resolution: {integrity: sha512-vzVFOzr0y9dbXfHqnpgfs8juCflYZpqDmbNyUqdjuTzfNuATtzthTRrqE67RZt5N51FBkJiv58vFjc6ySVgjjg==}
     hasBin: true
 
   abbrev@2.0.0:
@@ -3401,6 +3410,19 @@ packages:
       '@astrojs/starlight': '>=0.38.0'
       astro: '>=6.0.0'
 
+  starlight-sidebar-topics-dropdown@0.6.0:
+    resolution: {integrity: sha512-V9a31xML6B28Eo/EZU84AqE8sjhPLjmRpo0buYtRyugRAp2vH7ZKJQDzQwpjSZen7MVb3hgYTNqBus0pdDr+XQ==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.38'
+      starlight-sidebar-topics: '>=0.7'
+
+  starlight-sidebar-topics@0.8.0:
+    resolution: {integrity: sha512-hE8+w2vNL13h6cq3UJGl05milJQ3+1BSlhaV5V4a993YzYczU6uLAj6jfUDKQ2mmgkdVWp8/UNDF4Je/rQXNQw==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.38.0'
+
   stream-replace-string@2.0.0:
     resolution: {integrity: sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w==}
 
@@ -4833,7 +4855,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       rollup: 4.59.0
 
@@ -5185,7 +5207,7 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@vvago/vale@3.16.0':
+  '@vvago/vale@3.17.0':
     dependencies:
       rimraf: 6.1.3
       tar: 7.5.22
@@ -5914,9 +5936,9 @@ snapshots:
     dependencies:
       format: 0.2.2
 
-  fdir@6.5.0(picomatch@4.0.4):
+  fdir@6.5.0(picomatch@4.0.5):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.5
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -8339,6 +8361,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  starlight-sidebar-topics-dropdown@0.6.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3))(starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3))):
+    dependencies:
+      '@astrojs/starlight': 0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3)
+      starlight-sidebar-topics: 0.8.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3))
+
+  starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3)):
+    dependencies:
+      '@astrojs/starlight': 0.41.4(@astrojs/markdown-remark@7.2.1)(astro@7.1.3(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.4)(rollup@4.59.0)(tsx@4.22.4)(yaml@2.9.0))(typescript@6.0.3)
+      picomatch: 4.0.5
+
   stream-replace-string@2.0.0: {}
 
   string-argv@0.3.2: {}
@@ -8465,13 +8497,13 @@ snapshots:
 
   tinyglobby@0.2.15:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   to-regex-range@5.0.1:
     dependencies:

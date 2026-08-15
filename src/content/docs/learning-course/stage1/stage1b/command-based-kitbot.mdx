@@ -8,6 +8,8 @@ codeRegionSources:
 ---
 
 import Aside from '@components/Aside.astro';
+import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
+import { TabItem, Tabs } from '@astrojs/starlight/components';
 
 ### What You'll Accomplish
 
@@ -28,11 +30,23 @@ Use git to clone stage 1 template code.
 Because both stage 1A and stage 1B
 use the same template, use the following terminal command to create a new project:
 
-{/* rli:ignore */}
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+        {/* rli:ignore */}
 
-```
-git clone https://github.com/frcsoftware/Stage1-Template-CTRE stage1b-ctre
-```
+        ```
+        git clone https://github.com/frcsoftware/Stage1-Template-CTRE stage1b-ctre
+        ```
+    </TabItem>
+    <TabItem label="REV">
+        {/* rli:ignore */}
+
+        ```
+        git clone https://github.com/frcsoftware/Stage1-Template-REV stage1b-rev
+        ```
+    </TabItem>
+
+</Tabs>
 
 Then, navigate to the `Robot` class under `src/main/java/first/robot`.
 For commands to function, you must call `Scheduler.getDefault().run()` in
@@ -53,7 +67,7 @@ will contain the code for our feeder and intake launcher mechanisms.
 Then, create a new file in the `mechanisms` package named `Feeder.java`.
 Define a class named `Feeder` that implements `Mechanism`, then add the following:
 
-1. A private `TalonFX` motor controller object, named `motor`, with an ID of 5.
+1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 5.
    It is connected to a systemcore CANBus with ID 0.
 2. A `feed()` command that sets the throttle of the motor to 0.75 forever.
 3. An `intake()` command that sets the throttle of the motor to -1 forever.
@@ -72,13 +86,13 @@ The `feed()`, `intake()`, `outtake()` and `idle()` commands should be returned f
 
 </details>
 <details class="accordion">
-    <summary>Item 1, Hint 2</summary>
-    You can create a `CANBus` object via `CANBus.systemcore(id)`.
+    <summary>Item 1, Hint 2 (CTRE only)</summary>
+    For CTRE devices, a `CANBus` object can be created via `CANBus.systemcore(id)`.
 </details>
 {/* prettier-ignore */}
 <details class="accordion">
     <summary>Item 1, Hint 3</summary>
-    Remember that `TalonFX` is a class, and that creating objects within another
+    Remember that `TalonFX` and `SparkMax` are classes, and that creating objects within another
     class is done like so: <br />
     {/* rli:ignore */}
     ```java
@@ -112,7 +126,7 @@ to allow for simulation to work:
 Create a file named `IntakeLauncher.java` in the `mechanisms` package.
 Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the following:
 
-1. A private `TalonFX` motor controller object, named `motor`, with an ID of 4.
+1. A private `TalonFX` or `SparkMax` motor controller object, named `motor`, with an ID of 4.
    It is connected to a systemcore CANBus with ID 0.
 2. A `shoot()` command that waits 2 seconds, then sets the throttle of the motor to 0.9 forever.
 3. A `intake()` command that sets throttle to 0.8 forever.
@@ -162,11 +176,11 @@ create a private `CommandXboxController` instance named `xbox`.
 In your opmode constructor, define the following behavior:
 
 1. While the `xbox.leftBumper()` trigger is active,
-   run the `robot.intake.intake()` and `robot.feeder.intake()` commands.
+   run the `robot.intakeLauncher.intake()` and `robot.feeder.intake()` commands.
 2. While the `xbox.rightBumper()` trigger is active,
-   run the `robot.intake.shoot()` and `robot.feeder.feed()` commands.
+   run the `robot.intakeLauncher.shoot()` and `robot.feeder.feed()` commands.
 3. While the `xbox.a()` trigger is active,
-   run the `robot.intake.outtake()` and `robot.feeder.outtake()` commands.
+   run the `robot.intakeLauncher.outtake()` and `robot.feeder.outtake()` commands.
 
 <details class="accordion">
     <summary>Hint</summary>
