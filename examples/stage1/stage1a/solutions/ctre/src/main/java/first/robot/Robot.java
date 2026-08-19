@@ -56,10 +56,14 @@ public class Robot extends OpModeRobot {
   // [/DrivetrainSim]
   // [/RobotWithSimPart1]
 
+  // [AdditionalMotors]
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
+  // [/AdditionalMotors]
 
+  // [IntakeLauncherSim]
   private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  // [/IntakeLauncherSim]
   private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
 
   // [RobotWithSimPart2]

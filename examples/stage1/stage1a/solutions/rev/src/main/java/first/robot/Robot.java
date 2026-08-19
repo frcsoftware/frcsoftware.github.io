@@ -53,11 +53,18 @@ public class Robot extends OpModeRobot {
   // [/DrivetrainSim]
   // [/RobotWithSimPart1]
 
+  // [AdditionalMotors]
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
+  // [/AdditionalMotors]
 
+  // [IntakeLauncherSim]
   private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  // [/IntakeLauncherSim]
+  // [FeederSim]
   private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
+
+  // [/FeederSim]
 
   // [RobotWithSimPart2]
   // [AllConfigs]

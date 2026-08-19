@@ -1,0 +1,80 @@
+---
+title: Kitbot Additional Motors
+description: Programming the remaining kitbot motors
+prev: simple-auto
+next: false
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
+
+# Remaining Motors
+
+The kitbot has two additional motors that allow it to intake and shoot fuel.
+The IntakeLauncher motor powers the intake roller and the launcher flywheel while the Feeder motor feeds fuel into the hopper, into the launcher, or out of the intake.
+The IntakeLauncher motor will be on CAN Bus 0 with a CAN Id of 4 while the Feeder motor will be on CAN Bus 0 with a CAN Id of 5.
+
+Inside of the `Robot.java` file create a motor controller instance for the IntakeLauncher and Feeder motors.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AdditionalMotors
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#AdditionalMotors
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+# Simulating Additional Motors
+
+Like the drivetrain, the `SingleFlywheelSim` class is provided which abstracts much of the simulation code.
+The `SingleFlywheelSim` has different static methods for the LauncherFeeder and Intake motors which return instances of `SingleFlywheelSim` with settings for those specific motors.
+
+Creating the `SingleFlywheelSim` instance for the LauncherFeeder motor will look like this
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#IntakeLauncherSim
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#IntakeLauncherSim
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+Now try creating the `SingleFlywheelSim` instance for the Intake motor.
+This will instead use the `forFeeder()` method.
+
+<details class="accordion">
+    <summary>Solution</summary>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+        <TabItem label="CTRE">
+
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FeederSim
+            ```
+
+        </TabItem>
+        <TabItem label="REV">
+
+            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FeederSim
+            ```
+
+        </TabItem>
+    </Tabs>
+
+</details>
+
+The final step to make the motors run in simulation is calling the `SimpleFlywheelSim` instance's `periodic()` method inside of the `Robot` classes' `simulationPeriodic()` function.
