@@ -111,6 +111,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     label: 'Simple Auto',
                                     slug: 'learning-course/stage1/stage1a/simple-auto',
                                 },
+                                {
+                                    label: 'Additional Motors',
+                                    slug: 'learning-course/stage1/stage1a/kitbot-additional-motors',
+                                },
                             ],
                         },
                         {

@@ -64,7 +64,10 @@ public class Robot extends OpModeRobot {
   // [IntakeLauncherSim]
   private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
   // [/IntakeLauncherSim]
+  // [FeederSim]
   private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
+
+  // [/FeederSim]
 
   // [RobotWithSimPart2]
   // [AllConfigs]
