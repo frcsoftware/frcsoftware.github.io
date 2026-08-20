@@ -1,8 +1,8 @@
 {
   "hubs": [
     {
-      "x": 328,
-      "y": 194,
+      "x": 124,
+      "y": 202,
       "width": 1101,
       "height": 652,
       "state": {
@@ -12,11 +12,12 @@
             "/DrivetrainSim",
             "/IntakeLauncher",
             "/Feeder",
-            "/Drivetrain"
+            "/Drivetrain",
+            "/FuelSim"
           ]
         },
         "tabs": {
-          "selected": 2,
+          "selected": 3,
           "tabs": [
             {
               "type": 0,
@@ -114,6 +115,76 @@
               },
               "controllerUUID": "9ukgi1echibr7o0wodpgms6ajn3yic95",
               "renderer": null,
+              "controlsHeight": 200
+            },
+            {
+              "type": 3,
+              "title": "",
+              "controller": {
+                "sources": [
+                  {
+                    "type": "robot",
+                    "logKey": "NT:/Drivetrain/Pose",
+                    "logType": "Pose2d",
+                    "visible": true,
+                    "options": {
+                      "model": "2026 KitBot"
+                    }
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/FuelSim/ParabolaFuel",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Fuel"
+                    }
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/FuelSim/Row1Fuel",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Fuel"
+                    }
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/FuelSim/Row2Fuel",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Fuel"
+                    }
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/FuelSim/Row3Fuel",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Fuel"
+                    }
+                  }
+                ],
+                "game": "FRC:2026 Field"
+              },
+              "controllerUUID": "0meuskvg6hdf2g4058n2tk2mpb69fh4m",
+              "renderer": {
+                "cameraIndex": -2,
+                "orbitFov": 50,
+                "cameraPosition": [
+                  2,
+                  1,
+                  1.0000000000000002
+                ],
+                "cameraTarget": [
+                  0,
+                  0.5,
+                  0
+                ]
+              },
               "controlsHeight": 200
             }
           ]

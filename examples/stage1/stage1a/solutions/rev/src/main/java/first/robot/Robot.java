@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import first.robot.simulation.DrivetrainSim;
+import first.robot.simulation.FuelSim;
 import first.robot.simulation.SingleFlywheelSim;
 import org.wpilib.drive.DifferentialDrive;
 import org.wpilib.framework.OpModeRobot;
@@ -55,9 +56,8 @@ public class Robot extends OpModeRobot {
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
 
-  private SingleFlywheelSim intakeLauncherSim =
-      new SingleFlywheelSim(intakeLauncher, "IntakeLauncher");
-  private SingleFlywheelSim feederSim = new SingleFlywheelSim(feeder, "Feeder");
+  private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
 
   // [RobotWithSimPart2]
   // [AllConfigs]
@@ -102,6 +102,7 @@ public class Robot extends OpModeRobot {
     // [/DriveSimPeriodic]
     intakeLauncherSim.periodic();
     feederSim.periodic();
+    FuelSim.update();
   }
   // [/RobotWithSimPart2]
 }
