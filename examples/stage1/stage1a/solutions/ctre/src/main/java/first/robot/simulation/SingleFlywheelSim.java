@@ -30,14 +30,26 @@ public class SingleFlywheelSim {
           Models.flywheelFromPhysicalConstants(DCMotor.getKrakenX60(1), 0.001, gearRatio),
           DCMotor.getKrakenX60(1));
 
-  private final double kBusVoltage = 12.0;
-
   private final DoublePublisher motorVoltagePub;
   private final DoublePublisher motorVelocityPub;
   private final DoublePublisher motorCurrentPub;
   private final DoublePublisher motorPositionPub;
 
-  public SingleFlywheelSim(TalonFX talonMotor, String name) {
+  /** Creates the physics sim for the intake launcher. */
+  public static SingleFlywheelSim forIntakeLauncher(TalonFX talonMotor) {
+    var sim = new SingleFlywheelSim(talonMotor, "IntakeLauncher");
+    FuelSim.intakeLauncherSpeedSupplier = sim.flywheelSim::getAngularVelocity;
+    return sim;
+  }
+
+  /** Creates the physics sim for the feeder. */
+  public static SingleFlywheelSim forFeeder(TalonFX talonMotor) {
+    var sim = new SingleFlywheelSim(talonMotor, "Feeder");
+    FuelSim.feederSpeedSupplier = sim.flywheelSim::getAngularVelocity;
+    return sim;
+  }
+
+  private SingleFlywheelSim(TalonFX talonMotor, String name) {
     this.talonMotor = talonMotor;
     this.talonMotorSim =
         new TalonFXSimState(talonMotor, ChassisReference.CounterClockwise_Positive);

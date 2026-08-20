@@ -8,8 +8,6 @@ codeRegionSources:
 ---
 
 import Aside from '@components/Aside.astro';
-import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
-import { TabItem, Tabs } from '@astrojs/starlight/components';
 
 ### What You'll Accomplish
 
@@ -22,34 +20,43 @@ In this second part of the kitbot rewrite, you will:
 
 ### Task 1: The Drivetrain Mechanism
 
-Create a new file named `Drivetrain.java` in the `mechanisms` package.
-Then,
-copy-paste the following code into the file:
+Create a new Java class named `Drivetrain.java` in the `mechanisms` package.
+This class should implement `Mechanism`.
 
-<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
-    <TabItem label="CTRE">
-        ```java #ctreDrivetrainDef
+Then, do the following:
 
-        ```
-    </TabItem>
-    <TabItem label="REV">
-        ```java #revDrivetrainDef
-
-        ```
-    </TabItem>
-
-</Tabs>
-
-Then implement the following:
-
-1. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the constructor.
-2. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates the drive motor speeds using the values from the suppliers.
-3. The drivetrain motor configuration code, which can be found in `Robot.java` from stage 1A.
-   Where should this code
-   be placed?
+1. Initialize four motors as private class fields: `leftLeader`, `leftFollower`, `rightLeader`, and `rightFollower`, which are on CANBus 0 and CAN IDs 0-3 respectively.
+2. Initialize a `DifferentialDrive` object named `differentialDrive` with the left and right leader motors.
+3. Initialize an `OnboardIMU` object named `imu`.
+4. Initialize a `DrivetrainSim` object named `drivetrainSim` and make a method named `periodic()` that runs the drivetrain sim `periodic()` method.
 
 <details class="accordion">
-    <summary>Item 2 Hint</summary>
+    <summary>Hint</summary>
+    Refer back to Stage 1A for how to do these steps.
+</details>
+
+### Task 2: Controlling the Drivetrain
+
+Now that we have a `Drivetrain` class, we can create `Command`s that control the drivetrain.
+
+To do that, write the following:
+
+1. The drivetrain motor configuration code, which can be found in `Robot.java` from stage 1A.
+2. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the constructor.
+3. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates the drive motor speeds using the values from the suppliers.
+
+<details class="accordion">
+    <summary>Item 1, Hint 1</summary>
+    The constructor of the `Robot` class in stage 1A contains the code to
+    configure the drivetrain motors.
+</details>
+<details class="accordion">
+    <summary>Item 1, Hint 2</summary>
+    We want to configure our motors when a new `Drivetrain` instance is created.
+    What Java declaration defines the code that runs when a class is instantiated?
+</details>
+<details class="accordion">
+    <summary>Item 3 Hint</summary>
     Since the joystick values change constantly, you must fetch the speed and
     rotation from the suppliers inside the command's loop. You should have the
     following inside of your command's body: 
@@ -58,18 +65,8 @@ Then implement the following:
     ```
 
 </details>
-<details class="accordion">
-    <summary>Item 3, Hint 1</summary>
-    The constructor of the `Robot` class in stage 1A contains the code to
-    configure the drivetrain motors.
-</details>
-<details class="accordion">
-    <summary>Item 3, Hint 2</summary>
-    We want to configure our motors when a new `Drivetrain` instance is created.
-    What java declaration defines the code that runs when a class is instantiated?
-</details>
 
-### Task 2: Drivetrain Setup
+### Task 3: Using the Drivetrain
 
 1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`.
    It should be a public instead of private.
@@ -102,7 +99,7 @@ Then implement the following:
     command set in the constructor (`idle()`) will apply.
 </Aside>
 
-### Task 3: Create Auto Mode Files
+### Task 4: Create Auto Mode Files
 
 Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
 before deleting the `MyAuto.java` file.
@@ -113,7 +110,7 @@ while replacing `MyOpModeName` with the correct name for each opmode:
 
 ```
 
-### Task 3: Drive Straight Autonomous
+### Task 5: Drive Straight Autonomous
 
 In the `start()` method of `DriveStraightAutoMode.java`, schedule
 an `arcadeDrive` command with a timeout of 4 seconds.
@@ -144,7 +141,7 @@ Then, do the following:
 
 </details>
 
-### Task 4: Rotate in Place Command
+### Task 6: Rotate in Place Command
 
 Create a new `Command` in `Drivetrain.java`, called `rotateInPlace`,
 with the parameters `double angleDegrees` and `DoubleSupplier rotationThrottle`.
@@ -163,7 +160,7 @@ It should execute these actions, in order:
 
 </details>
 
-### Task 5: Rotate in Place Autonomous
+### Task 7: Rotate in Place Autonomous
 
 Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `TurnInPlaceAutoMode.java`.
 It should rotate the robot 90 degrees from its starting position, at a throttle of 0.2.

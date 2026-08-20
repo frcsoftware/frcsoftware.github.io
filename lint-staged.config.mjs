@@ -1,3 +1,11 @@
+import { platform } from 'node:process';
+import { resolve } from 'node:path';
+
+const gradlew = resolve(
+    'examples',
+    platform === 'win32' ? 'gradlew.bat' : 'gradlew',
+);
+
 const runPrettierOn =
     '**/*.{' +
     [
@@ -27,7 +35,7 @@ export default {
         `pnpm remark ${files.join(' ')} --ext mdx --frail --no-stdout --quiet`,
     ],
     'examples/**/*.{java,gradle}': () => [
-        `./examples/gradlew -p examples spotlessApply`,
+        `${gradlew} -p examples spotlessApply`,
     ],
     'src/data/glossary.ts': () => [
         'pnpm generate:glossary',
