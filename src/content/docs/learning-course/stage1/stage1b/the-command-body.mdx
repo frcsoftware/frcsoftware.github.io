@@ -11,9 +11,8 @@ import Aside from '@components/Aside.astro';
 
 ### Something Looks Familiar Here...
 
-If you've ever coded in Scratch, with blocks, or taken an intro to programming class,
-you've probably written software as a sequence of statements.
-Like so:
+If you've ever coded in Scratch, with blocks, or taken an intro to programming class, you've probably written software
+as a sequence of statements. Like so:
 
 ```java #triangleLoop
 
@@ -21,9 +20,8 @@ Like so:
 
 (In case you were curious - this prints a triangle to the console.)
 
-From the previous section, you might remember that command-based programming,
-as a whole, cannot be represented with just a sequence of statements.
-However, individual commands (or robot actions) can.
+From the previous section, you might remember that command-based programming, as a whole, cannot be represented with
+just a sequence of statements. However, individual commands (or robot actions) can.
 
 For instance, this command body runs a motor at full speed forever:
 
@@ -37,27 +35,24 @@ And this command body would rotate your robot by roughly 90 degrees, then stop:
 
 ```
 
-Fundamentally, the commands (or robot actions) themselves can be represented with familiar
-programming structures: while loops, variables, method calls, and more.
+Fundamentally, the commands (or robot actions) themselves can be represented with familiar programming structures: while
+loops, variables, method calls, and more.
 
 <Aside type="note">
-    Notice that we said command body, not command! The command body defines the
-    actions it executes after it is run. However, a command must also define
-    requirements, priority, and more.
+    Notice that we said command body, not command! The command body defines the actions it executes after it is run.
+    However, a command must also define requirements, priority, and more.
 </Aside>
 
 ### The Meaning of `coroutine.yield();`
 
-`coroutine.yield()` is a special statement that must be called inside of while loops.
-It allows for commands to run in parallel, while ensuring that background tasks
-(like motor safety checks) are run.
-An analogy would be the sips of water you take while you finish your homework.
+`coroutine.yield()` is a special statement that must be called inside of while loops. It allows for commands to run in
+parallel, while ensuring that background tasks (like motor safety checks) are run. An analogy would be the sips of water
+you take while you finish your homework.
 
-The `coroutine` object contains many other useful methods that can only be called
-inside of commands.
-Some of these will be mentioned in the following sections.
+The `coroutine` object contains many other useful methods that can only be called inside of commands. Some of these will
+be mentioned in the following sections.
 
 <Aside type="note">
-    Because `coroutine.yield()` can't be called outside of commands, it is
-    highly discouraged to use while loops outside of commands.
+    Because `coroutine.yield()` can't be called outside of commands, it is highly discouraged to use while loops outside
+    of commands.
 </Aside>

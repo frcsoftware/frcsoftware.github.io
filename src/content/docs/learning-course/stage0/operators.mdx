@@ -7,21 +7,19 @@ codeRegionSources:
     default: stage0/snippets/src/Operators.java
 ---
 
-In Java, operators are used to change or compare the values of variables.
-There four different types of operators are:
+In Java, operators are used to change or compare the values of variables. There four different types of operators are:
 
 - Arithmetic Operators
 - Assignment Operators
 - Comparison Operators
 - Logical Operators
 
-Operators are commonly used to change the value of a variable in a loop or conditional.
-These topics will be covered in the next sections!
+Operators are commonly used to change the value of a variable in a loop or conditional. These topics will be covered in
+the next sections!
 
 ## Arithmetic Operators
 
-Arithmetic operators are used to perform basic math on variables.
-These include:
+Arithmetic operators are used to perform basic math on variables. These include:
 
 <table class="Arithmetic Operators">
     <thead>
@@ -59,22 +57,18 @@ These include:
         </tr>
         <tr>
             <td>`%`</td>
-            <td>
-                Remainder: Returns the remainder of two numbers after division
-            </td>
+            <td>Remainder: Returns the remainder of two numbers after division</td>
             <td>int, double</td>
             <td>`a % b`</td>
         </tr>
     </tbody>
 </table>
 
-<Aside type="note">
-    Operators in Java follow the order of operations (known as PEMDAS).
-</Aside>
+<Aside type="note">Operators in Java follow the order of operations (known as PEMDAS).</Aside>
 
-Operators can be used when creating variables or when changing a variable's value after it was initialized.
-In the example below, we have three variables whose values are set using different operators.
-Without running the code, think about what value would each variable hold.
+Operators can be used when creating variables or when changing a variable's value after it was initialized. In the
+example below, we have three variables whose values are set using different operators. Without running the code, think
+about what value would each variable hold.
 
 ```java #variables
 
@@ -93,8 +87,9 @@ Without running the code, think about what value would each variable hold.
     </div>
 </details>
 
-In the example below, we have an integer variable named `magicNumber` that is set to 6. Using the multiplication operator, the value is adjusted inside the print statement.
-Without running the code, what is the value of `magicNumber`?
+In the example below, we have an integer variable named `magicNumber` that is set to 6. Using the multiplication
+operator, the value is adjusted inside the print statement. Without running the code, what is the value of
+`magicNumber`?
 
 ```java #multiplication
 
@@ -104,24 +99,21 @@ Without running the code, what is the value of `magicNumber`?
     <summary>Answer</summary>
     <div class="content">
         <p>
-            `magicNumber`'s value remains 6. The value calculated inside
-            `println` only affects what gets printed, since it's never assigned
-            back to `magicNumber` using an equal sign.
+            `magicNumber`'s value remains 6. The value calculated inside `println` only affects what gets printed, since
+            it's never assigned back to `magicNumber` using an equal sign.
         </p>
     </div>
 </details>
 
 <Aside type="note">
-    When dividing two integers, the result will be an integer instead of a
-    double. Example: `System.out.print(7 / 2);` will print out 3. If you want
-    the result to return a `double`, like 3.5, the data type should be a
-    `double` instead of an `int`.
+    When dividing two integers, the result will be an integer instead of a double. Example: `System.out.print(7 / 2);`
+    will print out 3. If you want the result to return a `double`, like 3.5, the data type should be a `double` instead
+    of an `int`.
 </Aside>
 
 ## Assignment Operators
 
-Assignment operators are used when assigning or updating the values in a variable.
-These include:
+Assignment operators are used when assigning or updating the values in a variable. These include:
 
 <table class="Assignment Operators">
     <thead>
@@ -140,56 +132,52 @@ These include:
         <tr>
             <td>`+=`</td>
             <td>
-                Addition: Takes the current value of the variable, adds the
-                stated amount then assigns the result to the variable. It's the
-                same as `x = x + y`
+                Addition: Takes the current value of the variable, adds the stated amount then assigns the result to the
+                variable. It's the same as `x = x + y`
             </td>
             <td>`a += 3`</td>
         </tr>
         <tr>
             <td>`-=`</td>
             <td>
-                Subtraction: Takes the current value of the variable, subtracts
-                the stated amount then assigns the result to the variable. It's
-                the same as `x = x - y`
+                Subtraction: Takes the current value of the variable, subtracts the stated amount then assigns the
+                result to the variable. It's the same as `x = x - y`
             </td>
             <td>`a -= 4`</td>
         </tr>
         <tr>
             <td>`*=`</td>
             <td>
-                Multiplication: Takes the current value of the variable,
-                multiplies the stated amount then assigns the result to the
-                variable. It's the same as `x = x * y`
+                Multiplication: Takes the current value of the variable, multiplies the stated amount then assigns the
+                result to the variable. It's the same as `x = x * y`
             </td>
             <td>`a *= 5`</td>
         </tr>
         <tr>
             <td>`/=`</td>
             <td>
-                Division: Takes the current value of the variable, divides the
-                stated amount then assigns the result to the variable. It's the
-                same as `x = x / y`
+                Division: Takes the current value of the variable, divides the stated amount then assigns the result to
+                the variable. It's the same as `x = x / y`
             </td>
             <td>`a /= 6`</td>
         </tr>
     </tbody>
 </table>
 
-Assignment operators are similar to arithmetic operators.
-The main difference is that assignment operators are the shorthand version.
-Using assignment operators can help make code easier to read.
-It prevents having to write the variable name twice which can also be helpful in preventing code errors.
+Assignment operators are similar to arithmetic operators. The main difference is that assignment operators are the
+shorthand version. Using assignment operators can help make code easier to read. It prevents having to write the
+variable name twice which can also be helpful in preventing code errors.
 
-In the example below, we have variables `a` which is set to 10, and variable `b` which is set to 5. Since `+=` adds 2 to `a`, `a` will hold the value of 12. Similarly, `b` will now hold the value of 4
+In the example below, we have variables `a` which is set to 10, and variable `b` which is set to 5. Since `+=` adds 2 to
+`a`, `a` will hold the value of 12. Similarly, `b` will now hold the value of 4
 
 ```java #arithmetic
 
 ```
 
-Sometimes placed in the category of "unary operators", the `++` and `--` operators are also used to change the value of the a variable.
-They help with incrementing and decrementing values and are used in conditionals (which are covered in a later stage).
-For now, we can use the operators to change variables without using conditionals.
+Sometimes placed in the category of "unary operators", the `++` and `--` operators are also used to change the value of
+the a variable. They help with incrementing and decrementing values and are used in conditionals (which are covered in a
+later stage). For now, we can use the operators to change variables without using conditionals.
 
 <table class="Increment/Decrement Operators">
     <thead>
@@ -222,15 +210,14 @@ In the example below, we have two variables: `x` which is set to 6 and `y` which
 
 ```
 
-In the first print statement, we have `x++`.
-This means it takes the value of x and increments it by 1 which gives us 7 because 6 + 1 is 7.
-In the second print statement, we have `y--`.
-This means that it takes the value of y, decrements it by 1 which gives us 6 since 7 - 1 is 6.
+In the first print statement, we have `x++`. This means it takes the value of x and increments it by 1 which gives us 7
+because 6 + 1 is 7. In the second print statement, we have `y--`. This means that it takes the value of y, decrements it
+by 1 which gives us 6 since 7 - 1 is 6.
 
 ## Comparison Operators
 
-Comparison operators are symbols that tell the program how to compare values.
-They can be used to help make decisions and are a main part of conditionals, which are discussed later in this stage.
+Comparison operators are symbols that tell the program how to compare values. They can be used to help make decisions
+and are a main part of conditionals, which are discussed later in this stage.
 
 <table class="Comparison Operators">
     <thead>
@@ -282,12 +269,11 @@ They can be used to help make decisions and are a main part of conditionals, whi
     </tbody>
 </table>
 
-Comparison operators help make decisions because they can return if the value of a comparison is true or false.
-If you remember from the previous section, these are `booleans`!
+Comparison operators help make decisions because they can return if the value of a comparison is true or false. If you
+remember from the previous section, these are `booleans`!
 
-Comparison operators are very similar to what you see in math problems.
-In this example, we have two variables: `c` and `d`.
-`c` is set to 2, and `d` is set to 4. The print statement compares the two variables using the greater than sign.
+Comparison operators are very similar to what you see in math problems. In this example, we have two variables: `c` and
+`d`. `c` is set to 2, and `d` is set to 4. The print statement compares the two variables using the greater than sign.
 In the example below, it returns false because 2 is not greater than 4.
 
 ```java #comparison
@@ -296,12 +282,11 @@ In the example below, it returns false because 2 is not greater than 4.
 
 ## Logical Operators
 
-Logical operators help a program make decisions by using true or false statements.
-They are also used in conditionals.
+Logical operators help a program make decisions by using true or false statements. They are also used in conditionals.
 
 <Aside type="note">
-    Logical operators also follow the order of operations (known as PEMDAS) and
-    parentheses can be used to change this order.
+    Logical operators also follow the order of operations (known as PEMDAS) and parentheses can be used to change this
+    order.
 </Aside>
 
 <table class="Comparison Operators">
@@ -331,9 +316,9 @@ They are also used in conditionals.
     </tbody>
 </table>
 
-In the example below we have 2 variables: `fiveIsGreaterThanThree` and `nineIsLessThanTwo`.
-We know `fiveIsGreaterThanThree` is true since 5 is greater than 3. We also know that `nineIsLessThanTwo` is false since 9 is not less than 2.
-Using that information and without running the code, what should the print statements print out?
+In the example below we have 2 variables: `fiveIsGreaterThanThree` and `nineIsLessThanTwo`. We know
+`fiveIsGreaterThanThree` is true since 5 is greater than 3. We also know that `nineIsLessThanTwo` is false since 9 is
+not less than 2. Using that information and without running the code, what should the print statements print out?
 
 ```java #logical
 
@@ -345,18 +330,16 @@ Using that information and without running the code, what should the print state
         <p>
             <ul>
                 <li>
-                    false. && returns true if both statements are true
-                    `nineIsLessThanTwo` is false, therefore the operator will
-                    return false.
+                    false. && returns true if both statements are true `nineIsLessThanTwo` is false, therefore the
+                    operator will return false.
                 </li>
                 <li>
-                    true. || returns true if one of the statements are true
-                    `fiveIsGreaterThanThree` is true, therefore the the operator
-                    will return true.
+                    true. || returns true if one of the statements are true `fiveIsGreaterThanThree` is true, therefore
+                    the the operator will return true.
                 </li>
                 <li>
-                    false. ! reverses the outcome `fiveIsGreaterThanThree` is
-                    true, adding ! will reverse it and return false.
+                    false. ! reverses the outcome `fiveIsGreaterThanThree` is true, adding ! will reverse it and return
+                    false.
                 </li>
             </ul>
         </p>

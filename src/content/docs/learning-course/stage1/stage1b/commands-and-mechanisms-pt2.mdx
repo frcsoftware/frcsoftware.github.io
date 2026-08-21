@@ -11,19 +11,15 @@ import ContentImage from '@components/ContentImage.astro';
 
 ### Default Commands
 
-Most mechanisms define a "default command" that runs when
-no other commands requiring it are active.
-The default command
-of an intake or a shooter, for instance, would be setting the throttle
-of all motors to 0, forever.
+Most mechanisms define a "default command" that runs when no other commands requiring it are active. The default command
+of an intake or a shooter, for instance, would be setting the throttle of all motors to 0, forever.
 
 <Aside type="note">
-    In humans, this is like our brain telling our arms to hang by our shoulders
-    when they aren't in use.
+    In humans, this is like our brain telling our arms to hang by our shoulders when they aren't in use.
 </Aside>
 
-To set a mechanism's default command, simply call `setDefaultCommand(Command)`, which is
-an instance method of all mechanisms:
+To set a mechanism's default command, simply call `setDefaultCommand(Command)`, which is an instance method of all
+mechanisms:
 
 ```java #defaultCommand
 
@@ -31,8 +27,7 @@ an instance method of all mechanisms:
 
 ### Adding Delays to Commands
 
-Use `coroutine.wait()` to wait for a predefined amount of time within
-the body of a command:
+Use `coroutine.wait()` to wait for a predefined amount of time within the body of a command:
 
 ```java #delayCommand
 
@@ -46,14 +41,13 @@ You can also give an existing command a timeout with the `withTimeout()` modifie
 
 ### More commands info
 
-The following information isn't strictly needed for
-the exercises in stage 1b; however, they will be very
-useful for future exercises and coding a real robot.
+The following information isn't strictly needed for the exercises in stage 1b; however, they will be very useful for
+future exercises and coding a real robot.
 
 #### Commands without requirements
 
-Sometimes, you need to create a command that doesn't require any mechanisms.
-To do so, you can replace `run(...)` with `Command.noRequirements(...)`.
+Sometimes, you need to create a command that doesn't require any mechanisms. To do so, you can replace `run(...)` with
+`Command.noRequirements(...)`.
 
 ```java #noRequirementsCommand
 
@@ -61,13 +55,12 @@ To do so, you can replace `run(...)` with `Command.noRequirements(...)`.
 
 #### Running Commands in parallel
 
-`coroutine.awaitAll(a, b, c)` will run the commands a, b, and c in parallel,
-waiting for all 3 to finish before proceeding.
+`coroutine.awaitAll(a, b, c)` will run the commands a, b, and c in parallel, waiting for all 3 to finish before
+proceeding.
 
 ```java #parallelCommands
 
 ```
 
-On the other hand, `coroutine.awaitAny(a, b, c)` runs a, b, and c in parallel
-until any of a, b, or c finishes.
-Then, it will cancel the remaining commands.
+On the other hand, `coroutine.awaitAny(a, b, c)` runs a, b, and c in parallel until any of a, b, or c finishes. Then, it
+will cancel the remaining commands.

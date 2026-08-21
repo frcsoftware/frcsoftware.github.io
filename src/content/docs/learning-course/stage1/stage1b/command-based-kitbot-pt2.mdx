@@ -20,15 +20,16 @@ In this second part of the kitbot rewrite, you will:
 
 ### Task 1: The Drivetrain Mechanism
 
-Create a new Java class named `Drivetrain.java` in the `mechanisms` package.
-This class should implement `Mechanism`.
+Create a new Java class named `Drivetrain.java` in the `mechanisms` package. This class should implement `Mechanism`.
 
 Then, do the following:
 
-1. Initialize four motors as private class fields: `leftLeader`, `leftFollower`, `rightLeader`, and `rightFollower`, which are on CANBus 0 and CAN IDs 0-3 respectively.
+1. Initialize four motors as private class fields: `leftLeader`, `leftFollower`, `rightLeader`, and `rightFollower`,
+   which are on CANBus 0 and CAN IDs 0-3 respectively.
 2. Initialize a `DifferentialDrive` object named `differentialDrive` with the left and right leader motors.
 3. Initialize an `OnboardIMU` object named `imu`.
-4. Initialize a `DrivetrainSim` object named `drivetrainSim` and make a method named `periodic()` that runs the drivetrain sim `periodic()` method.
+4. Initialize a `DrivetrainSim` object named `drivetrainSim` and make a method named `periodic()` that runs the
+   drivetrain sim `periodic()` method.
 
 <details class="accordion">
     <summary>Hint</summary>
@@ -42,8 +43,10 @@ Now that we have a `Drivetrain` class, we can create `Command`s that control the
 To do that, write the following:
 
 1. The drivetrain motor configuration code, which can be found in `Robot.java` from stage 1A.
-2. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the constructor.
-3. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates the drive motor speeds using the values from the suppliers.
+2. An `idle()` command that commands `0.0` speed and `0.0` rotation, and is set as the default command in the
+   constructor.
+3. An `arcadeDrive(DoubleSupplier forwardThrottle, DoubleSupplier rotationThrottle)` command that continuously updates
+   the drive motor speeds using the values from the suppliers.
 
 <details class="accordion">
     <summary>Item 1, Hint 1</summary>
@@ -68,12 +71,10 @@ To do that, write the following:
 
 ### Task 3: Using the Drivetrain
 
-1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`.
-   It should be a public instead of private.
+1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`. It should be a public instead of private.
 2. Call `drivetrain.periodic();` in the `robotPeriodic` method.
-3. Then, open `MyTeleop.java` (your teleop OpMode).
-   In the constructor, set the drivetrain's default command to `arcadeDrive`.
-   Pass lambda expressions that read from your controller's joystick axes.
+3. Then, open `MyTeleop.java` (your teleop OpMode). In the constructor, set the drivetrain's default command to
+   `arcadeDrive`. Pass lambda expressions that read from your controller's joystick axes.
 
 <details class="accordion">
     <summary>Hint 1</summary>
@@ -92,19 +93,17 @@ To do that, write the following:
 </details>
 
 <Aside type="note">
-    You might notice that we're calling `setDefaultCommand` twice - once in
-    `Drivetrain.java`, and once in `MyTeleop.java`. <br /> <br />
-    The `setDefaultCommand()` call in `MyTeleop.java` will only be active while
-    the MyTeleop opmode is selected. In all other circumstances, the default
-    command set in the constructor (`idle()`) will apply.
+    You might notice that we're calling `setDefaultCommand` twice - once in `Drivetrain.java`, and once in
+    `MyTeleop.java`. <br /> <br />
+    The `setDefaultCommand()` call in `MyTeleop.java` will only be active while the MyTeleop opmode is selected. In all
+    other circumstances, the default command set in the constructor (`idle()`) will apply.
 </Aside>
 
 ### Task 4: Create Auto Mode Files
 
-Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
-before deleting the `MyAuto.java` file.
-Copy-paste the following code in each file,
-while replacing `MyOpModeName` with the correct name for each opmode:
+Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`, before
+deleting the `MyAuto.java` file. Copy-paste the following code in each file, while replacing `MyOpModeName` with the
+correct name for each opmode:
 
 ```java #opModeSkeleton
 
@@ -112,14 +111,12 @@ while replacing `MyOpModeName` with the correct name for each opmode:
 
 ### Task 5: Drive Straight Autonomous
 
-In the `start()` method of `DriveStraightAutoMode.java`, schedule
-an `arcadeDrive` command with a timeout of 4 seconds.
+In the `start()` method of `DriveStraightAutoMode.java`, schedule an `arcadeDrive` command with a timeout of 4 seconds.
 Then, do the following:
 
 1. Rename the class defined in `DriveStraightAutoMode.java` to `DriveStraightAutoMode`.
-2. In the `start()` method, schedule an `arcadeDrive` command with a timeout of 4 seconds.
-   This `arcadeDrive` command should have a constant forward throttle of `0.5`
-   and a constant rotational throttle of `0`.
+2. In the `start()` method, schedule an `arcadeDrive` command with a timeout of 4 seconds. This `arcadeDrive` command
+   should have a constant forward throttle of `0.5` and a constant rotational throttle of `0`.
 
 <details class="accordion">
     <summary>Hint 1</summary>
@@ -143,14 +140,13 @@ Then, do the following:
 
 ### Task 6: Rotate in Place Command
 
-Create a new `Command` in `Drivetrain.java`, called `rotateInPlace`,
-with the parameters `double angleDegrees` and `DoubleSupplier rotationThrottle`.
-It should execute these actions, in order:
+Create a new `Command` in `Drivetrain.java`, called `rotateInPlace`, with the parameters `double angleDegrees` and
+`DoubleSupplier rotationThrottle`. It should execute these actions, in order:
 
 1. Define a local variable, named `targetAngle`, whose value is the sum of `angleDegrees` and the robot's current yaw.
    To get the robot's current yaw, call `imu.getRotation2d().getDegrees()`.
-2. Call `differentialDrive.arcadeDrive()` in a while loop,
-   which should continue while the robot's current yaw is less than the `targetAngle`.
+2. Call `differentialDrive.arcadeDrive()` in a while loop, which should continue while the robot's current yaw is less
+   than the `targetAngle`.
 
 <details class="accordion">
     <summary>Hint</summary>
@@ -162,17 +158,15 @@ It should execute these actions, in order:
 
 ### Task 7: Rotate in Place Autonomous
 
-Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `TurnInPlaceAutoMode.java`.
-It should rotate the robot 90 degrees from its starting position, at a throttle of 0.2.
+Finally, use the `rotateInPlace` command to implement a turn-in-place autonomous within `TurnInPlaceAutoMode.java`. It
+should rotate the robot 90 degrees from its starting position, at a throttle of 0.2.
 
 <details class="accordion">
     <summary>Hint</summary>
-    Use the `Scheduler` to schedule a new `rotateInPlace` command, just like how
-    task 3 accomplishes this.
+    Use the `Scheduler` to schedule a new `rotateInPlace` command, just like how task 3 accomplishes this.
 </details>
 
 # Solution
 
-The solutions to this stage can be found below:
-[CTRE](https://github.com/frcsoftware/Stage1B-Solution-CTRE)
+The solutions to this stage can be found below: [CTRE](https://github.com/frcsoftware/Stage1B-Solution-CTRE)
 [REV](https://github.com/frcsoftware/Stage1B-Solution-REV)
