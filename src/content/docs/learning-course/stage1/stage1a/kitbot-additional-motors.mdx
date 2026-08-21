@@ -77,4 +77,72 @@ This will instead use the `forFeeder()` method.
 
 </details>
 
-The final step to make the motors run in simulation is calling the `SimpleFlywheelSim` instance's `periodic()` method inside of the `Robot` classes' `simulationPeriodic()` function.
+To make the simulated motor controllers update, the `SingleFlywheelSim` instances' `periodic()` functions need to be called inside of `simulationPeriodic()`.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorSimPeriodic
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorSimPeriodic
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+# Fuel Sim
+
+If the code was to be simulated at this point, the motors could be controlled using keyboard inputs and the resulting motor speeds could be viewed with a graph inside of Advantage Scope.
+While this is a functional solution, it can be made more interesting by taking advantage of Advantage Scope's 3d tab.
+Advantage Scope's 3d tab displays robots and game pieces inside of a game field using poses published from the robot code.
+This allows fuel to be shown entering or exiting the robot while is intaking or launching.
+
+The `FuelSim` class is provided which takes the current state of the IntakeLauncher and Feeder motors and publishes new poses for the fuel to be visualized at in Advantage Scope.
+References to the IntakeLauncher and Feeder motors are given to the `FuelSim` class when the `SingleFlywheelSim` instances are created.
+
+To make the `FuelSim` class function, its `periodic()` function needs to be called inside of `simulationPeriodic()`.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FuelSimPeriodic
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FuelSimPeriodic
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+# Check Up
+
+The `Robot` class is now completed!
+At this point your `Robot` class should look like this
+
+<details class="accordion">
+    <summary>Robot Solution</summary>
+    <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+        <TabItem label="CTRE">
+
+            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FullRobot
+            ```
+
+        </TabItem>
+        <TabItem label="REV">
+
+            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FullRobot
+            ```
+
+        </TabItem>
+    </Tabs>
+
+</details>

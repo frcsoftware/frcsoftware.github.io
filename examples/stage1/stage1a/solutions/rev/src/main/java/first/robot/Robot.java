@@ -18,6 +18,7 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [FullRobot]
 // [RobotWithSimPart1]
 // [RobotTop]
 /**
@@ -108,8 +109,14 @@ public class Robot extends OpModeRobot {
     drivetrainSim.periodic();
     // [/DriveSimPeriodic]
     intakeLauncherSim.periodic();
+    // [MotorSimPeriodic]
     feederSim.periodic();
-    FuelSim.update();
+    // [/MotorSimPeriodic]
+
+    // [FuelSimPeriodic]
+    FuelSim.periodic();
+    // [/FuelSimPeriodic]
   }
   // [/RobotWithSimPart2]
 }
+// [/FullRobot]
