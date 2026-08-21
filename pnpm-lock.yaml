@@ -47,7 +47,7 @@ importers:
         version: 4.0.4
       '@vvago/vale':
         specifier: ^3.16.0
-        version: 3.16.0
+        version: 3.17.0
       astro-eslint-parser:
         specifier: ^1.4.0
         version: 1.4.0
@@ -90,9 +90,15 @@ importers:
       remark-frontmatter:
         specifier: ^5.0.0
         version: 5.0.0
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
       remark-lint-no-dead-urls:
         specifier: ^2.0.1
         version: 2.0.1
+      remark-lint-no-literal-urls:
+        specifier: ^4.0.1
+        version: 4.0.1
       remark-mdx:
         specifier: ^3.1.1
         version: 3.1.1
@@ -1278,8 +1284,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@vvago/vale@3.16.0':
-    resolution: {integrity: sha512-Cm5cW8bEsnXQHqJDcwWtrONtbpNxA41gpp/YNRLmax8Wn+lWg0YROmk4zs3VAldQ813QOARqoUfZIbUVp2LOzw==}
+  '@vvago/vale@3.17.0':
+    resolution: {integrity: sha512-vzVFOzr0y9dbXfHqnpgfs8juCflYZpqDmbNyUqdjuTzfNuATtzthTRrqE67RZt5N51FBkJiv58vFjc6ySVgjjg==}
     hasBin: true
 
   abbrev@2.0.0:
@@ -5195,7 +5201,7 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@vvago/vale@3.16.0':
+  '@vvago/vale@3.17.0':
     dependencies:
       rimraf: 6.1.3
       tar: 7.5.22

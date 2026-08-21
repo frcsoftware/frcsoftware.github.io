@@ -26,16 +26,27 @@ public class SingleFlywheelSim {
 
   private static final double kBusVoltage = 12.0;
 
-  private final String name;
+  /** Creates the physics sim for the intake launcher. */
+  public static SingleFlywheelSim forIntakeLauncher(SparkMax motor) {
+    var sim = new SingleFlywheelSim(motor, "IntakeLauncher");
+    FuelSim.intakeLauncherSpeedSupplier = sim.m_flywheelSim::getAngularVelocity;
+    return sim;
+  }
 
-  public SingleFlywheelSim(SparkMax motor, String name) {
-    this.name = name;
+  /** Creates the physics sim for the feeder. */
+  public static SingleFlywheelSim forFeeder(SparkMax motor) {
+    var sim = new SingleFlywheelSim(motor, "Feeder");
+    FuelSim.feederSpeedSupplier = sim.m_flywheelSim::getAngularVelocity;
+    return sim;
+  }
+
+  private SingleFlywheelSim(SparkMax motor, String name) {
     this.motor = motor;
     var gearbox = DCMotor.getNEO(1);
     this.m_flywheelSim =
         new FlywheelSim(Models.flywheelFromPhysicalConstants(gearbox, 0.001, 1.0), gearbox);
 
-    var table = NetworkTableInstance.getDefault().getTable(this.name);
+    var table = NetworkTableInstance.getDefault().getTable(name);
     this.motorVoltagePub = table.getDoubleTopic("MotorVoltage").publish();
     this.motorVelocityPub = table.getDoubleTopic("MotorVelocity").publish();
     this.currentPub = table.getDoubleTopic("Current").publish();
