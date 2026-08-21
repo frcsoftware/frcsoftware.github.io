@@ -168,31 +168,44 @@ Define a class named `IntakeLauncher` that implements `Mechanism`; then, add the
 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
+        {/* prettier-ignore */}
         1. A private `TalonFX` motor controller object, named `motor`, with ID 4
         on Systemcore bus 0.
-    </TabItem>
-    <TabItem label="REV">
-        1. A private `SparkMax` motor controller object, named `motor`, with ID
-        4 on Systemcore bus 0.
-    </TabItem>
-</Tabs>
-<ol>
-    <li value={2}>
-        A `shoot()` command that waits 2 seconds, then sets the throttle of the
-        motor to 0.9 forever.
-    </li>
-    <li>A `intake()` command that sets throttle to 0.8 forever.</li>
-    <li>A `outtake()` command that sets throttle to -0.8 forever.</li>
-    <li>
-        A `idle()` command that sets throttle to 0 forever. Make this the
+        {/* prettier-ignore */}
+        2. A `shoot()` command that waits 2 seconds, then sets the throttle of
+        the motor to 0.9 forever.
+        {/* prettier-ignore */}
+        3. A `intake()` command that sets throttle to 0.8 forever.
+        {/* prettier-ignore */}
+        4. A `outtake()` command that sets throttle to -0.8 forever.
+        {/* prettier-ignore */}
+        5. A `idle()` command that sets throttle to 0 forever. Make this the
         default command.
-    </li>
-    <li>
-        The code needed for simulating the intake launcher. You haven't
+        {/* prettier-ignore */}
+        6. The code needed for simulating the intake launcher. You haven't
         officially learned how to do this, but task 2's final section gives a
         hint. Can you figure it out?
-    </li>
-</ol>
+    </TabItem>
+    <TabItem label="REV">
+        {/* prettier-ignore */}
+        1. A private `SparkMax` motor controller object, named `motor`, with ID
+        4 on Systemcore bus 0.
+        {/* prettier-ignore */}
+        2. A `shoot()` command that waits 2 seconds, then sets the throttle of
+        the motor to 0.9 forever.
+        {/* prettier-ignore */}
+        3. A `intake()` command that sets throttle to 0.8 forever.
+        {/* prettier-ignore */}
+        4. A `outtake()` command that sets throttle to -0.8 forever.
+        {/* prettier-ignore */}
+        5. A `idle()` command that sets throttle to 0 forever. Make this the
+        default command.
+        {/* prettier-ignore */}
+        6. The code needed for simulating the intake launcher. You haven't
+        officially learned how to do this, but task 2's final section gives a
+        hint. Can you figure it out?
+    </TabItem>
+</Tabs>
 
 <details class="accordion">
     <summary>Item 2 Hint</summary>
