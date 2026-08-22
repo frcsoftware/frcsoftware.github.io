@@ -1,0 +1,109 @@
+---
+title: Suppliers in Command-Based
+description: The basics of suppliers and their use in command-based programming
+prev: learning-course/stage1/stage1b/command-based-kitbot
+next: learning-course/stage1/stage1b/command-based-kitbot-pt2
+codeRegionSources:
+    default: stage1/stage1b/snippets/src/main/java/sources/SuppliersInCommandBased.java
+---
+
+import Aside from '@components/Aside.astro';
+
+### A Small Riddle
+
+Let's say that we define an `Intake` mechanism:
+
+```java #runAtThrottleDouble
+
+```
+
+And the following code in Robot.java:
+
+```java #incorrectCommand
+
+```
+
+<Aside type="note">
+    In case you forgot, `getLeftY()` returns a value between -1 and 1. If the
+    left joystick isn't pushed at all, `getLeftY()` returns 0; if it's pushed
+    all the way up, `getLeftY()` returns 1; and if it's pushed all the way down,
+    `getLeftY()` returns -1.
+</Aside>
+
+When you run the preceding code, what happens?
+
+1. The intake does a little dance before rejoicing your coding skills.
+2. The intake runs at a speed dependent on how far up or down the joystick
+   on the left is pushed.
+3. The intake does nothing.
+
+<details class="accordion">
+    <summary>Solution</summary>
+    #3: The intake does nothing.
+</details>
+
+### But Why?
+
+Recall that the constructor of the `Robot` class is called when the
+robot code is first loaded, not when the robot is enabled.
+At this point,
+your hands aren't even on the controller - so, the value of `controllerOutput` would be 0.
+
+When the robot is enabled, the value of `getLeftY()` will change; however, the value of the `throttle`
+parameter passed into the `runAtThrottle` command cannot, because it's value has already been determined
+before the command has even began.
+
+### Fixing the problem
+
+In java, we use a `DoubleSupplier` to represent a value of type `double` that is constantly changing.
+We call `getAsDouble()` to fetch its current value.
+
+```java #runAtThrottleSupplier
+
+```
+
+`DoubleSupplier` instances are created with the syntax of `() -> expression`, with the caveat that
+the expression must return a `double`.
+Calling `getAsDouble()` will evaluate that expression.
+
+```java #doubleSupplierExample
+
+```
+
+<Aside type="note">
+The `() -> ...` syntax for defining a `DoubleSupplier` is also called a *lambda expression*.
+</Aside>
+
+Here is how we would define and use a `DoubleSupplier` in our previous example:
+
+```java #correctCommand
+
+```
+
+### `BooleanSupplier`s and the `until()` Command Modifier
+
+You might recognize the `() ->` syntax used to define `DoubleSupplier`s.
+As it turns out,
+we define `Trigger`s with that syntax:
+
+```java #triggerBooleanSupplier
+
+```
+
+Notice, however, that the expression to the left of the `() ->` statement is
+a `boolean` instead of a `double`.
+As it turns out, the constructor for a `Trigger`
+takes a `BooleanSupplier`.
+
+<Aside type="note">
+    To fetch the latest value of a `BooleanSupplier`, you would call
+    `getAsBoolean()` instead.
+</Aside>
+
+`BooleanSupplier`s are used in one other place: adding stop conditions to commands.
+You can use the `until(BooleanSupplier)` method to add an arbitrary stop condition
+to a command:
+
+```java #untilModifier
+
+```

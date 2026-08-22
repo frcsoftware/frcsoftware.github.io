@@ -1,0 +1,19 @@
+name: Task
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Specific task (e.g., Tune PID gains for intake).
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline
+      description: Date that this task should be completed by.
+  - type: textarea
+    id: related_links
+    attributes:
+      label: Related Links
+      description: Links to relevant code files, PRs, or docs.

@@ -1,0 +1,109 @@
+---
+title: Triggers and Scheduling
+description: How commands are scheduled, with and without triggers
+prev: learning-course/stage1/stage1b/commands-and-mechanisms
+next: learning-course/stage1/stage1b/commands-and-mechanisms-pt2
+codeRegionSources:
+    default: stage1/stage1b/snippets/src/main/java/sources/Triggers.java
+---
+
+import Aside from '@components/Aside.astro';
+
+### A quick recap
+
+Remember that `Trigger`s are the stimuli that trigger robot behavior, which we call `Command`s.
+We say that `Trigger`s "schedule" `Command`s.
+
+### How triggers are defined
+
+sources/Triggers, at their core, are methods that return a boolean - true for active, and false for inactive.
+You can fetch
+a trigger's active status with the `getAsBoolean()` method:
+
+```java #motorTooFastTrigger
+
+```
+
+Triggers can schedule commands in two ways:
+
+1. `trigger.onTrue(Command)`: Schedules a command when a trigger switches from inactive to active.
+   In the following example, the `runAtThrottle` command will run once teleop mode is selected and enabled.
+
+```java #teleopEnabledRobot
+
+```
+
+2. `trigger.whileTrue(Command)`: Identical to onTrue, but cancels the running command when the trigger becomes inactive again.
+   If `teleopEnabledTrigger.onTrue(...)` was changed to `teleopEnabledTrigger.whileTrue(...)`, disabling teleop mode
+   on the driver station will cancel the `runAtThrottle` command mid-run.
+
+<Aside type="note">
+    You can bind multiple commands to the same trigger! 
+    ```java #multiBindingsVerbose
+
+    ```
+
+    You can also stack `whileTrue()` and `onTrue()` calls:
+    ```java #multiBindings
+
+    ```
+
+</Aside>
+
+### Controller-based sources/Triggers
+
+A common stimulus for robot behavior is the buttons on a controller.
+For instance, shooting balls
+while the x button on the operator controller is held.
+From section 1A, you might recall that fetching
+the state of a button can be done like so:
+
+```java #xboxGetAButton
+
+```
+
+Where the `getAButton()` method returns `true` if the button is being held, and `false` otherwise.
+So, it's
+possible to create a trigger mapped to the a button like so:
+
+```java #triggerAButton
+
+```
+
+However, this is a common enough usecase that the commands framework provides a special class,
+called `CommandXboxController`, that makes interfacing with controller buttons easier for command-based
+programming.
+
+```java #commandXboxController
+
+```
+
+### Scheduling commands manually
+
+You can also decide to run a command immediately, bypassing triggers entirely, like so:
+
+```java #scheduleAndPrint
+
+```
+
+Think of calling `schedule()` as ordering a robot to start washing the dishes
+without waiting for it to finish.
+In this case, the `println("Hello!")` statement
+will run before the autonomous command completes.
+
+<Aside type="note">
+    This is generally not recommended outside of running commands for autonomous
+    mode.
+</Aside>
+
+Example Usage with `TimedRobot`:
+
+```java #timedRobotExample
+
+```
+
+Example `OpMode` usage:
+
+```java #opModeExample
+
+```

@@ -7,24 +7,17 @@ next: /contribution/styleguide
 
 import Aside from '../../../components/Aside.astro';
 
-## Public Contribution
+## Contributions Workflow
 
-FRCSoftware.org is just getting started, so the easiest way to propose work is by opening a GitHub issue in the main repository.
-Use this template in your issue:
-
-{/* rli:ignore */}
-
-```
-Issue/content:
-Solution or Notes about the execution of the content:
-When do you plan on finishing?:
-```
+FRCSoftware.org is just getting started, so the easiest way to propose work is by [opening a GitHub issue](https://github.com/frcsoftware/frcsoftware.org/issues/new) in the main repository.
 
 This helps avoid duplicate work and keeps contribution priorities clear as the project grows.
 
 If you're given approval to start working on it, continue discussion in the issue thread so everyone can follow progress.
 
-When you start on your work, fork the repository on GitHub and submit pull requests for your work to be accepted.
+When you start on your work, fork the repository on GitHub and submit pull requests for your work to be reviewed.
+
+Join our development [Discord](https://discord.com/invite/uUugPrPZFs) to discuss work.
 
 ## Setting up GitHub and VS Code For Contributing
 
@@ -46,6 +39,10 @@ Windows installers will almost always need to be the 64-bit version if there is 
     - Use all default options for installation, except creating a desktop icon if you want
     - A WPILib VSCode installation will work perfectly fine
     - Recommended: Install a spellcheck extension to catch mistakes early
+- [Vale](https://vale.sh) (prose linter)
+    - Used to check writing style and consistency in documentation
+    - Install via the [latest release](https://github.com/vale-cli/vale/releases/latest) for your OS
+    - Run `pnpm lint:vale` or `pnpm lint` after setup
 
 ### Steps to Start Writing Contributions
 
@@ -65,7 +62,7 @@ Windows installers will almost always need to be the 64-bit version if there is 
     - Use `pnpm format` to run the formatter
     - Use `pnpm lint` to run all lint steps
     - The formatter will apply code formatting to the docs section of the side, to maintain a consistent style
-    - The linter steps will perform various checks in the code to ensure basic functionality
+    - The linter steps will perform various checks in the code to ensure best practices are followed
 6. Make and commit your changes
 
 <Aside type="tip">
