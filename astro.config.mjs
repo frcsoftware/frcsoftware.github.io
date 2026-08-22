@@ -26,6 +26,12 @@ export default defineConfig({
                 remarkCodeRegion,
             ],
         }),
+        remarkRehype: {
+            footnoteLabel: 'References',
+            footnoteLabelTagName: 'h4',
+            // override properties so footnote label is visible
+            footnoteLabelProperties: {},
+        },
     },
 
     integrations: [
