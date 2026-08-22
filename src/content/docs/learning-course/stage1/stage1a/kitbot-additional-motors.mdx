@@ -146,3 +146,82 @@ At this point your `Robot` class should look like this
     </Tabs>
 
 </details>
+
+# Additional Motors in Teleop
+
+To control the new motors, the motors need to be commanded inside of the `MyTeleop` `OpMode`'s `periodic()` function.
+When the controller's right bumper is pressed, the IntakeLauncher motor should have a throttle of 0.9 while the Feeder motor should have a throttle of 0.75.
+This will launch the fuel.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#launchFuel
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#launchFuel
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+When the controller's left bumper is pressed the IntakeLauncher motor should have a throttle of 0.8 while the Feeder motor should have a throttle of -1.0.
+This will intake the fuel.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#intakeFuel
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#intakeFuel
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+When the controller's A button is pressed the IntakeLauncher motor should have a throttle of -0.8 while the Feeder motor should have a throttle of 1.0.
+This will outake the fuel.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#outakeFuel
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#outakeFuel
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+When none of the previous button are pressed the IntakeLauncher should have a throttle of 0.0 while the Feeder motor should have a throttle of 0.0.
+This will stop the motors.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#stopMotors
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#stopMotors
+        ```
+
+    </TabItem>
+
+</Tabs>

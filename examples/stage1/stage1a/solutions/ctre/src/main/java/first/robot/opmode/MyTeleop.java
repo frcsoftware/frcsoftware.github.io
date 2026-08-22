@@ -32,25 +32,33 @@ public class MyTeleop extends PeriodicOpMode {
     // [/DriveSimPeriodic]
     // [/FullDrivetrain]
 
+    // [launchFuel]
     if (xboxController.getRightBumperButton()) {
-      // shoot
+      // launch
       robot.intakeLauncher.setThrottle(0.9);
       robot.feeder.setThrottle(0.75);
 
+      // [/launchFuel]
+      // [intakeFuel]
     } else if (xboxController.getLeftBumperButton()) {
       // intake
       robot.intakeLauncher.setThrottle(0.8);
       robot.feeder.setThrottle(-1.0);
 
+      // [/intakeFuel]
+      // [outakeFuel]
     } else if (xboxController.getAButton()) {
       // outake
       robot.intakeLauncher.setThrottle(-0.8);
       robot.feeder.setThrottle(1.0);
 
+      // [/outakeFuel]
+      // [stopMotors]
     } else {
       // stop
       robot.intakeLauncher.setThrottle(0.0);
       robot.feeder.setThrottle(0.0);
     }
+    // [/stopMotors]
   }
 }
