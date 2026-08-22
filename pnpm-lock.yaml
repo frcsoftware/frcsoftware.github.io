@@ -96,9 +96,15 @@ importers:
       remark-frontmatter:
         specifier: ^5.0.0
         version: 5.0.0
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
       remark-lint-no-dead-urls:
         specifier: ^2.0.1
         version: 2.0.1
+      remark-lint-no-literal-urls:
+        specifier: ^4.0.1
+        version: 4.0.1
       remark-mdx:
         specifier: ^3.1.1
         version: 3.1.1
