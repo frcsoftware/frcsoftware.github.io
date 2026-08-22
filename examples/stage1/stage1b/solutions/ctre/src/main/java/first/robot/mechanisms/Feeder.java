@@ -13,7 +13,7 @@ import org.wpilib.command3.Mechanism;
 
 public class Feeder extends Mechanism {
   private final TalonFX motor = new TalonFX(5, CANBus.systemcore(0));
-  private final SingleFlywheelSim sim = new SingleFlywheelSim(motor, "Feeder");
+  private final SingleFlywheelSim sim = SingleFlywheelSim.forFeeder(motor);
 
   public Feeder() {
     setDefaultCommand(idle());

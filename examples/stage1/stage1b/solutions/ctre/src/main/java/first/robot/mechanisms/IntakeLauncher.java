@@ -15,7 +15,7 @@ import org.wpilib.command3.Mechanism;
 
 public class IntakeLauncher extends Mechanism {
   private final TalonFX motor = new TalonFX(4, CANBus.systemcore(0));
-  private final SingleFlywheelSim sim = new SingleFlywheelSim(motor, "IntakeLauncher");
+  private final SingleFlywheelSim sim = SingleFlywheelSim.forIntakeLauncher(motor);
 
   public IntakeLauncher() {
     setDefaultCommand(idle());
