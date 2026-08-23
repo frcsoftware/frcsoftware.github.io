@@ -8,17 +8,11 @@ export default function remarkForceRootRelative() {
     return (tree, file) => {
         visit(tree, ['link', 'image', 'definition'], (node) => {
             if (
-                !(
-                    node.type === 'link' ||
-                    node.type === 'image' ||
-                    node.type === 'definition'
-                )
+                (node.type !== 'link' &&
+                    node.type !== 'image' &&
+                    node.type !== 'definition') ||
+                !URL.canParse(node.url)
             ) {
-                // genuinely just a type guard
-                return;
-            }
-            if (!URL.canParse(node.url)) {
-                // already root-relative, skip
                 return;
             }
             // can't use the site property from astro.config.mjs, see https://github.com/withastro/starlight/pull/3572
