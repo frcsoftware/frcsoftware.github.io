@@ -9,10 +9,12 @@
         "**/public"
     ],
     "compilerOptions": {
+        "lib": ["DOM", "ESNext"],
         "paths": {
             "@components/*": ["./src/components/*"],
             "@data/*": ["./src/data/*"]
         },
-        "checkJs": true
+        "checkJs": true,
+        "incremental": true
     }
 }
