@@ -320,6 +320,10 @@ html.lightbox-open [data-pagefind-ignore='all'] {
     display: flex;
 }
 
+.sl-link-button {
+    border-radius: 0.25rem !important;
+}
+
 .global-lightbox-close {
     position: absolute;
     top: 1rem;
