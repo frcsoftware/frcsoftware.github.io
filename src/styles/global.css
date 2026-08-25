@@ -64,6 +64,12 @@
     border-bottom: none !important;
 }
 
+/* disable the overscroll bounce on macos-ios-mobile */
+html,
+body {
+    overscroll-behavior-y: none;
+}
+
 @media (max-width: 50rem) {
     starlight-menu-button {
         display: none !important;
