@@ -10,29 +10,51 @@ import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
 
 # Autonomous OpMode
 
-Now that the kitbot can move in teleop mode, it is time to make it move during the auto mode.
-To do this, another `OpMode` needs to be written that contains all the code needed to make the robot do what's wanted in auto.
-Additionally the `@Autonomous` annotation is added above the class definition so it shows up in the driverstation under autonomous OpModes.
-This auto will be a timed based auto, meaning everything the robot does will be based on how long it has been since the start of autonomous.
-To keep track of how long it has been since the start of auto an instance of `Timer` is created in the OpMode and reset when the robot is enabled.
+Now that the kitbot can move in teleop mode, it is time to make it move during the autonomous mode.
+The autonomous mode is typically the first 15 seconds of the match but the exact length may vary from year to year.
+An effective auto can be a very valuable addition to a robot for a variety of reasons.
+Point values are typically increased during auto and sometimes ranking points associated with completing tasks during auto.
+Additionally both game pieces and your robot are in a known position allowing for consistent points.
 
-The code for the auto should be added to the `MyAuto.java` file inside the opmode folder.
+An autonomous routine is simply an OpMode that gets run during the autonomous portion of the match.
+When writing an OpMode that will be run during the autonomous mode, there is an `@Autonomous` annotation that is added above the class definition.
+This annotation tells the driverstation to place the OpMode under the autonomous selector.
+This OpMode will use a `Timer` to base its behavior off of the time elapsed from the beginning of the autonomous period.
+Time-based autos trade off simplicity for reliability, since slight variations in starting configuration could cause your robot to take more or less time to perform different actions
+
+The code for the auto will be added to the `MyAuto.java` file inside the opmode folder.
 The goal of the auto is to drive forward at half speed for four seconds then stop.
-This can be accomplished by periodically checking if it has been four seconds since the start of auto using the `Timer` instance.
-If it has been at least four seconds then command the drivetrain with zero speed.
-Otherwise command the drivetrain to drive forward at half speed.
-Writing that out in code will look like this
+The `Timer` class has the `hasElapsed(double seconds)` function which returns true if the specified amount of time has passed.
+This function can be periodically checked as the condition to an if statement to stop the robot after four seconds
 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAuto
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoStart
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAuto
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoStart
+        ```
+
+    </TabItem>
+
+</Tabs>
+
+If `hasElapsed(4)` instead returns false, then less than four seconds must have elapsed so the drivetrain should be told to drive forward at half speed.
+
+<Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
+    <TabItem label="CTRE">
+
+        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoEnd
+        ```
+
+    </TabItem>
+    <TabItem label="REV">
+
+        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoEnd
         ```
 
     </TabItem>
@@ -41,8 +63,9 @@ Writing that out in code will look like this
 
 # Running Your Auto
 
-Testing the auto routine is similar to testing the teleop drivetrain code.
-However, instead of selecting the teleop mode the autonomous mode and MyAuto opmode should be selected.
+To test the auto routine, start the simulation, and connect Advantage Scope.
+Then, select autonomous mode and `MyAuto` OpMode in the Sim GUI.
+Now when the robot is enabled the auto should run.
 
 <ContentFigure
     width="650px"

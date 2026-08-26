@@ -97,12 +97,10 @@ To make the simulated motor controllers update, the `SingleFlywheelSim` instance
 
 # Fuel Sim
 
-If the code was to be simulated at this point, the motors could be controlled using keyboard inputs and the resulting motor speeds could be viewed with a graph inside of Advantage Scope.
-While this is a functional solution, it can be made more interesting by taking advantage of Advantage Scope's 3d tab.
-Advantage Scope's 3d tab displays robots and game pieces inside of a game field using poses published from the robot code.
-This allows fuel to be shown entering or exiting the robot while is intaking or launching.
-
-The `FuelSim` class is provided which takes the current state of the IntakeLauncher and Feeder motors and publishes new poses for the fuel to be visualized at in Advantage Scope.
+If the code was to be simulated at this point, the motors could be controlled using keyboard inputs and the resulting motor speeds could be viewed with a graph inside of AdvantageScope.
+While this is a functional solution, it can be made more interesting by taking advantage of AdvantageScope's 3d tab.
+AdvantageScope's 3d tab displays robots and game pieces inside of a game field using data published from the robot code.
+The `FuelSim` class provides simulation data for fuel game pieces to be visualized entering and exiting the robot.
 References to the IntakeLauncher and Feeder motors are given to the `FuelSim` class when the `SingleFlywheelSim` instances are created.
 
 To make the `FuelSim` class function, its `periodic()` function needs to be called inside of `simulationPeriodic()`.
@@ -149,8 +147,8 @@ At this point your `Robot` class should look like this
 
 # Additional Motors in Teleop
 
-To control the new motors, the motors need to be commanded inside of the `MyTeleop` `OpMode`'s `periodic()` function.
-When the controller's right bumper is pressed, the IntakeLauncher motor should have a throttle of 0.9 while the Feeder motor should have a throttle of 0.75.
+To control the new motors, the motors need to be commanded inside of the `MyTeleop` OpMode's `periodic()` function.
+When the controller's right bumper is pressed, the `IntakeLauncher` motor should have a throttle of 0.9 while the `Feeder` motor should have a throttle of 0.75.
 This will launch the fuel.
 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
@@ -254,4 +252,4 @@ You should also still be able to move using the WASD keys.
 
 # Additional Practice
 
-Try improving upon previously created autos by adding robot actions too them.
+Try improving upon previously created autos by adding robot actions to them.
