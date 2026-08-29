@@ -17,25 +17,22 @@ Mechanisms are simply classes that have the `implements Mechanism` keyword:
 
 ```
 
-In general, you should create one instance of each mechanism, and that instance should be stored
-in your robot class:
+In general, you should create one instance of each mechanism, and that instance should be stored in your robot class:
 
 ```java #mechanismInRobotDef
 
 ```
 
 <Aside type="note">
-    **Ignore this if you haven't used Commands V2!** Mechanisms in Commands V3
-    are identical to Subsystems in Commands V2. The difference is that you have
-    to define your own `periodic()` method while calling it manually in
+    **Ignore this if you haven't used Commands V2!** Mechanisms in Commands V3 are identical to Subsystems in Commands
+    V2. The difference is that you have to define your own `periodic()` method while calling it manually in
     `robotPeriodic()`, instead of overriding a method from `SubsystemBase`.
 </Aside>
 
 ### Defining Commands
 
-Most commands are defined inside of the file containing the class of a mechanism
-(like Intake.java or Shooter.java).
-The code below defines a new `Command`:
+Most commands are defined inside of the file containing the class of a mechanism (like Intake.java or Shooter.java). The
+code below defines a new `Command`:
 
 ```java #commandDef
 
@@ -43,24 +40,20 @@ The code below defines a new `Command`:
 
 Notice that:
 
-- Every line of code between `coroutine -> {` and `}` will be run
-  when the command runs, like a method body.
-- This command will print "Full Speed Baby!" once before commanding
-  the motor to spin at max speed.
-- The `named("Set to Full Throttle")` call is required to create a `Command`.[^1]
-  This allows coders to distinguish this command from others when debugging their code.
+- Every line of code between `coroutine -> {` and `}` will be run when the command runs, like a method body.
+- This command will print "Full Speed Baby!" once before commanding the motor to spin at max speed.
+- The `named("Set to Full Throttle")` call is required to create a `Command`.[^1] This allows coders to distinguish this
+  command from others when debugging their code.
 
-To change the priority of the command, simply add a `withPriority(int)` call before
-you call `named()`:
+To change the priority of the command, simply add a `withPriority(int)` call before you call `named()`:
 
 ```java #commandWithPriorityDef
 
 ```
 
 <Aside type="note">
-    **Ignore this if you haven't used Commands V2!** Unlike in Commands V2, the
-    code inside of a `run()` method won't run repeatedly! Use while loops inside
-    of the `run()` method to run code repeatedly.
+    **Ignore this if you haven't used Commands V2!** Unlike in Commands V2, the code inside of a `run()` method won't
+    run repeatedly! Use while loops inside of the `run()` method to run code repeatedly.
 </Aside>
 
 ### Combining Commands and Mechanisms
@@ -71,11 +64,11 @@ Here's an example of a command defined inside of a mechanism class:
 
 ```
 
-Commands created with `run()` will automatically require the mechanism that they are defined inside.
-Here, the full throttle command requires the `Intake`.
+Commands created with `run()` will automatically require the mechanism that they are defined inside. Here, the full
+throttle command requires the `Intake`.
 
-Also, notice that the `fullThrottle` method creates and returns a command.
-All mechanism-specific commands should be defined this way, for 2 reasons:
+Also, notice that the `fullThrottle` method creates and returns a command. All mechanism-specific commands should be
+defined this way, for 2 reasons:
 
 1. It allows for commands to define parameters, just like a method.
 2. It gives the `Robot` class easy access to these commands.
@@ -84,8 +77,7 @@ All mechanism-specific commands should be defined this way, for 2 reasons:
 
 ```
 
-However, this approach requires caution.
-Observe the snippet below:
+However, this approach requires caution. Observe the snippet below:
 
 {/* rli:ignore */}
 
@@ -99,10 +91,8 @@ public Command printHiThenFullThrottle() {
 }
 ```
 
-Calling the `fullThrottle()`
-method, as shown, doesn't spin the motor, but instead creates a `Command` object that must be run separately.
-The java
-compiler will catch this and throw a compile-time error.
+Calling the `fullThrottle()` method, as shown, doesn't spin the motor, but instead creates a `Command` object that must
+be run separately. The java compiler will catch this and throw a compile-time error.
 
 <Aside type="note">
     Can you figure out why the error message says "bind it to a trigger"?
@@ -117,14 +107,14 @@ compiler will catch this and throw a compile-time error.
 </Aside>
 
 <Aside type="note">
-    Note that "forking", in this error message, means to schedule a command.
-    It's not the same as the "git fork" terminal command.
+    Note that "forking", in this error message, means to schedule a command. It's not the same as the "git fork"
+    terminal command.
 </Aside>
 
 ### Command Sequences
 
-If you want to run the `fullThrottle` command inside of another command, you must
-call `coroutine.await(Command)`, like so:
+If you want to run the `fullThrottle` command inside of another command, you must call `coroutine.await(Command)`, like
+so:
 
 ```java #commandAwait
 
@@ -136,4 +126,6 @@ That means you can run multiple commands in sequence:
 
 ```
 
-[^1]: WPILib JavaDocs for [`NeedsNameBuilderStage.named()`](<https://github.wpilib.org/allwpilib/docs/2027/java/org/wpilib/command3/NeedsNameBuilderStage.html#named(java.lang.String)>)
+[^1]:
+    WPILib JavaDocs for
+    [`NeedsNameBuilderStage.named()`](<https://github.wpilib.org/allwpilib/docs/2027/java/org/wpilib/command3/NeedsNameBuilderStage.html#named(java.lang.String)>)
