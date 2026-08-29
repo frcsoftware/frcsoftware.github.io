@@ -3,6 +3,11 @@ title: Kitbot Additional Motors
 description: Programming the remaining kitbot motors
 prev: simple-auto
 next: false
+codeRegionSources:
+    ctreRobot: stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java
+    revRobot: stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java
+    ctreTeleop: stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java
+    revTeleop: stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
@@ -35,13 +40,13 @@ Inside of the `Robot.java` file create a motor controller instance for the Intak
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AdditionalMotors
+        ```java {ctreRobot}#AdditionalMotors
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#AdditionalMotors
+        ```java {revRobot}#AdditionalMotors
         ```
 
     </TabItem>
@@ -58,13 +63,13 @@ Creating the `SingleFlywheelSim` instance for the LauncherFeeder motor will look
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#IntakeLauncherSim
+        ```java {ctreRobot}#IntakeLauncherSim
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#IntakeLauncherSim
+        ```java {revRobot}#IntakeLauncherSim
         ```
 
     </TabItem>
@@ -79,13 +84,13 @@ This will instead use the `forFeeder()` method.
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FeederSim
+            ```java {ctreRobot}#FeederSim
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FeederSim
+            ```java {revRobot}#FeederSim
             ```
 
         </TabItem>
@@ -98,13 +103,13 @@ To make the simulated motor controllers update, the `SingleFlywheelSim` instance
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorSimPeriodic
+        ```java {ctreRobot}#MotorSimPeriodic
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorSimPeriodic
+        ```java {revRobot}#MotorSimPeriodic
         ```
 
     </TabItem>
@@ -124,13 +129,13 @@ To make the `FuelSim` class function, its `periodic()` function needs to be call
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FuelSimPeriodic
+        ```java {ctreRobot}#FuelSimPeriodic
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FuelSimPeriodic
+        ```java {revRobot}#FuelSimPeriodic
         ```
 
     </TabItem>
@@ -147,13 +152,13 @@ At this point your `Robot` class should look like this
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#FullRobot
+            ```java {ctreRobot}#FullRobot
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#FullRobot
+            ```java {revRobot}#FullRobot
             ```
 
         </TabItem>
@@ -170,13 +175,13 @@ This will launch the fuel.
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#launchFuel
+        ```java {ctreTeleop}#launchFuel
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#launchFuel
+        ```java {revTeleop}#launchFuel
         ```
 
     </TabItem>
@@ -189,13 +194,13 @@ This will intake the fuel.
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#intakeFuel
+        ```java {ctreTeleop}#intakeFuel
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#intakeFuel
+        ```java {revTeleop}#intakeFuel
         ```
 
     </TabItem>
@@ -208,13 +213,13 @@ This will outake the fuel.
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#outakeFuel
+        ```java {ctreTeleop}#outakeFuel
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#outakeFuel
+        ```java {revTeleop}#outakeFuel
         ```
 
     </TabItem>
@@ -227,13 +232,13 @@ This will stop the motors.
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#stopMotors
+        ```java {ctreTeleop}#stopMotors
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#stopMotors
+        ```java {revTeleop}#stopMotors
         ```
 
     </TabItem>

@@ -3,6 +3,9 @@ title: Simple Auto
 description: Programming a time based autonomous
 prev: drivetrain-sim
 next: kitbot-additional-motors
+codeRegionSources:
+    ctreAuto: stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java
+    revAuto: stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
@@ -31,13 +34,13 @@ This function can be periodically checked as the condition to an if statement to
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoStart
+        ```java {ctreAuto}#SimpleAutoStart
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoStart
+        ```java {revAuto}#SimpleAutoStart
         ```
 
     </TabItem>
@@ -49,13 +52,13 @@ If `hasElapsed(4)` instead returns false, then less than four seconds must have 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoEnd
+        ```java {ctreAuto}#SimpleAutoEnd
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyAuto.java#SimpleAutoEnd
+        ```java {revAuto}#SimpleAutoEnd
         ```
 
     </TabItem>
