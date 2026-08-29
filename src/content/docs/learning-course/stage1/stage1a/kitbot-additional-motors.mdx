@@ -11,7 +11,23 @@ import { REV_CTRE_CHOOSER_KEY } from '@data/tabsSyncKeys.ts';
 # Remaining Motors
 
 The kitbot has two additional motors that allow it to intake and shoot fuel.
-The IntakeLauncher motor powers the intake roller and the launcher flywheel while the Feeder motor feeds fuel into the hopper, into the launcher, or out of the intake.
+
+The IntakeLauncher motor powers the intake roller and the launcher flywheel.
+
+<ContentFigure
+    width="650px"
+    alt="The intake-launcher subsystem on the kitbot"
+    src="/learning-course/stage1/stage1a/intakeLauncher.webp"
+/>
+
+The Feeder motor feeds fuel into the hopper, into the launcher, or out of the intake depending on the direction it spins.
+
+<ContentFigure
+    width="650px"
+    alt="The feeder subsystem on the kitbot"
+    src="/learning-course/stage1/stage1a/feederMotor.webp"
+/>
+
 The IntakeLauncher motor will be on CAN Bus 0 with a CAN Id of 4 while the Feeder motor will be on CAN Bus 0 with a CAN Id of 5.
 
 Inside of the `Robot.java` file create a motor controller instance for the IntakeLauncher and Feeder motors.
