@@ -5,7 +5,6 @@
  */
 package first.robot;
 
-import org.wpilib.command3.Command;
 import org.wpilib.framework.OpModeRobot;
 
 /**
@@ -21,9 +20,7 @@ public class Robot extends OpModeRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  public Robot() {
-    Command.noRequirements(coro -> {});
-  }
+  public Robot() {}
 
   @Override
   public void simulationPeriodic() {}
