@@ -22,10 +22,10 @@ import org.wpilib.math.util.MathUtil;
 
 public class Drivetrain extends Mechanism {
   private static final int leftLeaderID = 0, rightLeaderID = 2;
-  private TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0)),
-      leftFollower = new TalonFX(1, CANBus.systemcore(0)),
-      rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0)),
-      rightFollower = new TalonFX(3, CANBus.systemcore(0));
+  private final TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
+  private final TalonFX leftFollower = new TalonFX(1, CANBus.systemcore(0));
+  private final TalonFX rightLeader = new TalonFX(rightLeaderID, CANBus.systemcore(0));
+  private final TalonFX rightFollower = new TalonFX(3, CANBus.systemcore(0));
 
   private final OnboardIMU imu = new OnboardIMU(MountOrientation.FLAT);
   private final DifferentialDrive differentialDrive =
