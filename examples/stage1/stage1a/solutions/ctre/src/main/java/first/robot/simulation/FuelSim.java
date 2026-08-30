@@ -54,7 +54,7 @@ public class FuelSim {
   static Supplier<Pose2d> robotPoseSupplier = () -> Pose2d.kZero;
 
   /** Updates the fuel sim. */
-  public static void update() {
+  public static void periodic() {
     updateMode();
     updateVisualization();
   }
