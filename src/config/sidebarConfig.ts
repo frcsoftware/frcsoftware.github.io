@@ -81,6 +81,14 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         //     label: 'Methods',
                         //     slug: 'learning-course/stage0/methods',
                         // },
+                        {
+                            label: 'Arrays and For-Each Loops',
+                            slug: 'learning-course/stage0/arrays',
+                        },
+                        {
+                            label: 'Interfaces, Generics, and Lists',
+                            slug: 'learning-course/stage0/interfaces-lists',
+                        },
                     ],
                 },
                 {

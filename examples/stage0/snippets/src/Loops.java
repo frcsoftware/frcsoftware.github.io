@@ -54,7 +54,7 @@ void main() {
 
     // [ForExample2]
     for (int i = 0; i < 6; i++) {
-    System.out.println("Hi!");
+        System.out.println("Hi!");
     }
     //[/ForExample2]
 
@@ -63,8 +63,4 @@ void main() {
         System.out.println(i); // prints 0, 1, 2, 3, 4
     }
     // [/forExample]
-
-
-
-
 }
