@@ -3,6 +3,11 @@ title: Kitbot Drivetrain
 description: Programming the kitbot drivetrain
 prev: stage-overview
 next: drivetrain-sim
+codeRegionSources:
+    ctreRobot: stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java
+    revRobot: stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java
+    ctreTeleop: stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java
+    revTeleop: stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
@@ -48,7 +53,7 @@ This is how the motor controller objects for the left motors will look.
 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label = "CTRE">
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsLeft
+        ```java {ctreRobot}#DriveMotorsLeft
         ```
 
 For the CTRE code, the CAN ID of the leader motors are stored as a variable since they will be used later on to tell the follower which motor controller to follow.
@@ -57,7 +62,7 @@ Additionally, CTRE uses a CANBus object to store the CANBus instead of just an i
 
     </TabItem>
     <TabItem label = "REV">
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DriveMotorsLeft
+        ```java {revRobot}#DriveMotorsLeft
         ```
 
 Since the Spark Max can control both brushed and brushless motors it's necessary to specify the type as `MotorType.kBrushless` for motors like a NEO and `MotorType.kBrushed` for motors like a CIM.
@@ -75,13 +80,13 @@ Now try creating the right motor controllers on your own.
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveMotorsRight
+            ```java {ctreRobot}#DriveMotorsRight
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DriveMotorsRight
+            ```java {revRobot}#DriveMotorsRight
             ```
 
         </TabItem>
@@ -127,13 +132,13 @@ This object stores the configuration so it can be changed and shared across diff
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfigCreationLeft
+        ```java {ctreRobot}#MotorConfigCreationLeft
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorConfigCreationLeft
+        ```java {revRobot}#MotorConfigCreationLeft
         ```
 
     </TabItem>
@@ -149,13 +154,13 @@ Instead they should be configured with an invert setting of `false` or `Counter_
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfigSetLeft
+        ```java {ctreRobot}#MotorConfigSetLeft
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorConfigSetLeft
+        ```java {revRobot}#MotorConfigSetLeft
         ```
 
     </TabItem>
@@ -169,7 +174,7 @@ It's important to remember that settings only get changed when the configuration
     <TabItem label = "CTRE">
         For CTRE Motor Controllers, becoming a follower is a `ControlRequest` instead of a configuration.
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfigLeft
+        ```java {ctreRobot}#MotorConfigLeft
         ```
 
     </TabItem>
@@ -180,7 +185,7 @@ It's important to remember that settings only get changed when the configuration
         This prevents old configurations from being left on the controller.
         `PersistMode.kPersistParameters` is used so the configuration gets saved on the motor control so it persists even after power is removed.
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorConfigLeft
+        ```java {revRobot}#MotorConfigLeft
         ```
 
     </TabItem>
@@ -195,13 +200,13 @@ Remember that some of the configurations may be different.
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#MotorConfig
+            ```java {ctreRobot}#MotorConfig
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#MotorConfig
+            ```java {revRobot}#MotorConfig
             ```
 
         </TabItem>
@@ -226,13 +231,13 @@ An instance of `DifferentialDrive` should be created under where the motor contr
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```java {ctreRobot}#DrivetrainInstance
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DrivetrainInstance
+        ```java {revRobot}#DrivetrainInstance
         ```
 
     </TabItem>
@@ -261,13 +266,13 @@ An instance of Systemcore's IMU should be created beneath the `differentialDrive
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#IMU
+        ```java {ctreRobot}#IMU
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#IMU
+        ```java {revRobot}#IMU
         ```
 
     </TabItem>
@@ -290,17 +295,17 @@ By now your `Robot` class in `Robot.java` should look like this and VS code shou
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#RobotTop
+            ```java {ctreRobot}#RobotTop
             ```
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#AllConfigs
+            ```java {ctreRobot}#AllConfigs
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#RobotTop
+            ```java {revRobot}#RobotTop
             ```
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#AllConfigs
+            ```java {revRobot}#AllConfigs
             ```
 
         </TabItem>
@@ -332,13 +337,13 @@ The index provided in the constructor tells the `NiDsXboxController`which slot t
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#Controller
+        ```java {ctreTeleop}#Controller
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#Controller
+        ```java {revTeleop}#Controller
         ```
 
     </TabItem>
@@ -358,13 +363,13 @@ This allows the Opmode to access the methods and fields of the`Robot` class.
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#DriveSimPeriodic
+        ```java {ctreTeleop}#DriveSimPeriodic
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#DriveSimPeriodic
+        ```java {revTeleop}#DriveSimPeriodic
         ```
 
     </TabItem>
@@ -378,13 +383,13 @@ At this point `MyTeleop.java` should look like this
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/opmode/MyTeleop.java#FullDrivetrain
+            ```java {ctreTeleop}#FullDrivetrain
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/opmode/MyTeleop.java#FullDrivetrain
+            ```java {revTeleop}#FullDrivetrain
             ```
 
         </TabItem>

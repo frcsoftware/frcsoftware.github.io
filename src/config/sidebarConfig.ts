@@ -69,10 +69,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             label: 'Conditionals',
                             slug: 'learning-course/stage0/conditionals',
                         },
-                        // {
-                        //     label: 'Loops',
-                        //     slug: 'learning-course/stage0/loops',
-                        // },
+                        {
+                            label: 'Loops',
+                            slug: 'learning-course/stage0/loops',
+                        },
                         {
                             label: 'Classes, Fields, and Methods',
                             slug: 'learning-course/stage0/classes-methods',
@@ -81,6 +81,14 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         //     label: 'Methods',
                         //     slug: 'learning-course/stage0/methods',
                         // },
+                        {
+                            label: 'Arrays and For-Each Loops',
+                            slug: 'learning-course/stage0/arrays',
+                        },
+                        {
+                            label: 'Interfaces, Generics, and Lists',
+                            slug: 'learning-course/stage0/interfaces-lists',
+                        },
                     ],
                 },
                 {
@@ -107,14 +115,14 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     label: 'Drivetrain Simulation',
                                     slug: 'learning-course/stage1/stage1a/drivetrain-sim',
                                 },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/the-command-body',
-                                // },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
-                                // },
+                                {
+                                    label: 'Simple Auto',
+                                    slug: 'learning-course/stage1/stage1a/simple-auto',
+                                },
+                                {
+                                    label: 'Additional Motors',
+                                    slug: 'learning-course/stage1/stage1a/kitbot-additional-motors',
+                                },
                             ],
                         },
                         {

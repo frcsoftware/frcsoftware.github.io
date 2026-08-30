@@ -16,19 +16,22 @@ export default {
         [remarkLintNoLiteralUrls, false],
         remarkNoInlineCodeFences,
         remarkNoHtmlLinks,
-        [
-            remarkLintNoDeadUrls,
-            {
-                skipLocalhost: false,
-                skipOffline: true,
-                skipUrlPatterns: [
-                    'https://github.com/signup',
-                    'https://code.visualstudio.com/',
-                    'https://www.conventionalcommits.org/en/v1.0.0/',
-                    'https://vale.sh/',
-                    'https://squoosh.app/',
-                ], // Add known flaky URL patterns here
-            },
-        ],
+        // only run dead link checker in CI to save time in dev
+        process.env.CI
+            ? [
+                  remarkLintNoDeadUrls,
+                  {
+                      skipLocalhost: false,
+                      skipOffline: true,
+                      skipUrlPatterns: [
+                          'https://github.com/signup',
+                          'https://code.visualstudio.com/',
+                          'https://www.conventionalcommits.org/en/v1.0.0/',
+                          'https://vale.sh/',
+                          'https://squoosh.app/',
+                      ], // Add known flaky URL patterns here
+                  },
+              ]
+            : () => undefined,
     ],
 };
