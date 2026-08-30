@@ -25,13 +25,13 @@ export default defineConfig({
                 remarkMdxGlobalImports,
                 remarkCodeRegion,
             ],
+            remarkRehype: {
+                footnoteLabel: 'References',
+                footnoteLabelTagName: 'h4',
+                // override properties so footnote label is visible
+                footnoteLabelProperties: {},
+            },
         }),
-        remarkRehype: {
-            footnoteLabel: 'References',
-            footnoteLabelTagName: 'h4',
-            // override properties so footnote label is visible
-            footnoteLabelProperties: {},
-        },
     },
 
     integrations: [
