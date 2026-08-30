@@ -69,10 +69,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             label: 'Conditionals',
                             slug: 'learning-course/stage0/conditionals',
                         },
-                        // {
-                        //     label: 'Loops',
-                        //     slug: 'learning-course/stage0/loops',
-                        // },
+                        {
+                            label: 'Loops',
+                            slug: 'learning-course/stage0/loops',
+                        },
                         {
                             label: 'Classes, Fields, and Methods',
                             slug: 'learning-course/stage0/classes-methods',
