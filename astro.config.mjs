@@ -10,6 +10,7 @@ import remarkImageAttributes from './src/plugins/remark-image-attributes';
 import { remarkMdxGlobalImports } from './src/plugins/remark-mdx-global-imports';
 import remarkCodeRegion from './src/plugins/remark-code-region';
 import { unified } from '@astrojs/markdown-remark';
+import starlightLlmsTxt from 'starlight-llms-txt';
 
 export default defineConfig({
     site: 'https://frcsoftware.org',
@@ -84,6 +85,9 @@ export default defineConfig({
                     exclude: ['/', '/test-content-figure'],
                 }),
                 starlightLinksValidator(),
+                starlightLlmsTxt({
+                    promote: ['index', 'learning-course*'],
+                }),
             ],
         }),
     ],
