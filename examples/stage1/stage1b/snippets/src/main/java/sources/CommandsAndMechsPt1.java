@@ -15,7 +15,7 @@ class CommandsAndMechsPt1 implements Mechanism {
     // [mechanismDef]
     class Intake implements Mechanism {
       // Store any motors specific to the mechanism as private members.
-      // This can include TalonFX, Spark Max and/or Spark Flex instances.
+      // This can include TalonFX, SparkMax and/or SparkFlex instances.
       private final ExampleMotor motor = new ExampleMotor();
     }
     // [/mechanismDef]
