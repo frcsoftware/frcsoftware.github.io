@@ -32,7 +32,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Setup Java
-              uses: actions/setup-java@v5
+              uses: actions/setup-java@v6
               with:
                   distribution: 'temurin'
                   java-version: '21'
@@ -46,7 +46,7 @@ jobs:
                   # Configure git to use your PAT for all HTTPS connections to GitHub
                   git config --global url."https://x-access-token:${{ secrets.COPYBARA_PAT }}@github.com/".insteadOf "https://github.com/"
             - name: Download Copybara
-              run: wget https://github.com/google/copybara/releases/download/v20260629/copybara_deploy.jar
+              run: wget https://github.com/google/copybara/releases/download/v20260824/copybara_deploy.jar
 
             - name: Run Copybara
               # Copybara uses exit code 4 to indicate a no-op (no files were updated).
