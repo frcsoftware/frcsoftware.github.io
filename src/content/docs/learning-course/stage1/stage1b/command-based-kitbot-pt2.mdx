@@ -13,7 +13,7 @@ import Aside from '@components/Aside.astro';
 
 In this second part of the kitbot rewrite, you will:
 
-1. Create a `Drivetrain` mechanism class.
+1. Create a `Drivetrain` mechanism class to allow for control of the drivetrain.
 2. Define an `arcadeDrive` command that dynamically reads controller inputs using `DoubleSupplier`s.
 3. Bind the default drivetrain command in your teleop OpMode to enable driving.
 4. Define some basic autonomous modes.
@@ -68,6 +68,8 @@ To do that, write the following:
 
 ### Task 3: Using the Drivetrain
 
+Now that we have a `Drivetrain` class, we need to set it up to be used in our robot code.
+
 1. Create a `Drivetrain` instance in `Robot.java` named `drivetrain`.
    It should be a public instead of private.
 2. Call `drivetrain.periodic();` in the `robotPeriodic` method.
@@ -101,7 +103,9 @@ To do that, write the following:
 
 ### Task 4: Create Auto Mode Files
 
-Create 2 java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
+We need to create two new files to define our autonomous OpModes.
+
+Create 2 Java files in the `opmode` package, named `DriveStraightAutoMode.java` and `TurnInPlaceAutoMode.java`,
 before deleting the `MyAuto.java` file.
 Copy-paste the following code in each file,
 while replacing `MyOpModeName` with the correct name for each opmode:
@@ -111,6 +115,8 @@ while replacing `MyOpModeName` with the correct name for each opmode:
 ```
 
 ### Task 5: Drive Straight Autonomous
+
+This auto will drive the robot straight forwards for 4 seconds.
 
 In the `start()` method of `DriveStraightAutoMode.java`, schedule
 an `arcadeDrive` command with a timeout of 4 seconds.
@@ -142,6 +148,8 @@ Then, do the following:
 </details>
 
 ### Task 6: Rotate in Place Command
+
+This command will rotate the robot a certain number of degrees.
 
 Create a new `Command` in `Drivetrain.java`, called `rotateInPlace`,
 with the parameters `double angleDegrees` and `DoubleSupplier rotationThrottle`.

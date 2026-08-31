@@ -3,6 +3,9 @@ title: Kitbot Drivetrain Simulation
 description: Writing the code to simulate the kitbot drivetrain
 prev: kitbot-drivetrain
 next: false
+codeRegionSources:
+    ctreRobot: stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java
+    revRobot: stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
@@ -28,13 +31,13 @@ The class will then publish the new drivetrain position and additional motor dat
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DrivetrainSim
+        ```java {ctreRobot}#DrivetrainSim
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DrivetrainSim
+        ```java {revRobot}#DrivetrainSim
         ```
 
     </TabItem>
@@ -55,13 +58,13 @@ To fix this, `DrivetrainSim`'s `periodic()` function should be called inside of 
 <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
     <TabItem label="CTRE">
 
-        ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#DriveSimPeriodic
+        ```java {ctreRobot}#DriveSimPeriodic
         ```
 
     </TabItem>
     <TabItem label="REV">
 
-        ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#DriveSimPeriodic
+        ```java {revRobot}#DriveSimPeriodic
         ```
 
     </TabItem>
@@ -84,17 +87,17 @@ After adding the simulation code your `Robot.java` file should now look like thi
     <Tabs syncKey={REV_CTRE_CHOOSER_KEY}>
         <TabItem label="CTRE">
 
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#RobotWithSimPart1
+            ```java {ctreRobot}#RobotWithSimPart1
             ```
-            ```java stage1/stage1a/solutions/ctre/src/main/java/first/robot/Robot.java#RobotWithSimPart2
+            ```java {ctreRobot}#RobotWithSimPart2
             ```
 
         </TabItem>
         <TabItem label="REV">
 
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#RobotWithSimPart1
+            ```java {revRobot}#RobotWithSimPart1
             ```
-            ```java stage1/stage1a/solutions/rev/src/main/java/first/robot/Robot.java#RobotWithSimPart2
+            ```java {revRobot}#RobotWithSimPart2
             ```
 
         </TabItem>

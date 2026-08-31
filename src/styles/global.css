@@ -64,6 +64,12 @@
     border-bottom: none !important;
 }
 
+/* disable the overscroll bounce on macos-ios-mobile */
+html,
+body {
+    overscroll-behavior-y: none;
+}
+
 @media (max-width: 50rem) {
     starlight-menu-button {
         display: none !important;
@@ -303,6 +309,10 @@ html.lightbox-open [data-pagefind-ignore='all'] {
 
 .global-image-lightbox.open {
     display: flex;
+}
+
+.sl-link-button {
+    border-radius: 0.25rem !important;
 }
 
 .global-lightbox-close {
