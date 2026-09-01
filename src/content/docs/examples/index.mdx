@@ -5,12 +5,14 @@ description: A programming reference featuring FRC robot code repositories, best
 
 export const examples = [
   {
-    title: '6328 2026 Code',
+    title: "6328's 2026 Code",
     href: '/examples/6328-2026-code/',
     image: '/examples/6328-2026-robot.png',
     imageAlt: '6328 2026 robot render',
     category: '',
     description: 'IO layer, hub shift tracker, sotm with drum shooter, hood anti-decapitation trench bounds, battery state estimator, and a variety of Gradle plugins',
+    repo: 'https://github.com/Mechanical-Advantage/RobotCode2026Public',
+    chiefdelphi: 'https://www.chiefdelphi.com/t/frc-6328-mechanical-advantage-2026-build-thread/509595'
   },
   {
     title: "1678's 2026 Code",
@@ -19,14 +21,18 @@ export const examples = [
     imageAlt: '1678 2026 robot render',
     category: '',
     description: 'Team library, custom targeting system, and customer power analyzer',
+    repo: 'https://github.com/frc1678/C2026-Public',
+    chiefdelphi: 'https://www.chiefdelphi.com/t/1678-citrus-circuits-2026-cad-and-robot-code-release/521535'
   },
   {
-    title: '2910 2026 Code',
+    title: "581's 2026 Code",
     href: '/examples/581-2026-code/',
     image: '/examples/581-2026-robot.png',
     imageAlt: '581 2026 robot render',
     category: 'Best Practices',
     description: 'Advanced software practices, automation, and team programming documentation',
+    repo: 'https://github.com/team581/frc-2026',
+    chiefdelphi: 'https://www.chiefdelphi.com/t/581-blazing-bulldogs-2026-cad-and-code-release/521762'
   },
 ];
 
@@ -59,6 +65,10 @@ export const examples = [
           <p class="category-label">{example.category}</p>
           <h3><a href={example.href} class="featured-card-link">{example.title}</a></h3>
           <p>{example.description}</p>
+        </div>
+        <div class="featured-buttons">
+          <button><a href={example.repo}>Repo</a></button>
+          <button><a href={example.chiefdelphi}>Chief Delphi</a></button>
         </div>
       </article>
     ))}
