@@ -45,9 +45,9 @@ class CommandBasedKitbot {
   private final ExampleMotor motor = new ExampleMotor();
 
   // [feederSim]
-  private final SingleFlywheelSim sim = new SingleFlywheelSim(motor, "Feeder");
+  private final SingleFlywheelSim sim = new SingleFlywheelSim(motor, "Feeder"); // Create a flywheel simulation
 
-  public void periodic() {
+  public void periodic() { // Update the simulation
     sim.periodic();
   }
   // [/feederSim]

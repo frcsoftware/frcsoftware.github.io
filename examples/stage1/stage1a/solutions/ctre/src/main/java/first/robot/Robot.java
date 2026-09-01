@@ -12,12 +12,14 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import first.robot.simulation.DrivetrainSim;
+import first.robot.simulation.FuelSim;
 import first.robot.simulation.SingleFlywheelSim;
 import org.wpilib.drive.DifferentialDrive;
 import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [FullRobot]
 // [RobotWithSimPart1]
 // [RobotTop]
 /**
@@ -56,11 +58,18 @@ public class Robot extends OpModeRobot {
   // [/DrivetrainSim]
   // [/RobotWithSimPart1]
 
+  // [AdditionalMotors]
   public TalonFX intakeLauncher = new TalonFX(4, CANBus.systemcore(0));
   public TalonFX feeder = new TalonFX(5, CANBus.systemcore(0));
+  // [/AdditionalMotors]
 
+  // [IntakeLauncherSim]
   private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  // [/IntakeLauncherSim]
+  // [FeederSim]
   private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
+
+  // [/FeederSim]
 
   // [RobotWithSimPart2]
   // [AllConfigs]
@@ -99,8 +108,15 @@ public class Robot extends OpModeRobot {
   public void simulationPeriodic() {
     drivetrainSim.periodic();
     // [/DriveSimPeriodic]
+    // [MotorSimPeriodic]
     intakeLauncherSim.periodic();
     feederSim.periodic();
+    // [/MotorSimPeriodic]
+
+    // [FuelSimPeriodic]
+    FuelSim.periodic();
+    // [/FuelSimPeriodic]
   }
   // [/RobotWithSimPart2]
+  // [/FullRobot]
 }
