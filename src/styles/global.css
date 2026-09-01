@@ -738,7 +738,7 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
 .featured-card {
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     height: 100%;
     margin: 0 !important;
     border: 1px solid var(--sl-color-gray-5);
@@ -748,18 +748,6 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
         border-color 160ms ease,
         transform 160ms ease,
         background-color 160ms ease;
-}
-
-.featured-card-link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.featured-card-link::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
 }
 
 .featured-card:hover,
@@ -773,8 +761,7 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
     transform: translateY(-2px);
 }
 
-.featured-card:focus-within,
-.featured-card-link:focus-visible {
+.featured-card:focus-within {
     outline: 2px solid var(--accent-color-hover);
     outline-offset: 3px;
 }
@@ -793,15 +780,9 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
     display: block;
     width: 100%;
     height: 100%;
-    max-width: none;
+    max-width: 100%;
     object-fit: contain;
-    transition:
-        opacity 160ms ease,
-        transform 160ms ease;
-}
-
-.featured-card:hover img {
-    transform: scale(1.02);
+    transition: opacity 160ms ease;
 }
 
 .featured-body {
@@ -831,5 +812,37 @@ html.sidebar-collapsed .sidebar-collapsed-toggle-wrapper {
 @media (max-width: 58rem) {
     .featured-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+.featured-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 auto 1rem auto;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.featured-links a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    height: 2.5rem;
+    background: var(--accent-color);
+    color: var(--sl-color-white) !important;
+    text-decoration: none !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 160ms ease;
+
+    &:hover {
+        background: var(--accent-color-hover);
+        color: var(--sl-color-white) !important;
     }
 }
