@@ -21,17 +21,6 @@ export type Item = {
 
 // Define which URL paths belong to which sidebar section
 export const sidebarSections: Record<string, SidebarSection[]> = {
-    // Home page - minimal sidebar or none
-    '/': [],
-
-    // Feature Guide section
-    '/feature-guide': [
-        {
-            label: 'Website Feature Guide',
-            items: [{ label: 'Overview', slug: 'feature-guide' }],
-        },
-    ],
-
     // Learning Course section
     '/learning-course': [
         {
@@ -65,7 +54,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                     collapsed: true,
                     items: [
                         {
-                            label: 'Stage 0 Introduction',
+                            label: 'Stage 0 Overview',
                             slug: 'learning-course/stage0/stage-overview',
                         },
                         {
@@ -80,18 +69,26 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             label: 'Conditionals',
                             slug: 'learning-course/stage0/conditionals',
                         },
-                        // {
-                        //     label: 'Loops',
-                        //     slug: 'learning-course/stage0/loops',
-                        // },
-                        // {
-                        //     label: 'Objects',
-                        //     slug: 'learning-course/stage0/objects',
-                        // },
+                        {
+                            label: 'Loops',
+                            slug: 'learning-course/stage0/loops',
+                        },
+                        {
+                            label: 'Classes, Fields, and Methods',
+                            slug: 'learning-course/stage0/classes-methods',
+                        },
                         // {
                         //     label: 'Methods',
                         //     slug: 'learning-course/stage0/methods',
                         // },
+                        {
+                            label: 'Arrays and For-Each Loops',
+                            slug: 'learning-course/stage0/arrays',
+                        },
+                        {
+                            label: 'Interfaces, Generics, and Lists',
+                            slug: 'learning-course/stage0/interfaces-lists',
+                        },
                     ],
                 },
                 {
@@ -99,25 +96,33 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                     collapsed: true,
                     items: [
                         {
-                            label: 'Stage 1 Introduction',
+                            label: 'Stage 1 Overview',
                             slug: 'learning-course/stage1/stage-overview',
                         },
                         {
-                            label: 'Stage 1A',
+                            label: 'Stage 1A: Kitbot Intro',
                             collapsed: true,
                             items: [
                                 {
-                                    label: 'Stage 1A Introduction',
+                                    label: 'Stage 1A Overview',
                                     slug: 'learning-course/stage1/stage1a/stage-overview',
                                 },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/the-command-body',
-                                // },
-                                // {
-                                //     label: 'TBD',
-                                //     slug: 'stage-1a-commands/commands-and-mechanisms',
-                                // },
+                                {
+                                    label: 'Kitbot Drivetrain',
+                                    slug: 'learning-course/stage1/stage1a/kitbot-drivetrain',
+                                },
+                                {
+                                    label: 'Drivetrain Simulation',
+                                    slug: 'learning-course/stage1/stage1a/drivetrain-sim',
+                                },
+                                {
+                                    label: 'Simple Auto',
+                                    slug: 'learning-course/stage1/stage1a/simple-auto',
+                                },
+                                {
+                                    label: 'Additional Motors',
+                                    slug: 'learning-course/stage1/stage1a/kitbot-additional-motors',
+                                },
                             ],
                         },
                         {
@@ -125,7 +130,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             collapsed: true,
                             items: [
                                 {
-                                    label: 'Stage 1B Introduction',
+                                    label: 'Stage 1B Overview',
                                     slug: 'learning-course/stage1/stage1b/stage-overview',
                                 },
                                 {
@@ -149,6 +154,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                     slug: 'learning-course/stage1/stage1b/commands-and-mechanisms-pt2',
                                 },
                                 {
+                                    label: 'Bonus: Spot the Error',
+                                    slug: 'learning-course/stage1/stage1b/spot-the-error',
+                                },
+                                {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 1',
                                     slug: 'learning-course/stage1/stage1b/command-based-kitbot',
                                 },
@@ -159,6 +168,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                                 {
                                     label: 'Exercise - Kitbot Rewrite, Pt. 2',
                                     slug: 'learning-course/stage1/stage1b/command-based-kitbot-pt2',
+                                },
+                                {
+                                    label: 'Bonus: Spot the Error, Pt 2',
+                                    slug: 'learning-course/stage1/stage1b/spot-the-error-pt2',
                                 },
                             ],
                         },
@@ -238,6 +251,7 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 { label: 'Overview', slug: 'resources' },
                 { label: 'Glossary', slug: 'resources/glossary' },
+                { label: 'Documentation', slug: 'resources/docs' },
             ],
         },
     ],
