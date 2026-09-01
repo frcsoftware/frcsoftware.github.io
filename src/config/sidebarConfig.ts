@@ -222,7 +222,19 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
             items: [
                 {
                     label: 'Overview',
-                    slug: 'examples/examples',
+                    slug: 'examples',
+                },
+                {
+                    label: '6328 2026 Code',
+                    slug: 'examples/6328-2026-code',
+                },
+                {
+                    label: '581 2026 Code',
+                    slug: 'examples/581-2026-code',
+                },
+                {
+                    label: "1678's 2026 Code",
+                    slug: 'examples/1678-2026-code',
                 },
             ],
         },

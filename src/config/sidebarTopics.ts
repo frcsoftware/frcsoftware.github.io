@@ -37,6 +37,13 @@ export const sidebarTopics = [
         items: sidebarSections['/best-practices']![0]!.items.map(convertItem),
     },
     {
+        label: 'Examples',
+        id: 'examples',
+        link: '/examples/',
+        icon: 'open-book',
+        items: sidebarSections['/examples']![0]!.items.map(convertItem),
+    },
+    {
         label: 'Resources',
         id: 'resources',
         link: '/resources/docs/',
