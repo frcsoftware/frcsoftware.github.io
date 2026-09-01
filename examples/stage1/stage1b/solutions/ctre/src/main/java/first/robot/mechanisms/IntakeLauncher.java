@@ -13,7 +13,7 @@ import first.robot.simulation.SingleFlywheelSim;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 
-public class IntakeLauncher extends Mechanism {
+public class IntakeLauncher implements Mechanism {
   private final TalonFX motor = new TalonFX(4, CANBus.systemcore(0));
   private final SingleFlywheelSim sim = SingleFlywheelSim.forIntakeLauncher(motor);
 

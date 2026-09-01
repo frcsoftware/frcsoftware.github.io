@@ -20,7 +20,7 @@ import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 import org.wpilib.math.util.MathUtil;
 
-public class Drivetrain extends Mechanism {
+public class Drivetrain implements Mechanism {
   private static final int leftLeaderID = 0, rightLeaderID = 2;
   private final TalonFX leftLeader = new TalonFX(leftLeaderID, CANBus.systemcore(0));
   private final TalonFX leftFollower = new TalonFX(1, CANBus.systemcore(0));
