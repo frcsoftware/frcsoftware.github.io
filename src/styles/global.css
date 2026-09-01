@@ -36,7 +36,7 @@
 
     --sl-color-text-accent: #924dc3 !important;
     --sl-color-text-accent-hover: #762bac !important;
-    
+
     --sl-color-hairline: #c1c3c8 !important; /* adjusts lines for light mode*/
 
     /* Darker aside backgrounds for better visibility in light mode */
@@ -267,7 +267,7 @@ aside.sidebar {
     border-right: 1px solid #c1c3c8 !important;
 }
 :root[data-theme='light'] .sidebar-pane ul ul {
-    border-inline-start: 1px solid #c8c1c1 !important; 
+    border-inline-start: 1px solid #c8c1c1 !important;
 }
 
 .sidebar-content,
