@@ -1,3 +1,5 @@
 allowBuilds:
     esbuild: true
-    '@vvago/vale': true
+    '@frcsoftware/vale': true
+minimumReleaseAgeExclude:
+    - '@frcsoftware/vale@3.19.0'
