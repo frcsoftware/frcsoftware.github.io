@@ -7,6 +7,7 @@ import {
     mdiLaptop,
     mdiInformation,
     mdiLightbulbOn,
+    mdiProgressWrench,
     mdiVideo,
 } from '@mdi/js';
 import MdiIcon from './MdiIcon.astro';
@@ -21,7 +22,8 @@ import MdiIcon from './MdiIcon.astro';
  */
 
 interface Props {
-    type?: 'note' | 'tip' | 'caution' | 'danger' | 'example' | 'exercise';
+    type?:
+        'note' | 'tip' | 'caution' | 'danger' | 'example' | 'exercise' | 'wip';
     title?: string;
     collapse?: boolean;
 }
@@ -36,6 +38,7 @@ const titles: Record<string, string> = {
     example: 'Example',
     exercise: 'Exercise',
     video: 'Video',
+    wip: 'Work in Progress',
 };
 
 const displayTitle = title || titles[type] || 'Note';
@@ -48,6 +51,7 @@ const iconPaths: Record<string, string> = {
     example: mdiFlask,
     exercise: mdiLaptop,
     video: mdiVideo,
+    wip: mdiProgressWrench,
 };
 ---
 
@@ -131,6 +135,10 @@ const iconPaths: Record<string, string> = {
     .aside--exercise {
         --aside-bg: rgba(134, 132, 252, 0.12);
         --aside-title-color: #84c8fc;
+    }
+    .aside--wip {
+        --aside-bg: rgba(251, 146, 60, 0.12);
+        --aside-title-color: #fb923c;
     }
 
     .aside-header {
@@ -259,6 +267,11 @@ const iconPaths: Record<string, string> = {
     :global(html[data-theme='light']) .aside--exercise {
         --aside-bg: rgb(134, 132, 252, 0.12);
         --aside-title-color: rgb(132, 200, 252);
+    }
+
+    :global(html[data-theme='light']) .aside--wip {
+        --aside-bg: rgba(251, 146, 60, 0.15);
+        --aside-title-color: #c2410c;
     }
 
     :global(html[data-theme='light']) .aside-content {
