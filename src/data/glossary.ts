@@ -82,7 +82,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     {
         term: 'Repository',
         definition:
-            'A storage location for software packages, often used in version control systems like Git. Repositories are just folders that contain files and subfolders, and they can be hosted on platforms like GitHub to facilitate collaboration and version tracking',
+            'A storage location for your code and related assets, often used in version control systems like Git. Repositories are just folders that contain files and subfolders, and they can be hosted on platforms like GitHub to facilitate collaboration and version tracking',
     },
     {
         term: 'CI',
