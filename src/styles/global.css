@@ -30,11 +30,14 @@
 }
 
 :root[data-theme='light'] {
+    --sl-color-bg: #f1f3f5 !important; /* adds light mode background */
     --sl-color-text: #1a1a1a !important;
     --sl-color-white: #1a1a1a !important;
 
     --sl-color-text-accent: #924dc3 !important;
     --sl-color-text-accent-hover: #762bac !important;
+
+    --sl-color-hairline: #c1c3c8 !important; /* adjusts lines for light mode*/
 
     /* Darker aside backgrounds for better visibility in light mode */
     --sl-color-blue-low: rgba(56, 139, 253, 0.3) !important;
@@ -256,6 +259,15 @@ aside.sidebar {
 :root[data-theme='dark'] #starlight__sidebar {
     /* Gray-4 is lighter/brighter than the default, making it visible against dark backgrounds */
     border-right: 1px solid var(--sl-color-gray-6) !important;
+}
+
+/* adjusts for light mode */
+:root[data-theme='light'] .sidebar-pane,
+:root[data-theme='light'] #starlight__sidebar {
+    border-right: 1px solid #c1c3c8 !important;
+}
+:root[data-theme='light'] .sidebar-pane ul ul {
+    border-inline-start: 1px solid #c8c1c1 !important;
 }
 
 .sidebar-content,
