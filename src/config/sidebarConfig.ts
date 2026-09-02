@@ -74,13 +74,13 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                             slug: 'learning-course/stage0/loops',
                         },
                         {
-                            label: 'Classes, Fields, and Methods',
+                            label: 'Classes and Objects',
+                            slug: 'learning-course/stage0/classes-objects',
+                        },
+                        {
+                            label: 'Methods and Mutable State',
                             slug: 'learning-course/stage0/classes-methods',
                         },
-                        // {
-                        //     label: 'Methods',
-                        //     slug: 'learning-course/stage0/methods',
-                        // },
                         {
                             label: 'Arrays and For-Each Loops',
                             slug: 'learning-course/stage0/arrays',

@@ -6,8 +6,13 @@
 
 void main() {
     // [createAndUse]
+    // [createPoint]
     Point a = new Point(3, 4);
     Point b = new Point(1, 2);
+
+    System.out.println(a.getX()); // 3.0
+    System.out.println(b.getY()); // 2.0
+    // [/createPoint]
 
     Point sum = a.plus(b);
     System.out.println(sum.getX()); // 4.0

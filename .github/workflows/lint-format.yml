@@ -16,12 +16,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
-            - uses: pnpm/action-setup@v6
-            - uses: actions/setup-node@v7
+            - uses: pnpm/setup@v2
               with:
-                  node-version: 24
-                  cache: pnpm
-            - run: pnpm install --frozen-lockfile
+                  cache: true
+                  require-lockfile: true
             - parallel:
                   - run: pnpm lint
                   - run: pnpm format:check
