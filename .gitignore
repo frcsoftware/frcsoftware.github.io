@@ -37,3 +37,6 @@ bun.lock
 .idea
 .eslintcache
 tsconfig.tsbuildinfo
+
+# Cloudflare Workers
+.wrangler
