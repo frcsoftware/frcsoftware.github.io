@@ -253,6 +253,8 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                 { label: 'Glossary', slug: 'resources/glossary' },
                 { label: 'Documentation', slug: 'resources/docs' },
                 { label: 'Hardware', slug: 'resources/hardware-intro' },
+                { label: 'Examples', slug: 'resources/examples' },
+                { label: 'Glossary', slug: 'resources/glossary' },
             ],
         },
     ],
