@@ -41,9 +41,7 @@ export const sidebarTopics = [
         id: 'resources',
         link: '/resources/overview/',
         icon: 'folder',
-        items: sidebarSections['/resources/overview']![0]!.items.map(
-            convertItem,
-        ),
+        items: sidebarSections['/resources']![0]!.items.map(convertItem),
     },
     {
         label: 'Contribution',
