@@ -39,4 +39,4 @@ bun.lock
 tsconfig.tsbuildinfo
 
 # Cloudflare Workers
-.wrangler/state
+.wrangler
