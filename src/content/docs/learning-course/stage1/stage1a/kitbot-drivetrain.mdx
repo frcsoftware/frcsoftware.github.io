@@ -57,7 +57,7 @@ This is how the motor controller objects for the left motors will look.
         ```
 
 For the CTRE code, the CAN ID of the leader motors are stored as a variable since they will be used later on to tell the follower which motor controller to follow.
-This helps prevent errors from occurring by ensuring that there is a single source of truth for the correct CAN ID.
+This helps prevent errors by ensuring a single source of truth for the correct CAN ID.
 Additionally, CTRE uses a CANBus object to store the CANBus instead of just an integer.
 
     </TabItem>
@@ -120,8 +120,8 @@ the configurations that need to be added and their proper values.
 
 For this section only the motor controller's invert setting will be configured.
 This setting controls what direction a motor spins when the motor controller is given a command with a positive sign.
-Since there are two motors on each side of the drivetrain, its important to ensure that the each of the motors on a side
-move in sync with eachother.
+Given two motors on each side of the drivetrain, it's important to ensure that each of the motors on a side
+moves in sync with the other.
 This can be accomplished by telling one of the motor controllers to follow the other.
 This is why one motor is named Leader and the other is Follower.
 The code tells the Follower to listen to the commands given to the Leader.
@@ -352,9 +352,9 @@ The index provided in the constructor tells the `NiDsXboxController`which slot t
 </Tabs>
 
 <Aside type="note">
-    There are different classes for different types of controllers. There is
-    also a generic `Gamepad` class that allows you to get button or axis values
-    by index.
+    Different classes should be used for different types of controllers. A
+    generic `Gamepad` class can also be used to get button or axis values by
+    index.
 </Aside>
 
 Next, the `periodic()` method inside of `MyTeleop.java' will be used to continually update the `DifferentialDrive`index through the`arcadeDrive`function.
