@@ -32,9 +32,6 @@ importers:
       starlight-sidebar-topics-dropdown:
         specifier: ^0.6.0
         version: 0.6.0(@astrojs/starlight@0.41.10(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(astro@7.2.10(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(tsx@4.23.13)(yaml@2.9.0))(supports-color@10.2.2)(typescript@6.0.3))(starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.41.10(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(astro@7.2.10(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(tsx@4.23.13)(yaml@2.9.0))(supports-color@10.2.2)(typescript@6.0.3)))
-      'true':
-        specifier: ^0.0.4
-        version: 0.0.4
       unist-util-visit:
         specifier: ^5.1.0
         version: 5.1.0
@@ -3410,10 +3407,6 @@ packages:
 
   trough@2.2.0:
     resolution: {integrity: sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw==}
-
-  true@0.0.4:
-    resolution: {integrity: sha512-e7hkFCda5y51OTE4eQHVPFbuljGnOpzrVcigGM5Pd9+Bw1bEsHCq3mVIm/z/O5Mh1bXtVPNxUV8oCl/dMunlRg==}
-    hasBin: true
 
   ts-api-utils@2.5.0:
     resolution: {integrity: sha512-OJ/ibxhPlqrMM0UiNHJ/0CKQkoKF243/AEmplt3qpRgkW8VG7IfOS41h7V8TjITqdByHzrjcS/2si+y4lIh8NA==}
@@ -8243,8 +8236,6 @@ snapshots:
   trim-lines@3.0.1: {}
 
   trough@2.2.0: {}
-
-  true@0.0.4: {}
 
   ts-api-utils@2.5.0(typescript@6.0.3):
     dependencies:
