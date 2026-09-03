@@ -164,16 +164,17 @@ Then, in the `start()` method of the OpMode, schedule the `autoCommand()` we jus
 
 <details class="accordion">
     <summary>Hint 1</summary>
-    What should you put in the curly brackets?
-    `Command.noRequirements(coroutine -> {}).named("Drive Back Then Shoot")`
+    ```java #autoCmdDef
+    ```
 </details>
 <details class="accordion">
     <summary>Hint 2</summary>
-    `coroutine.await(Command)` is a way to run a command inside of another.
+    What should you put in the curly brackets? <br />
+    `Command.noRequirements(coroutine -> {}).named("Drive Back Then Shoot")`
 </details>
 <details class="accordion">
     <summary>Hint 3</summary>
-    `coroutine.await(Command)` is a way to run a command inside of another.
+    `coroutine.await(Command)` runs a command from start to finish inside of another.
 </details>
 <details class="accordion">
     <summary>Hint 4</summary>
