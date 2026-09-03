@@ -36,7 +36,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         definition: 'Power Distribution Hub',
     },
     {
-        term: 'Spark MAX',
+        term: 'SPARK MAX',
         definition: 'Motor controller for REV motors',
     },
     {
