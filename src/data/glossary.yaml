@@ -10,7 +10,7 @@
 PDH:
     definition: Power Distribution Hub
 
-Spark MAX:
+SPARK MAX:
     definition: Motor controller for REV motors
 
 Talon FX:
