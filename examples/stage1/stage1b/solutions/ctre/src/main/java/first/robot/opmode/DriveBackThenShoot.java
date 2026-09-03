@@ -25,7 +25,7 @@ public class DriveBackThenShoot extends PeriodicOpMode {
     return Command.noRequirements(
             coroutine -> {
               coroutine.await(
-                  robot.drivetrain.arcadeDrive(() -> -0.3, () -> 0.0).withTimeout(Seconds.of(3)));
+                  robot.drivetrain.arcadeDrive(() -> -0.2, () -> 0.0).withTimeout(Seconds.of(2)));
               coroutine.awaitAll(robot.intakeLauncher.shoot(), robot.feeder.feed());
             })
         .named("Drive Back Then Shoot");
