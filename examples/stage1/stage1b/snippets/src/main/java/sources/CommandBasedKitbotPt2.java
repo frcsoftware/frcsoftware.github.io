@@ -79,19 +79,14 @@ class CommandBasedKitbotPt2 {
           })
           .named("Drive");
     }
+  }
 
-    Command rotateInPlaceHint(double angleDegrees) {
-      return run(coroutine -> {
-            // [rotateInPlaceBody]
-            double targetAngle = imu.getRotation2d().getDegrees() + angleDegrees;
-            while (true) {
-              // What to add here?
-              coroutine.yield();
-            }
-            // [/rotateInPlaceBody]
-          })
-          .named("RotateInPlace");
+  class DriveBackAndShootExamples implements Mechanism {
+    // [autoCmdDef]
+    private Command autoCommand() {
+      return null; // what should replace 'null' here?
     }
+    // [/autoCmdDef]
   }
 
   static class DrivetrainSim {
