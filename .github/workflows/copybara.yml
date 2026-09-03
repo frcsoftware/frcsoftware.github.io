@@ -10,6 +10,10 @@ on:
             - 'copy.bara.sky'
             - '.github/workflows/copybara.yml'
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 jobs:
     copybara:
         if: github.ref == 'refs/heads/main' && github.repository == 'frcsoftware/frcsoftware.org'
