@@ -258,7 +258,10 @@ const { hasSidebar } = Astro.locals.starlightRoute;
 
             // Follow OS/browser changes unless the user has explicitly chosen a theme.
             const onSchemeChange = () => {
-                if (getStoredTheme() == null) applyTheme(getPreferredTheme());
+                const stored = getStoredTheme();
+                if (stored !== 'light' && stored !== 'dark') {
+                    applyTheme(getPreferredTheme());
+                }
             };
             if (!explicit) {
                 if (typeof colorScheme.addEventListener === 'function') {
