@@ -245,10 +245,9 @@ const { hasSidebar } = Astro.locals.starlightRoute;
             }
         };
 
+        const colorScheme = window.matchMedia('(prefers-color-scheme: light)');
         const getPreferredTheme = () =>
-            window.matchMedia('(prefers-color-scheme: light)').matches
-                ? 'light'
-                : 'dark';
+            colorScheme.matches ? 'light' : 'dark';
 
         const init = () => {
             const stored = getStoredTheme();
@@ -256,6 +255,18 @@ const { hasSidebar } = Astro.locals.starlightRoute;
                 stored === 'light' || stored === 'dark' ? stored : null;
 
             applyTheme(explicit || getPreferredTheme());
+
+            // Follow OS/browser changes unless the user has explicitly chosen a theme.
+            const onSchemeChange = () => {
+                if (getStoredTheme() == null) applyTheme(getPreferredTheme());
+            };
+            if (!explicit) {
+                if (typeof colorScheme.addEventListener === 'function') {
+                    colorScheme.addEventListener('change', onSchemeChange);
+                } else if (typeof colorScheme.addListener === 'function') {
+                    colorScheme.addListener(onSchemeChange);
+                }
+            }
 
             document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
                 btn.addEventListener('click', () => {
