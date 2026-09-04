@@ -12,11 +12,9 @@ import org.wpilib.command3.Scheduler;
 import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.drive.DifferentialDrive;
 import org.wpilib.framework.OpModeRobot;
-import org.wpilib.hardware.imu.OnboardIMU;
 
 public class SpotTheErrorPt2 {
   private final DifferentialDrive differentialDrive = null;
-  private final OnboardIMU imu = null;
 
   class ArcadeDriveBug implements Mechanism {
     // [arcadeDriveBug]
@@ -81,36 +79,6 @@ public class SpotTheErrorPt2 {
       Scheduler.getDefault().run();
     }
     // [/robotPeriodicFix]
-  }
-
-  class RotateInPlaceBug implements Mechanism {
-    // [rotateInPlaceBug]
-    Command rotateInPlace(double angleDegrees) {
-      double targetAngle = imu.getRotation2d().getDegrees() + angleDegrees;
-      return run(coroutine -> {
-            while (imu.getRotation2d().getDegrees() < targetAngle) {
-              differentialDrive.arcadeDrive(0.0, 0.2);
-              coroutine.yield();
-            }
-          })
-          .named("RotateInPlace");
-    }
-    // [/rotateInPlaceBug]
-  }
-
-  class RotateInPlaceFix implements Mechanism {
-    // [rotateInPlaceFix]
-    Command rotateInPlace(double angleDegrees) {
-      return run(coroutine -> {
-            double targetAngle = imu.getRotation2d().getDegrees() + angleDegrees;
-            while (imu.getRotation2d().getDegrees() < targetAngle) {
-              differentialDrive.arcadeDrive(0.0, 0.2);
-              coroutine.yield();
-            }
-          })
-          .named("RotateInPlace");
-    }
-    // [/rotateInPlaceFix]
   }
 
   class Drivetrain implements Mechanism {
