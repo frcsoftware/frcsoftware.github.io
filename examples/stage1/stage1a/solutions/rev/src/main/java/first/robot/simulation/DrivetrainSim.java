@@ -61,7 +61,7 @@ public class DrivetrainSim {
     this.leftCurrentPub = table.getDoubleTopic("LeftCurrentAmps").publish();
     this.rightCurrentPub = table.getDoubleTopic("RightCurrentAmps").publish();
 
-    m_driveSim.setPose(new Pose2d(2.5, 2, Rotation2d.kZero));
+    m_driveSim.setPose(new Pose2d(2.5, 2, Rotation2d.ZERO));
     FuelSim.robotPoseSupplier = m_driveSim::getPose;
   }
 

@@ -5,6 +5,10 @@ on:
         branches: [main]
     pull_request:
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 jobs:
     wrapper-validation:
         runs-on: ubuntu-latest
