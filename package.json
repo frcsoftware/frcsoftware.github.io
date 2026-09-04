@@ -19,11 +19,7 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "generate:glossary": "tsx scripts/generate-glossary.ts",
-        "lint:glossary": "tsx scripts/generate-glossary.ts --check",
-        "prebuild": "tsx scripts/generate-glossary.ts",
-        "predev": "tsx scripts/generate-glossary.ts",
-        "lint": "pnpm lint:eslint && pnpm lint:md && pnpm lint:regions && pnpm lint:glossary && pnpm typecheck && pnpm vale",
+        "lint": "pnpm lint:eslint && pnpm lint:md && pnpm lint:regions && pnpm typecheck && pnpm vale",
         "lint:eslint": "eslint \"src/**/*.{ts,astro,js,mjs}\" \"*.mjs\" \"scripts/*.{ts,mjs,js}\" --cache",
         "lint:md": "remark src/content/docs --ext mdx --frail",
         "lint:regions": "tsx scripts/validate-regions.ts",
@@ -43,7 +39,8 @@
         "sharp": "^0.35.4",
         "starlight-sidebar-topics": "^0.8.0",
         "starlight-sidebar-topics-dropdown": "^0.6.0",
-        "unist-util-visit": "^5.1.0"
+        "unist-util-visit": "^5.1.0",
+        "yaml": "^2.9.0"
     },
     "devDependencies": {
         "@astrojs/check": "^0.9.10",
