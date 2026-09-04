@@ -13,15 +13,15 @@ import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import dev.doglog.DogLog;
 import first.robot.simulation.ElevatorSim;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.math.util.Units;
+import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.*;
 
-public class Elevator extends Mechanism {
+public class Elevator implements Mechanism {
 
     private static class Constants {
         static final int LEADER_ID = 20;
@@ -127,11 +127,11 @@ public class Elevator extends Mechanism {
 
         BaseStatusSignal.refreshAll(signals);
 
-        DogLog.log("Elevator/Applied Voltage", getAppliedVoltage());
-        DogLog.log("Elevator/Position", getPosition());
-        DogLog.log("Elevator/Velocity", getVelocity());
-        DogLog.log("Elevator/At Setpoint", isAtSetpoint());
-        DogLog.log("Elevator/Active Commands", getRunningCommands().toString());
+        Telemetry.log("Elevator/Applied Voltage", getAppliedVoltage());
+        Telemetry.log("Elevator/Position", getPosition());
+        Telemetry.log("Elevator/Velocity", getVelocity());
+        Telemetry.log("Elevator/At Setpoint", isAtSetpoint());
+        Telemetry.log("Elevator/Active Commands", getRunningCommands().toString());
     }
 
     /**
@@ -152,7 +152,7 @@ public class Elevator extends Mechanism {
         return run(coro -> {
             setpoint = position;
             leader.setControl(positionRequest.withPosition(position / Constants.PULLEY_CIRCUMFERENCE));
-            DogLog.log("Elevator/Setpoint", position);
+            Telemetry.log("Elevator/Setpoint", position);
 
             coro.waitUntil(() -> isAtPosition(position));
         }).named("Set Position " + position + "m");

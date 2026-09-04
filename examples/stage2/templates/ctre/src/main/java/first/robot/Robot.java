@@ -4,8 +4,6 @@
 
 package first.robot;
 
-import dev.doglog.DogLog;
-import dev.doglog.DogLogOptions;
 import first.robot.mechanisms.*;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.framework.OpModeRobot;
@@ -19,8 +17,6 @@ public class Robot extends OpModeRobot {
   public final Claw claw;
 
   public Robot() {
-    DogLog.setOptions(new DogLogOptions().withCaptureDs(true));
-
     drive = new Drive();
     elevator = new Elevator();
     arm = new Arm();

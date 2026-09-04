@@ -3,7 +3,7 @@ package first.robot.mechanisms;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 
-public class Superstructure extends Mechanism {
+public class Superstructure implements Mechanism {
 
     private final Elevator elevator;
     private final Arm arm;

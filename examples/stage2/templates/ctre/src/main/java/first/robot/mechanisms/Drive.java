@@ -8,9 +8,9 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import com.ctre.phoenix6.swerve.*;
-import dev.doglog.DogLog;
 import org.wpilib.command3.*;
 import org.wpilib.command3.button.CommandNiDsXboxController;
+import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.math.controller.PIDController;
 import org.wpilib.math.controller.ProfiledPIDController;
 import org.wpilib.math.geometry.Pose2d;
@@ -21,13 +21,14 @@ import org.wpilib.math.kinematics.SwerveModulePosition;
 import org.wpilib.math.trajectory.TrapezoidProfile;
 import org.wpilib.math.util.MathUtil;
 import org.wpilib.math.util.Units;
+import org.wpilib.telemetry.Telemetry;
 
 import java.util.Set;
 import java.util.function.Supplier;
 
 import static org.wpilib.units.Units.*;
 
-public class Drive extends Mechanism {
+public class Drive implements Mechanism {
 
     private final SwerveDrivetrain<TalonFX, TalonFX, CANcoder> swerve;
 
@@ -97,19 +98,19 @@ public class Drive extends Mechanism {
         swerve.updateSimState(1.0/50.0/5.0, 12);
         swerve.updateSimState(1.0/50.0/5.0, 12);
 
-        DogLog.log("Drive/Pose", getPose());
+        Telemetry.log("Drive/Pose", getPose());
 
         var modules = swerve.getModules();
         SwerveModulePosition[] modulePositions = new SwerveModulePosition[4];
         for (int i = 0; i < modules.length; i++) {
             modulePositions[i] = modules[i].getPosition(true);
-            DogLog.log("Drive/ModuleVel/"+i, modules[i].getDriveMotor().getVelocity().getValueAsDouble());
+            Telemetry.log("Drive/ModuleVel/"+i, modules[i].getDriveMotor().getVelocity().getValueAsDouble());
         }
 
-        DogLog.log("Drive/ModulesReal", swerve.getState().ModuleVelocities);
-        DogLog.log("Drive/ModulesTargets", swerve.getState().ModuleTargets);
-        DogLog.log("Drive/Velocity", swerve.getState().Velocity);
-        DogLog.log("Drive/Active Commands", getRunningCommands().toString());
+        Telemetry.log("Drive/ModulesReal", swerve.getState().ModuleVelocities);
+        Telemetry.log("Drive/ModulesTargets", swerve.getState().ModuleTargets);
+        Telemetry.log("Drive/Velocity", swerve.getState().Velocity);
+        Telemetry.log("Drive/Active Commands", getRunningCommands().toString());
     }
 
     /**
@@ -139,7 +140,7 @@ public class Drive extends Mechanism {
      * @param controller the controller to use for inputs, the left stick controls translation, while the right stick controls rotation
      * @return a command
      */
-    public Command getDriveCommand(CommandNiDsXboxController controller) {
+    public Command getDriveCommand(CommandXboxController controller) {
         return runRepeatedly(() -> {
             double x = -MathUtil.applyDeadband(controller.getLeftY(), 0.1) * MAX_VELOCITY;
             double y = -MathUtil.applyDeadband(controller.getLeftX(), 0.1) * MAX_VELOCITY;
@@ -154,7 +155,7 @@ public class Drive extends Mechanism {
 
             swerve.setControl(request);
 
-            DogLog.log("Drive/DesiredVelocity", new ChassisVelocities(x, y, rotation).toRobotRelative(getHeading()));
+            Telemetry.log("Drive/DesiredVelocity", new ChassisVelocities(x, y, rotation).toRobotRelative(getHeading()));
         }).named("Teleop Drive");
     }
 
@@ -214,16 +215,16 @@ public class Drive extends Mechanism {
                     targetPose = poseSupplier.get();
                 }
 
-                DogLog.log("Drive/AutoAlign/At Target", atPosition());
-                DogLog.log("Drive/AutoAlign/Position in Tolerance", targetPose.getTranslation().getDistance(drive.getPose().getTranslation()) <= positionTolerance);
-                DogLog.log("Drive/AutoAlign/Angle in Tolerance", (ignoreRotation || Math.abs(targetPose.getRotation().minus(drive.getPose().getRotation()).getRadians()) <= angleTolerance));
+                Telemetry.log("Drive/AutoAlign/At Target", atPosition());
+                Telemetry.log("Drive/AutoAlign/Position in Tolerance", targetPose.getTranslation().getDistance(drive.getPose().getTranslation()) <= positionTolerance);
+                Telemetry.log("Drive/AutoAlign/Angle in Tolerance", (ignoreRotation || Math.abs(targetPose.getRotation().minus(drive.getPose().getRotation()).getRadians()) <= angleTolerance));
 
-                DogLog.log("Drive/AutoAlign/Target Pose", targetPose);
+                Telemetry.log("Drive/AutoAlign/Target Pose", targetPose);
 
                 Translation2d vectorToTarget = targetPose.getTranslation().minus(currentPose.getTranslation());
                 double distanceToEnd = vectorToTarget.getNorm();
 
-                DogLog.log("Drive/AutoAlign/Distance", distanceToEnd);
+                Telemetry.log("Drive/AutoAlign/Distance", distanceToEnd);
 
 //                ChassisVelocities currentVelocity = drive.getVelocity();
 //                Translation2d currentVelocityAsTranslation = new Translation2d(currentVelocity.vx, currentVelocity.vy);
@@ -234,11 +235,11 @@ public class Drive extends Mechanism {
 
                 double velocityForDistance = Math.pow(targetVelocity,2) - 2*-accelerationLimit*distanceToEnd;
 
-                DogLog.log("Drive/AutoAlign/Velocity for Distance", velocityForDistance);
+                Telemetry.log("Drive/AutoAlign/Velocity for Distance", velocityForDistance);
 
                 double velocityToTarget = Math.min(velocityForDistance * 0.85, velocityLimit);
 
-                DogLog.log("Drive/AutoAlign/Targeted Velocity", velocityToTarget);
+                Telemetry.log("Drive/AutoAlign/Targeted Velocity", velocityToTarget);
 
                 Translation2d velocities = vectorToTarget.div(distanceToEnd).times(velocityToTarget);
 
@@ -252,7 +253,7 @@ public class Drive extends Mechanism {
 
                 ChassisVelocities chassisVelocities = new ChassisVelocities(velocities.getX(), velocities.getY(), omega);
 
-                DogLog.log("Drive/DesiredVelocity", chassisVelocities);
+                Telemetry.log("Drive/DesiredVelocity", chassisVelocities);
 
                 swerveRequest.withVelocity(chassisVelocities);
                 drive.swerve.setControl(swerveRequest);

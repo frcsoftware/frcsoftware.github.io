@@ -7,6 +7,7 @@ package first.robot.opmode;
 import first.robot.Robot;
 import org.wpilib.command3.button.CommandGamepad;
 import org.wpilib.command3.button.CommandNiDsXboxController;
+import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
 import org.wpilib.opmode.Utility;
@@ -15,12 +16,12 @@ import org.wpilib.opmode.Utility;
 public class DriveTest extends PeriodicOpMode {
   private final Robot robot;
 
-  private final CommandNiDsXboxController controller;
+  private final CommandXboxController controller;
 
   public DriveTest(Robot robot) {
     this.robot = robot;
 
-    controller = new CommandNiDsXboxController(0);
+    controller = new CommandXboxController(0);
 
     robot.drive.setDefaultCommand(robot.drive.getDriveCommand(controller));
   }

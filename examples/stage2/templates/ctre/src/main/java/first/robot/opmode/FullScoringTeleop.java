@@ -6,6 +6,7 @@ import first.robot.mechanisms.Drive;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.NeedsNameBuilderStage;
 import org.wpilib.command3.button.CommandNiDsXboxController;
+import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.math.geometry.Pose2d;
 import org.wpilib.math.util.Units;
 import org.wpilib.opmode.PeriodicOpMode;
@@ -19,17 +20,17 @@ import static org.wpilib.units.Units.Seconds;
 public class FullScoringTeleop extends PeriodicOpMode {
     private final Robot robot;
 
-    private final CommandNiDsXboxController controller;
+    private final CommandXboxController controller;
 
     public FullScoringTeleop(Robot robot) {
         this.robot = robot;
 
-        controller = new CommandNiDsXboxController(0);
+        controller = new CommandXboxController(0);
 
         robot.drive.setDefaultCommand(robot.drive.getDriveCommand(controller));
 
-        controller.button(4).whileTrue(createScoreCommand(Poses.BLUE_REEF_LEFT_POSES).named("Autoalign and score (left)"));
-        controller.button(5).whileTrue(createScoreCommand(Poses.BLUE_REEF_RIGHT_POSES).named("Autoalign and score (right)"));
+        controller.leftBumper().whileTrue(createScoreCommand(Poses.BLUE_REEF_LEFT_POSES).named("Autoalign and score (left)"));
+        controller.rightBumper().whileTrue(createScoreCommand(Poses.BLUE_REEF_RIGHT_POSES).named("Autoalign and score (right)"));
     }
 
     private NeedsNameBuilderStage createScoreCommand(List<Pose2d> poses) {

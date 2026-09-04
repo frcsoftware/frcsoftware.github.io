@@ -5,15 +5,15 @@ import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
-import dev.doglog.DogLog;
 import first.robot.simulation.ClawSim;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.Scheduler;
+import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.Current;
 import org.wpilib.units.measure.Voltage;
 
-public class Claw extends Mechanism {
+public class Claw implements Mechanism {
     private final TalonFX motor;
 
     private final ClawSim sim;
@@ -47,10 +47,10 @@ public class Claw extends Mechanism {
 
         BaseStatusSignal.refreshAll(signals);
 
-        DogLog.log("Claw/Applied Voltage", appliedVoltageSignal.getValueAsDouble());
-        DogLog.log("Claw/Stator Current", statorCurrentSignal.getValueAsDouble());
-        DogLog.log("Claw/Supply Current", supplyCurrentSignal.getValueAsDouble());
-        DogLog.log("Claw/Active Commands", getRunningCommands().toString());
+        Telemetry.log("Claw/Applied Voltage", appliedVoltageSignal.getValueAsDouble());
+        Telemetry.log("Claw/Stator Current", statorCurrentSignal.getValueAsDouble());
+        Telemetry.log("Claw/Supply Current", supplyCurrentSignal.getValueAsDouble());
+        Telemetry.log("Claw/Active Commands", getRunningCommands().toString());
     }
 
     /**

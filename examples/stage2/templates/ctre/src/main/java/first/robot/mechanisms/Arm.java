@@ -13,19 +13,19 @@ import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import dev.doglog.DogLog;
 import first.robot.simulation.ArmSim;
 import org.wpilib.command3.Command;
 import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.util.Units;
+import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.AngularVelocity;
 import org.wpilib.units.measure.Current;
 import org.wpilib.units.measure.Voltage;
 
-public class Arm extends Mechanism {
+public class Arm implements Mechanism {
 
     private static class Constants {
         static final int MOTOR_ID = 22;
@@ -66,11 +66,11 @@ public class Arm extends Mechanism {
         // Construct and configure motors
         motor = new TalonFX(Constants.MOTOR_ID, Constants.BUS);
 
-        TalonFXConfiguration leaderConfiguration = new TalonFXConfiguration();
-        leaderConfiguration.MotorOutput.withNeutralMode(NeutralModeValue.Brake)
+        TalonFXConfiguration configuration = new TalonFXConfiguration();
+        configuration.MotorOutput.withNeutralMode(NeutralModeValue.Brake)
                 .withInverted(Constants.MOTOR_INVERSION);
-        leaderConfiguration.Feedback.withSensorToMechanismRatio(Constants.GEAR_RATIO);
-        leaderConfiguration.Slot0.withKS(Constants.kS)
+        configuration.Feedback.withSensorToMechanismRatio(Constants.GEAR_RATIO);
+        configuration.Slot0.withKS(Constants.kS)
                 .withKG(Constants.kG)
                 .withKV(Constants.kV)
                 .withKA(Constants.kA)
@@ -85,9 +85,9 @@ public class Arm extends Mechanism {
                 .withSupplyCurrentLimit(60)
                 .withSupplyCurrentLimitEnable(true);
 
-        leaderConfiguration.withCurrentLimits(currentLimitsConfigs);
+        configuration.withCurrentLimits(currentLimitsConfigs);
 
-        motor.getConfigurator().apply(leaderConfiguration);
+        motor.getConfigurator().apply(configuration);
 
         // Set up periodic method to run every code loop
         Scheduler.getDefault().addPeriodic(this::periodic);
@@ -116,11 +116,11 @@ public class Arm extends Mechanism {
 
         BaseStatusSignal.refreshAll(signals);
 
-        DogLog.log("Arm/Applied Voltage", getAppliedVoltage());
-        DogLog.log("Arm/Position", getPosition());
-        DogLog.log("Arm/Velocity", getVelocity());
-        DogLog.log("Arm/At Setpoint", isAtSetpoint());
-        DogLog.log("Arm/Active Commands", getRunningCommands().toString());
+        Telemetry.log("Arm/Applied Voltage", getAppliedVoltage());
+        Telemetry.log("Arm/Position", getPosition());
+        Telemetry.log("Arm/Velocity", getVelocity());
+        Telemetry.log("Arm/At Setpoint", isAtSetpoint());
+        Telemetry.log("Arm/Active Commands", getRunningCommands().toString());
     }
 
     /**
@@ -141,7 +141,7 @@ public class Arm extends Mechanism {
         return run(coro -> {
             setpoint = position;
             motor.setControl(positionRequest.withPosition(position));
-            DogLog.log("Arm/Setpoint", position);
+            Telemetry.log("Arm/Setpoint", position);
 
             coro.waitUntil(() -> isAtPosition(position));
         }).named("Set Position " + position + "rot");

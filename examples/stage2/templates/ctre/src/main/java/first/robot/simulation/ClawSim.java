@@ -35,6 +35,6 @@ public class ClawSim {
         sim.setInputVoltage(motorSim.getMotorVoltage());
         sim.update(0.02);
 
-        motorSim.setRotorVelocity(Units.radiansToRotations(sim.getAngularVelocity()));
+        motorSim.setRotorVelocity(Units.radiansToRotations(sim.getAngularVelocity()) * GEAR_RATIO);
     }
 }

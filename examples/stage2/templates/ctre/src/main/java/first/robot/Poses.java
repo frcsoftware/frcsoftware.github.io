@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Poses {
 
-    public static final Pose2d BLUE_REEF_A = new Pose2d(FieldConstants.BLUE_REEF_CENTER.plus(new Translation2d(1.4, -0.164309)), Rotation2d.kZero);
+    public static final Pose2d BLUE_REEF_A = new Pose2d(FieldConstants.BLUE_REEF_CENTER.plus(new Translation2d(1.4, -0.164309)), Rotation2d.ZERO);
     public static final Pose2d BLUE_REEF_B = FieldConstants.mirrorY(BLUE_REEF_A);
     public static final Pose2d BLUE_REEF_C = BLUE_REEF_A.rotateAround(FieldConstants.BLUE_REEF_CENTER, Rotation2d.fromDegrees(60));
     public static final Pose2d BLUE_REEF_D = BLUE_REEF_B.rotateAround(FieldConstants.BLUE_REEF_CENTER, Rotation2d.fromDegrees(60));
@@ -43,5 +43,5 @@ public class Poses {
     public static final List<Pose2d> RED_REEF_LEFT_POSES = List.of(RED_REEF_A, RED_REEF_C, RED_REEF_E, RED_REEF_G, RED_REEF_I, RED_REEF_K);
     public static final List<Pose2d> RED_REEF_RIGHT_POSES = List.of(RED_REEF_B, RED_REEF_D, RED_REEF_F, RED_REEF_H, RED_REEF_J, RED_REEF_L);
 
-    public static final Transform2d REEF_PREALIGN_TRANSFORM = new Transform2d(0.3, 0, Rotation2d.kZero);
+    public static final Transform2d REEF_PREALIGN_TRANSFORM = new Transform2d(0.3, 0, Rotation2d.ZERO);
 }
