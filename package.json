@@ -2,7 +2,6 @@
     "name": "frcsoftware-starlight",
     "type": "module",
     "version": "0.0.1",
-    "packageManager": "pnpm@11.25.0",
     "engines": {
         "node": ">=24.0.0"
     },
