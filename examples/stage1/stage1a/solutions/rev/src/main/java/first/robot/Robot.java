@@ -18,6 +18,7 @@ import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.imu.OnboardIMU;
 import org.wpilib.hardware.imu.OnboardIMU.MountOrientation;
 
+// [FullRobot]
 // [RobotWithSimPart1]
 // [RobotTop]
 /**
@@ -53,11 +54,18 @@ public class Robot extends OpModeRobot {
   // [/DrivetrainSim]
   // [/RobotWithSimPart1]
 
+  // [AdditionalMotors]
   public SparkMax intakeLauncher = new SparkMax(0, 4, MotorType.kBrushless);
   public SparkMax feeder = new SparkMax(0, 5, MotorType.kBrushless);
+  // [/AdditionalMotors]
 
+  // [IntakeLauncherSim]
   private SingleFlywheelSim intakeLauncherSim = SingleFlywheelSim.forIntakeLauncher(intakeLauncher);
+  // [/IntakeLauncherSim]
+  // [FeederSim]
   private SingleFlywheelSim feederSim = SingleFlywheelSim.forFeeder(feeder);
+
+  // [/FeederSim]
 
   // [RobotWithSimPart2]
   // [AllConfigs]
@@ -101,8 +109,14 @@ public class Robot extends OpModeRobot {
     drivetrainSim.periodic();
     // [/DriveSimPeriodic]
     intakeLauncherSim.periodic();
+    // [MotorSimPeriodic]
     feederSim.periodic();
-    FuelSim.update();
+    // [/MotorSimPeriodic]
+
+    // [FuelSimPeriodic]
+    FuelSim.periodic();
+    // [/FuelSimPeriodic]
   }
   // [/RobotWithSimPart2]
 }
+// [/FullRobot]

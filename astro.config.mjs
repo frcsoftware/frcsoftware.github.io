@@ -27,13 +27,13 @@ export default defineConfig({
                 remarkCodeRegion,
             ],
             rehypePlugins: [rehypeTargetBlank],
+            remarkRehype: {
+                footnoteLabel: 'References',
+                footnoteLabelTagName: 'h4',
+                // override properties so footnote label is visible
+                footnoteLabelProperties: {},
+            },
         }),
-        remarkRehype: {
-            footnoteLabel: 'References',
-            footnoteLabelTagName: 'h4',
-            // override properties so footnote label is visible
-            footnoteLabelProperties: {},
-        },
     },
 
     integrations: [

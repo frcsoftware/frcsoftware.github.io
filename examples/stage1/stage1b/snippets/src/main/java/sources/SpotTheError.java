@@ -22,11 +22,11 @@ class SpotTheError {
     // [/triggerCapturedValueBug]
 
     // [intakeOnTrueBug]
-    new Trigger(() -> xbox.getLeftBumper()).onTrue(intake.runAtThrottle(0.5));
+    new Trigger(() -> xbox.getLeftBumperButton()).onTrue(intake.runAtThrottle(0.5));
     // [/intakeOnTrueBug]
 
     // [intakeWhileTrue]
-    new Trigger(() -> xbox.getLeftBumper()).whileTrue(intake.runAtThrottle(0.5));
+    new Trigger(() -> xbox.getLeftBumperButton()).whileTrue(intake.runAtThrottle(0.5));
     // [/intakeWhileTrue]
   }
 

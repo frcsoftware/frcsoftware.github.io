@@ -28,10 +28,10 @@ public class FuelSim {
       SHOT_VELOCITY_Z = 5.5,
       SPEED_EPSILON = 20;
   private static final Transform3d
-      FIRST_ROW_POSE = new Transform3d(-0.22, 0, 0.35, Rotation3d.kZero),
-      SECOND_ROW_POSE = new Transform3d(-0.08, 0, 0.3, Rotation3d.kZero),
-      THIRD_ROW_POSE = new Transform3d(0.06, 0, 0.25, Rotation3d.kZero),
-      SHOT_ORIGIN = new Transform3d(0.2, 0, 0.5, Rotation3d.kZero);
+      FIRST_ROW_POSE = new Transform3d(-0.22, 0, 0.35, Rotation3d.ZERO),
+      SECOND_ROW_POSE = new Transform3d(-0.08, 0, 0.3, Rotation3d.ZERO),
+      THIRD_ROW_POSE = new Transform3d(0.06, 0, 0.25, Rotation3d.ZERO),
+      SHOT_ORIGIN = new Transform3d(0.2, 0, 0.5, Rotation3d.ZERO);
 
   private static final NetworkTable logTable =
       NetworkTableInstance.getDefault().getTable("FuelSim");
@@ -51,10 +51,10 @@ public class FuelSim {
   static DoubleSupplier intakeLauncherSpeedSupplier = () -> 0;
 
   /** A supplier that fetches the robot pose. */
-  static Supplier<Pose2d> robotPoseSupplier = () -> Pose2d.kZero;
+  static Supplier<Pose2d> robotPoseSupplier = () -> Pose2d.ZERO;
 
   /** Updates the fuel sim. */
-  public static void update() {
+  public static void periodic() {
     updateMode();
     updateVisualization();
   }
@@ -68,7 +68,7 @@ public class FuelSim {
       double deltaX = SHOT_VELOCITY_X * SHOT_DT;
       double deltaZ =
           SHOT_VELOCITY_Z * SHOT_DT - 0.5 * 9.8 * (Math.pow(t + SHOT_DT, 2) - Math.pow(t, 2));
-      currentPose = currentPose.plus(new Transform3d(deltaX, 0, deltaZ, Rotation3d.kZero));
+      currentPose = currentPose.plus(new Transform3d(deltaX, 0, deltaZ, Rotation3d.ZERO));
       poses.add(currentPose);
       t += SHOT_DT;
     }
@@ -76,7 +76,7 @@ public class FuelSim {
   }
 
   private static Pose3d[] fuelRow(Pose3d base) {
-    var offset = new Transform3d(0, 0.15, 0, Rotation3d.kZero);
+    var offset = new Transform3d(0, 0.15, 0, Rotation3d.ZERO);
     var poses = new Pose3d[3];
     poses[0] = base.plus(offset.inverse());
     poses[1] = base;
