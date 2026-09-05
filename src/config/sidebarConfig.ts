@@ -177,6 +177,16 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         },
                     ],
                 },
+                {
+                    label: 'Stage 2',
+                    collapsed: true,
+                    items: [
+                        {
+                            label: 'Stage 2 Overview',
+                            slug: 'learning-course/stage2/stage-overview',
+                        },
+                    ],
+                },
             ],
         },
     ],
