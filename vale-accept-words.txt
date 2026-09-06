@@ -23,6 +23,8 @@ Kauailabs
 Redux
 Sith
 Spotbugs
+# Kept case-insensitive: the route slug `vscode-overview` appears in page
+# frontmatter (prev/next), which Vale scans, so exact casing would flag it.
 VSCode
 accelerometer
 adblocker
@@ -77,7 +79,7 @@ webpage
 [case-sensitive]
 CANBus
 CANivore
-CTRE's
+CTRE
 ESLint
 Gradle
 IMUs
