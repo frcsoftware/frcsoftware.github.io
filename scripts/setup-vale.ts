@@ -1,7 +1,13 @@
-import { createWriteStream, writeFileSync, existsSync, mkdirSync } from 'fs';
+import {
+    createWriteStream,
+    writeFileSync,
+    existsSync,
+    mkdirSync,
+    readFileSync,
+} from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { glossaryTerms } from '../src/data/glossary';
+import { parse } from 'yaml';
 import { pipeline } from 'stream/promises';
 
 // Update glossary terms
@@ -13,7 +19,11 @@ if (!existsSync(OUTPUT_DIR)) {
     mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-const terms = [...new Set(glossaryTerms.map(({ term }) => term))].sort((a, b) =>
+const glossary = parse(
+    readFileSync(resolve(ROOT, 'src/data/glossary.yaml'), 'utf-8'),
+) as Record<string, unknown>;
+
+const terms = Object.keys(glossary).sort((a, b) =>
     a.toLowerCase().localeCompare(b.toLowerCase()),
 );
 
