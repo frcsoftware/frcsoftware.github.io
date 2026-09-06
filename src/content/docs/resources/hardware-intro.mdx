@@ -49,8 +49,8 @@ An IMU is a sensor that combines an accelerometer and a gyroscope.
 IMUs are used to measure a robot's orientation, rates of rotation, and acceleration and return these signals as a [`Rotation2d`](https://github.wpilib.org/allwpilib/docs/2027/java/org/wpilib/math/geometry/Rotation2d.html).
 They typically use degrees or radians for angular position (yaw/heading, pitch, and roll) and degrees per second or radians per second for angular velocity.
 They can be used for robot heading readings and odometry calculations.
-The most popular IMUs in FRC are navX2, Pigeon 2.0, and the onboard SystemCore IMU.
-Note that the onboard SystemCore IMU is new for 2027 and has not undergone significant successful testing.
+The most popular IMUs in FRC are navX2, Pigeon 2.0, and the onboard Systemcore IMU.
+Note that the onboard Systemcore IMU is new for 2027 and has not undergone significant successful testing.
 
 One important thing to note is that gyros measure rate rather than position.
 Position is inferred by repeatedly measuring the angular velocity and multiplying those values by the delta time between readings.
