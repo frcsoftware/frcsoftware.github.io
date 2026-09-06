@@ -177,6 +177,16 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                         },
                     ],
                 },
+                {
+                    label: 'Stage 2',
+                    collapsed: true,
+                    items: [
+                        {
+                            label: 'Stage 2 Overview',
+                            slug: 'learning-course/stage2/stage-overview',
+                        },
+                    ],
+                },
             ],
         },
     ],
@@ -249,8 +259,10 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
         {
             label: 'Resources',
             items: [
-                { label: 'Overview', slug: 'resources' },
+                { label: 'Overview', slug: 'resources/overview' },
+                { label: 'Glossary', slug: 'resources/glossary' },
                 { label: 'Documentation', slug: 'resources/docs' },
+                { label: 'Hardware', slug: 'resources/hardware-intro' },
                 { label: 'Examples', slug: 'resources/examples' },
                 { label: 'Glossary', slug: 'resources/glossary' },
             ],
@@ -269,6 +281,82 @@ export const sidebarSections: Record<string, SidebarSection[]> = {
                 { label: 'Style Guide', slug: 'contribution/styleguide' },
                 { label: 'Contributors', slug: 'contribution/contributors' },
                 { label: 'Roadmap', slug: 'contribution/roadmap' },
+            ],
+        },
+    ],
+
+    // Getting Started section
+    '/getting-started': [
+        {
+            label: 'Getting Started',
+            items: [
+                {
+                    label: 'Website Feature Guide',
+                    slug: 'learning-course/getting-started/website-feature-guide',
+                },
+                {
+                    label: 'Required Tools',
+                    slug: 'learning-course/getting-started/required-tools',
+                },
+                {
+                    label: 'VS Code Overview',
+                    slug: 'learning-course/getting-started/vscode-overview',
+                },
+                {
+                    label: 'Forking and Cloning',
+                    slug: 'learning-course/getting-started/forking-and-cloning',
+                },
+                {
+                    label: 'Intro to Java',
+                    slug: 'learning-course/stage0/stage-overview',
+                },
+            ],
+        },
+    ],
+
+    // Intro To Java section
+    '/intro-to-java': [
+        {
+            label: 'Intro to Java',
+            items: [
+                {
+                    label: 'Stage Overview',
+                    slug: 'learning-course/stage0/stage-overview',
+                },
+                {
+                    label: 'Java fundamentals',
+                    slug: 'learning-course/stage0/java-fundamentals',
+                },
+                {
+                    label: 'operators',
+                    slug: 'learning-course/stage0/operators',
+                },
+            ],
+        },
+    ],
+
+    // Resources section (content lives at /resources but navbar says "Other Resources")
+    '/resources': [
+        {
+            label: 'Resources',
+            items: [
+                { label: 'Overview', slug: 'resources/overview' },
+                {
+                    label: 'Examples',
+                    slug: 'resources/examples',
+                },
+                {
+                    label: 'Glossary',
+                    slug: 'resources/glossary',
+                },
+                {
+                    label: 'Hardware',
+                    slug: 'resources/hardware-intro',
+                },
+                {
+                    label: 'Documentation',
+                    slug: 'resources/docs',
+                },
             ],
         },
     ],
