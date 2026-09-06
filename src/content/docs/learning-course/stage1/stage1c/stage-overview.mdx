@@ -7,24 +7,23 @@ next: false
 
 import YouTube from '../../../../../components/YouTube.astro';
 
-If you've watched matches from any recent FRC game, you'll notice that robots typically have to line up quite precisely with a field element to score.
+If you've watched matches from any recent FRC game, you'll notice that robots typically have to align quite precisely with a field element to score.
 Take this example from Purdue University's Robot in 3 Days (Ri3D) team showcasing their autoalign program:
 
 <YouTube url="https://www.youtube.com/watch?v=MV6SQ46Dijs" />
 
 In 2026, robots had to line up with the hub to successfully shoot fuel.
-In 2025, robots had to line up with hangers on the reef to place coral.
+In 2025, robots had to line up with branches on the reef to place coral.
 To execute these tasks, teams run automatic positioning programs rather than burdening the driver with such precise movements.
-In Stage 1C, you will learn fundamental concepts pertaining to "control theory:" a field of research dedicated to guiding real-world systems (such as robots) to do the things we want.
-Control theory guides the motion of each and every mechanism you will program in FRC.
+In Stage 1C, you will learn fundamental concepts pertaining to robot control algorithms.
+You will also learn about how to log data from your robot beyond simple print statements.
 
 ## Key Concepts
 
-In FRC, different mechanisms can be thought of as "systems."
 Mechanisms have "states" such as position, angle, velocity, and acceleration.
-A PID (Proportional, Integral, Derivative) controller takes a desired state of a system, called a "setpoint," and guides a system's actual state towards this setpoint.
-The output of your mechanism's control algorithm is called "control effort," and, in FRC, control effort will almost always be measured in Volts.
-You can track the states, setpoints, and control efforts of your robots through logging with Telemetry, a system for sending data between the robot and the driver station.
+For FRC purposes, a PID controller is an equation which takes a desired mechanism state, compares it to the current state, and outputs a voltage which your motor controllers are commanded to output.
+By properly "tuning" a PID controller, you can make a mechanism quickly and precisely change state.
+Telemetry is the process of recording and sending live data about your robot to a live output and/or log file.
 
 ## Stage 1C Goals
 
