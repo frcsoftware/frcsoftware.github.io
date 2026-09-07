@@ -20,14 +20,6 @@ This section will cover effective strategies to debugging your robot code.
 
 </Aside>
 
-## Interpreting a Stacktrace
-
-When an error happens, VS Code will tell you in the code itself or in the terminal.
-When the code runs and there is an error, a message will appear in the terminal.
-This message is called a **stacktrace**.
-A stacktrace traces or identifies the spot in the program where the error happened.
-This can have a lot of useful information about the type of error and how you can fix in.
-
 # Types of Errors
 
 There's a few different types of errors that you can run into when writing code.
@@ -45,12 +37,17 @@ Let's take a look!
         <tr>
             <td>Syntax Error</td>
             <td>Compile time</td>
-            <td>The compiler will display an error message, and your code will not finish building</td>
+            <td>
+                The compiler will display an error message, and your code will
+                not finish building
+            </td>
         </tr>
         <tr>
             <td>Runtime Error</td>
             <td>Run time</td>
-            <td>The program will display an error message</td>
+            <td>
+                The program will crash and restart, and display an error message
+            </td>
         </tr>
         <tr>
             <td>Logic Error</td>
@@ -62,8 +59,10 @@ Let's take a look!
 
 ## Syntax Error
 
-Before the program runs, there's a program called a compiler that takes all the code you wrote and turns it into instructions a machine will understand.
-When there is an error with the syntax, the compiler will show an error.
+As part of the build process, there's a program called a compiler that takes all the code you wrote and turns it into instructions a machine will understand.
+
+Just like English has grammar rules, Java also has a grammar to ensure the compiler can understand the code you've written.
+If you don't follow this grammar, the compiler will complain by giving an error.
 VS Code shows these errors by putting a red line under the part of code that it thinks is wrong,
 just like a typo in Google Docs.
 
@@ -74,8 +73,8 @@ before it ever actually runs.
 <Aside type="note">
     When programming, a yellow line might appear under a part of code. Most of
     the time, this is not an error. It's a warning and it typically does not
-    affect the output of the code. The warning is just there to say that the
-    code is not being used.
+    affect the output of the code. However, you should pay close attention to
+    the error as it might cause undesired outputs.
 </Aside>
 
 For instance, the following code would generate a syntax error:
@@ -87,17 +86,17 @@ For instance, the following code would generate a syntax error:
     height="800px"
 />
 
-Misspelling variable names is another form of syntax errors.
-The following code would also generate a syntax error
+Misspelling variable names is also a syntax error.
+Not using proper syntax, as shown, also generates a syntax error.
 
 <ContentFigure
     src="/learning-course/stage0/debugging/syntaxError2.webp"
-    alt=" int number = 4; System.out.println(numer); // <- number is misspelled!"
+    alt=" int number 4; // <- missing the equal sign! System.out.println(number); "
     width="600px"
     height="800px"
 />
 
-If you notice that the code has the red line under it, put the cursor over that line of code.
+If you notice that the code has the red line under it, hover over that line of code.
 VS Code will give more information about the error.
 Let's look back at the previous misspelled variable name example,
 when putting the cursor over the error, it reads `numer cannot be resolved to a variable`.
@@ -110,9 +109,14 @@ This means it's looking for a variable called `numer` but it can't find it.
     height="800px"
 />
 
-Sometimes, errors are too subtle for the compiler to notice immediately, and it blames the wrong part of the code
-with a confusing error message.
-When this happens, look closely at the code, it's syntax, and try to find what went wrong.
+When the code runs, the error message can also appear in the terminal.
+This message is called a **stacktrace**.
+A stacktrace traces or identifies the spot in the program where the error happened.
+
+Sometimes, errors are too subtle for the compiler to notice immediately,
+and it may look like a different part of code is causing the error.
+Therefore, it's important to read the stacktrace carefully to try to understand it is saying before
+trying to fix the error.
 
 ## Runtime Error
 
@@ -131,12 +135,12 @@ Let's look at an example.
 
 The example looks like it should run.
 However, if the code was to run, it would give a runtime error for Diving by zero.
-The compiler would give an error similar to `Exception in thread "main" java.lang.ArithmeticException: / by zero at main.main(main.java:5)`
+The terminal will show an error similar to `Exception in thread "main" java.lang.ArithmeticException: / by zero at main.main(main.java:5)`
 By reading the error message, it's clear that the error is a divide by 0 error.
 This happens in `int answer = 10/0;` because it's diving by zero.
 One way to fix this error would be to swap the 10 and 0.
 
-<Aside type="Tip">
+<Aside type="tip">
     The stacktrace will tell you what line the error is on.
     For example, `Exception in thread "main" java.lang.ArithmeticException: / by zero at main.main(main.java:5)`
     has `(main.java:5)`.
@@ -147,10 +151,6 @@ One way to fix this error would be to swap the 10 and 0.
 ## Logic Error
 
 There will be times when the code runs, has no errors but it doesn't give the desired output.
-Typically, this does not mean that your syntax was wrong.
-Most of the time, the instructions or the logic in your code isn't correct.
-This means that the code could have wrong conditions, formulas, or operators.
-
 Computers don't know what we are expecting them to do.
 They only know what we told them.
 If the instructions given are wrong, then the output will be wrong too.
@@ -172,17 +172,20 @@ Therefore, changing the addition sign to a multiplication sign will fix the issu
 This is a simple example of a logic issue.
 The code ran with no errors but, but had bad instructions.
 
-Software bugs are often not as easy to spot as this example. Be sure to take time to read through the code and verify that the intended behavior matches what the code is saying.
+Software bugs are often not as easy to spot as this example.
+Be sure to take time to read through the code and verify that the intended behavior matches what the code is saying.
 Adding `System.out.println();` can also help break down what the code is doing at different spots in the program.
 
 ## Helpful Tips
 
 Errors will always appear in code, but there are things to do to help avoid errors appear as often.
 
-- Check for typos in your variable names or in the code.
-- Look out for missing semi-colons and make sure the syntax is correct.
 - Use variable names that match their meaning.
-- Create the variable first, don't use variables that have not been made yet.
+- Split up complex logic blocks into smaller, simpler ones.
+- Keep the code easy to read.
+  Readability is important.
+- Code is made up of building blocks.
+  Test the smaller blocks so that you're sure your foundation is solid for the larger blocks.
 
 When there is an error, read through the error message carefully.
 If you're stuck, use online resources!
