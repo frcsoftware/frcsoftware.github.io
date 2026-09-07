@@ -10,13 +10,13 @@ codeRegionSources:
 When completing the Exercise for Java Fundamentals, you probably ran into errors and then fixed them.
 This means that you did some debugging!
 Debugging is the process of finding those problems, often called bugs, in our code then fixing them.
-This section will go over how to figure out what the problems are and how to solve them.
+This section will cover effective strategies to debugging your robot code.
 
 <Aside type="note" title="Did you know?">
     Using the word "bug" to refer to an error in a program was popularized by Grace Hopper, an American computer scientist.
-    While her and her team was working on the Mark II computer, they were able to trace an error to month that was stuck 
+    While her and her team was working on the Mark II computer, they were able to trace an error to moth that was stuck 
     in the computer. 
-    They put the month in their notebook with the note "First actual case of bug being found".
+    They put the moth in their notebook with the note "First actual case of bug being found".
 
 </Aside>
 
@@ -45,7 +45,7 @@ Let's take a look!
         <tr>
             <td>Syntax Error</td>
             <td>Compile time</td>
-            <td>The compiler will display an error message</td>
+            <td>The compiler will display an error message, and your code will not finish building</td>
         </tr>
         <tr>
             <td>Runtime Error</td>
@@ -101,7 +101,7 @@ If you notice that the code has the red line under it, put the cursor over that 
 VS Code will give more information about the error.
 Let's look back at the previous misspelled variable name example,
 when putting the cursor over the error, it reads `numer cannot be resolved to a variable`.
-This means it's looking for a variable called "numer" but it can't find it.
+This means it's looking for a variable called `numer` but it can't find it.
 
 <ContentFigure
     src="/learning-course/stage0/debugging/syntaxError3.webp"
@@ -116,7 +116,7 @@ When this happens, look closely at the code, it's syntax, and try to find what w
 
 ## Runtime Error
 
-The code might look like it has no errors, but when the code runs, an error appears.
+The code might look like it has no bugs, but when the code runs, an error appears.
 When this happens, it's a runtime error.
 Runtime errors are errors that can only be found when the program is running.
 One common types of runtime error is dividing by zero.
@@ -137,10 +137,10 @@ This happens in `int answer = 10/0;` because it's diving by zero.
 One way to fix this error would be to swap the 10 and 0.
 
 <Aside type="Tip">
-    Runtime errors will tell you what line the error is on.
+    The stacktrace will tell you what line the error is on.
     For example, `Exception in thread "main" java.lang.ArithmeticException: / by zero at main.main(main.java:5)`
     has `(main.java:5)`.
-    That means the error is on line 5.
+    That means the error is on line 5 of `main.java`.
 
 </Aside>
 
@@ -170,9 +170,9 @@ When trying to find the area of a rectangle, the equation for the area is width 
 In the code, it isn't multiplying the width and height, it adds the two.
 Therefore, changing the addition sign to a multiplication sign will fix the issue and it should print out `Area of the rectangle is 10`.
 This is a simple example of a logic issue.
-The code ran with no errors but, it was given the wrong operator.
+The code ran with no errors but, but had bad instructions.
 
-Finding logical errors in code can mean taking time to read through your code and make sure what it does matches up with what you want your code to do.
+Software bugs are often not as easy to spot as this example. Be sure to take time to read through the code and verify that the intended behavior matches what the code is saying.
 Adding `System.out.println();` can also help break down what the code is doing at different spots in the program.
 
 ## Helpful Tips
