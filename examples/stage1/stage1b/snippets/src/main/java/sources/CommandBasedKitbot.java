@@ -11,6 +11,7 @@ import org.wpilib.command3.Scheduler;
 import org.wpilib.command3.button.CommandXboxController;
 import org.wpilib.framework.OpModeRobot;
 import org.wpilib.opmode.PeriodicOpMode;
+import org.wpilib.framework.RobotBase;
 
 class CommandBasedKitbot {
   // [feederDef]
